@@ -72,6 +72,11 @@ These five are therefore **not carried over as decisions in force**. Their subje
 ProjectML takes its own decisions on it with its own reasoning. They are listed as the prior art those
 decisions answer to.
 
+ProjectML's decision on the subject is **K30**, in
+[`2026-09-02-spec-structure-and-oq2-design.md`](superpowers/specs/2026-09-02-spec-structure-and-oq2-design.md):
+a requirement kind is a specialisation of `RequirementDef` rather than an attribute on it. That revises the
+mechanism D53 chose while keeping what D52 and D53 were protecting.
+
 | # | Decision | Note |
 |---|---|---|
 | D51 | An implementation declares the kinds of requirement it handles | Stated in EventML as a property of a library |
