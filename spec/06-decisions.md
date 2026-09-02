@@ -2,8 +2,8 @@
 
 This is the normative decision record. The design records under
 [`docs/superpowers/specs/`](../docs/superpowers/specs/) carry the reasoning behind each decision below; this
-file carries the decisions in force. Where a decision needs more than the one line of reason given here, the
-design record it came from is linked from its row.
+file carries the decisions in force. Where a decision or a question needs more than the one line given here,
+the design record it came from is linked once, above the table it belongs to.
 
 The `K` series is continuous. `K1`–`K18` were taken in
 [the founding record](../docs/2026-08-26-kernel-brainstorm.md) and are not restated here; this document
@@ -40,7 +40,7 @@ which carries the full argument for each.
 
 | # | Decision | Reason |
 |---|---|---|
-| K25 | The seam test. An attribute belongs to the metamodel if the metamodel can interpret it without resolving a reference to an element it does not define | K3's one-seam rule, applied attribute by attribute rather than only to the relation |
+| K25 | The seam test. An attribute belongs to the metamodel if the metamodel can interpret it without resolving a reference to an element it does not define. Prose that names design-language things is content, and content belongs to the implementation; a typed reference to a design-language element would be a second seam | K3's one-seam rule, applied attribute by attribute rather than only to the relation |
 | K26 | The record test. An attribute belongs to the metamodel if a stated metamodel rule can fail on it — including on its absence — without reading its content | K7's posture, made into a criterion: a rule that might one day be written does not qualify |
 | K27 | `RequirementDef` does not split into two types. It is one type with a core the metamodel interprets or can fail on, and declared points an implementation fills | A split would need a second type coordinated with the first, which is not the metamodel's job |
 | K28 | `constraints` leaves the metamodel entirely. The metamodel does not name the concept. An implementation may introduce one | It fails both K25 and K26 on the same structural fact: it is a typed reference into elements the kernel does not define — a second seam |
@@ -56,11 +56,14 @@ which carries the full argument for each.
 
 ## Open questions, OQ9–OQ11
 
+Raised in [the design record of 2026-09-02](../docs/superpowers/specs/2026-09-02-spec-structure-and-oq2-design.md),
+which carries the full argument for each.
+
 | # | Question | When answerable |
 |---|---|---|
 | OQ9 | What does specialisation mean? What a subtype of `RequirementDef` may add, narrow or override. K30 chooses the mechanism and does not define its semantics | When something exercises it — realistically phase 4, when the first kinds are declared |
-| OQ10 | Does `verifies` become a second edge kind on the one seam? | Phase 2, where the SysML binding meets it, or later |
-| OQ11 | Does the metamodel need a subject? | Phase 2 — this is the binding's job to settle |
+| OQ10 | Does `verifies` become a second edge kind on the one seam? SysML puts verification as an edge from a verification element to a requirement, in the same direction and shape as `satisfies`. K4's first declaration would widen by one word to carry it. Nothing exercises it: no verification elements exist anywhere yet | Phase 2, where the SysML binding meets it, or later |
+| OQ11 | Does the metamodel need a subject? SysML requires every requirement to have one. The metamodel does not have one, and the `satisfies` edge appears to determine it, since SysML's own `satisfy` binds the subject to the enclosing element. If that is not enough, a binding must synthesise one, which is the shape a false K2 would take | Phase 2 — this is the binding's job to settle |
 
 ## Status of the founding record's open questions
 
