@@ -198,6 +198,13 @@ K3 permits exactly one of and requires to be carried by the outside element poin
 The tests are independent and they agree on every attribute, which is the strongest evidence this record
 carries. They disagree nowhere.
 
+> **Superseded by K36.** They do disagree, and this record could not have seen it: the only attribute ever
+> measured against both — the one K28 excludes — failed both on a single structural fact, so the agreement
+> was a sample of one. Writing `spec/` found the second case. *When it applies* passes the seam test and
+> fails the record test, because its absence is deliberately a gap rather than a claim, so nothing can fail
+> on it. K36 settles what follows: the tests are not a conjunction, the seam test governs admissibility, and
+> the record test measures whether an admitted attribute is load-bearing. See `spec/06-decisions.md`.
+
 Two readings of the house rule that an unexercised construct waits were available for `verification`, and
 the difference decides its fate. Under *a rule reads it*, `verification` is unexercised: it appears twice in
 EventML's specification, in its own definition and in one example, and no rule, check or derivation reads

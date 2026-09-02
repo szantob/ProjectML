@@ -126,9 +126,13 @@ information a future resolution of OQ1 would need to work from.
 
 ## 5. What is open
 
-Two questions bear directly on this seam, and this document answers neither of them. Both are recorded as
-open, in `spec/06-decisions.md`, and both are phase 2's to settle — a binding is where each first has to be
-answered concretely, which is why phase 2 comes early rather than after the metamodel is otherwise finished.
+Three questions bear directly on this seam, and this document answers none of them. All three are recorded
+as open, in `spec/06-decisions.md`, and all three are phase 2's to settle — a binding is where each first
+has to be answered concretely, which is why phase 2 comes early rather than after the metamodel is otherwise
+finished. The third, OQ12, is different in kind from the other two: it names what this document leaves
+under-specified about the seam itself — the edge's cardinality, the check over it that section 4 cites by
+name, and whether the edge pins a baseline. It is to be answered **before** a binding is written rather than
+during it, because a binding is the test of K2 and should not be testing K2 and filling holes at once.
 
 - **OQ10 — does a second edge kind join the seam, for verification?** A requirement's origin is one thing an
   element outside the kernel can name; whether the requirement was shown to hold is another. SysML v2 already
