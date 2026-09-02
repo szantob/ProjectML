@@ -2,6 +2,15 @@
 
 This is the value-state model, one member of the collection ProjectML metamodels (K19).
 
+It is not, however, a member adopted in turn after the others. **The value-state model is a prerequisite
+every member of the collection carries.** That is what K19 already means by saying it crosscuts, and
+`00-overview.md` §2 states it where the adoption order is described: a value state applies to any value in
+any member, so taking up any one of the other three brings this document with it. A reader who adopts the
+requirement model alone and stops there has adopted this document too — the values a requirement carries are
+values in this model's sense, and there is no reading of that document under which they are not. The number
+this document carries records that it is stated last, once the members that lean on it have been written; it
+does not place it fourth in the order in which the collection is taken up.
+
 ## 1. Incompleteness is data
 
 A value in the model records not only what it is, but what is known about it: where it came from, whether

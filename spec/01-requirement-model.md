@@ -18,6 +18,14 @@ is assembled and justified, and the requirement model is what survives being han
 in the room for that. A design language attaches to the product, not to the process that produced it — K21
 says the same thing again, one step later, of the baseline specifically.
 
+One thing this document does lean on, and whoever adopts it takes up along with it: the value-state model. A
+requirement's values carry value states, and `04-value-states.md` is where those are stated. That is not a
+forward dependency of the kind §2's decision rules out. The value-state model is a prerequisite every member
+of the collection carries rather than a member reached later in the numbered order — which is what K19
+already means by saying it crosscuts, and what `00-overview.md` §2 says where the order is described. The
+requirement analysis model is not like that: it is a member in the order, adopted after this one or not at
+all, and §2 turns on the difference.
+
 ## 2. `Requirement`
 
 A requirement carries four things: the three attributes below, and the derivation edge that follows them.

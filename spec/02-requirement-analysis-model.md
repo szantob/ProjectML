@@ -161,9 +161,11 @@ be resolved into elements the metamodel does not define is a second seam whateve
 in the direction K3 forbids. The record test is K7's posture made into a criterion, and its load-bearing word
 is *stated* — a rule that might one day be written does not qualify, or everything qualifies. Note what the
 record test does not require: it is satisfied by a rule that fails on an attribute's **absence**, which is
-how *when it applies* and *how it would be verified* pass without anything ever reading their prose.
+how *how it would be verified* passes without anything ever reading its prose. Section 10 states the rule
+that does it.
 
-The two tests are independent, and on the core they agree everywhere.
+The two tests are independent of each other. How they relate, and what that relation costs one of the seven,
+is stated at the end of this section, after the one candidate both of them reject.
 
 **The one candidate that fails both.** A rule attached to a definition, stating what must hold of the design
 elements a requirement produced under it constrains, names a design language's element kinds. It fails the
@@ -181,6 +183,42 @@ is bound through the satisfy edge. That routes a constraint through the one seam
 — which is what the seam test predicts a design language must do, and it is the difference between a rule that
 fails the test and a mechanism that passes it. Whether the seam determines the subject on its own is OQ11, and
 settling it is the binding's job.
+
+### How the two tests relate
+
+**They are not a conjunction, and on the core they do not agree everywhere.** An earlier reading of this
+section said they did. It had one candidate to reason from, and that candidate fails both tests on a single
+structural fact, so it could not have separated them however they related. Applied to the seven, they
+separate. Section 10 states the syntactic constraints this model genuinely carries, and no rule among them
+fails on *when it applies*: its absence is deliberately a gap rather than a claim, so the rule that is
+available over it reports rather than fails, and the record test's word is *fail*. Nor does any of them fail
+on *name*, which the metamodel reads for no purpose of its own.
+
+**The seam test decides admissibility. The record test measures whether an admitted attribute is
+load-bearing, and is not a second gate.** The reason is that a presence rule can be written over any
+attribute at will: *a definition states its name* is a rule, it takes one line, and it fails on an absence
+without reading a word of content. Were the record test the admissibility criterion, it would therefore be
+vacuous — every attribute passes, because the rule that admits it is always available — or else arbitrary,
+with nothing to say which presence rules are worth writing and which were written to admit a favoured
+attribute. The word *stated* excludes the rule nobody has written; it does not exclude the rule anybody could
+write in an afternoon, and an attribute's place in a metamodel cannot turn on whether somebody got round to
+it. The seam test has no such weakness. Whether an attribute can be interpreted without resolving a reference
+to an element the metamodel does not define is a fact about the attribute, unchanged by which rules happen to
+exist over it.
+
+Section 5's own definition of the core already reads this way, in one word: the core is what the metamodel
+**can interpret, or can fail on**, without reading anything an implementation supplies. The two clauses are
+the two tests, and the connective between them is *or*. An attribute the metamodel can carry without opening
+a second seam is in the core; an attribute a stated rule can fail on is in the core and is checkable as well.
+
+**Where this leaves *when it applies*: it stays.** It is admitted by the seam test, being one sentence of
+prose that resolves nothing the metamodel does not define. It is not load-bearing under the record test, and
+it cannot be made so without reversing the position that its absence is a gap and not a claim — a position
+taken deliberately, because a definition whose applicability nobody wrote down is not thereby one that
+applies unconditionally, and a rule failing on the absence would report a defective record where what is
+actually there is a question for whoever knows. Admitting this costs nothing the collection needs: the record
+test's verdict on an attribute is a report on how much work that attribute does, not a verdict on whether it
+belongs. Recorded as K36 in `spec/06-decisions.md`.
 
 ## 7. Requirement kinds are specialisations
 
@@ -293,9 +331,9 @@ reader can tell "this was resolved" apart from "this was made to disappear."
 Retirement arrives the way everything else here arrives: through a source (K11). Nothing marks a requirement
 no longer in force directly. A source enters the model saying so, and the change follows from it.
 
-**One syntactic constraint follows** (K24), and it belongs here, beside the property it refers to: a
+**One syntactic constraint follows** (K24), and it is argued here, beside the property it refers to: a
 requirement in this model carries exactly one of "in force" or "no longer in force" at any time — never
-both, and never neither.
+both, and never neither. Section 10 gathers it with the rest of this model's syntactic constraints.
 
 ### The projection
 
@@ -442,3 +480,89 @@ produced nothing. That question is OQ3, it is open, and it is the next piece of 
 the current plan. It is left open on purpose: a record that costs nothing to write becomes a way to silence
 the rule, which is the same failure deletion would be one model over, and designing against that needs the
 argument OQ3 is for rather than a convenient answer taken in passing here.
+
+## 10. The syntactic constraints of this model
+
+K24 divides constraints over the collection in two: a syntactic constraint refers only to elements the
+metamodel defines and is decidable without judgement, where a semantic one judges content and is a matter for
+review. This section states the syntactic constraints over the elements this document defines, in the shape
+`01-requirement-model.md` §5 uses for the product model's own.
+
+Several of them were argued above, beside the element they refer to, and are given here in one line so that
+the set is visible at once rather than assembled by a reader out of six sections; where that is so, the
+section carrying the argument is named. None of them reads the content of anything: every one is decidable
+from what is present and what is absent, which is what K24 means by *without judgement* and what the record
+test (§6) means by *without reading its content*.
+
+**Over `Source`, and the edge between sources.**
+
+- A source's identity is unique among every source in the model (§2).
+- The `answers` edge points backward in time: the source carrying it is dated later than the source it names
+  (§3, D38).
+- One `answers` edge names exactly one earlier source; a source may carry any number of them (§3, D29).
+
+**Over `Need`.**
+
+- A need's identity is unique among every need in the model (§4).
+- A need anchors into exactly one passage of exactly one source. A need with no anchor is a failed check and
+  not a question: there is nothing in it to ask a stakeholder about and nothing for a reviewer to weigh, only
+  an omission to fix (§4, D34, D26).
+
+**Over `RequirementDef`.**
+
+- A definition's identity is unique among every definition in the model (§5).
+- No element is a `RequirementDef` and nothing more: every definition in a model is an instance of some
+  specialisation of it (§5, §7, K30).
+- A definition states the template its requirements' wording is produced from (§5). A definition without one
+  produces nothing, and the derivation §8 describes cannot be run against it.
+- Every parameter a definition declares names the value domain it draws from. Which domains exist is an
+  implementation's business; that a parameter names one is not (§5, `04-value-states.md` §5).
+- Every parameter a definition declares carries its own ask. A parameter with no ask is a failed check on the
+  definition: *what to ask* exists so that a value in the unknown state has a stated route out of it, and a
+  parameter missing its ask is exactly the case where that route is absent (§5).
+- **Every definition states how a requirement produced under it would be verified.** Absence of the statement
+  is a failed check on the definition itself, independent of anything any requirement produced under it says.
+  A definition whose requirements cannot be verified independently meets this constraint by saying so, in
+  that same attribute: the check reads whether the statement is there, never which of the two things it says.
+  This is ISO/IEC/IEEE 29148's verifiability characteristic held one level up, where §5 places the method —
+  29148 requires verifiability of a requirement, and a requirement inherits its definition's method — and it
+  is the stated rule K29 rests on.
+
+**Over the derivation, and over being no longer in force.**
+
+- A requirement in this model names exactly one `RequirementDef`: never none, and never two (§8, K8).
+- A requirement in this model carries exactly one of "in force" or "no longer in force" at any time — never
+  both, and never neither (§8).
+- A requirement carrying no origin edge at all — neither refinement nor derivation — is a failed check (§9,
+  K9, D49, D32).
+
+**Over `Decision`.**
+
+- A decision's identity is unique among every decision in the model (§9).
+- A decision names the party that took it, the date it was taken, the choice, the alternatives the choice was
+  made among, and the rationale. Absence of any of the five is a failed check on the decision. Whether the
+  alternatives recorded were genuine ones is a judgement and therefore a semantic matter under K24, outside
+  this check.
+
+**Over findings.**
+
+- A review finding names at least two elements (§9, K10).
+- A review finding recorded as closed names the later source that closed it, and that source `answers` the
+  source the finding was opened by. Nothing marks a finding closed directly (§9, K11).
+
+**One rule over these elements reports rather than fails.** §9's table separates a failed check from a
+question: both are decided without judgement and neither is modelled, but a failed check says the record is
+wrong where a question says something was left open and somebody has to look at it. **A definition that does
+not say when it applies is reported as a question.** It is not a failed check, and making it one would
+contradict the row of §5 that defines the attribute: an unwritten applicability is a gap, not a claim that
+the definition applies unconditionally, and the honest report is that nobody has written it down rather than
+that the record is defective. This is the same shape as the rule §9 states over a need that no requirement
+refines — the rule fires wherever the gap is, and what to make of it is a judgement rather than the rule's to
+decide. It is also why *when it applies* does not pass the record test, which §6 settles.
+
+**What is not stated here, and why the omission is deliberate.** No rule requires a definition to carry a
+*name*. One could be written in a line, and it would fail on an absence without reading any content — which
+is exactly §6's point about what a presence rule proves. The metamodel reads a name for no purpose of its
+own, so requiring one is record hygiene an implementation is better placed to state over its own definitions,
+the core being a floor rather than a ceiling (K27). Nothing here is stated in order to make an attribute pass
+a test: a rule nothing would ever fire on is worse than an admitted gap.
