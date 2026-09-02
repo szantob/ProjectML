@@ -59,16 +59,18 @@ graph LR
 The requirement analysis model projects to the requirement model (K20): the product is reached by dropping
 everything the working model adds beyond a requirement's identity, its text, its values, the edge by which
 it derives from another requirement, and the property of being no longer in force, which the projection
-carries rather than drops (K34). The Project Lifecycle Model does not sit beneath the requirement analysis
-model as a further specialisation of it; it sits beside it, a separate model stating rules over the same
-elements (K22). A design language attaches to the requirement model, and only there, through exactly one
+carries rather than drops (K34). The Project Lifecycle Model states rules over the requirement analysis
+model's own elements — how a gap in one of them is resolved, when waiting on it ends, how a conflict among
+them is settled — without adding to what those elements already define in full (K22). A design language
+attaches to the requirement model, and only there, through exactly one
 edge: an element the metamodel does not define, carrying `satisfies`, and naming a requirement in a baseline
 — a named, dated instance of the requirement model a design language can depend on, where the live projection
 itself cannot be depended on (K3, K21). The value-state model has no box of its own on the same footing as
 the other three because it does not connect to them the way they connect to each other: a value carries a
-state wherever it occurs — in a need, in a requirement's values, in a design language's own elements beyond
-the seam — on the same terms in every case, rather than at one point where two of the boxes above happen to
-meet.
+state wherever it occurs — in the requirement analysis model, in the requirement model, and in the Project
+Lifecycle Model alike — on the same terms in every case, rather than at one point where two of the boxes
+above happen to meet. That reach does not stop at the collection's edge: it holds just as fully past the
+seam, in a design language's own elements beyond it.
 
 The numbered order of the documents after this one is not incidental: it is adoption order. A reader who
 wants a requirements register with traceability, and nothing else, reads `01-requirement-model.md` and stops
