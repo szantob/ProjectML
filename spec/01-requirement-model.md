@@ -29,11 +29,9 @@ A requirement carries three things.
 | values | Any values the text parametrises. Each value carries a value state, on the same terms as a value anywhere else in the collection — see `04-value-states.md` |
 
 A requirement may also be derived from one or more earlier requirements. This derivation is an edge between
-requirements, and, like the refinement edge it stands beside, it is list-valued rather than singular: D48
-gives the refinement edge a list of need identifiers because a requirement is routinely assembled from more
-than one statement, and the same reasoning holds for derivation — a requirement synthesising two earlier
-ones has two origins, not one, and an edge that could only name a single predecessor would force an
-arbitrary choice among equally contributing ones (K1, D48).
+requirements, and, like the refinement edge it stands beside, it is list-valued rather than singular: a
+requirement synthesising two earlier ones has two origins, not one, and an edge that could only name a single
+predecessor would force an arbitrary choice among equally contributing ones (K1).
 
 **Every requirement names its origin.** This is the invariant K9 rests on: a requirement's origin is its
 refinement, its derivation, or both, and a requirement carrying neither is an incomplete record rather than

@@ -3,8 +3,11 @@
 **An open modelling language for turning what stakeholders actually said into a traceable requirement
 baseline.**
 
-> **Status: phase 1, nothing published yet.** The metamodel is being drafted. `spec/` does not exist. The
-> decisions this repository is built on are in
+> **Status: a complete draft, not a release.** `spec/` now carries the metamodel — an overview
+> ([`spec/00-overview.md`](spec/00-overview.md)), the collection of models, a binding contract and a decision
+> record. Under [`CLAUDE.md`](CLAUDE.md) §6, it cannot reach 1.0 until an implementation has been built on it
+> and has carried a project end to end, and until the SysML v2 binding exists. The decisions this repository
+> is built on are in
 > [`docs/2026-08-26-kernel-brainstorm.md`](docs/2026-08-26-kernel-brainstorm.md), which is the founding
 > record rather than a specification.
 

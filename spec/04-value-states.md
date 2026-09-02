@@ -51,22 +51,22 @@ this derived value right" is always "check the rule and the inputs," never a fac
 A value state applies to any value in any member of the collection, not to one kind of element within it: a
 value carried by a need, a parameter of a requirement, a value belonging to a design language's own elements
 beyond the seam all carry a value state on the same terms. It is a property of values wherever they occur,
-not a property confined to one member of the collection. `D27` records this for a need's own value
+not a property confined to one member of the collection. D27 records this for a need's own value
 specifically — a need's value is optional, and the value-state model applies to it exactly as it applies
 everywhere else, untouched by that optionality. The founding record's section 5 finding is the general form:
 the value-state model attaches to every value or to none, and it is this reach, set against the evidence
-chain's single seam, that forces the collection into the two-piece structure standing behind `OQ1`.
+chain's single seam, that forces the collection into the two-piece structure standing behind OQ1.
 
 ## 5. What is deliberately not here
 
 **Progressive wrapping is notation and is not here.** How a notation tells a plain value apart from one
 carrying a state — a bare scalar sitting next to an object, or any other device — is a decision a notation
-makes, and notation belongs to an implementation (`K15`). The five states are what is portable; the device
+makes, and notation belongs to an implementation (K15). The five states are what is portable; the device
 that marks their presence in a written model is not. The founding record's section 7 puts the line exactly
 where this document holds it: *"the value states are portable where progressive wrapping is notation and is
 not."*
 
 **The metamodel enumerates no value domains.** A value has a domain — the range of things it could be — but
 which domains exist, and what they are called, is declared by an implementation rather than fixed here. This
-is the same move `K30` makes for requirement kinds: the metamodel provides the slot a domain fills without
+is the same move K30 makes for requirement kinds: the metamodel provides the slot a domain fills without
 naming what goes into it.

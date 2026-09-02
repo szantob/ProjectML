@@ -333,6 +333,15 @@ The vocabulary of the *by* attribute is open, on exactly the terms section 2 set
 and *from*: the metamodel names the attribute and leaves the list of parties to an implementation, because any
 list fixed here would carry one domain's parties into every project that adopted the metamodel.
 
+**A decision here carries no edge to what it resolves, and that is a deferral, not an oversight.** Section 3
+already relies on a decision to settle a disagreement between two sources — which of two conflicting
+statements prevails — and a decision doing that work points at something: the conflicting values, the sources
+behind them, or the question it closes. None of the five attributes above name it. Under the house rule that
+an unexercised construct waits rather than being defined ahead of the case that would exercise it, leaving the
+edge out may well be right — nothing in this collection today reads such an edge to produce a check or a
+report — but the gap is recorded here as a gap, so that a later reader who needs the edge finds a deliberate
+omission rather than one they have to notice for themselves.
+
 **A decision is not an assumed value, and the difference is how each is resolved.** An assumption is a value
 supplied in the absence of information; it may be wrong, and what resolves it is learning — somebody with
 standing to know confirms or corrects it, and the value changes state. A decision is a choice made in the

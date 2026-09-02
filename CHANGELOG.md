@@ -19,3 +19,7 @@ work, not releases.
 - Repository initialised: conventions in `CLAUDE.md`, the founding record in
   `docs/2026-08-26-kernel-brainstorm.md` — eighteen decisions, eight open questions, and the four-phase
   order of work carried over from the session that started this project.
+- `spec/`, the metamodel's first complete draft: an overview, one document per member of the collection —
+  the requirement model, the requirement analysis model, the Project Lifecycle Model and the value states —
+  a binding contract, and a decision record continuing the K series. Prose and diagrams; no notation and no
+  filled definitions. OQ2 and OQ4 are answered; OQ9, OQ10 and OQ11 are opened.

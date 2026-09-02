@@ -3,9 +3,10 @@
 ## 1. Who this document is for
 
 This is the document a design language's owner reads, and it is written so that nothing else is required —
-not the founding record, not the other members of the collection beyond the two this document draws on, and
-no acquaintance with any design language that has already attached. It states what attaching underneath
-ProjectML requires, and nothing more. What it does not ask for is an implementation. K18 draws that line
+not the founding record, not the other members of the collection beyond the two this document draws on,
+`01-requirement-model.md` for the requirement and the baseline, and `04-value-states.md` for the value-state
+model — and no acquaintance with any design language that has already attached. It states what attaching
+underneath ProjectML requires, and nothing more. What it does not ask for is an implementation. K18 draws that line
 precisely: a binding carries K4's four declarations and none of an implementation's three burdens — no
 notation, no filled set of `RequirementDef`s, and no rule-set a project may vary as it runs. Writing a
 binding against this document is one undertaking; building an implementation on top of it is a separate,
@@ -67,8 +68,11 @@ deliberately early in this project's life for exactly that reason.
 ## 4. The four declarations
 
 A binding states four things about the design language it attaches. Each is stated here for the reason it
-exists, not only for what it says, because a design language's owner reading this once should be able to
-tell why leaving one out would leave a check the metamodel cannot run (K4).
+exists, not only for what it says, and the four reasons are not all the same reason. Three of the four exist
+so that a check the metamodel could not otherwise run becomes one it can. The second exists for a different
+reason: the metamodel has no view of that structure at all, and by K3 must not define it even if it could. A
+design language's owner reading this once should be able to tell, section by section, why leaving any one of
+the four out costs something the metamodel cannot supply for itself (K4).
 
 ### 4.1 Which of its elements may carry the seam edge
 

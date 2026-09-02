@@ -60,7 +60,7 @@ Taken in [`01-requirement-model.md`](01-requirement-model.md), §2, which carrie
 
 | # | Decision | Reason |
 |---|---|---|
-| K33 | A `Requirement` in the product model does not name the `RequirementDef` it came from, nor that definition's kind | K19's independent adoptability forces the exclusion — naming `RequirementDef` or its kind pulls in a type and a specialisation hierarchy defined only in `02-requirement-analysis-model.md`, which a reader of the product model alone has not read. K13's condition on the projection permits the exclusion — the binding to the definition is not lost, only not projected into this type; it stays recoverable in the requirement analysis model, the working model K13 asks it to survive in. The two criteria are not symmetric: K19 admits no partial reading, K13 is satisfied by the same retention clause that already carries the rest of the analysis apparatus, so the balance is not close |
+| K33 | A `Requirement` in the product model does not name the `RequirementDef` it came from, nor that definition's kind | K19's independent adoptability forces the exclusion; K13's recoverability condition permits it — the two are not symmetric here, and independent adoptability wins |
 
 ## Decision K34
 
@@ -69,7 +69,7 @@ argument.
 
 | # | Decision | Reason |
 |---|---|---|
-| K34 | The projection carries every requirement, whether in force or not. Being no longer in force is projected; nothing else the requirement analysis model adds is | The seam argument decides it without appeal to any other document: a design language binds to the product, and a requirement that retired between baselines but vanished at the projection would not change state there at all — the edge pointing at it would dangle with nothing recording that a choice was made, which is the failure K5 exists to prevent, reintroduced at the seam. K20 closes the alternative: a baseline is a named, dated instance of the requirement model, hence an instance of what the projection already produced rather than a second filter over it, so there is no further place downstream where retirement could still be dropped. [`01-requirement-model.md`](01-requirement-model.md) corroborates rather than decides this, and K13's condition governs what may be dropped, not what must be. The founding record's section 2 is procedure narrative, not one of the settled decisions K1–K18, so its cycle ending by dropping "the deprecated requirements" can be overridden; K12 is settled and is read narrowly rather than contradicted — *a cut of the requirements in force* names what a baseline is for, not an exclusion rule |
+| K34 | The projection carries every requirement, whether in force or not. Being no longer in force is projected; nothing else the requirement analysis model adds is | The seam argument alone decides it: dropping retirement at the projection would let a requirement vanish there instead of changing state, the failure K5 exists to prevent, reintroduced at the seam. K12 is read narrowly rather than contradicted |
 
 ## Status of the founding record's decisions
 
