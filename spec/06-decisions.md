@@ -97,6 +97,19 @@ argument. §10 of that document states the syntactic constraints the decision is
 |---|---|---|
 | K36 | The seam test (K25) decides whether an attribute is admissible to the metamodel. The record test (K26) measures whether an attribute already admitted is load-bearing; it is not a second admissibility gate, and the two are not a conjunction. *when it applies* is admitted by K25, does not pass K26, and stays in the core | A presence rule can be written over any attribute at will, so the record test read as a gate is either vacuous — every attribute passes, the admitting rule always being available — or arbitrary, with nothing to say which presence rules are worth writing. K26's word *stated* excludes the rule nobody has written, not the rule anybody could write in an afternoon. K25 has no such weakness: whether an attribute resolves a reference the metamodel does not define is a fact about the attribute, unchanged by which rules exist over it. The core's own definition already joins the two with *or* — what the metamodel can interpret, **or** can fail on. *when it applies* falls on the first clause only: no stated rule fails on it, because its absence is deliberately a gap rather than a claim, and the rule available over it reports a question instead |
 
+## Decisions K37–K39
+
+Taken in [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md), §4 and §9, which carry the
+full argument. Together they **dissolve** the founding record's OQ3 rather than answering it: OQ3 asks what
+to record when a need is examined and found to have deliberately produced nothing, and K37 removes the state
+of affairs it asks about.
+
+| # | Decision | Reason |
+|---|---|---|
+| K37 | A need is a passage of a source that **obliges something**. A passage obliging nothing is not a need and should not have been extracted. A passage of a source is therefore either a need or it is uncited: the model defines no context element, and none is to be invented | Extraction is already selective and always was, so *not need-bearing* is an existing category that needs no record — a passage nobody extracted leaves no element for a record to sit on, and a source permanently containing uncited text is normal rather than defective (D33). The reading that a need might oblige nothing at all was a misanalysis of statements about the environment the work happens in: such a statement constrains the environment the system must work within, and bears a requirement like any other need. The prior art held this without drawing the conclusion — its clustering of definitions by origin carries a class resolved by measuring rather than by asking an opinion, and its comparison with SysML v2 records that SysML's nearest category constrains the *system's* physical properties where this class describes the *environment* constraining the system. K6 is untouched: this narrows what a need is and gives a need no state |
+| K38 | A need that no requirement refines is a **failed check**, not a question. It has exactly two resolutions — write the requirement the need obliges, or delete the need — and the criterion deciding between them is whether a declared definition covers the statement. This overturns D31 | It is the mirror of K9, which already moved the rule over a requirement carrying no origin edge from a question to a failed check: the two are one break in the chain read from opposite ends, and they were being treated asymmetrically for no stated reason. Once a need obliges something (K37), a need nothing refines is a record in which something obliged is unaccounted for, which is what a failed check says. The criterion is also the guard OQ3 feared the absence of: a requirement is produced only under a declared `RequirementDef` and names the one it was produced under (K30), so no requirement can be produced from a statement no declared definition covers, and the failure to find one is itself the signal that the extraction was wrong |
+| K39 | A need extracted in error is **deleted**. Deletion is permitted for a need where K5 forbids it for a requirement | A source is material of record — quoted whole, never decomposed, never edited (D45, D25) — and a need is a pointer into a passage of it, so deleting the pointer leaves the passage unchanged in the source and loses nothing of record. A requirement is the working model's own construct with no other home: deleting one destroys the only record of it and silences the check that fired on it, which is what K5 exists to prevent. The asymmetry is between a construct and a pointer, not an inconsistency. A deletion here is not retirement and gives a need no lifecycle state (K6) |
+
 ## Open questions, OQ9–OQ11
 
 Raised in [the design record of 2026-09-02](../docs/superpowers/specs/2026-09-02-spec-structure-and-oq2-design.md),
@@ -123,7 +136,7 @@ rather than answered there.
 |---|---|
 | OQ1 | Not answered, but shaped: the collection's dependency order is now the adoption order |
 | OQ2 | **Answered** — K27, K28, K29, K30 |
-| OQ3 | Open, and next after the current plan. [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md) §9 states the rule that reports an orphan need and deliberately records no disposition for one |
+| OQ3 | **Dissolved** — K37, K38, K39. Its premise did not hold: it assumed a need might oblige nothing, and a passage obliging nothing is not a need, so there is no disposition left to record |
 | OQ4 | **Answered** — K22, K23 |
 | OQ5 | Unchanged |
 | OQ6 | Unchanged |

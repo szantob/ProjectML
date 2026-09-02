@@ -10,7 +10,7 @@ rather than coined.
 **What this is not.** It is not a copy of EventML's design records, and it carries no rationale: the
 reasoning stays where it was written, and a reader who needs it follows the link. It is not normative, and
 it decides nothing. Where a statement below and a ProjectML decision disagree, the ProjectML decision
-governs here — see *Overturned*, which is currently one entry.
+governs here — see *Overturned*, which currently holds two entries.
 
 **Two numbering series, and they do not collide.** EventML numbers its decisions `D1`–`D55`. ProjectML
 numbers its own `K1`–`K18` and continues that series. A `D` number always means EventML; a `K` number
@@ -50,7 +50,6 @@ header says so, and the founding record's OQ6 treats it as such: the starting po
 | D27 | A need's value is optional, and the value-state model is untouched by it | The value-state model crosscutting every kernel entity |
 | D28 | The refinement edge retargets from a path into the brief to a `Need` identifier | K1 — the traceability relations between kernel entities |
 | D29 | One edge between sources: `answers` | The founding record's finding that `answers` is the natural closing edge for a review finding |
-| D31 | A need that no requirement refines is reported (question rule 8) | OQ3 — the orphan need |
 | D32 | Question rule 9 fires on a requirement carrying no origin edge at all — neither refinement nor derivation | K9 |
 | D33 | Source coverage is a report, not a question rule | The founding record's §2, where step 2 of the procedure is already checkable |
 | D34 | A need with no passage anchor fails a syntactic check | The distinction between syntactic constraints, which the kernel decides, and semantic ones, which it does not |
@@ -87,17 +86,30 @@ mechanism D53 chose while keeping what D52 and D53 were protecting.
 
 ## Overturned
 
-One EventML decision is contradicted by a ProjectML decision. It is recorded rather than quietly dropped,
-because it shipped in `v0.4.0`.
+Two EventML decisions are contradicted by ProjectML decisions. They are recorded rather than quietly
+dropped, because both shipped in `v0.4.0`.
 
 | # | EventML | ProjectML |
 |---|---|---|
+| D31 | A need that no requirement refines is reported by question rule 8, and **stays a question** — the rule having two readings, context or a requirement nobody wrote, which only a person can choose between | **K38** — rule 8 is a failed check, not a question. The second reading does not exist: a need obliges something (**K37**), so a passage obliging nothing is not a need to be adjudicated but one that should not have been extracted. The check has two resolutions — write the requirement, or delete the need — decided by whether a declared definition covers the statement |
 | D46 | Question rule 9 reports a requirement whose origin was never recorded, and **stays a question** | **K9** — rule 9 is a failed check, not a question. The rule's own text calls it an invariant, and the parallel case one layer down is already routed to a failed check |
 
-The founding record's §6 treats this as a change to released work, available independently of everything
+The two overturns are one move made twice. Rules 8 and 9 are a single break in the evidence chain read from
+opposite ends — a need with no requirement beneath it, and a requirement with nothing above it — and EventML
+routed both of them to a question. K9 reclassified one and K38 the other, so both are now failed checks and
+the asymmetry that ran between them for the interval separating the two decisions is gone.
+
+The founding record's §6 treats D46 as a change to released work, available independently of everything
 else in ProjectML, and names the consequence that goes with it: the claim that rule 9 is another rule "one
 layer up, and the symmetry is exact" stops holding, and that sentence needs correcting in EventML. That
 correction is EventML's to make, not this repository's.
+
+D31 carries a consequence of the same kind, and a smaller one than it looks. Rule 8's own text, and the
+notes in the migrated examples that name the two readings, would need correcting wherever they say the
+reading is a judgement. What would not need correcting is EventML's account of relevance: its uncertainty
+specification already states that relevance is judged once, at extraction, and that a statement which will
+never produce a requirement should not be taken as a need in the first place. K37 is that sentence carried
+to its conclusion. Making the correction is EventML's work, in phases 3 and 4, not this repository's.
 
 ## One citation that does not resolve
 

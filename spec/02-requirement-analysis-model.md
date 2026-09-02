@@ -6,10 +6,11 @@ This is the requirement analysis model, one member of the collection ProjectML m
 **working model**: the model in which a requirement system is actually built, rather than the model handed
 to somebody who was not in the room while it was assembled. Six things make it up, and naming all six here
 lets a reader see the shape before meeting the parts: `Source`, the material a project starts from; `Need`,
-a passage of a source anchored so it can be worked with; `RequirementDef`, the definition a requirement is
-produced under; `Requirement`, the bound statement that definition yields; `Decision`, the record of why one
-outcome was chosen over another; and the findings a review produces over all of it. This document defines
-the first three — `Source`, the edge between sources, and `Need` — in the sections that follow.
+a passage of a source that obliges something, anchored so it can be worked with; `RequirementDef`, the
+definition a requirement is produced under; `Requirement`, the bound statement that definition yields;
+`Decision`, the record of why one outcome was chosen over another; and the findings a review produces over
+all of it. This document defines the first three — `Source`, the edge between sources, and `Need` — in the
+sections that follow.
 `RequirementDef`, the derivation it governs, `Decision` and the findings follow after.
 
 This model **projects** to the requirement model: the product model defined in `01-requirement-model.md`,
@@ -73,6 +74,31 @@ exactly these terms.
 
 ## 4. `Need`
 
+A need is a passage of a source that **obliges something**. That narrowing is the whole of it, and what
+follows in this section and in section 9 follows from it: a passage of a source that obliges nothing is not
+a need which happened to produce nothing, it is not a need at all, and extracting it was a mistake (K37).
+
+**Extraction is already selective, and always was.** Nobody takes a greeting or a signature into a need, and
+nothing in this model ever asked anybody to. A source permanently contains text no need cites, and that text
+is not a defect in the model: the report of which passages of a source no need cites is kept as a report
+rather than as a rule for precisely that reason — a condition that never clears is not a question (D33).
+*Not need-bearing* is therefore an existing and ordinary category, and it needs no record of its own. A
+passage nobody extracted leaves no element behind for a record to sit on.
+
+**A passage of a source is either a need or it is uncited. There is no third home, and none is to be
+invented.** This model defines no context element — no element for a statement worth keeping that obliges
+nothing — and it is not to acquire one, because the case that would motivate one does not survive
+examination. A statement about the environment the work happens in, about where it happens or when a place
+is available, is a constraint on the environment the system must work within, and a constraint on the
+environment obliges something exactly as a statement of what somebody wants does. The prior art already held
+this without drawing the conclusion out of it: the record indexed at D51–D55 in
+[`docs/eventml-decisions.md`](../docs/eventml-decisions.md) groups its definitions by origin and carries a
+class brought in by where the work happens, whose missing information is resolved by measuring rather than
+by asking anybody's opinion — a fact to be established, not a remark to be filed. The same record's
+comparison with SysML v2 finds SysML's nearest category a poor fit on the same ground: SysML's constrains
+the *system's* physical properties where this class describes the *environment* constraining the system.
+Both readings treat such a passage as bearing a requirement. Neither treats it as inert.
+
 A need carries three things.
 
 | Attribute | Carries |
@@ -90,7 +116,9 @@ Three rules govern a need.
    only an omission to fix (D34, D26).
 2. **A need carries no lifecycle state.** It belongs to its source, a source is material of record, and a
    quotation cannot cease to be true — there is no state for a need to hold that would ever change while the
-   source behind it stays what it was (K6).
+   source behind it stays what it was (K6). The narrowing above does not touch this. A need extracted in
+   error is deleted rather than marked as anything (§9, K39), and deletion is not a state a need carries;
+   what is removed is a wrong pointer, not a quotation that stopped being true.
 3. **A need's value is optional**, and where present it carries a value state like any other value in the
    collection: stated, derived, assumed, unknown, or conflicting (D27).
 
@@ -462,24 +490,69 @@ what closes it is a source entering the model, which is K11 holding at the top o
 everywhere else. A finding closed this way carries the material that closed it, so a later reader can read
 what was said rather than only that somebody was satisfied.
 
-**Two rules already exist over needs and requirements**, and they sit on opposite sides of the table above.
+**Two rules already exist over needs and requirements, and they are each other's mirror.** Both are failed
+checks; neither is a question.
 
-1. **A need that no requirement refines is reported** (D31). The need was stated and produced nothing, and the
-   rule fires wherever that is true. It has two readings — the need may be context rather than something to be
-   achieved, or it may be a requirement nobody has written yet — and which reading is right is a judgement,
-   not a computation.
+1. **A need that no requirement refines is a failed check, not a question** (K38, D31). A need obliges
+   something (§4, K37), so a need nothing refines is a record in which something obliged is unaccounted for.
+   EventML shipped this as a question rule (D31); K38 overturns that, and
+   [`docs/eventml-decisions.md`](../docs/eventml-decisions.md) records the overturn.
 2. **A requirement carrying no origin edge at all — neither refinement nor derivation — is a failed check, not
    a question** (K9, D32). The invariant behind it is that every requirement names its origin (D49), and a
    requirement naming none is an incomplete record rather than a root. EventML shipped this as a question
    (D46); K9 overturns that, and [`docs/eventml-decisions.md`](../docs/eventml-decisions.md) records the
    overturn and the consequence that goes with it.
 
-**What to record once somebody adjudicates the first of these is not decided here.** The rule reports the
-need; it does not say what a reviewer writes down having examined it and concluded that it deliberately
-produced nothing. That question is OQ3, it is open, and it is the next piece of work in this repository after
-the current plan. It is left open on purpose: a record that costs nothing to write becomes a way to silence
-the rule, which is the same failure deletion would be one model over, and designing against that needs the
-argument OQ3 is for rather than a convenient answer taken in passing here.
+The two are one break in the chain, read from opposite ends: a need with no requirement beneath it, and a
+requirement with nothing above it. They were treated asymmetrically — one a question, one a failed check —
+and nothing about either justified the difference.
+
+**A need that no requirement refines has exactly two honest resolutions.** Write the requirement the need
+obliges, or delete the need, because extracting it was a mistake. There is no third, and in particular there is no record that the
+need was examined and deliberately produced nothing: a passage obliging nothing is not a need (§4, K37), so
+the state of affairs such a record would attest to does not arise.
+
+**Deleting a need loses nothing of record, which is why deletion is safe here and forbidden one element
+over** (K39). A source is material of record — quoted whole, never decomposed, never edited (§2, D45, D25) —
+and a need is a pointer into a passage of it. Delete the pointer and the passage remains, unchanged, in the
+source, available to be pointed at again by whoever extracts better. A requirement is not like that. It is
+this model's own construct, with no other home, so deleting one destroys the only record of it and silences
+the check that fired on it, which is what K5 exists to prevent (§8). The asymmetry between K5 and this is
+not an inconsistency; it is the difference between a construct and a pointer into material held elsewhere.
+Nor is a deletion here retirement, and nor does it give a need a state: what is removed is a wrong pointer
+(§4, K6).
+
+**The criterion that decides between the two resolutions is whether a declared definition covers the
+statement** (K38). A requirement is produced under a `RequirementDef`, and it names the definition it was
+produced under (§8); definitions exist only for the kinds an implementation has declared (§7, K30). Where
+some declared definition covers the statement, the resolution is to write the requirement under it. Where
+none does, there was nothing for a requirement to be produced from, and the extraction was wrong.
+
+**That criterion is also the guard against silencing the rule.** The objection to permitting deletion at all
+is that the other resolution invites the same abuse from the other side: clear the check by writing a
+tautological requirement over anything at all. It does not. No requirement can be produced except under a
+declared definition, nothing an implementation declares covers a passage that obliges nothing, and the
+failure to find a definition is itself the signal that the extraction was wrong rather than an obstacle to
+be worked around. The rule is unsilenceable at both resolutions: the first needs a definition it cannot
+invent, and the second removes a pointer while leaving the source it pointed into intact and inspectable.
+
+**What is genuinely open in such a case is not whether the need is a need, but what follows from it.** That
+is a **dilemma**, and it needs no new element, because it already has a home. It is a review finding — the
+one of the three kinds above decided by judgement, and the only one carrying a state. It is opened by a
+source and closed by a later source that `answers` it, on the terms this section has already set out, and
+its answer therefore arrives as a source like every other change (K11). The requirement that finally issues
+may carry both origins at once, refining a stater's own words and derived from another requirement in the
+same breath, which is the case D49's invariant is written to admit. One consequence of the edge's direction
+is worth stating where it will be read: the derivation edge sits on the consequence and names the
+requirement it came from, so a chain of justification read forward — this holds, therefore that does — runs
+against the edge rather than along it.
+
+**Extraction is bracketed from both sides, and that is why this rule belongs with extraction rather than
+only with refinement.** On one side, source coverage — which passages of a source no need cites — catches
+under-extraction: something in the source that became no need. It stays a report rather than a rule, because
+uncited text is permanent and normal (§4, D33). On the other side, this rule catches over-extraction: a need
+with nothing behind it. Neither is a complaint that the refinement step was lazy. Between them they measure
+whether the extraction step drew the boundary in the right place.
 
 ## 10. The syntactic constraints of this model
 
@@ -533,8 +606,10 @@ test (§6) means by *without reading its content*.
 - A requirement in this model names exactly one `RequirementDef`: never none, and never two (§8, K8).
 - A requirement in this model carries exactly one of "in force" or "no longer in force" at any time — never
   both, and never neither (§8).
+- A need that no requirement refines is a failed check (§9, K38, D31).
 - A requirement carrying no origin edge at all — neither refinement nor derivation — is a failed check (§9,
-  K9, D49, D32).
+  K9, D49, D32). This constraint and the one above it are the same break read from opposite ends, which is
+  why they are stated together.
 
 **Over `Decision`.**
 
@@ -556,9 +631,10 @@ wrong where a question says something was left open and somebody has to look at 
 not say when it applies is reported as a question.** It is not a failed check, and making it one would
 contradict the row of §5 that defines the attribute: an unwritten applicability is a gap, not a claim that
 the definition applies unconditionally, and the honest report is that nobody has written it down rather than
-that the record is defective. This is the same shape as the rule §9 states over a need that no requirement
-refines — the rule fires wherever the gap is, and what to make of it is a judgement rather than the rule's to
-decide. It is also why *when it applies* does not pass the record test, which §6 settles.
+that the record is defective. It is the only rule in this document that reports rather than fails. The two
+origin rules §9 states were once read this way and are not: in each of those the record is wrong rather than
+merely incomplete, which is what makes both of them failed checks (K9, K38). This is also why *when it
+applies* does not pass the record test, which §6 settles.
 
 **What is not stated here, and why the omission is deliberate.** No rule requires a definition to carry a
 *name*. One could be written in a line, and it would fail on an absence without reading any content — which
