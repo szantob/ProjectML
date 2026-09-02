@@ -126,6 +126,14 @@ along that test was recommended and the question was not answered.**
 
 **OQ3 — The orphan need.** *Recorded as a problem to solve, at the user's request.*
 
+> **Dissolved by K37–K39, not answered.** Its premise did not hold. The second of the two readings below —
+> that a need may mean nothing at all — is a misanalysis: a statement about where the work happens or when a
+> place is available is a constraint on the environment the system must work within, and it bears a
+> requirement. What is genuinely open in such a case is not whether the need is a need but what follows from
+> it, which is a dilemma, and K10 already gives a dilemma a home. So no disposition is needed, and the
+> question this section asks has no answer because it should not have been asked. **K6's pointer to a
+> disposition, above, is superseded on the same grounds.** See `spec/06-decisions.md`.
+
 A need that no requirement refines fires question rule 8, and the rule has two readings. The specification
 already knows both. `examples/03-festival-stage/brief.yaml` says so in `n-park`'s own notes — "the park is
 where the event is, not something the system must achieve — one of the two readings a person has to choose

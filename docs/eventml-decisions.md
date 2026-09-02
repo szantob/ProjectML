@@ -17,7 +17,7 @@ numbers its own `K1`–`K18` and continues that series. A `D` number always mean
 always means ProjectML.
 
 **Scope.** An EventML decision appears below when a locked decision, an open question or a recorded finding
-in ProjectML's founding record depends on it. That criterion selects 25 of EventML's 55. It produced more
+in ProjectML's founding record depends on it. That criterion selects 26 of EventML's 55. It produced more
 entries than the six to eight estimated when this file was proposed, because the founding record leans on
 more decisions than it names: K6 rests on D25 and D45, and K9 on D32, D46 and D49, none of which it cites
 by number.
