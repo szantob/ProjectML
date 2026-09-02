@@ -44,13 +44,21 @@ the requirement it names — and only a baseline offers that; the term itself is
 
 This has a consequence for traceability that a design language's owner should expect rather than go looking
 for a workaround to. A baseline is an instance of the requirement model, the product member of the
-collection: it carries a requirement's identity, its bound wording, its values, the edge by which one
-requirement derives from another, and whether it is still in force — and nothing else. It does not carry the
-need a requirement was assembled from, because that edge belongs to the requirement analysis model, the
-working member of the collection the product is projected from. Getting from a requirement a satisfying
-element names back to the need behind it is therefore not a step within the baseline; it runs through the
-requirement analysis model, one document over. That model is where the step is possible at all, because its
-recoverability condition keeps everything the projection drops available rather than discarded (K13).
+collection: it carries a requirement's identity, its bound wording, its values, and the edge by which one
+requirement derives from another — and nothing else. It does not carry the need a requirement was assembled
+from, because that edge belongs to the requirement analysis model, the working member of the collection the
+product is projected from. Getting from a requirement a satisfying element names back to the need behind it
+is therefore not a step within the baseline; it runs through the requirement analysis model, one document
+over. That model is where the step is possible at all, because its recoverability condition keeps everything
+the projection drops available rather than discarded (K13).
+
+Nor does a baseline carry retirement. Every requirement it contains is one in force at the moment the cut
+was taken, and being no longer in force is a property of the requirement analysis model rather than of the
+product (K35). A design language's owner should read the consequence as the guarantee it is: a baseline
+already bound to never changes underneath the elements bound to it, so a `satisfies` edge into one cannot
+come to point at nothing. A requirement retired after that cut is absent from the next baseline instead, and
+that absence is the notice — when the design rebases onto the later baseline and the requirement it was
+built against is not there, what was built on it needs rework.
 
 ## 3. Symmetry
 

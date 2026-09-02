@@ -62,20 +62,31 @@ Taken in [`01-requirement-model.md`](01-requirement-model.md), §2, which carrie
 |---|---|---|
 | K33 | A `Requirement` in the product model does not name the `RequirementDef` it came from, nor that definition's kind | K19's independent adoptability forces the exclusion; K13's recoverability condition permits it — the two are not symmetric here, and independent adoptability wins |
 
-## Decision K34
+## Decision K34 — superseded by K35
 
-Taken in [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md), §8, which carries the full
-argument.
+**Superseded. K35 reverses it, and K35 is the decision in force.** K34 is kept here because a decision record
+keeps its history: a later reader meeting the argument below elsewhere needs to find where it was answered.
 
-| # | Decision | Reason |
+Taken in [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md), §8, which no longer carries
+the argument — it carries K35's.
+
+| # | Decision, superseded | Reason it was taken |
 |---|---|---|
 | K34 | The projection carries every requirement, whether in force or not. Being no longer in force is projected; nothing else the requirement analysis model adds is | The seam argument alone decides it: dropping retirement at the projection would let a requirement vanish there instead of changing state, the failure K5 exists to prevent, reintroduced at the seam. K12 is read narrowly rather than contradicted |
 
-## Status of the founding record's decisions
+**Why it fell.** The seam argument that carried it conflated the live projection with a baseline. It reasoned
+about a requirement retiring *between* baselines as though a design language were bound to something that
+moves under it, when by K21 a design language binds to a named baseline and to nothing else, and a baseline
+is frozen. Its second leg fell with the first: K12 needs no narrow reading, and none is taken.
 
-| # | Status |
-|---|---|
-| K12 | Read narrowly rather than contradicted: *a dated, identified cut of the requirements in force* names what a baseline is for, not an exclusion rule. K34 governs how the projection behaves |
+## Decision K35
+
+Taken in [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md), §8, which carries the full
+argument. K35 supersedes K34.
+
+| # | Decision | Reason |
+|---|---|---|
+| K35 | The projection carries only the requirements in force. Being no longer in force is a property of the requirement analysis model, not of the product: a requirement that ceases to be in force is dropped at the projection, and no baseline cut afterwards contains it | K21 decides it. A design language binds to a named baseline, never to the live projection, and a baseline is frozen — an element satisfying a requirement in a baseline goes on satisfying a requirement that baseline still contains, so no seam edge can dangle. What K34 read as *vanishing* is the intended signal: a requirement missing from a later baseline is what tells the team to rework what was built on it, which is what rebasing onto a new baseline is for. Traceability is unharmed on two legs — the requirement analysis model holds everything, including what is no longer in force (K5, K11), and every element the projection carries resolves back to its origin there |
 
 ## Open questions, OQ9–OQ11
 

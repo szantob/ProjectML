@@ -32,7 +32,7 @@ ProjectML metamodels a collection of connected models, not a single model (K19).
 
 | Member | Covers | Stands alone? |
 |---|---|---|
-| The requirement model | The product: a requirement, the edge by which one requirement is derived from another, the property of being no longer in force, and the baseline that names a dated cut of the register | Yes — a reader who wants a requirements register with traceability between requirements, and nothing else, reads it and stops |
+| The requirement model | The product: a requirement, the edge by which one requirement is derived from another, and the baseline that names a dated cut of the requirements in force | Yes — a reader who wants a requirements register with traceability between requirements, and nothing else, reads it and stops |
 | The requirement analysis model | The working model: where a requirement is actually built and justified, from a stated source, through a need and the definition chosen for it, to the decisions and findings that stand behind it | No — it projects to the requirement model (K20), and is read for what produced the product, not instead of it |
 | The Project Lifecycle Model | What a rule-set — an organisation's own way of resolving a gap, ending a wait, or settling a conflict — may state about the requirement analysis model's own elements, and what it may not | No — a rule-set written under it states rules over elements the requirement analysis model already defines in full |
 | The value-state model | What is known about a value, wherever a value occurs in any of the other three: stated, derived, assumed, unknown, or conflicting | No, by nature — it crosscuts the other three rather than standing beside them |
@@ -59,12 +59,13 @@ graph LR
 ```
 
 The requirement analysis model projects to the requirement model (K20): the product is reached by dropping
-everything the working model adds beyond a requirement's identity, its text, its values, the edge by which
-it derives from another requirement, and the property of being no longer in force, which the projection
-carries rather than drops (K34). The Project Lifecycle Model provides the means to model a rule-set, and a
-rule-set — never the metamodel itself — is what states rules over the requirement analysis model's own
-elements: how a gap in one of them is resolved, when waiting on it ends, how a conflict among them is
-settled, without adding to what those elements already define in full (K22, K23). A design language attaches
+everything the working model adds beyond a requirement's identity, its text, its values, and the edge by
+which it derives from another requirement — and by dropping the requirements no longer in force with it,
+retirement being a property of the working model rather than of the product (K35). The Project Lifecycle
+Model provides the means to model a rule-set, and a rule-set — never the metamodel itself — is what states
+rules over the requirement analysis model's own elements: how a gap in one of them is resolved, when waiting
+on it ends, how a conflict among them is settled, without adding to what those elements already define in
+full (K22, K23). A design language attaches
 to the requirement model, and only there, through exactly one edge: an element the metamodel does not
 define, carrying `satisfies`, and naming a requirement in a baseline — a named, dated instance of the
 requirement model a design language can depend on, where the live projection itself cannot be depended on

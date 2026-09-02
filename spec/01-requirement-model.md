@@ -8,10 +8,10 @@ requirement analysis model, its source (K20), which is written next, in `02-requ
 
 A reader who wants a requirements register with traceability between requirements, and nothing else, can
 stop at the end of this document. Everything this document defines — a requirement, the edge by which one
-requirement is derived from another, the property of being no longer in force, and the baseline that gives
-a cut of the register a name and a date — stands on its own, without the analysis apparatus that produced
-it: no source, no need, no definition, no decision, no finding. That apparatus is what
-`02-requirement-analysis-model.md` adds, and it is reached from here, not required by here.
+requirement is derived from another, and the baseline that gives a cut of the register a name and a date —
+stands on its own, without the analysis apparatus that produced it: no source, no need, no definition, no
+decision, no finding. That apparatus is what `02-requirement-analysis-model.md` adds, and it is reached from
+here, not required by here.
 
 This asymmetry is what "product" means in K20's terms: the requirement analysis model is where a requirement
 is assembled and justified, and the requirement model is what survives being handed to somebody who was not
@@ -20,12 +20,11 @@ says the same thing again, one step later, of the baseline specifically.
 
 ## 2. `Requirement`
 
-A requirement carries five things: the three attributes below, the derivation edge that follows them, and the
-property of being in force or no longer in force (§3).
+A requirement carries four things: the three attributes below, and the derivation edge that follows them.
 
 | Attribute | Carries |
 |---|---|
-| identity | A stable identifier, distinct from every other requirement's, that persists for the requirement's whole life in the model — including after it is marked no longer in force (§3) |
+| identity | A stable identifier, distinct from every other requirement's, that persists for the requirement's whole life in the model, and across every baseline that carries it |
 | text | The requirement's bound wording: the statement itself, in the form it holds in the register |
 | values | Any values the text parametrises. Each value carries a value state, on the same terms as a value anywhere else in the collection — see `04-value-states.md` |
 
@@ -68,18 +67,26 @@ requirement analysis model, in exactly the sense K13 asks of anything dropped �
 and it sits there beside the refinement edge, `Source`, `Need` and `Decision`, none of which are named on
 the product `Requirement` either. Recorded as K33 in `spec/06-decisions.md`.
 
-## 3. No longer in force
+## 3. Requirements in force
 
-A requirement is never deleted. When it is retired, superseded, or found wrong, it carries the property of
-being no longer in force rather than being removed from the model (K5).
+This model carries the requirements **in force**, and a baseline (§4) is a cut of exactly those: the
+requirements in force at the moment the cut was taken, and no others.
 
-The reason is not traceability for its own sake. The checks over this model are pairwise: a finding fires
-between two requirements, or between a requirement and something naming it. Deleting a requirement silences
-exactly the one check that fired on it, and nothing else — the finding disappears along with the element it
-was about, and nothing in the model any longer shows that a check ever ran there, let alone that removing
-the requirement was a considered choice rather than an oversight. Marking a requirement no longer in force
-keeps the requirement, the finding, and the fact that somebody acted on it all present at once, so a later
-reader can tell "this was resolved" apart from "this was made to disappear."
+Being no longer in force is therefore not a state a requirement carries here. There is no retired
+requirement in this model to find, and no attribute on a `Requirement` marking one. A requirement that
+ceases to be in force is absent from every baseline cut after that point, and that absence is a signal
+rather than a loss: a design language rebasing onto a later baseline and not finding a requirement it was
+built against learns, from the absence, that what was built on that requirement needs rework (K35). Within
+any one baseline nothing moves, because a baseline is frozen — an element satisfying a requirement in a
+baseline goes on satisfying a requirement that baseline still contains.
+
+None of this permits deletion, and none of it makes retirement invisible. **A requirement is never
+deleted** (K5). The property of being no longer in force, and the reasoning that requires it, belong to the
+requirement analysis model, where every requirement a project has ever held is kept and where being
+retired is a state to carry — `02-requirement-analysis-model.md` §8. That is the same shape §2 already
+describes for the refinement edge: a pointer to where something is recorded, not a dependency this document
+has on the other. A reader who stops here has the register of what is in force, with traceability between its
+requirements, which is what §1 promises and nothing less.
 
 ## 4. The baseline
 
@@ -118,11 +125,9 @@ beyond what this document already defines to decide, so it sits here, beside the
 rather than in a checks document that would otherwise have to gather constraints from across the whole
 collection.
 
-- A requirement's identity is unique among every requirement the baseline contains, in force or not.
+- A requirement's identity is unique among every requirement the baseline contains.
 - The derivation edge admits no cycle: no requirement derives, through any chain of derivation edges, from
   itself.
-- A requirement carries exactly one of "in force" or "no longer in force" at any time — never both, and
-  never neither.
 - A baseline names a date, an identifier, and the implementation package and version it was cut under.
   Absence of any one of the three is a failed check on the baseline itself, independent of anything any
   requirement it contains says.

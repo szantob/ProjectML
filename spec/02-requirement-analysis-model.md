@@ -230,7 +230,7 @@ and what if anything it may override is not defined here. That is OQ9, and it wa
 it — realistically the first implementation that declares kinds. K30 chooses the mechanism; it does not define
 its semantics.
 
-## 8. The derivation, and the projection
+## 8. The derivation, retirement, and the projection
 
 ### The derivation
 
@@ -274,6 +274,29 @@ a human or an AI review, because a rule-based test would catch only the restatem
 writing a rule, which is the case that least needs catching. The wording rules that produce a restatement for
 a given kind belong to an implementation, and who reviews it and when belongs to a rule-set.
 
+### No longer in force
+
+**A requirement is never deleted.** When it is retired, superseded, or found wrong, it carries the property
+of being no longer in force rather than being removed from the model (K5). This model is where that property
+lives, because this model is where the record of everything lives: `01-requirement-model.md` carries the
+requirements in force and nothing else, and what a requirement used to be has nowhere to sit in a model that
+holds only what stands now.
+
+The reason is not traceability for its own sake. The checks over this model are pairwise: a finding fires
+between two requirements, or between a requirement and something naming it. Deleting a requirement silences
+exactly the one check that fired on it, and nothing else — the finding disappears along with the element it
+was about, and nothing in the model any longer shows that a check ever ran there, let alone that removing
+the requirement was a considered choice rather than an oversight. Marking a requirement no longer in force
+keeps the requirement, the finding, and the fact that somebody acted on it all present at once, so a later
+reader can tell "this was resolved" apart from "this was made to disappear."
+
+Retirement arrives the way everything else here arrives: through a source (K11). Nothing marks a requirement
+no longer in force directly. A source enters the model saying so, and the change follows from it.
+
+**One syntactic constraint follows** (K24), and it belongs here, beside the property it refers to: a
+requirement in this model carries exactly one of "in force" or "no longer in force" at any time — never
+both, and never neither.
+
 ### The projection
 
 The requirement analysis model **projects** to the requirement model (K20). The projection is a mapping
@@ -281,47 +304,57 @@ between two members of the collection rather than an element of either: it has n
 whenever it is read, and a design language never binds to it. What a design language binds to is a baseline,
 which does have identity (K21).
 
-**What the projection carries** is the requirement model as `01-requirement-model.md` defines it: requirements
-with their identity, text and values, the derivation edges between requirements, and the property of being no
-longer in force.
+**What the projection carries** is the requirement model as `01-requirement-model.md` defines it: the
+requirements in force, with their identity, text and values, and the derivation edges between them.
 
-**What it drops** is everything this model adds. Sources and the `answers` edge between them; needs and the
-refinement edge that names them; definitions, the edge by which a requirement names the one it was produced
-under, their specialisation hierarchy and therefore the kind of any requirement (K33); decisions; and
-findings. A reader of the requirement model alone sees a requirements register with traceability between
+**What it drops** is everything this model adds, and every requirement no longer in force. Sources and the
+`answers` edge between them; needs and the refinement edge that names them; definitions, the edge by which a
+requirement names the one it was produced under, their specialisation hierarchy and therefore the kind of any
+requirement (K33); decisions; and findings. A requirement no longer in force is dropped with them, and so is
+the property that says it is: being no longer in force is a property of this model, not of the product (K35).
+A reader of the requirement model alone sees a register of what is in force, with traceability between its
 requirements and nothing else, which is exactly what makes that document independently adoptable (K19).
 
-**What it does not drop, against a first reading.** A requirement no longer in force is carried, not dropped.
+**Why retirement does not cross.** One argument says it should, and it does not hold. That argument is a
+seam argument: a design language binds to the product, so a requirement retiring between baselines would not
+change state in the product at all — it would vanish, and the `satisfies` edge pointing at it would dangle,
+with nothing recording that a choice was made. It conflates the live projection with a baseline. By K21 a
+design language binds to a **named baseline**, never to the live projection, and a baseline is frozen: it
+stays internally consistent forever, so an element satisfying a requirement in baseline B goes on satisfying
+a requirement B still contains. No edge ever dangles.
 
-The strongest reason does not depend on `01-requirement-model.md`'s authority: it is the seam. A design
-language binds to the product, and if retirement were dropped at the projection, a requirement that retires
-between baselines would not change state in the product at all — it would vanish, and the edge pointing at it
-would dangle with nothing recording that a choice was made. That is precisely the failure K5 exists to
-prevent, reintroduced at the seam.
+What that argument called *vanishing* is in fact the intended signal. A baseline is a dated, closed picture,
+treated as final at the moment it is taken and built upon; when the requirements change, a new baseline is
+issued, and what depends on the old one is reworked. A design language that rebases onto a later baseline and
+does not find a requirement it was built against is being told precisely that — rework what was built on it.
+Absence is how the product says so, and saying it needs no state in the product to say it with.
 
-K20 closes the escape hatch a second filter would open. A baseline is a named, dated instance of the
-requirement model, so a baseline is an instance of what the projection already produced, not a further filter
-applied on top of it. There is therefore no second place, downstream of the projection, where retirement could
-still be dropped.
+**Traceability is not harmed, on two legs.** The first is this model: it contains everything, including the
+requirements no longer in force, which is what K5 and K11 already guarantee — nothing about a retired
+requirement is lost, because nothing about it was ever held anywhere but here. The second is the second
+condition on the projection below: every element the projection carries resolves back to its origin here, so
+backward traceability holds for everything the product contains.
 
-`01-requirement-model.md` corroborates this rather than deciding it: it defines the property of being no
-longer in force in the product model and argues for it there — the checks are pairwise, so removing a
-requirement silences exactly the one check that fired on it and leaves nothing recording that a choice was
-made — and its own constraints already assume retired requirements arrive, speaking of every requirement a
-baseline contains "in force or not". And K13's condition governs what may be dropped, not what must be: it
-asks that everything in force be present and that anything dropped stay recoverable here, and it says nothing
-that requires discarding what is no longer in force.
+With retirement out of the product, **K12 stands exactly as written** — *a dated, identified cut of the
+requirements in force*. It needs no narrow reading and gets none. The founding record's section 2 procedure
+narrative agrees with it rather than having to be overridden: it describes a cycle ending in a clean model
+reached by dropping the model above and the deprecated requirements. Recorded as K35 in
+`spec/06-decisions.md`, superseding K34.
 
-The founding record's section 2 is procedure narrative, not one of the settled decisions K1–K18, so it can be
-overridden: it describes a cycle ending in a clean model reached by dropping the model above and the
-deprecated requirements. K12 is settled, and is not overridden here — it is read narrowly: its phrase *a cut
-of the requirements in force* names what a baseline is for, not an exclusion rule. Recorded as K34 in
-`spec/06-decisions.md`.
+**The two conditions on the projection.** The first is K13's, unchanged: everything in force at the moment of
+the cut is present, nothing in force is dropped, and everything dropped stays here, in the working model,
+recoverable. Nothing the projection drops is deleted by dropping it.
 
-**The condition on the projection** is K13's, unchanged: everything in force at the moment of the cut is
-present, nothing in force is dropped, and everything dropped stays here, in the working model, recoverable.
-Nothing the projection drops is deleted by dropping it. That is the whole of what makes the drop legitimate,
-and it is why this model, and not the product, is where a project is worked.
+The second is stated here because the argument above rests on it: **every element the projection carries
+resolves back to its origin in this model.** A requirement in the product is the same requirement here, under
+the same identity, and everything this model holds about it — its source, its need, its definition, the
+decisions and the findings around it — is reachable from that identity. This is the leg that lets a baseline
+carry only what is in force without losing anything: the product is a narrower view of this model, never a
+separate register that could drift from it, so no element of the product is a dead end and nothing about one
+has to be reconstructed.
+
+Together the two conditions are what makes the drop legitimate, and they are why this model, and not the
+product, is where a project is worked.
 
 ## 9. `Decision` and findings
 
