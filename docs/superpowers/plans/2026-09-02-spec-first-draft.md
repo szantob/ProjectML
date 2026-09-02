@@ -15,6 +15,32 @@ and the difference is the main thing this plan encodes.
 **Tech Stack:** Markdown, and Mermaid for diagrams. Nothing else. There is no build, no test runner and no
 validator, and none may be added — see Global Constraints.
 
+## Progress
+
+Execution stopped after Task 3 and is resumable. Tasks 1 to 3 are complete, each reviewed clean on both
+verdicts. **Resume at Task 4.**
+
+| Task | Document | Commits | Outcome |
+|---|---|---|---|
+| 1 | `spec/06-decisions.md` | `e8954eb`, `dd6e056` | Complete. One Important finding — a truncated K25 — and two Minor, all fixed |
+| 2 | `spec/04-value-states.md` | `c0c2309` | Complete. Two Minor, neither blocking |
+| 3 | `spec/01-requirement-model.md` | `681e8f4` | Complete. **K33 taken:** a requirement in the product model names neither the definition it came from nor its kind. K19's independent adoptability forbids it; K13's recoverability condition only permits it, so exclusion wins |
+| 4–9 | not started | — | — |
+
+**Three Minor findings are carried to Task 9's consistency pass**, which is where they belong:
+
+1. Citation style is inconsistent in `spec/04-value-states.md`, which mixes a parenthesised number, a bare
+   number and a backticked one. The corpus convention is bare in argumentative prose, with backticks only
+   when naming the series itself.
+2. K33's reason in `spec/06-decisions.md` runs to a paragraph where K19–K32 are each one line, against that
+   document's own stated convention.
+3. `spec/01-requirement-model.md` cites D48 by analogy for the edge between requirements. **This is an error
+   in this plan, not in the document:** Task 3, Step 2 asks for D48, but D48 is about the refinement edge in
+   the analysis model, not derivation in the product. The implementer noticed and made the analogy explicit
+   rather than citing it as though it covered derivation; the reviewer judged that defensible and dropping
+   the citation cleaner. Task 9 should settle it. The remaining D citations in Tasks 4 and 5 were checked
+   against `docs/eventml-decisions.md` and are correct.
+
 ## Global Constraints
 
 Every task's requirements implicitly include this section. Values are copied verbatim from `CLAUDE.md` and
