@@ -69,7 +69,13 @@ argument.
 
 | # | Decision | Reason |
 |---|---|---|
-| K34 | The projection carries every requirement, whether in force or not. Being no longer in force is projected; nothing else the requirement analysis model adds is | [`01-requirement-model.md`](01-requirement-model.md) defines the property in the product model and argues for it there, so a projection that dropped retired requirements would make that property unobservable in the model that defines it; that document's own constraints already speak of every requirement a baseline contains "in force or not"; and K13's condition governs what may be dropped, not what must be. K12's *a cut of the requirements in force* names what a baseline is for rather than stating an exclusion. Where this and the founding record's procedure — which ends the cycle by dropping "the deprecated requirements" — pull apart, the procedure describes where a cycle comes to rest and K20's projection is what this decision governs |
+| K34 | The projection carries every requirement, whether in force or not. Being no longer in force is projected; nothing else the requirement analysis model adds is | The seam argument decides it without appeal to any other document: a design language binds to the product, and a requirement that retired between baselines but vanished at the projection would not change state there at all — the edge pointing at it would dangle with nothing recording that a choice was made, which is the failure K5 exists to prevent, reintroduced at the seam. K20 closes the alternative: a baseline is a named, dated instance of the requirement model, hence an instance of what the projection already produced rather than a second filter over it, so there is no further place downstream where retirement could still be dropped. [`01-requirement-model.md`](01-requirement-model.md) corroborates rather than decides this, and K13's condition governs what may be dropped, not what must be. The founding record's section 2 is procedure narrative, not one of the settled decisions K1–K18, so its cycle ending by dropping "the deprecated requirements" can be overridden; K12 is settled and is read narrowly rather than contradicted — *a cut of the requirements in force* names what a baseline is for, not an exclusion rule |
+
+## Status of the founding record's decisions
+
+| # | Status |
+|---|---|
+| K12 | Read narrowly rather than contradicted: *a dated, identified cut of the requirements in force* names what a baseline is for, not an exclusion rule. K34 governs how the projection behaves |
 
 ## Open questions, OQ9–OQ11
 
@@ -88,7 +94,7 @@ which carries the full argument for each.
 |---|---|
 | OQ1 | Not answered, but shaped: the collection's dependency order is now the adoption order |
 | OQ2 | **Answered** — K27, K28, K29, K30 |
-| OQ3 | Open, and next. [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md) §9 states the rule that reports an orphan need and deliberately records no disposition for one |
+| OQ3 | Open, and next after the current plan. [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md) §9 states the rule that reports an orphan need and deliberately records no disposition for one |
 | OQ4 | **Answered** — K22, K23 |
 | OQ5 | Unchanged |
 | OQ6 | Unchanged |

@@ -170,10 +170,10 @@ elements a requirement produced under it constrains, names a design language's e
 seam test, because the metamodel cannot interpret it without resolving those names into elements it does not
 define. It fails the record test on the same fact: no stated rule can fail on it without that same
 resolution. One structural fact, not two, which is why the verdict is not close. **The metamodel therefore
-does not name the concept at all** (K28). An implementation may introduce one, and nothing is lost that had
-anywhere else to go, because an implementation is itself a metamodel for the project models built with it
-(K16), and the elements such a rule would name are exactly the ones an implementation and its design language
-define.
+defines no such concept.** K28 records the candidate under the name it was considered by. An implementation
+may introduce one, and nothing is lost that had anywhere else to go, because an implementation is itself a
+metamodel for the project models built with it (K16), and the elements such a rule would name are exactly the
+ones an implementation and its design language define.
 
 **One finding belongs to phase 2 and is recorded here, beside the test that produces it.** SysML makes a
 requirement a specialised constraint whose formal statement is evaluated over its own subject, and the subject
@@ -243,8 +243,8 @@ any other value in the collection.
 **The kind rides along with the definition, and needs are not classified** (K8). This is what keeps the two
 axes from colliding: a need is selected against by its subject, and the classification of the requirement that
 results is fixed by which definition produced it — by what that definition specialises — so it arrives with
-the definition rather than being decided separately. A need carries no kind for the same reason it carries no lifecycle state — it belongs to its
-source, and nothing about a quotation is the modeller's to classify.
+the definition rather than being decided separately. A need carries no kind for the same reason it carries no
+lifecycle state — it belongs to its source, and nothing about a quotation is the modeller's to classify.
 
 The edge that records the derivation is the **refinement** edge. It sits on the requirement and names the
 needs the requirement was assembled from, by their identifiers (D28). It is list-valued rather than singular,
@@ -281,21 +281,31 @@ register with traceability between requirements and nothing else, which is exact
 independently adoptable (K19).
 
 **What it does not drop, against a first reading.** A requirement no longer in force is carried, not dropped.
-Three things force this together. `01-requirement-model.md` defines the property of being no longer in force
-in the product model and argues for it there — the checks are pairwise, so removing a requirement silences
-exactly the one check that fired on it and leaves nothing recording that a choice was made — and a projection
-that dropped retired requirements would make that property unobservable in the very model that defines it.
-That document's own constraints already assume they arrive, speaking of every requirement a baseline contains
-"in force or not". And K13's condition governs what may be dropped, not what must be: it asks that everything
-in force be present and that anything dropped stay recoverable here, and it says nothing that requires
-discarding what is no longer in force. K12's phrase *a cut of the requirements in force* names what a baseline
-is for, not an exclusion rule.
 
-The founding record's procedure describes the cycle ending in a clean model reached by dropping the model
-above and the deprecated requirements. That describes where a procedure comes to rest, not what the projection
-K20 names carries, and where the two pull apart this document follows the product model already written:
-retirement is projected, because the audience the product is handed to is precisely the audience that needs to
-tell *this was resolved* from *this was made to disappear*. Recorded as K34 in `spec/06-decisions.md`.
+The strongest reason does not depend on `01-requirement-model.md`'s authority: it is the seam. A design
+language binds to the product, and if retirement were dropped at the projection, a requirement that retires
+between baselines would not change state in the product at all — it would vanish, and the edge pointing at it
+would dangle with nothing recording that a choice was made. That is precisely the failure K5 exists to
+prevent, reintroduced at the seam.
+
+K20 closes the escape hatch a second filter would open. A baseline is a named, dated instance of the
+requirement model, so a baseline is an instance of what the projection already produced, not a further filter
+applied on top of it. There is therefore no second place, downstream of the projection, where retirement could
+still be dropped.
+
+`01-requirement-model.md` corroborates this rather than deciding it: it defines the property of being no
+longer in force in the product model and argues for it there — the checks are pairwise, so removing a
+requirement silences exactly the one check that fired on it and leaves nothing recording that a choice was
+made — and its own constraints already assume retired requirements arrive, speaking of every requirement a
+baseline contains "in force or not". And K13's condition governs what may be dropped, not what must be: it
+asks that everything in force be present and that anything dropped stay recoverable here, and it says nothing
+that requires discarding what is no longer in force.
+
+The founding record's section 2 is procedure narrative, not one of the settled decisions K1–K18, so it can be
+overridden: it describes a cycle ending in a clean model reached by dropping the model above and the
+deprecated requirements. K12 is settled, and is not overridden here — it is read narrowly: its phrase *a cut
+of the requirements in force* names what a baseline is for, not an exclusion rule. Recorded as K34 in
+`spec/06-decisions.md`.
 
 **The condition on the projection** is K13's, unchanged: everything in force at the moment of the cut is
 present, nothing in force is dropped, and everything dropped stays here, in the working model, recoverable.
@@ -368,14 +378,14 @@ what was said rather than only that somebody was satisfied.
    achieved, or it may be a requirement nobody has written yet — and which reading is right is a judgement,
    not a computation.
 2. **A requirement carrying no origin edge at all — neither refinement nor derivation — is a failed check, not
-   a question** (K9). The invariant behind it is that every requirement names its origin (D49), and a
+   a question** (K9, D32). The invariant behind it is that every requirement names its origin (D49), and a
    requirement naming none is an incomplete record rather than a root. EventML shipped this as a question
    (D46); K9 overturns that, and [`docs/eventml-decisions.md`](../docs/eventml-decisions.md) records the
    overturn and the consequence that goes with it.
 
 **What to record once somebody adjudicates the first of these is not decided here.** The rule reports the
 need; it does not say what a reviewer writes down having examined it and concluded that it deliberately
-produced nothing. That question is OQ3, it is open, and it is the next piece of work in this repository. It is
-left open on purpose: a record that costs nothing to write becomes a way to silence the rule, which is the
-same failure deletion would be one model over, and designing against that needs the argument OQ3 is for rather
-than a convenient answer taken in passing here.
+produced nothing. That question is OQ3, it is open, and it is the next piece of work in this repository after
+the current plan. It is left open on purpose: a record that costs nothing to write becomes a way to silence
+the rule, which is the same failure deletion would be one model over, and designing against that needs the
+argument OQ3 is for rather than a convenient answer taken in passing here.
