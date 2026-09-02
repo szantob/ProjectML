@@ -45,12 +45,13 @@ Three rules govern a source, and each rests on a decision already taken.
 2. **A source is never decomposed.** The raw material stays raw rather than being broken into parts and
    classified as it is captured, which would impose a classification taxonomy on it before anyone has asked
    what the material is for (D25).
-3. **The kind and origin attributes are open.** The metamodel names them and leaves their vocabularies to an
+3. **The kind and from attributes are open.** The metamodel names them and leaves their vocabularies to an
    implementation. The founding record's section 5 records why: EventML's own enumerations for these two
-   attributes carry a domain leak — a kind of material and two origins that exist only in that domain — and
-   a vocabulary fixed here would carry the same leak into every project that adopts this metamodel. This is
-   the same move K30 makes for a requirement's kind: the metamodel provides the attribute a vocabulary fills
-   without naming what goes into it.
+   attributes carry a domain leak — a kind of material and two things it can come from that exist only in
+   that domain — and a vocabulary fixed here would carry the same leak into every project that adopts this
+   metamodel. K30 makes the same move for a requirement's kind, though through a different mechanism: there
+   the vocabulary is carried by specialisation of `RequirementDef` rather than by an attribute. What the two
+   share is the metamodel naming a slot and leaving an implementation to fill it.
 
 ## 3. The edge between sources
 
@@ -67,7 +68,7 @@ properties hold of it, each already settled:
 The founding record's section 5 makes a further finding about this edge worth carrying forward here: `answers`
 is the natural closing edge for a review finding. A finding is opened by a source and closed by a later one
 that answers it, so closing a finding is not a tick somebody applies to a record — it is itself evidence,
-carrying the same source that closes it as everything else in this model does. Section 7 uses the edge on
+carrying the same source that closes it as everything else in this model does. Section 9 uses the edge on
 exactly these terms.
 
 ## 4. `Need`
