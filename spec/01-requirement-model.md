@@ -113,8 +113,8 @@ present in it, nothing in force is dropped, and anything dropped stays in the wo
 being lost (K13).
 
 A baseline is not, itself, a model that must pass the requirement analysis model's checks. It has no need
-layer — needs, and the coverage rules written against them, belong to the requirement analysis model, not to
-this one — so running a need-coverage rule against a baseline is not a check that fails; it is a check that
+layer — needs, and the rules written over them, belong to the requirement analysis model, not to this one —
+so running a rule over needs against a baseline is not a check that fails; it is a check that
 does not apply, asked of a model that carries nothing for it to inspect (K13).
 
 One further thing a baseline names, beyond a date and an identifier: the implementation package and the

@@ -80,10 +80,11 @@ a need which happened to produce nothing, it is not a need at all, and extractin
 
 **Extraction is already selective, and always was.** Nobody takes a greeting or a signature into a need, and
 nothing in this model ever asked anybody to. A source permanently contains text no need cites, and that text
-is not a defect in the model: the report of which passages of a source no need cites is kept as a report
-rather than as a rule for precisely that reason — a condition that never clears is not a question (D33).
-*Not need-bearing* is therefore an existing and ordinary category, and it needs no record of its own. A
-passage nobody extracted leaves no element behind for a record to sit on.
+is not a defect in the model. The prior art reached the same conclusion from the other end and declined to
+make uncited text a rule, on the ground that a condition which never clears is not a question (D33); this
+metamodel goes one step further and states nothing over uncited text at all, for reasons §9 gives and K41
+records. *Not need-bearing* is therefore an existing and ordinary category, and it needs no record of its
+own. A passage nobody extracted leaves no element behind for a record to sit on.
 
 **A passage of a source is either a need or it is uncited. There is no third home, and none is to be
 invented.** This model defines no context element — no element for a statement worth keeping that obliges
@@ -547,12 +548,20 @@ is worth stating where it will be read: the derivation edge sits on the conseque
 requirement it came from, so a chain of justification read forward — this holds, therefore that does — runs
 against the edge rather than along it.
 
-**Extraction is bracketed from both sides, and that is why this rule belongs with extraction rather than
-only with refinement.** On one side, source coverage — which passages of a source no need cites — catches
-under-extraction: something in the source that became no need. It stays a report rather than a rule, because
-uncited text is permanent and normal (§4, D33). On the other side, this rule catches over-extraction: a need
-with nothing behind it. Neither is a complaint that the refinement step was lazy. Between them they measure
-whether the extraction step drew the boundary in the right place.
+**This rule checks the extraction from the only side a model can check it, and that is why it belongs with
+extraction rather than only with refinement.** What it catches is over-extraction: something was extracted
+that obliges nothing, and a passage obliging nothing is not a need (§4, K37). That is not a complaint that
+the refinement step was lazy; it is the record saying the boundary was drawn in the wrong place at
+extraction, which is why one of its two resolutions is to delete the need.
+
+**The other direction is not the model's to check, and this document does not claim it is.** Whether
+everything a source obliged was extracted at all, and whether each need says what the passage behind it said,
+are judgements over material the model does not hold and content it does not read. They belong to the
+modeller, and self-review or cross-review after the modelling is done is what finds them — `00-overview.md`
+§5 states that boundary in full (K40). The metamodel therefore defines no report over which passages of a
+source no need cites, and no metric of extraction built on one, and none is to be added: a source's
+information density varies too much for any denominator to mean anything, and K10's own criterion finds
+nothing to model, because a missed extraction is fixed by the same act that notices it (K41).
 
 ## 10. The syntactic constraints of this model
 

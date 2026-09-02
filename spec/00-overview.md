@@ -1,9 +1,11 @@
 # Overview
 
 Read first, in the numbered order below, and written last: a map is drawn after the ground it maps has been
-surveyed. This document says what ProjectML is, how the documents after it fit together, and where the edge
-of the model itself sits. It defines nothing on its own — every claim it makes is made in full, with its own
-reasoning, in the document it points at.
+surveyed. This document says what ProjectML is, how the documents after it fit together, and where the edges
+of the model itself sit — in two senses, because there are two boundaries and neither is the other: what
+belongs to this metamodel rather than to an implementation (§4), and what the model guarantees rather than
+leaving to the modeller (§5). It defines nothing on its own — every claim it makes is made in full, with its
+own reasoning, in the document it points at.
 
 ## 1. What ProjectML is, and what it is not
 
@@ -14,7 +16,7 @@ taken while assembling that chain, and what is still open at any point along it.
 what a `Need` anchored into one is, what a `Requirement` drawn from a need is, what a `Decision` resolving a
 question along the way is, what state an incomplete value can be in wherever a value occurs, and what a
 design language attaching underneath all of it must declare in order to do so. It says all of this in prose,
-in tables, and in diagrams — §5 states what a diagram here is, and is not.
+in tables, and in diagrams — §6 states what a diagram here is, and is not.
 
 ### What it is not
 
@@ -121,15 +123,17 @@ all of that without either one having climbed down a level the other stayed on. 
 model and says what a rule-set may state; it states no rules itself (K23). `03-project-lifecycle-model.md` is
 where both halves of that are stated in full.
 
-## 4. The boundary, and its test
+## 4. The boundary between metamodel and implementation, and its test
 
 This is the boundary that matters most in this collection, because drifting across it unnoticed is the
-failure most likely to happen here.
+failure most likely to happen here. It is not the only one, and §5 states the second: this section separates
+the metamodel from an implementation, where §5 separates what the model guarantees from what the modeller
+must do.
 
 From the metamodel's side: ProjectML says what a stated piece of material is, what a requirement drawn from
 one is, what edges connect these things to each other, what state an incomplete value can be in, and what a
 design language attaching underneath must declare in order to do so (§2, §3). It says all of that in prose,
-in tables, and in diagrams that are themselves a form of prose (§5). Nothing in it says how any of these
+in tables, and in diagrams that are themselves a form of prose (§6). Nothing in it says how any of these
 things is written down.
 
 From an implementation's side: an implementation is a self-contained package that supplies exactly the three
@@ -167,7 +171,48 @@ The test is why the following never appears here, whatever else about this colle
   fixing one here would carry a single domain's assumptions into every other domain that adopts this
   metamodel.
 
-## 5. The diagram conventions
+## 5. The boundary between what the model guarantees and what the modeller must do
+
+The boundary §4 states runs between this metamodel and an implementation. A second one runs somewhere else
+entirely, and it belongs beside the first, because a reader who does not meet it will expect this collection
+to guarantee something it cannot.
+
+> **This metamodel's job is that no extracted information or decision is lost during the project-management
+> process.**
+
+That is the whole of the guarantee, and it is not a modest one. Everything that entered — a source quoted
+whole and never edited, a need anchored into a passage of it, the definition a requirement was produced
+under, the decision that settled a choice and the reasoning behind it — stays in the model, stays reachable
+from whatever it produced, and stays recoverable after the projection has dropped it (K5, K11, K13). Nothing
+taken up on the way to a baseline goes missing between one end of the chain and the other. The corollary is
+the half a reader is likelier to assume than to read:
+
+> **Whether every piece of information has been extracted, and whether every mapping is accurate, is not the
+> model's responsibility but the modeller's.** It can only be found by self-review or cross-review after the
+> modelling is done.
+
+Nothing in this collection reads the words nobody extracted. Nothing in it judges whether a need says what
+the passage it anchors into said, or whether a requirement says what the need it refines obliged. Those are
+judgements over content, made by whoever knows the material, and a review is the only instrument that finds
+them. What follows for a reader is one sentence, and it is the one to carry away:
+
+> A model on which no check fails is not thereby a correct model. It is a model with no *detectable* error.
+
+**This is honesty rather than weakness.** A metamodel that claimed to guarantee completeness would be
+claiming what it cannot deliver: completeness is measured against material the model does not hold — namely
+everything a source says that nobody took up — so the claim could never be tested, and a guarantee that
+cannot be tested devalues the ones that can. The line is not new here either. K24 already draws it between a
+syntactic constraint, which the metamodel states and can decide, and a semantic one, which it defines and
+leaves to review; K7 draws the same line for contradiction, defining what one is and what a reviewer must
+cite while declining to detect one. This section draws it once more, over the metamodel's own promise, and
+the three are one posture held at three scales.
+
+Two decisions record it. K40 states the boundary. K41 refuses the instrument somebody will otherwise propose
+for closing it — a coverage report over which passages of a source no need cites, and any metric of
+extraction built on one — and `02-requirement-analysis-model.md` §9 carries that refusal beside the rule
+that checks extraction from the side a model can check.
+
+## 6. The diagram conventions
 
 Every diagram in this collection is Mermaid, rendered in place and diffable in the repository, and three
 things are true of all of them (K32).
@@ -192,7 +237,7 @@ Where a diagram and the prose beside it disagree, the prose wins. Every diagram 
 on the understanding that it could be deleted without losing anything the prose does not already say on its
 own.
 
-## 6. Status
+## 7. Status
 
 ProjectML, as this collection stands, is a complete draft, not a release. Bringing it to a complete draft —
 types, edges, states, rules, the binding contract — is the first of four phases, and it is the one this

@@ -75,6 +75,14 @@ then projects to a final, clean one by dropping the model above and the deprecat
 report in `spec/04-uncertainty.md` §6, step 3 by question rule 8 from one side and rule 9 from the other,
 step 4's questions by rules 1 and 2. Steps 3b, 4a and 5 have nothing.
 
+> **Step 2's checkability does not carry across, per K40 and K41.** The source-coverage report named above is
+> EventML's, and ProjectML defines no equivalent: whether every need was extracted from a source, and whether
+> each one says what the passage behind it said, is the modeller's responsibility rather than the model's,
+> found by self-review or cross-review after the modelling is done. What the metamodel checks over extraction
+> is the other side only — a need that no requirement refines (K38). D33 is not overturned; it is sound where
+> it was taken and simply not carried across. See ProjectML's `spec/06-decisions.md` and
+> [`eventml-decisions.md`](eventml-decisions.md).
+
 ## 3. Decisions
 
 | # | Decision | Rationale |

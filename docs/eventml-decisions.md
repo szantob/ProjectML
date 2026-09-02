@@ -20,7 +20,8 @@ always means ProjectML.
 in ProjectML's founding record depends on it. That criterion selects 26 of EventML's 55. It produced more
 entries than the six to eight estimated when this file was proposed, because the founding record leans on
 more decisions than it names: K6 rests on D25 and D45, and K9 on D32, D46 and D49, none of which it cites
-by number.
+by number. The 26 are grouped below by what became of each one here — inherited, imported, not carried
+across, or overturned — and being indexed is not the same as being in force.
 
 ## Where these decisions live
 
@@ -51,7 +52,6 @@ header says so, and the founding record's OQ6 treats it as such: the starting po
 | D28 | The refinement edge retargets from a path into the brief to a `Need` identifier | K1 — the traceability relations between kernel entities |
 | D29 | One edge between sources: `answers` | The founding record's finding that `answers` is the natural closing edge for a review finding |
 | D32 | Question rule 9 fires on a requirement carrying no origin edge at all — neither refinement nor derivation | K9 |
-| D33 | Source coverage is a report, not a question rule | The founding record's §2, where step 2 of the procedure is already checkable |
 | D34 | A need with no passage anchor fails a syntactic check | The distinction between syntactic constraints, which the kernel decides, and semantic ones, which it does not |
 | D35 | `answers` sits on the later source and names the earlier | The closing-edge finding |
 | D37 | `answers` changes no value | The closing-edge finding. Both statements were made; which prevailed belongs to a decision |
@@ -83,6 +83,16 @@ mechanism D53 chose while keeping what D52 and D53 were protecting.
 | D53 | Each `RequirementDef` names the kind it belongs to | Cited by K8: the need's subject selects the definition, and the kind rides along |
 | D54 | A kind carries a name and a description, and no project-management logic | EventML deferred that logic to a later release. In ProjectML it becomes the Project Lifecycle Model |
 | D55 | The taxonomy is not fixed by the language | The founding record's §5 records a stronger reason than the one written with the decision: a fixed taxonomy would fix a single classification axis, and would make the kernel unattachable. That structural reason, not the ownership one, is what carries here |
+
+## Not carried across — sound where it was taken, and outside this metamodel
+
+One decision is neither inherited nor overturned. The founding record depends on it, so it is indexed here;
+ProjectML nonetheless does not carry it, and the reason is not that it is wrong. It is a sound decision for
+the repository that took it, about a report that repository has and this metamodel does not.
+
+| # | EventML | ProjectML |
+|---|---|---|
+| D33 | Source coverage is a report, not a question rule — the report naming which passages of a source no need cites, kept as a report rather than made a rule because a condition that never clears is not a question | **K41** — this metamodel defines no such report, and no metric over the completeness of extraction. D33's reasoning is untouched and half of it is carried: that a source permanently contains uncited text, and that uncited text is normal rather than defective, is what K37 rests on. What is not carried is the report itself. Whether extraction was complete is the modeller's responsibility rather than the model's (**K40**), found by review after the modelling is done, and the founding record's §2 — which cites D33 for step 2's checkability — carries a note saying so |
 
 ## Overturned
 
