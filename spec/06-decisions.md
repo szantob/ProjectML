@@ -54,6 +54,14 @@ which carries the full argument for each.
 | K31 | `spec/` carries one document per member of the collection, plus an overview, a binding contract and a decision record | The collection is the structure (K19), so `spec/`'s layout follows it rather than copying EventML's eight-file layout |
 | K32 | The diagrams' vocabulary is a metalanguage, is descriptive only, and adopts existing conventions rather than coining any | CLAUDE.md already distinguishes drawing a metamodel from writing notation; house rule 10 applies to the metalanguage as well |
 
+## Decision K33
+
+Taken in [`01-requirement-model.md`](01-requirement-model.md), §2, which carries the full argument.
+
+| # | Decision | Reason |
+|---|---|---|
+| K33 | A `Requirement` in the product model does not name the `RequirementDef` it came from, nor that definition's kind | K19's independent adoptability forces the exclusion — naming `RequirementDef` or its kind pulls in a type and a specialisation hierarchy defined only in `02-requirement-analysis-model.md`, which a reader of the product model alone has not read. K13's condition on the projection permits the exclusion — the binding to the definition is not lost, only not projected into this type; it stays recoverable in the requirement analysis model, the working model K13 asks it to survive in. The two criteria are not symmetric: K19 admits no partial reading, K13 is satisfied by the same retention clause that already carries the rest of the analysis apparatus, so the balance is not close |
+
 ## Open questions, OQ9–OQ11
 
 Raised in [the design record of 2026-09-02](../docs/superpowers/specs/2026-09-02-spec-structure-and-oq2-design.md),
