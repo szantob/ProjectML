@@ -17,29 +17,59 @@ validator, and none may be added — see Global Constraints.
 
 ## Progress
 
-Execution stopped after Task 3 and is resumable. Tasks 1 to 3 are complete, each reviewed clean on both
-verdicts. **Resume at Task 4.**
+**Complete.** All nine tasks are done, each reviewed on both verdicts, followed by a whole-branch review and
+its fix pass. `spec/` carries seven documents and about 1,140 lines.
 
-| Task | Document | Commits | Outcome |
-|---|---|---|---|
-| 1 | `spec/06-decisions.md` | `e8954eb`, `dd6e056` | Complete. One Important finding — a truncated K25 — and two Minor, all fixed |
-| 2 | `spec/04-value-states.md` | `c0c2309` | Complete. Two Minor, neither blocking |
-| 3 | `spec/01-requirement-model.md` | `681e8f4` | Complete. **K33 taken:** a requirement in the product model names neither the definition it came from nor its kind. K19's independent adoptability forbids it; K13's recoverability condition only permits it, so exclusion wins |
-| 4–9 | not started | — | — |
+| Task | Document | Commits |
+|---|---|---|
+| 1 | `spec/06-decisions.md` | `e8954eb`, `dd6e056` |
+| 2 | `spec/04-value-states.md` | `c0c2309` |
+| 3 | `spec/01-requirement-model.md` | `681e8f4` |
+| 4 | `spec/02-requirement-analysis-model.md`, sections 1–4 | `41d2ed4`, `4433147` |
+| 5 | `spec/02-requirement-analysis-model.md`, sections 5–9 | `a430079`, `24f2ce2` |
+| 6 | `spec/03-project-lifecycle-model.md` | `16e17c5` |
+| 7 | `spec/05-binding-contract.md` | `0571950` |
+| 8 | `spec/00-overview.md` | `68cf6f3`, `6f57149` |
+| 9 | Consistency pass, CHANGELOG, README | `0bd5015` |
+| — | Whole-branch review fix pass | `f48378c` |
 
-**Three Minor findings are carried to Task 9's consistency pass**, which is where they belong:
+**Two decisions were taken while writing, both recorded in `spec/06-decisions.md`.**
 
-1. Citation style is inconsistent in `spec/04-value-states.md`, which mixes a parenthesised number, a bare
-   number and a backticked one. The corpus convention is bare in argumentative prose, with backticks only
-   when naming the series itself.
-2. K33's reason in `spec/06-decisions.md` runs to a paragraph where K19–K32 are each one line, against that
-   document's own stated convention.
-3. `spec/01-requirement-model.md` cites D48 by analogy for the edge between requirements. **This is an error
-   in this plan, not in the document:** Task 3, Step 2 asks for D48, but D48 is about the refinement edge in
-   the analysis model, not derivation in the product. The implementer noticed and made the analogy explicit
-   rather than citing it as though it covered derivation; the reviewer judged that defensible and dropping
-   the citation cleaner. Task 9 should settle it. The remaining D citations in Tasks 4 and 5 were checked
-   against `docs/eventml-decisions.md` and are correct.
+- **K33** — a requirement in the product model names neither the definition it came from nor its kind. K19's
+  independent adoptability forbids it; K13's recoverability condition only permits it, so exclusion wins.
+- **K34** — the projection carries every requirement, in force or not. The deciding argument is at the seam:
+  a requirement that retired between baselines but vanished at the projection would not change state there,
+  it would disappear, leaving the edge pointing at it dangling with nothing recording that a choice was
+  made — the failure K5 exists to prevent, reintroduced at the seam.
+
+**Two errors in this plan, found during execution and recorded rather than corrected in place**, because
+the tasks had already run against the text as written:
+
+1. Task 3, Step 2 asks for a D48 citation on the edge between requirements. D48 is about the refinement edge
+   in the analysis model, not derivation in the product. Task 9 dropped the citation.
+2. Task 4, Step 3 says the answers edge is used by section 7 of the analysis model. Findings are section 9.
+   The authoritative layout is 5 `RequirementDef`, 6 the two tests, 7 kinds as specialisations, 8 the
+   derivation and the projection, 9 `Decision` and findings.
+
+**The whole-branch review found one Critical defect**, fixed in `f48378c`: the link from a requirement to
+the `RequirementDef` it was produced under was never defined, though three documents relied on it. K33's
+published argument fails without it, and it is the last link in the chain the metamodel exists for.
+
+**Four questions the review raised are the repository owner's, and remain open.** They are decisions about
+what the metamodel should contain rather than repairs, and none blocks the next phase from starting:
+
+1. K26 admits an attribute when a **stated** rule can fail on it. No such rule is stated anywhere in `spec/`
+   for a `RequirementDef` attribute. Either the rules get written, or K26's application is qualified.
+2. `spec/01-requirement-model.md` is claimed independently adoptable but sends its reader to
+   `spec/04-value-states.md` for what a requirement's values carry. Either the value-state model is declared
+   a prerequisite every member carries, or the numbering stops being described as a dependency order.
+3. `spec/05-binding-contract.md` leaves the seam under-specified for phase 2: no cardinality, no stated
+   check over it, nothing saying whether the edge pins a baseline, and nothing on what a satisfying element
+   naming a requirement no longer in force means.
+4. K34 sets aside part of K12, which is locked. The status table calls it "read narrowly rather than
+   contradicted"; the whole-branch reviewer argues it supersedes K12's extent clause while keeping its
+   identity-and-date clause, and that this deserves an explicit instruction to amend rather than a status
+   row.
 
 ## Global Constraints
 
