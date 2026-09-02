@@ -62,6 +62,15 @@ Taken in [`01-requirement-model.md`](01-requirement-model.md), §2, which carrie
 |---|---|---|
 | K33 | A `Requirement` in the product model does not name the `RequirementDef` it came from, nor that definition's kind | K19's independent adoptability forces the exclusion — naming `RequirementDef` or its kind pulls in a type and a specialisation hierarchy defined only in `02-requirement-analysis-model.md`, which a reader of the product model alone has not read. K13's condition on the projection permits the exclusion — the binding to the definition is not lost, only not projected into this type; it stays recoverable in the requirement analysis model, the working model K13 asks it to survive in. The two criteria are not symmetric: K19 admits no partial reading, K13 is satisfied by the same retention clause that already carries the rest of the analysis apparatus, so the balance is not close |
 
+## Decision K34
+
+Taken in [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md), §8, which carries the full
+argument.
+
+| # | Decision | Reason |
+|---|---|---|
+| K34 | The projection carries every requirement, whether in force or not. Being no longer in force is projected; nothing else the requirement analysis model adds is | [`01-requirement-model.md`](01-requirement-model.md) defines the property in the product model and argues for it there, so a projection that dropped retired requirements would make that property unobservable in the model that defines it; that document's own constraints already speak of every requirement a baseline contains "in force or not"; and K13's condition governs what may be dropped, not what must be. K12's *a cut of the requirements in force* names what a baseline is for rather than stating an exclusion. Where this and the founding record's procedure — which ends the cycle by dropping "the deprecated requirements" — pull apart, the procedure describes where a cycle comes to rest and K20's projection is what this decision governs |
+
 ## Open questions, OQ9–OQ11
 
 Raised in [the design record of 2026-09-02](../docs/superpowers/specs/2026-09-02-spec-structure-and-oq2-design.md),
@@ -79,7 +88,7 @@ which carries the full argument for each.
 |---|---|
 | OQ1 | Not answered, but shaped: the collection's dependency order is now the adoption order |
 | OQ2 | **Answered** — K27, K28, K29, K30 |
-| OQ3 | Untouched, and next |
+| OQ3 | Open, and next. [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md) §9 states the rule that reports an orphan need and deliberately records no disposition for one |
 | OQ4 | **Answered** — K22, K23 |
 | OQ5 | Unchanged |
 | OQ6 | Unchanged |
