@@ -1,0 +1,369 @@
+# A project-organisation kernel — Brainstorm record
+
+**Status: this repository's founding record.** It is not a specification and not a plan. Its decisions
+(K1–K18) are settled and constrain everything built here; its open questions (OQ1–OQ8) are this project's
+first work. It was written in the EventML repository, during the session that decided ProjectML should
+exist, and is carried over unchanged apart from this header.
+
+**Reading the paths.** Unqualified paths — `spec/`, `examples/`, `decisions.yaml` — refer to the
+[EventML repository](https://github.com/szantob/EventML), where the material discussed here currently
+lives. Nothing in this document describes a file in ProjectML.
+
+**Scope: a repository of its own, carried to its own 1.0 before `eventml-core` resumes.** Revised twice
+during the session. The constraint stated at the outset was "after `eventml-core` 1.0"; it was withdrawn, on
+the reading that EventML's own roadmap is about to spend five releases building kernel material inside
+EventML, and then replaced by K14 — serialised work rather than an MVP running alongside. K15 settles what
+that 1.0 is: the metamodel, described in text and diagrams, with no notation and no filled-in definitions.
+OQ7 settles how a metamodel that exercises nothing on its own is verified; its answer proved circular with
+K14's freeze, and **§7 resolves that by ordering the work into four phases**. Version numbers are ceremony at
+this stage — see the note opening §4 — and §7 says where the 1.0 label lands once they are not. Nothing here
+changes `spec/` as it stands.
+
+**Date:** 2026-08-26
+**Written in:** the EventML repository, branch `eventml-core-v0.5`, where a copy remains
+**Related**, both in EventML under `docs/superpowers/specs/`:
+[`2026-08-26-eventml-v0.5-requirement-types-WIP.md`](https://github.com/szantob/EventML/blob/main/docs/superpowers/specs/2026-08-26-eventml-v0.5-requirement-types-WIP.md),
+[`2026-08-24-eventml-v0.4-needs-design.md`](https://github.com/szantob/EventML/blob/main/docs/superpowers/specs/2026-08-24-eventml-v0.4-needs-design.md)
+
+---
+
+## 1. The idea
+
+Lift L0 and L1 out of EventML as a language of their own: a kernel that builds a requirement system out of
+what people actually said, and that a design language then attaches to. EventML becomes one such design
+language. SysML v2 and UML become others, on the same terms.
+
+The argument for the cut is already in the specification, written for a different purpose.
+`spec/06-sysml-mapping.md` §4 lists four things in EventML that do not survive translation to SysML v2 —
+the value states, the question derivation, the L2 product-name rule, and the recording criterion. **Three of
+the four live at L0/L1.** The language being lifted out is therefore not a competitor to SysML: it is the
+front end SysML declines to have, and it ends exactly where SysML begins.
+
+**It also stands on its own**, without any design language beneath it — a project can run the §2 loop and
+stop at a baseline, having attached nothing. That is worth stating, and worth stating precisely, because the
+obvious phrase for it overclaims. General-purpose project management means schedule, tasks, dependencies,
+resources, budget and milestones, and the kernel has none of them and is not going to. What it covers is the
+**evidence-and-decision half**: what was said, by whom, what it obliges, what is still open, what was
+decided and why, and what changed since. Those are standard project-management artefacts — a decision log,
+an issue log, a requirements register — with traceability holding them together, which is what the usual
+versions lack. Claiming that half is a strong claim. Claiming the other half by implication is how a
+specification acquires a first question it cannot answer, and it bears on OQ5.
+
+## 2. The procedure the kernel serves
+
+Given in the session as the reason the kernel exists. The goal is a *final* requirement system, and the
+procedure is how one is reached.
+
+1. A written source arrives — email, note, meeting transcript, a designer's own decision note — and is
+   registered.
+2. The source is analysed, and needs are extracted from the parts that carry information.
+3. Each need is processed: its subject selects the requirement type, and the rules on that type's
+   `RequirementDef` turn the stater's free words into the requirement's bound professional wording.
+4. Creating requirements triggers a review of the model, which surfaces contradictions with earlier
+   requirements, further questions needed for refinement, and other findings.
+5. A model above the requirement model records the contradictions, gaps and pending decisions. It is
+   analysed, a report is written, and somebody acts on it — a meeting is called, the client is telephoned,
+   or the team decides for itself. **The outcome always enters the system as a new source**, whose needs
+   produce requirements that resolve what was open.
+6. The new requirements let the old contradicting ones be deprecated — never deleted, which would break
+   traceability — and the imprecise ones refined.
+
+The cycle ends when the model above empties: every question answered by somebody. The requirement model
+then projects to a final, clean one by dropping the model above and the deprecated requirements.
+
+**Three of these steps are already checkable in the language as it stands.** Step 2 by the source-coverage
+report in `spec/04-uncertainty.md` §6, step 3 by question rule 8 from one side and rule 9 from the other,
+step 4's questions by rules 1 and 2. Steps 3b, 4a and 5 have nothing.
+
+## 3. Decisions
+
+| # | Decision | Rationale |
+|---|---|---|
+| K1 | The kernel is L0/L1 — the evidence and intent chain. `Source`, `Need`, `Requirement`, `Decision`, the value-state model, the traceability relations and the checks over them. `Part`, `Port`, `Connection`, `Flow`, the definition entities below `Requirement`, `allocate`, boundary rules 2 and 3 and the AV libraries stay in EventML | `06-sysml-mapping.md` §4: three of the four things that do not map to SysML live at L0/L1. The cut follows a seam the specification already found |
+| K2 | The kernel attaches symmetrically. It must sit under SysML v2, under UML, under EventML and under a design language not yet written, on the same terms in every case | Stated as the requirement the whole idea exists to meet. No design language gets a privileged path |
+| K3 | The kernel sees below L1 through exactly one seam: an element outside the kernel carrying `satisfies`, naming a requirement | `06-sysml-mapping.md` §2 records `satisfy` as mapping directly to SysML v2 *including which end carries it*. The adapter the seam needs is already written. It keeps rules 3 and 6 computable over any design language |
+| K4 | A design language attaches through a **binding** that declares four things: which of its elements may carry `satisfies`; its own internal refinement chain; its identifier space; and how far it takes the kernel's value model | The identifier problem is recorded in `06-sysml-mapping.md` §3 — `audio.part.stage_box` and `Audio::DigitalStageBox` are different identifier spaces, and a round trip without a map loses the stable IDs everything depends on |
+| K5 | A `Requirement` carries a property marking it no longer in force. A requirement is never deleted | Traceability. Also the v0.5 WIP §5 argument for retirement: the checks are pairwise, so deleting an element silences exactly the check that fired on it |
+| K6 | A `Need` carries no lifecycle state | A need belongs to its source, and a source is material of record — quoted whole, never edited. A quotation cannot cease to be true. What a need needs instead is a disposition; see OQ3 |
+| K7 | Contradiction between requirements is found by human or AI review, not by rule. The kernel defines what a contradiction is, what a reviewer must cite, and how a found one is recorded — it does not detect them | Consistent with locked decision 1. A rule-based detector would find only the contradictions somebody anticipated by writing a constraint, which is the case that least needs finding |
+| K8 | A requirement's type arrives with the `RequirementDef` chosen for it. Needs are not classified | D53 already has each template naming its kind. The need's subject selects the template; the kind rides along. This is why the v0.5 §5 origin clusters and a subject-driven procedure never collide — two axes, one contact point |
+| K9 | Question rule 9 is a failed check, not a question | The rule's own text calls it an invariant: *"One invariant defines it: every requirement names its origin."* The rule tree already routes the parallel case — an L3 part with no `allocate` — to *"a failed check — boundary rule 3, not a question"*, and boundary rule 3's justification applies verbatim. See §6 |
+| K10 | The model above the requirement model is a model, not a derived view | A contradiction links at least two requirements and must keep its identity between reviews. A recomputed report has no identity across runs; a modelled element does |
+| K11 | **The requirement model changes only through sources.** Every outcome of a review — a meeting, a telephone call, the team's own decision — enters as a source | What makes traceability total rather than merely well-intentioned. It is also what makes K10 tractable: no finding can go stale unnoticed, because nothing moves beneath it without a source accounting for the move |
+| K12 | The cycle ends in a **baseline**: a dated, identified cut of the requirements in force. A design language binds to a *named* baseline, not to "the requirements" | ISO/IEC/IEEE 29148's term, adopted under house rule 8 rather than coined. Without it the implementing team designs against a set that moves under them, which is the experience that makes engineers distrust requirement models. The cost is an identifier and a date |
+| K13 | The baseline is a simplification for a different audience, not a model that must pass the kernel's checks. Its condition is losslessness and recoverability: everything in force is present, nothing in force was dropped, and everything dropped stays in the working model | The baseline drops the need layer, so need-coverage rules cannot apply to it — running them on it is a category error. People building the thing do not need to know what the candidate requirements were |
+| K14 | **The work is serialised, not parallel.** The kernel gets its own repository, built from what exists today and carried to its own 1.0 with `eventml-core` frozen for the duration. EventML resumes afterwards, as the kernel's first consumer | The five releases on EventML's own roadmap are kernel work, so serialising does that work once instead of twice. It also dissolves the moving-target risk by decree rather than by mitigation: nothing can fork underneath a specification that is not moving. And a specification resumed against a finished kernel is a far better test of K2 than two that co-evolve and quietly accommodate each other |
+| K15 | **The metamodel and its implementations are separate things.** The metamodel is the kernel proper — the L0/L1 types, the edges, the states, the rules, the binding contract — described in text and diagrams only. It defines what a `RequirementDef` *is*; **it contains no filled-in `RequirementDef`, and the moment any element goes into one, that is implementation.** Notation, the requirement types themselves and a base rule-set a project may vary as it runs all belong to an implementation: a self-contained package that can be adopted and carried forward on its own. **The metamodel is what reaches 1.0** | The abstract-syntax / concrete-syntax split, and what makes K2 reachable rather than merely stated. A design language attaching underneath brings its own notation, so any notation inside the metamodel would be imposed on it. EventML did not have to face this — `spec/05-concrete-syntax.md` sits inside `eventml-core` today because EventML has one audience. The kernel has many, so it cuts one notch higher |
+| K16 | **An implementation is itself a metamodel**, for the project models built with it | Three levels, not two: the metamodel says what a `RequirementDef` is; an implementation is the filled set of them, and that set is what a project model is checked against. `examples/lib/` already plays this middle role in EventML — `audio.req.speech_intelligibility` is a filled `RequirementDef`, and `eventml-lib` versions separately from `eventml-core` for exactly this reason. The layering is not new; ProjectML only moves the notation from the first level to the second |
+| K17 | **A binding lives with whoever owns the language it binds; where nobody does, it lives in the kernel.** The SysML v2 binding is written on paper and kept in the ProjectML repository, as the kernel's own reference and proof. EventML's practical implementation — notation, filled definitions, rule-set — lives in the EventML repository | The v0.3 ownership rule one level up: a vocabulary belongs to whoever owns it. Nobody outside ProjectML would maintain a SysML binding, so it is ProjectML's artefact; EventML's implementation has an owner and a library already, so it stays there. It also keeps the kernel repository tight — a metamodel and one reference binding, nothing else |
+| K18 | **A binding is not an implementation.** The SysML artefact is a binding: K4's four declarations and nothing more. EventML's is an implementation, and it contains a binding | Keeping the words apart keeps the done-test sharp. An implementation carries notation, filled definitions and a rule-set; the SysML paper artefact carries none of the three, and calling it one would let OQ7's test be declared passed by a document that exercises nothing |
+
+## 4. Open questions
+
+**A calibration that applies to all of them.** Version numbers are ceremony at this stage: one developer,
+no users, nothing to coordinate. Several recommendations below were argued partly from release discipline
+and should be read with that discounted. It affects K14 least — **its content is the ordering and the
+freeze, not the number.** Finish the kernel before resuming EventML is a real constraint whether or not the
+finishing point is called 1.0. It affects OQ1 most: conformance levels are a coordination mechanism for
+parties who do not exist yet, and the case for them is not the levels but the information they carry — what
+an exported model loses — which could be written as prose today and formalised only when somebody else
+needs it.
+
+**OQ1 — One specification or two?** The kernel has two separable pieces: the evidence chain, which attaches
+at exactly one seam, and the value-state model, which attaches to every value or to none. They cannot be
+adopted equally — EventML's YAML lets a scalar be replaced by an object and SysML v2's textual notation does
+not, so a SysML binding can take the first and not the second. Three options were put: one specification
+with conformance levels (level 1 evidence chain, level 2 plus value states, level 3 plus question
+derivation), two specifications, or one monolith. **Conformance levels were recommended and the question was
+not answered.** The recommendation rests on the level itself becoming information: read a binding, and you
+know what an exported model loses. That knowledge sits in prose today, in `06-sysml-mapping.md` §4.
+
+**OQ2 — Does `RequirementDef` split?** It carries two kinds of attribute. `applies_when`, `params`,
+`default` and `asks` are procedural, and their meaning bottoms out in the kernel's own value model.
+`constraints` and `verification` bottom out in the design language's semantics — and `06-sysml-mapping.md`
+§1 already maps `verification` to a SysML `verification def`, "which EventML v0.1 keeps as prose". **A split
+along that test was recommended and the question was not answered.**
+
+**OQ3 — The orphan need.** *Recorded as a problem to solve, at the user's request.*
+
+A need that no requirement refines fires question rule 8, and the rule has two readings. The specification
+already knows both. `examples/03-festival-stage/brief.yaml` says so in `n-park`'s own notes — "the park is
+where the event is, not something the system must achieve — one of the two readings a person has to choose
+between when the rule fires" — and `examples/01-garden-party/brief.yaml` says of `n-lunch` that it "may
+constrain the load-in or mean nothing at all, and only the venue can say which."
+
+**What is missing is any way to record which reading won.** Seven needs across the three examples are
+refined by nothing:
+
+| Example | Needs refined by nothing |
+|---|---|
+| `01-garden-party` | `n-load-in`, `n-lunch` |
+| `02-conference-room` | `n-same-as-last-year`, `n-room`, `n-house-lights`, `n-venue-tech` |
+| `03-festival-stage` | `n-park` |
+
+Every review re-adjudicates all seven, and the person doing it cannot see that somebody already did. The
+conference room stages the sharpest case deliberately: `n-house-lights` is refined by nothing and fires rule
+8, while `r-house-lights` names no origin and fires rule 9 — the same subject, both ends open, and no edge
+between them.
+
+This is not retirement, and K6 is why: the need was stated and remains stated. It is a **disposition** — a
+record that the need was examined and deliberately produced nothing, with the reason. It has the same shape
+as the second half of the v0.5 §3 open question: every declared kind either has a requirement in the project
+or a written reason why it has none.
+
+**The hazard to design against.** A disposition that costs nothing to write becomes a way to silence rule 8,
+which is precisely the failure the v0.5 WIP identifies for deletion — *"deletion becomes a way to make a
+report clean, with nothing recording that a choice was made."* Whatever form a disposition takes has to make
+the silencing visible: a reason at minimum, and probably a source or a decision standing behind it.
+
+**OQ4 — Does the kernel name the loop's steps normatively?** Asked twice and answered around both times. The
+options were: entities only; entities plus the five steps as a normative process, adopting ISO/IEC/IEEE
+29148's process vocabulary; or entities plus lifecycle states with no process prescribed. **The third was
+recommended**, on the ground that the process is the part most likely to collide with an adopting
+organisation's own way of working, and therefore the least portable thing the kernel could make normative.
+K5, K6 and K10 all point that way without settling it.
+
+**OQ5 — What is the kernel called?** **ProjectML** was put forward, with a question mark. It reads well and
+it is the obvious parallel to EventML. One reservation is worth recording before a repository fixes it:
+*project* claims the whole of project management — schedule, budget, resources, people — while the language
+does requirements engineering and nothing else. A name that overclaims invites the wrong first question from
+everybody who reads it, and a repository name is cheap to change this week and expensive in a year.
+
+**OQ6 — What is the MVP, and where does it live?** The session opened under an "after 1.0" constraint and
+withdrew it: the extraction should be an MVP project of its own, probably in a separate repository.
+
+**The argument for not waiting.** Read the v0.5 WIP §4 release order — a library declares its requirement
+kinds, then project-management logic, then what produces a decision, then how the model survives change,
+then the question lifecycle. **Not one of those five is AV-specific.** `eventml-core` is about to spend five
+releases building kernel material inside EventML. Waiting for 1.0 does not avoid the work; it does the work
+in the wrong repository and moves it afterwards.
+
+**The argument for caution.** The kernel's own content is the part of EventML moving fastest. `Source` and
+`Need` became entities in v0.4, and the five releases above all land on the same material. An extraction now
+forks a moving target, and the MVP has to be designed against that rather than around it.
+
+**What "viable" means for a specification.** There is no software to ship, so the MVP is minimum *provable*
+rather than minimum runnable, and CLAUDE.md §5 already fixes the standard: a concept that appears in no
+example is unproven. The decisive test is therefore not that the kernel has the entities — moving files
+proves nothing — but that **a second, non-AV domain walks end to end without the kernel changing**, and that
+**two bindings can be written**, one to EventML and one to SysML v2. K2 is either true or false, and one
+non-AV binding decides it.
+
+**What failure would look like**, stated in advance so the MVP can fail honestly:
+
+- the SysML binding cannot be written without changing the kernel's entities — K2 is false
+- the non-AV example needs a concept L0/L1 does not have — the cut is in the wrong place
+- the domain leaks in §5 turn out to number thirty rather than three
+
+Three MVP shapes were put — a thin snapshot, a thick one absorbing v0.5, and one with no repository at all —
+and a fourth was chosen instead: **build the repository and carry it to its own 1.0 before resuming
+EventML.** That is K14, and it is not an MVP. What remains open is what its 1.0 contains.
+
+**Three things the decision leaves unsettled.**
+
+*What "what exists today" means.* v0.5's requirement-kinds work is brainstormed and **not implemented** —
+the branch carries two records and no specification change. So the starting point is `v0.4.0` plus two
+brainstorm records, which is a clean line, but only until somebody implements something. It should be named
+as a tag rather than as a date.
+
+*What happens to v0.5.* Its subject — a library declares the kinds of requirement it handles — is kernel
+material entire. **The recommendation is that it moves to the kernel rather than being deferred**, and that
+`eventml-core` v0.5 as currently conceived does not happen at all. Deferring it would leave a designed
+release pointing at material that no longer lives in the repository.
+
+*What 1.0 means.* **Answered by K15: 1.0 is the metamodel.** The question that replaces it is not what 1.0
+contains but how it can be verified — see OQ7.
+
+**One constraint to fix now, because schedule pressure will take it first.** A 1.0 whose only worked
+examples are events has not proved neutrality; it is EventML's L0/L1 under a new name. **A non-AV worked
+example, and a SysML binding, are release criteria and not extras.** The gate recommended earlier survives
+K14 in a weaker but still useful form: write the SysML binding *early* in the kernel's life rather than as a
+precondition for the repository, so that a false K2 is discovered in week two instead of at 1.0.
+
+The question that follows 1.0, and is not settled: how EventML then relates to the kernel — a citation with
+the kernel authoritative, or a copy. K14 makes the first much more likely, since a frozen EventML resuming
+against a finished kernel has no reason to keep a copy.
+
+**OQ7 — What is the metamodel's done-test?** K15 puts the notation in an implementation, and that collides
+with the only verification this family of specifications has. CLAUDE.md §5 says a concept appearing in no
+example is unproven, and the v0.4 plan applies the same test to refuse a construct outright: *"An
+unexercised construct is an unproven one, so it waits."* Examples are written in a notation. **A metamodel
+with no notation exercises nothing on its own.**
+
+K16 says where the exercise has to come from instead: an implementation is the middle level, so the chain is
+metamodel ← implementation ← project model, and the metamodel is reached last. What is being chosen is how
+far down that chain the metamodel's own done-test reaches.
+
+- **One implementation runs the loop.** The metamodel is done when one implementation exists and carries the
+  §2 procedure end to end on one project, terminating in a baseline. Proves the metamodel is implementable.
+- **One implementation, plus the SysML binding on paper.** The same, and one binding document — K4's four
+  declarations — written against SysML v2 without a second library behind it.
+- **Two implementations in two domains.** An event one and a software one, both running the loop. The only
+  version that fully tests neutrality, and roughly twice the work before anything is finished.
+
+**Answered: the second**, with the placement settled by K17. One implementation proves the metamodel can be
+built on; it does not prove the metamodel is neutral, and neutrality is the entire thesis. Two
+implementations prove it and double the work first. The second option tests neutrality **where neutrality
+actually lives** — at the seam, which K3 and K4 say is one field and four declarations — for the cost of one
+document, and it is the earliest point at which a false K2 becomes visible.
+
+**OQ8 — The done-test and the freeze are circular as they stand.** Answering OQ7 with the second option
+produces a conflict with K14 that neither decision shows on its own:
+
+- K14 freezes `eventml-core` until the kernel is finished.
+- OQ7 says the kernel is finished when an implementation runs the loop end to end.
+- K17 puts that implementation in the EventML repository.
+
+So the kernel is finished when EventML does something, and EventML is frozen until the kernel is finished.
+Three ways out:
+
+- **Read the freeze narrowly.** What K14 freezes is EventML *growing its own specification* — the five
+  roadmap releases of kernel material. Building EventML's ProjectML implementation is a different activity,
+  and it is the resumption K14 already anticipates. The two phases then **overlap by exactly one step**:
+  the last thing the kernel needs is the first thing EventML does on resuming.
+- **Host the practical implementation in the kernel repository temporarily** and migrate it to EventML
+  afterwards. Keeps the phases strictly serial, at the cost of contradicting K17 for the duration.
+- **Weaken the done-test** to the paper binding alone, which is OQ7's first option with the exercise
+  removed — and then nothing runs the loop before the kernel is declared finished.
+
+**Answered by the four phases in §7**, which resolve the circularity by ordering the work rather than by
+qualifying the freeze. One adjustment goes with them, recorded there: the phases are a work order, so the
+1.0 label belongs at the end of the fourth rather than the first, or the metamodel is declared finished
+before the thing that exercises it exists — which is the third option above, the one to refuse.
+
+**A consequence of the implementation half, worth recording before it is designed.** K15 puts "a base
+rule-set a project may vary as it runs" in the implementation. If the rules can change mid-project, then a
+check result is only meaningful against the rule-set that produced it, and **a baseline (K12) has to name
+the implementation package and version it was cut under** — otherwise a baseline validated last month cannot
+be told apart from one validated under different rules. The date and identifier K12 asks for are not enough
+on their own.
+
+## 5. Findings worth keeping
+
+**The value-state model is not confined to L0/L1.** `spec/04-uncertainty.md` §1 says wrapping applies to
+"any value anywhere in a model — a brief field, a `Requirement.params` entry, a `Part.properties` entry, a
+`Connection` length". This is what forces the two-piece structure behind OQ1: the evidence chain attaches at
+one seam, and the value model attaches everywhere or nowhere.
+
+**Three domain leaks sit in an otherwise neutral L0/L1**, and would have to become library-declared
+vocabularies rather than fixed enumerations:
+
+- `Source.kind`: `email | call | document | site_visit | rider | regulation` — **rider** is event-specific
+- `Source.from` and `Decision.by.party`: `client | venue | production | authority | performer` — **venue**
+  and **performer** are event-specific
+- the catalogue identifier's domain enumeration, fixed by locked decision 3
+
+**D55 has a stronger reason than the one recorded.** The v0.5 WIP justifies leaving the taxonomy to the
+library by ownership (the v0.3 rule) and by house rule 8 (coin nothing). Both hold. The stronger reason is
+structural: **a taxonomy fixed by the language would fix a single classification axis**, and the WIP's own
+§5 finding is that SysML classifies by the nature of a requirement while this domain's logic splits by
+origin. A fixed taxonomy would exclude every design language classifying on another axis — which is to say,
+it would make the kernel unattachable. D55 is not a courtesy to library owners; it is what makes K2
+possible.
+
+**Findings come in three kinds, and they behave differently.** A failed check and a question are both
+decidable by script and are recomputed on every run, so storing them only risks staleness. A review finding
+needs judgement to produce and is lost unless it is stored. K10 settles the storage question; the
+distinction still matters, because only the third kind can carry a state.
+
+**`Source.answers` is the natural closing edge for a finding.** It already runs from a source to the earlier
+sources it responds to. Extending it to close a finding makes closure evidence rather than a tick somebody
+applied — the same move `agreed_by` already makes for consent.
+
+**`Source.from` correlates with the v0.5 origin clusters but is not a function.** Client to Programme, venue
+and site visit to Site, authority and regulation to Regulatory, our own judgement to Consequential — four
+origins, four clusters, and the correspondence is not a coincidence, because "who could answer" is what the
+clusters split on. It is not a dispatch, though: a client can state a site fact. Under K8 nothing turns on
+it, and it survives at most as a smell test — a kind that disagrees with its source's origin is worth a
+second look. Whether that is signal or noise could be measured against the 22 templates.
+
+## 6. What this touches in released work
+
+**Question rule 9 shipped in `v0.4.0`.** K9 is therefore a change to released specification, and it is
+available independently of everything else here — it needs no kernel and no 1.0. Two further pieces of
+evidence beyond the rule's own wording: its worked example carries `blocks: 0`, so it never competes for
+attention the way a question does; and `spec/04-uncertainty.md` §4 already calls it "the exception among the
+rules added in v0.4", which is a specification being uncomfortable with its own categorisation.
+
+**One consequence has to be accepted with it.** `spec/04-uncertainty.md` says "Rule 9 is rule 6 one layer
+up, and the symmetry is exact." If rule 9 moves and rule 6 does not, the symmetry stops being exact and that
+sentence needs correcting. Rule 6 should not move with it: no invariant says every L2 part satisfies
+something, and an infrastructure block that satisfies nothing is a fair question rather than an error.
+
+## 7. The order of work
+
+Four phases, settled in the session, resolving OQ8 by ordering the work rather than by qualifying the
+freeze:
+
+1. **Bring the ProjectML metamodel to a complete draft.** Types, edges, states, rules, the binding contract.
+   Text and diagrams; no notation, no filled definitions.
+2. **The SysML implementation** — the paper binding of K18, kept in the ProjectML repository under K17. This
+   is where a false K2 shows up, and it is early on purpose.
+3. **Take the ProjectML elements out of EventML.** Spec surgery: the L0/L1 sections of `spec/01-layers.md`,
+   the four kernel entities in `spec/02-metamodel.md`, `spec/04-uncertainty.md`, the kernel relations in
+   `spec/03-relationships.md`, and `decisions.yaml`.
+4. **Build EventML’s ProjectML implementation**, in the EventML repository under K17.
+
+**Where the 1.0 label goes.** The phases are a work order, and 1.0 is a claim about verification, so the two
+do not coincide. Under OQ7 the metamodel is finished when an implementation has run the loop and the SysML
+binding exists — the end of phase 4, not the end of phase 1. Read phase 1 as *complete draft* and the four
+phases hold together; read it as *released* and the metamodel is declared finished two phases before
+anything exercises it.
+
+**Phases 3 and 4 are one piece of work, not two.** Between them EventML has no L0/L1 and nothing to replace
+it, so every example fails the rule that verifies it. Survivable inside a branch, not survivable across a
+tag: nothing should be released from EventML between them.
+
+**Phase 4 is smaller than its name.** EventML already holds most of an implementation —
+`spec/05-concrete-syntax.md` is the notation, and `examples/lib/*/requirements.yaml` is 22 filled
+`RequirementDef`s. Much of phase 4 is declaring what exists as a ProjectML implementation. The genuinely new
+work is what the kernel adds that EventML never had: the kind list, the need disposition of OQ3, the model
+above, and the baseline.
+
+**What still has to be answered, and when.** OQ2 blocks phase 1 directly — phase 1 defines what a
+`RequirementDef` is, which is exactly what OQ2 asks. OQ3 and OQ4 are phase 1 as well. OQ1 belongs to phase
+2, where a binding first has to state what it cannot take; K15 reshapes it, since the value states are
+portable where progressive wrapping is notation and is not. What remains of OQ6 is settled enough by K15 and
+K16 to act on — the slot is metamodel, the list is implementation. OQ5 waits for the rest on purpose.
+
+§6 sits outside all four phases. Rule 9 is already released and its recategorisation needs no kernel.
