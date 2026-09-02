@@ -1,9 +1,14 @@
 # The shape of the metamodel, and what a `RequirementDef` is — Design record
 
-**Status: settled, and not yet written into `spec/`.** This record carries decisions K19–K32, which
-continue the series the founding record opened, and three new open questions, OQ9–OQ11. It answers OQ2 and
-OQ4 from the founding record. `spec/` still does not exist; K31 says what it will contain, and writing it
-is the next task.
+**Status: settled, and written into `spec/`.** This record carries decisions K19–K32, which continue the
+series the founding record opened, and three new open questions, OQ9–OQ11. It answers OQ2 and OQ4 from the
+founding record. `spec/` now exists, in the layout K31 called for: [`00-overview.md`](../../../spec/00-overview.md),
+one document per member of the collection in [`01-requirement-model.md`](../../../spec/01-requirement-model.md),
+[`02-requirement-analysis-model.md`](../../../spec/02-requirement-analysis-model.md),
+[`03-project-lifecycle-model.md`](../../../spec/03-project-lifecycle-model.md) and
+[`04-value-states.md`](../../../spec/04-value-states.md), the binding contract in
+[`05-binding-contract.md`](../../../spec/05-binding-contract.md), and the normative record of K19–K32 and the
+three open questions in [`06-decisions.md`](../../../spec/06-decisions.md).
 
 **Date:** 2026-09-02
 **Follows:** [`2026-08-26-kernel-brainstorm.md`](../../2026-08-26-kernel-brainstorm.md), this repository's

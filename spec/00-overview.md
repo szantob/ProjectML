@@ -34,7 +34,7 @@ ProjectML metamodels a collection of connected models, not a single model (K19).
 |---|---|---|
 | The requirement model | The product: a requirement, the edge by which one requirement is derived from another, the property of being no longer in force, and the baseline that names a dated cut of the register | Yes — a reader who wants a requirements register with traceability between requirements, and nothing else, reads it and stops |
 | The requirement analysis model | The working model: where a requirement is actually built and justified, from a stated source, through a need and the definition chosen for it, to the decisions and findings that stand behind it | No — it projects to the requirement model (K20), and is read for what produced the product, not instead of it |
-| The Project Lifecycle Model | What a rule-set — an organisation's own way of resolving a gap, ending a wait, or settling a conflict — may state about the requirement analysis model's own elements, and what it may not | No — it states rules over elements the requirement analysis model already defines in full |
+| The Project Lifecycle Model | What a rule-set — an organisation's own way of resolving a gap, ending a wait, or settling a conflict — may state about the requirement analysis model's own elements, and what it may not | No — a rule-set written under it states rules over elements the requirement analysis model already defines in full |
 | The value-state model | What is known about a value, wherever a value occurs in any of the other three: stated, derived, assumed, unknown, or conflicting | No, by nature — it crosscuts the other three rather than standing beside them |
 
 The four connect three ways, and the value-state model crosscuts all three connections rather than joining
@@ -46,11 +46,13 @@ graph LR
     RM["The requirement model<br/>(the product)"]
     PLM["The Project Lifecycle Model"]
     VS["The value-state model"]
+    BL(["a baseline: a named, dated instance of the requirement model"])
     DL(["a design language's own element"])
 
     RAM -- "projects to" --> RM
-    PLM -. "states rules over" .-> RAM
-    DL -- "satisfies" --> RM
+    PLM -. "says what a rule-set may state over" .-> RAM
+    RM -- "cut as" --> BL
+    DL -- "satisfies" --> BL
     VS -.- RAM
     VS -.- RM
     VS -.- PLM
@@ -59,18 +61,18 @@ graph LR
 The requirement analysis model projects to the requirement model (K20): the product is reached by dropping
 everything the working model adds beyond a requirement's identity, its text, its values, the edge by which
 it derives from another requirement, and the property of being no longer in force, which the projection
-carries rather than drops (K34). The Project Lifecycle Model states rules over the requirement analysis
-model's own elements — how a gap in one of them is resolved, when waiting on it ends, how a conflict among
-them is settled — without adding to what those elements already define in full (K22). A design language
-attaches to the requirement model, and only there, through exactly one
-edge: an element the metamodel does not define, carrying `satisfies`, and naming a requirement in a baseline
-— a named, dated instance of the requirement model a design language can depend on, where the live projection
-itself cannot be depended on (K3, K21). The value-state model has no box of its own on the same footing as
-the other three because it does not connect to them the way they connect to each other: a value carries a
-state wherever it occurs — in the requirement analysis model, in the requirement model, and in the Project
-Lifecycle Model alike — on the same terms in every case, rather than at one point where two of the boxes
-above happen to meet. That reach does not stop at the collection's edge: it holds just as fully past the
-seam, in a design language's own elements beyond it.
+carries rather than drops (K34). The Project Lifecycle Model provides the means to model a rule-set, and a
+rule-set — never the metamodel itself — is what states rules over the requirement analysis model's own
+elements: how a gap in one of them is resolved, when waiting on it ends, how a conflict among them is
+settled, without adding to what those elements already define in full (K22, K23). A design language attaches
+to the requirement model, and only there, through exactly one edge: an element the metamodel does not
+define, carrying `satisfies`, and naming a requirement in a baseline — a named, dated instance of the
+requirement model a design language can depend on, where the live projection itself cannot be depended on
+(K3, K21). The value-state model has no box of its own on the same footing as the other three because it
+does not connect to them the way they connect to each other: a value state applies to any value in any
+member of the collection, on the same terms in every case, rather than attaching at one point where two of
+the boxes above happen to meet. That reach does not stop at the collection's edge: it holds just as fully
+past the seam, in a design language's own elements beyond it.
 
 The numbered order of the documents after this one is not incidental: it is adoption order. A reader who
 wants a requirements register with traceability, and nothing else, reads `01-requirement-model.md` and stops
@@ -159,9 +161,9 @@ things are true of all of them (K32).
 
 A diagram here is a metalanguage. CLAUDE.md already draws the line every diagram in this collection stays
 inside of: "an abstract-syntax diagram is not notation; it is how a metamodel is drawn." Drawing
-`RequirementDef` as an abstract type with unnamed placeholder subtypes is not giving a requirement kind a
-concrete syntax; it is saying, in a second medium, exactly what the prose beside it already says in the
-first.
+`RequirementDef` as an abstract type with placeholder subtypes named after no real kind is not giving a
+requirement kind a concrete syntax; it is saying, in a second medium, exactly what the prose beside it
+already says in the first.
 
 A diagram here is descriptive, not prescriptive. Nothing in one is a recommended spelling for an
 implementation to follow. A box standing in for a design language's own element is a placeholder for whatever

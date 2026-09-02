@@ -20,7 +20,8 @@ says the same thing again, one step later, of the baseline specifically.
 
 ## 2. `Requirement`
 
-A requirement carries three things.
+A requirement carries five things: the three attributes below, the derivation edge that follows them, and the
+property of being in force or no longer in force (§3).
 
 | Attribute | Carries |
 |---|---|
@@ -31,7 +32,7 @@ A requirement carries three things.
 A requirement may also be derived from one or more earlier requirements. This derivation is an edge between
 requirements, and, like the refinement edge it stands beside, it is list-valued rather than singular: a
 requirement synthesising two earlier ones has two origins, not one, and an edge that could only name a single
-predecessor would force an arbitrary choice among equally contributing ones (K1).
+predecessor would force an arbitrary choice among equally contributing ones.
 
 **Every requirement names its origin.** This is the invariant K9 rests on: a requirement's origin is its
 refinement, its derivation, or both, and a requirement carrying neither is an incomplete record rather than
@@ -89,17 +90,17 @@ A baseline has identity; the requirement model's live projection does not. A des
 named baseline, never to the projection as it stands at the moment of reading, because a recomputed view has
 no identity across runs — read it twice and nothing guarantees the second reading names the same thing as
 the first — while a binding depends on identifiers that hold still. K21 states this for the baseline
-directly; K10 makes the same argument one model over, for why the findings above the requirement model are
-themselves modelled rather than recomputed each time.
+directly; K10 makes the same argument one model over, for why what a review produces over the requirement
+analysis model is itself modelled rather than recomputed each time.
 
 A baseline's condition is losslessness and recoverability: everything in force at the moment it is cut is
 present in it, nothing in force is dropped, and anything dropped stays in the working model rather than
 being lost (K13).
 
 A baseline is not, itself, a model that must pass the requirement analysis model's checks. It has no need
-layer — needs, and the coverage rules written against them, belong to `02-requirement-analysis-model.md`,
-not to this model — so running a need-coverage rule against a baseline is not a check that fails; it is a
-check that does not apply, asked of a model that carries nothing for it to inspect (K13).
+layer — needs, and the coverage rules written against them, belong to the requirement analysis model, not to
+this one — so running a need-coverage rule against a baseline is not a check that fails; it is a check that
+does not apply, asked of a model that carries nothing for it to inspect (K13).
 
 One further thing a baseline names, beyond a date and an identifier: the implementation package and the
 version of it the baseline was cut under. An implementation carries a rule-set a project may vary as it

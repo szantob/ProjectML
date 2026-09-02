@@ -92,15 +92,18 @@ requirement is satisfied, and none of that structure is visible from here. A bin
 structure is, in the design language's own terms, because the metamodel cannot supply it: this is exactly the
 part of a design language the metamodel does not, and by K3, must not, define.
 
-### 4.3 Its identifier space
+### 4.3 Its identifier space, and the map between it and a requirement's identity
 
-A binding states how the design language names its own elements. A design language's own naming scheme is
-not, in general, the scheme this metamodel uses for a requirement's identity, and two identifier spaces with
-no declared map between them lose the very thing a stable identifier is for: read a model, export it, and
-read the export back, and an element that once named a requirement may no longer resolve to anything, or may
-resolve to the wrong thing, because nothing recorded which name in one space corresponds to which name in the
-other. This is the founding record's own finding behind K4: a round trip through two unmapped identifier
-spaces loses the stable identifiers everything else here depends on.
+A binding states how the design language names its own elements, and states the map between that naming and
+a requirement's identity: which name in the design language's space corresponds to which requirement
+identifier in this metamodel's, in a form that resolves in both directions. The naming scheme alone does not
+meet this declaration; describing it without the map leaves the failure below in place. A design language's
+own naming scheme is not, in general, the scheme this metamodel uses for a requirement's identity, and two
+identifier spaces with no declared map between them lose the very thing a stable identifier is for: read a
+model, export it, and read the export back, and an element that once named a requirement may no longer
+resolve to anything, or may resolve to the wrong thing, because nothing recorded which name in one space
+corresponds to which name in the other. This is the founding record's own finding behind K4: a round trip
+through two unmapped identifier spaces loses the stable identifiers everything else here depends on.
 
 ### 4.4 How far it takes the value model
 

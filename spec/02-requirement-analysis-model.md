@@ -217,8 +217,8 @@ classDiagram
 ```
 
 The diagram says what the paragraphs above it say: `RequirementDef` is abstract, and a kind is a subtype of
-it. `KindA` and `KindB` are placeholders, and they are deliberately not named, because the metamodel declares
-no kinds (K15) and naming one here would be a filled definition. The diagram uses the abstraction and
+it. `KindA` and `KindB` are placeholders named after no real kind, because the metamodel declares no kinds
+(K15) and naming one here would be a filled definition. The diagram uses the abstraction and
 generalisation conventions the diagram language already carries and coins nothing (K32); where it and the
 prose disagree, the prose wins.
 
@@ -254,6 +254,17 @@ requirement's origin that `01-requirement-model.md` describes as projected away:
 `Need` is defined, and the invariant that every requirement names its origin is only decidable with this edge
 in view.
 
+**A requirement also names the definition it was produced under.** Beside the refinement edge, and unlike it,
+a requirement carries an edge naming exactly one `RequirementDef` — the definition a need's subject selected,
+whose rules turned the stater's free words into the requirement's bound wording. Exactly one, because the
+kind rides along with the definition (K8): a requirement's kind is read off what that one definition
+specialises (K30), and a requirement produced under two definitions would have two kinds or none. This edge
+is what makes K13's recoverability condition true of what K33 drops. K33 decides that the product
+`Requirement` names neither its definition nor its kind, and that decision is legitimate only
+because the binding is not thereby lost: it is recorded here, in the working model, recoverable rather than
+deleted, exactly as K13 asks of anything the projection drops. The projection drops this edge along with the
+definitions it points at.
+
 **The relation between a need's words and a requirement's wording is a semantic constraint** (K24). The
 metamodel states what the relation is — a requirement's text is the professional restatement of the needs it
 refines — and states what a reviewer must cite when it is found broken: both texts, the need's and the
@@ -275,10 +286,10 @@ with their identity, text and values, the derivation edges between requirements,
 longer in force.
 
 **What it drops** is everything this model adds. Sources and the `answers` edge between them; needs and the
-refinement edge that names them; definitions, their specialisation hierarchy and therefore the kind of any
-requirement (K33); decisions; and findings. A reader of the requirement model alone sees a requirements
-register with traceability between requirements and nothing else, which is exactly what makes that document
-independently adoptable (K19).
+refinement edge that names them; definitions, the edge by which a requirement names the one it was produced
+under, their specialisation hierarchy and therefore the kind of any requirement (K33); decisions; and
+findings. A reader of the requirement model alone sees a requirements register with traceability between
+requirements and nothing else, which is exactly what makes that document independently adoptable (K19).
 
 **What it does not drop, against a first reading.** A requirement no longer in force is carried, not dropped.
 
@@ -354,25 +365,25 @@ distinction, between assumed and derived, for the same reason.
 
 ### Findings
 
-The model above the requirement model is a **model, not a derived view** (K10). A finding links at least two
-elements and must keep its identity between reviews: a recomputed report has no identity across runs, so a
-reviewer opening it twice cannot tell whether the thing in front of them is the thing somebody already
-adjudicated. K11 is what makes this tractable rather than a maintenance burden — no finding can go stale
-unnoticed, because nothing moves beneath it without a source accounting for the move.
+What a review produces over the requirement analysis model is a **model, not a derived view** (K10). A
+finding links at least two elements and must keep its identity between reviews: a recomputed report has no
+identity across readings, so a reviewer opening it twice cannot tell whether the thing in front of them is
+the thing somebody already adjudicated. K11 is what makes this tractable rather than a maintenance burden —
+no finding can go stale unnoticed, because nothing moves beneath it without a source accounting for the move.
 
 Findings come in three kinds, and they do not behave alike.
 
-| Kind | Produced by | Stored? |
+| Kind | How it is decided | Modelled? |
 |---|---|---|
-| A failed check | A script | No — recomputed every run |
-| A question | A script | No — recomputed every run |
-| A review finding | Judgement | Yes, and it alone can carry a state |
+| A failed check | Without judgement | No — recomputed rather than modelled |
+| A question | Without judgement | No — recomputed rather than modelled |
+| A review finding | By judgement | Yes, and it alone can carry a state |
 
 This follows the two-column organisation D50 already uses — what a script decides on one side, what a person
 or an agent decides on the other — which is K24's division seen from the reporting end. The first two kinds
-are decidable without judgement, so storing them buys nothing and risks staleness: a stored failed check can
-outlive the fact that produced it. A review finding cannot be recomputed at all, is lost unless it is stored,
-and is therefore the only one of the three with a state to carry — it is open until it is closed.
+are decidable without judgement, so modelling them buys nothing and risks staleness: a modelled failed check
+can outlive the fact that produced it. A review finding cannot be recomputed at all, is lost unless it is
+modelled, and is therefore the only one of the three with a state to carry — it is open until it is closed.
 
 **Closure is evidence, not a tick.** A review finding is opened by a source and closed by a later source that
 `answers` it, on exactly the terms section 3 sets out for that edge. Nothing marks a finding closed directly;
