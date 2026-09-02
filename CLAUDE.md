@@ -76,7 +76,7 @@ with reasoning, is in the founding document — these are the ones that constrai
 |---|---|
 | `spec/` | The metamodel: concepts, types, edges, states, rules, the binding contract. Normative. Prose and diagrams |
 | `bindings/` | One document per design language, each stating K4's four declarations. The SysML v2 binding lives here (K17) |
-| `docs/` | The founding record sits at the top level here, because it is the repository's constitution rather than one release's paperwork. Per-release design records go in `docs/superpowers/specs/` and their plans in `docs/superpowers/plans/`, matching EventML |
+| `docs/` | The founding record sits at the top level here, because it is the repository's constitution rather than one release's paperwork. [`eventml-decisions.md`](docs/eventml-decisions.md) sits beside it for the same reason — it is a standing reference, not one release's paperwork. Per-release design records go in `docs/superpowers/specs/` and their plans in `docs/superpowers/plans/`, matching EventML |
 
 `spec/` and `bindings/` do not exist yet. **Phase 1 designs the structure of `spec/` before creating it** —
 do not scaffold empty files, and do not copy EventML's eight-file layout without deciding it is right for a
@@ -115,6 +115,12 @@ The EventML repository is available as a reference. Copy from it what applies �
 which parts are kernel and which are not — but **copy nothing that carries notation, vocabulary or filled
 definitions**, which is most of what EventML contains. In particular: `spec/05-concrete-syntax.md` and
 everything under `examples/` are implementation, not metamodel.
+
+**EventML numbers its decisions `D1`–`D55` and keeps no consolidated list of them.**
+[`docs/eventml-decisions.md`](docs/eventml-decisions.md) indexes the ones this repository depends on, says
+where each lives, and marks which are inherited, which are imported because K15 moves their subject here,
+and which one K9 overturns. Cite a `D` number through that index rather than from memory. A `D` number
+always means EventML; a `K` number always means ProjectML.
 
 **EventML is read-only from here.** It is frozen for the duration of phases 1 and 2 (K14), and the changes
 it eventually needs are phases 3 and 4, which are not this project's work. Read it, quote it, cite it — do
