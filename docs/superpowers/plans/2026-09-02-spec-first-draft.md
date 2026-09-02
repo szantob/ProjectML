@@ -55,21 +55,41 @@ the tasks had already run against the text as written:
 the `RequirementDef` it was produced under was never defined, though three documents relied on it. K33's
 published argument fails without it, and it is the last link in the chain the metamodel exists for.
 
-**Four questions the review raised are the repository owner's, and remain open.** They are decisions about
-what the metamodel should contain rather than repairs, and none blocks the next phase from starting:
+**Four questions the review raised went to the repository's owner, and all four are now settled.** The most
+consequential answer reversed a decision this plan had shipped.
 
-1. K26 admits an attribute when a **stated** rule can fail on it. No such rule is stated anywhere in `spec/`
-   for a `RequirementDef` attribute. Either the rules get written, or K26's application is qualified.
-2. `spec/01-requirement-model.md` is claimed independently adoptable but sends its reader to
-   `spec/04-value-states.md` for what a requirement's values carry. Either the value-state model is declared
-   a prerequisite every member carries, or the numbering stops being described as a dependency order.
-3. `spec/05-binding-contract.md` leaves the seam under-specified for phase 2: no cardinality, no stated
-   check over it, nothing saying whether the edge pins a baseline, and nothing on what a satisfying element
-   naming a requirement no longer in force means.
-4. K34 sets aside part of K12, which is locked. The status table calls it "read narrowly rather than
-   contradicted"; the whole-branch reviewer argues it supersedes K12's extent clause while keeping its
-   identity-and-date clause, and that this deserves an explicit instruction to amend rather than a status
-   row.
+**K34 was wrong, and K35 reverses it** (`1f26488`). The projection carries only the requirements in force;
+being no longer in force is a property of the requirement analysis model, not of the product. K34's seam
+argument had conflated the live projection with a baseline: K21 binds a design language to a **named
+baseline**, and a baseline is frozen, so it stays internally consistent forever and no edge into one ever
+dangles. What that argument called *vanishing* is the intended signal — a design rebasing onto a later
+baseline finds the requirement absent, and that absence is what says to rework what was built on it.
+Traceability holds on two legs the owner named: the analysis model always contains everything, retired
+requirements included, and every element the projection carries resolves back to its origin there. That
+second leg is now a stated condition on the projection rather than an assumption.
+
+Three consequences worth keeping. **K12 stands exactly as written** — no narrow reading, no status row, and
+the fourth question dissolved rather than being answered. **The founding record's section 2 changed sides**:
+under K34 it had to be set aside as overridable procedure narrative, and under K35 it simply agrees.
+`spec/01-requirement-model.md` also got smaller, which strengthens the independent adoptability the second
+question was about.
+
+**K36 settles what the two tests are** (`ff137e1`). They are not a conjunction. The seam test governs
+admissibility; the record test measures whether an admitted attribute is load-bearing. The argument is that
+a presence rule is always available — *this attribute is present* fails on an absence without reading
+content — so the record test read as an admissibility gate is either vacuous or turns on which rules
+somebody got round to writing. *When it applies* stays in the core on the seam test alone and does not pass
+the record test, because its absence is deliberately a gap rather than a claim. The rules the record test
+does back are now stated in `spec/02-requirement-analysis-model.md`, and the 2026-09-02 design record
+carries a superseded note where it claimed the two tests agree everywhere (`74ff92a`).
+
+**The value-state model is a prerequisite every member carries**, not a member reached fourth in the
+adoption order — which is what K19 already meant by saying it crosscuts (`ff137e1`).
+
+**The seam's under-specification is recorded as OQ12, not fixed** (`ff137e1`), at the owner's direction: the
+edge's cardinality, the check over it that the binding contract cites by name, and whether the edge pins a
+baseline. It is to be answered by a brainstorm **before** the SysML binding is written rather than during
+it, because that binding is the test of K2 and should not be testing K2 and filling holes at once.
 
 ## Global Constraints
 
