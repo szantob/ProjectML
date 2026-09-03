@@ -13,9 +13,10 @@ own reasoning, in the document it points at.
 
 ProjectML is a metamodel for the chain from what somebody said to the requirements it obliges: the decisions
 taken while assembling that chain, and what is still open at any point along it. It says what a `Source` is,
-what a `Need` anchored into one is, what a `Requirement` drawn from a need is, what a `Decision` resolving a
-question along the way is, what state an incomplete value can be in wherever a value occurs, and what a
-design language attaching underneath all of it must declare in order to do so. It says all of this in prose,
+what a `SourceNeed` anchored into one is, what a `Requirement` drawn from one is, what a `RequirementDecision`
+resolving a `SourceDecision` is, what a `RequirementQuestion` still to be found out is, what state an
+incomplete value can be in wherever a value occurs, and what a design language attaching underneath all of it
+must declare in order to do so. It says all of this in prose,
 in tables, and in diagrams — §6 states what a diagram here is, and is not.
 
 ### What it is not
