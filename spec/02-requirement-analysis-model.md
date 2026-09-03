@@ -553,45 +553,99 @@ has to be reconstructed.
 Together the two conditions are what makes the drop legitimate, and they are why this model, and not the
 product, is where a project is worked.
 
-## 9. `Decision` and findings
+## 11. `RequirementDecision`, `RequirementQuestion`, and findings
 
-### `Decision`
+### `RequirementDecision`
 
-A **decision** is an act: taken by a named party, on a named date, resolving a choice among genuine
-alternatives, and carrying the reasoning that justifies it. The term and its two halves are adopted rather
-than coined — ISO/IEC/IEEE 42010 defines an *Architecture Decision* and the *Architecture Rationale* that
-stands behind it, and this is that pair, held together in one element.
+A `RequirementDecision` is what a decision **does** to the requirement model: what it retires, and — once
+the Project Lifecycle Model states the criterion for each — what it supersedes and what finding it closes
+(K49). It is produced from a `SourceDecision` (§6) by `refine` (K58), on the same terms a `Requirement` is
+produced from a `SourceNeed`.
+
+**A `RequirementDecision` never exists without at least one `SourceDecision` origin.** This is not a
+question and not a failed check in the sense an unrefined `SourceStatement` is one (§4, K45); a
+`RequirementDecision` missing this origin is **not a well-formed element of this model at all**, on the same
+footing as a `Requirement` naming no origin (K9, K61). What represents "a decision the modeller knows must
+be taken, but has not been" is a `RequirementQuestion` in the raised state, defined below — never a bare
+`RequirementDecision`, because `RequirementDecision`'s own definition already presupposes the decision it
+records has happened.
+
+A `RequirementDecision` carries five things beyond its origin, adopted from ISO/IEC/IEEE 42010's
+*Architecture Decision* and the *Architecture Rationale* that stands behind it, held together in one
+element — this pairing, and these five attributes, carry over unchanged from what this model called
+`Decision` before this section's revision.
 
 | Attribute | Carries |
 |---|---|
-| identity | A stable identifier, distinct from every other decision's |
+| identity | A stable identifier, distinct from every other `RequirementDecision`'s |
 | the choice | What was decided, and the genuine alternatives it was chosen among |
 | by | The party that took it |
 | date | When it was taken |
 | rationale | The reasoning that justifies the choice over the alternatives |
 
-The vocabulary of the *by* attribute is open, on exactly the terms section 2 sets out for a source's *kind*
-and *from*: the metamodel names the attribute and leaves the list of parties to an implementation, because any
+The vocabulary of the *by* attribute is open, on exactly the terms §2 sets out for a source's *kind* and
+*from*: the metamodel names the attribute and leaves the list of parties to an implementation, because any
 list fixed here would carry one domain's parties into every project that adopted the metamodel.
 
-**A decision here carries no edge to what it resolves, and that is a deferral, not an oversight.** Section 3
-already relies on a decision to settle a disagreement between two sources — which of two conflicting
-statements prevails — and a decision doing that work points at something: the conflicting values, the sources
-behind them, or the question it closes. None of the five attributes above name it. Under the house rule that
-an unexercised construct waits rather than being defined ahead of the case that would exercise it, leaving the
-edge out may well be right — nothing in this collection today reads such an edge to produce a check or a
-report — but the gap is recorded here as a gap, so that a later reader who needs the edge finds a deliberate
-omission rather than one they have to notice for themselves.
+**`RequirementDecision` carries `retires`: an edge to zero or more `Requirement`s.** List-valued, and may be
+empty, on the same terms `refine` and the derivation edge are elsewhere in this collection (K62). This is the
+edge this model previously lacked entirely — `Decision`, as this document defined it before this revision,
+named nothing it resolved, which is the defect this whole restructuring exists to fix. §10 states how
+`retires` now carries the weight `01-requirement-model.md` §3's *"no longer in force"* property depends on.
 
-**A decision is not an assumed value, and the difference is how each is resolved.** An assumption is a value
-supplied in the absence of information; it may be wrong, and what resolves it is learning — somebody with
-standing to know confirms or corrects it, and the value changes state. A decision is a choice made in the
-presence of alternatives, and it is not wrong in that sense; what resolves it differently is deciding again,
-which under K11 means a new source, and a new decision recorded beside the old one rather than an edit to it.
-Recording a decision as an assumed value loses the alternatives and the rationale, which are the two things a
-later reader needs most; recording an assumption as a decision puts it on a question list where the honest
-answer is to check the reasoning rather than to ask anybody. `04-value-states.md` §3 draws the neighbouring
-distinction, between assumed and derived, for the same reason.
+**`RequirementDecision` carries one of two states, open or closed — but this document does not state what
+closes one.** Working out the criterion depends on the same territory as `supersedes` and what finding a
+`RequirementDecision` closes: none of the three is settled without the Project Lifecycle Model being worked
+out further than it is today (K63). This is an admitted gap, on the same terms `RequirementDef`'s *"when it
+applies"* is one (§7): a slot this document states without a claim about what fills it.
+
+**A `RequirementDecision` is not an assumed value, and the difference is how each is resolved.** An
+assumption is a value supplied in the absence of information; it may be wrong, and what resolves it is
+learning — somebody with standing to know confirms or corrects it, and the value changes state. A
+`RequirementDecision` is a choice made in the presence of alternatives, and it is not wrong in that sense;
+what resolves it differently is deciding again, which under K11 means a new source, and a new
+`RequirementDecision` recorded beside the old one rather than an edit to it. Recording a decision as an
+assumed value loses the alternatives and the rationale, which are the two things a later reader needs most;
+recording an assumption as a decision puts it on a question list where the honest answer is to check the
+reasoning rather than to ask anybody. `04-value-states.md` §3 draws the neighbouring distinction, between
+assumed and derived, for the same reason.
+
+### `RequirementQuestion`
+
+A `RequirementQuestion` is what the modeller must find out (K49) — the model-side record of a gap the
+modeller has identified, before anybody has been asked to close it. It is not itself a `SourceQuestion`: it
+crosses outward, by `poses` (K59), into one once the modeller actually puts the question to somebody.
+
+A `RequirementQuestion` carries one of two states.
+
+| State | Meaning |
+|---|---|
+| raised | Identified; no `SourceQuestion` yet names it |
+| posed | A `poses` edge names an actual `SourceQuestion` — the edge's presence is the transition itself, not
+  a marker recorded beside it |
+
+**What happens after posing — whether and how the question is answered — carries no state here.** That
+discharge is OQ13's own territory, which this document does not attempt to close; `RequirementQuestion`
+gives OQ13 the *opening* half of the interval it asks about, and no more.
+
+**Closing a `RequirementQuestion` needs no dedicated edge to `RequirementDecision`.** The connection is
+already traceable through machinery this document already has: `RequirementQuestion` --poses-->
+`SourceQuestion`, whose source a later source `answers` (§3); if that answering source carries a
+`SourceDecision`, it `refine`s into the `RequirementDecision` that answers the question. Nothing new is
+needed to follow the chain from one to the other (K61).
+
+**Where a `RequirementQuestion` comes from — what triggers the modeller to raise one, beyond an individual
+value's own gap — is not settled by this document.** One case that motivates a class of them: a
+`RequirementDef`'s own *what to ask* (§8) already covers a single missing parameter, but a `Requirement`
+whose kind implies that other kinds of `Requirement` should also exist is a different, broader gap, and how
+that implication is stated is Project Lifecycle Model territory this document does not enter. This is
+recorded as an open question at the end of this document.
+
+This metamodel introduces no `Task`, or any output shaped like one, for a `RequirementQuestion` in the
+raised state. The state itself is already the complete signal: querying for raised `RequirementQuestion`s
+is finding the worklist, on the same terms §11's own findings discussion already reads an unsatisfied
+requirement without a dedicated element for it, and `00-overview.md` §1 excludes task-shaped vocabulary from
+this metamodel by name (K65).
 
 ### Findings
 
@@ -621,12 +675,12 @@ what closes it is a source entering the model, which is K11 holding at the top o
 everywhere else. A finding closed this way carries the material that closed it, so a later reader can read
 what was said rather than only that somebody was satisfied.
 
-**Two rules already exist over needs and requirements, and they are each other's mirror.** Both are failed
-checks; neither is a question.
+**Two rules already exist over `SourceNeed`s and `Requirement`s, and they are each other's mirror.** Both are
+failed checks; neither is a question.
 
-1. **A need that no requirement refines is a failed check, not a question** (K38, D31). A need obliges
-   something (§4, K37), so a need nothing refines is a record in which something obliged is unaccounted for.
-   EventML shipped this as a question rule (D31); K38 overturns that, and
+1. **A `SourceNeed` that no `Requirement` refines is a failed check, not a question** (K38, D31). A
+   `SourceNeed` obliges something (§4, K37), so a `SourceNeed` nothing refines is a record in which something
+   obliged is unaccounted for. EventML shipped this as a question rule (D31); K38 overturns that, and
    [`docs/eventml-decisions.md`](../docs/eventml-decisions.md) records the overturn.
 2. **A requirement carrying no origin edge at all — neither refinement nor derivation — is a failed check, not
    a question** (K9, D32). The invariant behind it is that every requirement names its origin (D49), and a
@@ -634,24 +688,25 @@ checks; neither is a question.
    (D46); K9 overturns that, and [`docs/eventml-decisions.md`](../docs/eventml-decisions.md) records the
    overturn and the consequence that goes with it.
 
-The two are one break in the chain, read from opposite ends: a need with no requirement beneath it, and a
-requirement with nothing above it. They were treated asymmetrically — one a question, one a failed check —
-and nothing about either justified the difference.
+The two are one break in the chain, read from opposite ends: a `SourceNeed` with no `Requirement` beneath it,
+and a requirement with nothing above it. They were treated asymmetrically — one a question, one a failed
+check — and nothing about either justified the difference.
 
-**A need that no requirement refines has exactly two honest resolutions.** Write the requirement the need
-obliges, or delete the need, because extracting it was a mistake. There is no third, and in particular there is no record that the
-need was examined and deliberately produced nothing: a passage obliging nothing is not a need (§4, K37), so
-the state of affairs such a record would attest to does not arise.
+**A `SourceNeed` that no `Requirement` refines has exactly two honest resolutions.** Write the requirement
+the `SourceNeed` obliges, or delete the `SourceNeed`, because extracting it was a mistake. There is no third,
+and in particular there is no record that the `SourceNeed` was examined and deliberately produced nothing: a
+passage obliging nothing is not a `SourceNeed` (§4, K37), so the state of affairs such a record would attest
+to does not arise.
 
-**Deleting a need loses nothing of record, which is why deletion is safe here and forbidden one element
-over** (K39). A source is material of record — quoted whole, never decomposed, never edited (§2, D45, D25) —
-and a need is a pointer into a passage of it. Delete the pointer and the passage remains, unchanged, in the
-source, available to be pointed at again by whoever extracts better. A requirement is not like that. It is
-this model's own construct, with no other home, so deleting one destroys the only record of it and silences
-the check that fired on it, which is what K5 exists to prevent (§8). The asymmetry between K5 and this is
-not an inconsistency; it is the difference between a construct and a pointer into material held elsewhere.
-Nor is a deletion here retirement, and nor does it give a need a state: what is removed is a wrong pointer
-(§4, K6).
+**Deleting a `SourceNeed` loses nothing of record, which is why deletion is safe here and forbidden one
+element over** (K39). A source is material of record — quoted whole, never decomposed, never edited (§2,
+D45, D25) — and a `SourceNeed` is a pointer into a passage of it. Delete the pointer and the passage remains,
+unchanged, in the source, available to be pointed at again by whoever extracts better. A requirement is not
+like that. It is this model's own construct, with no other home, so deleting one destroys the only record of
+it and silences the check that fired on it, which is what K5 exists to prevent (§8). The asymmetry between K5
+and this is not an inconsistency; it is the difference between a construct and a pointer into material held
+elsewhere. Nor is a deletion here retirement, and nor does it give a `SourceNeed` a state: what is removed is
+a wrong pointer (§4, K6).
 
 **The criterion that decides between the two resolutions is whether a declared definition covers the
 statement** (K38). A requirement is produced under a `RequirementDef`, and it names the definition it was
@@ -667,8 +722,9 @@ failure to find a definition is itself the signal that the extraction was wrong 
 be worked around. The rule is unsilenceable at both resolutions: the first needs a definition it cannot
 invent, and the second removes a pointer while leaving the source it pointed into intact and inspectable.
 
-**What is genuinely open in such a case is not whether the need is a need, but what follows from it.** That
-is a **dilemma**, and it needs no new element, because it already has a home. It is a review finding — the
+**What is genuinely open in such a case is not whether the `SourceNeed` is a `SourceNeed`, but what follows
+from it.** That is a **dilemma**, and it needs no new element, because it already has a home. It is a review
+finding — the
 one of the three kinds above decided by judgement, and the only one carrying a state. It is opened by a
 source and closed by a later source that `answers` it, on the terms this section has already set out, and
 its answer therefore arrives as a source like every other change (K11). The requirement that finally issues
@@ -680,16 +736,17 @@ against the edge rather than along it.
 
 **This rule checks the extraction from the only side a model can check it, and that is why it belongs with
 extraction rather than only with refinement.** What it catches is over-extraction: something was extracted
-that obliges nothing, and a passage obliging nothing is not a need (§4, K37). That is not a complaint that
-the refinement step was lazy; it is the record saying the boundary was drawn in the wrong place at
-extraction, which is why one of its two resolutions is to delete the need.
+that obliges nothing, and a passage obliging nothing is not a `SourceNeed` (§4, K37). That is not a complaint
+that the refinement step was lazy; it is the record saying the boundary was drawn in the wrong place at
+extraction, which is why one of its two resolutions is to delete the `SourceNeed`.
 
 **The other direction is not the model's to check, and this document does not claim it is.** Whether
-everything a source obliged was extracted at all, and whether each need says what the passage behind it said,
-are judgements over material the model does not hold and content it does not read. They belong to the
-modeller, and self-review or cross-review after the modelling is done is what finds them — `00-overview.md`
-§5 states that boundary in full (K40). The metamodel therefore defines no report over which passages of a
-source no need cites, and no metric of extraction built on one, and none is to be added: a source's
+everything a source obliged was extracted at all, and whether each `SourceNeed` says what the passage behind
+it said, are judgements over material the model does not hold and content it does not read. They belong to
+the modeller, and self-review or cross-review after the modelling is done is what finds them —
+`00-overview.md` §5 states that boundary in full (K40). The metamodel therefore defines no report over which
+passages of a source no `SourceNeed` cites, and no metric of extraction built on one, and none is to be
+added: a source's
 information density varies too much for any denominator to mean anything, and K10's own criterion finds
 nothing to model, because a missed extraction is fixed by the same act that notices it (K41).
 
