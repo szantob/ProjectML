@@ -750,7 +750,7 @@ added: a source's
 information density varies too much for any denominator to mean anything, and K10's own criterion finds
 nothing to model, because a missed extraction is fixed by the same act that notices it (K41).
 
-## 10. The syntactic constraints of this model
+## 12. The syntactic constraints of this model
 
 K24 divides constraints over the collection in two: a syntactic constraint refers only to elements the
 metamodel defines and is decidable without judgement, where a semantic one judges content and is a matter for
@@ -770,12 +770,25 @@ test (§6) means by *without reading its content*.
   (§3, D38).
 - One `answers` edge names exactly one earlier source; a source may carry any number of them (§3, D29).
 
-**Over `Need`.**
+**Over `SourceElement`, and every specialisation of it.**
 
-- A need's identity is unique among every need in the model (§4).
-- A need anchors into exactly one passage of exactly one source. A need with no anchor is a failed check and
-  not a question: there is nothing in it to ask a stakeholder about and nothing for a reviewer to weigh, only
-  an omission to fix (§4, D34, D26).
+- A `SourceElement`'s identity is unique among every `SourceElement` in the model (§4).
+- A `SourceElement` anchors into exactly one passage of exactly one source. One with no anchor is a failed
+  check and not a question: there is nothing in it to ask a stakeholder about and nothing for a reviewer to
+  weigh, only an omission to fix (§4, D34, D26).
+- A `SourceElement` carries no attribute beyond identity, anchor, and being material of record. A candidate
+  attribute reading the content of the passage fails this constraint regardless of which specialisation
+  proposes it (§4, K57).
+
+**Over `SourceStatement`, `SourceNeed`, and `SourceDecision`.**
+
+- A `SourceStatement` that produces no counterpart on the model's own side — no `Requirement` for a
+  `SourceNeed`, no `RequirementDecision` for a `SourceDecision` — is a failed check, not a question (§4, §5,
+  §6, K38, K45).
+
+**`SourceQuestion` and `poses` carry no constraint beyond what `SourceElement` already states above.** This
+is deliberate, not an omission: an unanswered `SourceQuestion` is the normal case, so no failed-check rule is
+stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 
 **Over `RequirementDef`.**
 
@@ -783,7 +796,7 @@ test (§6) means by *without reading its content*.
 - No element is a `RequirementDef` and nothing more: every definition in a model is an instance of some
   specialisation of it (§5, §7, K30).
 - A definition states the template its requirements' wording is produced from (§5). A definition without one
-  produces nothing, and the derivation §8 describes cannot be run against it.
+  produces nothing, and the derivation §10 describes cannot be run against it.
 - Every parameter a definition declares names the value domain it draws from. Which domains exist is an
   implementation's business; that a parameter names one is not (§5, `04-value-states.md` §5).
 - Every parameter a definition declares carries its own ask. A parameter with no ask is a failed check on the
@@ -799,36 +812,47 @@ test (§6) means by *without reading its content*.
 
 **Over the derivation, and over being no longer in force.**
 
-- A requirement in this model names exactly one `RequirementDef`: never none, and never two (§8, K8).
+- A requirement in this model names exactly one `RequirementDef`: never none, and never two (§10, K8).
 - A requirement in this model carries exactly one of "in force" or "no longer in force" at any time — never
-  both, and never neither (§8).
-- A need that no requirement refines is a failed check (§9, K38, D31).
-- A requirement carrying no origin edge at all — neither refinement nor derivation — is a failed check (§9,
+  both, and never neither (§10).
+- A `RequirementDecision`'s `retires` edge names only `Requirement`s that were in force at the moment the
+  `RequirementDecision` was produced. `retires` may be empty (§10, §11, K62).
+- A `SourceNeed` that no `Requirement` refines is a failed check (§11, K38, D31).
+- A requirement carrying no origin edge at all — neither refinement nor derivation — is a failed check (§11,
   K9, D49, D32). This constraint and the one above it are the same break read from opposite ends, which is
   why they are stated together.
 
-**Over `Decision`.**
+**Over `RequirementDecision`.**
 
-- A decision's identity is unique among every decision in the model (§9).
-- A decision names the party that took it, the date it was taken, the choice, the alternatives the choice was
-  made among, and the rationale. Absence of any of the five is a failed check on the decision. Whether the
-  alternatives recorded were genuine ones is a judgement and therefore a semantic matter under K24, outside
-  this check.
+- A `RequirementDecision`'s identity is unique among every `RequirementDecision` in the model (§11).
+- **A `RequirementDecision` names at least one `SourceDecision` it was produced from. A `RequirementDecision`
+  with no such origin is not a well-formed element of this model — this is stronger than a failed check, on
+  the same terms K9's rule over `Requirement`'s origin already is (§11, K9, K61).**
+- A `RequirementDecision` names the party that took it, the date it was taken, the choice, the alternatives
+  the choice was made among, and the rationale. Absence of any of the five is a failed check on the
+  `RequirementDecision`. Whether the alternatives recorded were genuine ones is a judgement and therefore a
+  semantic matter under K24, outside this check.
+
+**Over `RequirementQuestion`.**
+
+- A `RequirementQuestion`'s identity is unique among every `RequirementQuestion` in the model (§11).
+- A `RequirementQuestion` carries exactly one of "raised" or "posed" at any time. A `RequirementQuestion` in
+  the posed state names, by its `poses` edge, exactly the `SourceQuestion` that made it so (§11, K60).
 
 **Over findings.**
 
-- A review finding names at least two elements (§9, K10).
+- A review finding names at least two elements (§11, K10).
 - A review finding recorded as closed names the later source that closed it, and that source `answers` the
-  source the finding was opened by. Nothing marks a finding closed directly (§9, K11).
+  source the finding was opened by. Nothing marks a finding closed directly (§11, K11).
 
-**One rule over these elements reports rather than fails.** §9's table separates a failed check from a
+**One rule over these elements reports rather than fails.** §11's table separates a failed check from a
 question: both are decided without judgement and neither is modelled, but a failed check says the record is
 wrong where a question says something was left open and somebody has to look at it. **A definition that does
 not say when it applies is reported as a question.** It is not a failed check, and making it one would
 contradict the row of §5 that defines the attribute: an unwritten applicability is a gap, not a claim that
 the definition applies unconditionally, and the honest report is that nobody has written it down rather than
 that the record is defective. It is the only rule in this document that reports rather than fails. The two
-origin rules §9 states were once read this way and are not: in each of those the record is wrong rather than
+origin rules §11 states were once read this way and are not: in each of those the record is wrong rather than
 merely incomplete, which is what makes both of them failed checks (K9, K38). This is also why *when it
 applies* does not pass the record test, which §6 settles.
 
