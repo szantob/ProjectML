@@ -3,10 +3,11 @@
 **An open modelling language for turning what stakeholders actually said into a traceable requirement
 baseline.**
 
-> **Status: a complete draft, not a release.** `spec/` now carries the metamodel — an overview
+> **Status: a complete draft, not a release.** `spec/` carries the metamodel — an overview
 > ([`spec/00-overview.md`](spec/00-overview.md)), the collection of models, a binding contract and a decision
-> record. Under [`CLAUDE.md`](CLAUDE.md) §6, it cannot reach 1.0 until an implementation has been built on it
-> and has carried a project end to end, and until the SysML v2 binding exists. The decisions this repository
+> record — and [`bindings/sysml-v2.md`](bindings/sysml-v2.md) carries the SysML v2 binding phase 2 exists to
+> write. Under [`CLAUDE.md`](CLAUDE.md) §6, it cannot reach 1.0 until an implementation has also been built
+> on the metamodel and has carried a project end to end. The decisions this repository
 > is built on are in
 > [`docs/2026-08-26-kernel-brainstorm.md`](docs/2026-08-26-kernel-brainstorm.md), which is the founding
 > record rather than a specification.
@@ -31,9 +32,9 @@ traceability holding them together.
 
 It also does not describe designs. What satisfies a requirement is the business of a **design language**
 attached beneath it: SysML v2, UML, [EventML](https://github.com/szantob/EventML), or one not yet written.
-Each attaches on the same terms, through a binding that declares how its elements meet a requirement.
-ProjectML is not a competitor to those languages — it is the front end they decline to have, and it ends
-exactly where they begin.
+Each attaches on the same terms, through a binding that declares how its elements meet a requirement —
+[`bindings/sysml-v2.md`](bindings/sysml-v2.md) is the first one written. ProjectML is not a competitor to
+those languages — it is the front end they decline to have, and it ends exactly where they begin.
 
 ## What ships
 
