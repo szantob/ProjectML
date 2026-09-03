@@ -36,7 +36,7 @@ ProjectML metamodels a collection of connected models, not a single model (K19).
 | Member | Covers | Stands alone? |
 |---|---|---|
 | The requirement model | The product: a requirement, the edge by which one requirement is derived from another, and the baseline that names a dated cut of the requirements in force | Yes — a reader who wants a requirements register with traceability between requirements, and nothing else, reads it and stops |
-| The requirement analysis model | The working model: where a requirement is actually built and justified, from a stated source, through a need and the definition chosen for it, to the decisions and findings that stand behind it | No — it projects to the requirement model (K20), and is read for what produced the product, not instead of it |
+| The requirement analysis model | The working model: where a requirement is actually built and justified, from a stated source, through a `SourceNeed` and the definition chosen for it, to the decisions and findings that stand behind it | No — it projects to the requirement model (K20), and is read for what produced the product, not instead of it |
 | The Project Lifecycle Model | What a rule-set — an organisation's own way of resolving a gap, ending a wait, or settling a conflict — may state about the requirement analysis model's own elements, and what it may not | No — a rule-set written under it states rules over elements the requirement analysis model already defines in full |
 | The value-state model | What is known about a value, wherever a value occurs in any of the other three: stated, derived, assumed, unknown, or conflicting | No, by nature — it crosscuts the other three rather than standing beside them, and it is not a step in the adoption order below: every member carries it |
 
@@ -182,8 +182,8 @@ to guarantee something it cannot.
 > process.**
 
 That is the whole of the guarantee, and it is not a modest one. Everything that entered — a source quoted
-whole and never edited, a need anchored into a passage of it, the definition a requirement was produced
-under, the decision that settled a choice and the reasoning behind it — stays in the model, stays reachable
+whole and never edited, a `SourceNeed` anchored into a passage of it, the definition a requirement was
+produced under, the decision that settled a choice and the reasoning behind it — stays in the model, stays reachable
 from whatever it produced, and stays recoverable after the projection has dropped it (K5, K11, K13). Nothing
 taken up on the way to a baseline goes missing between one end of the chain and the other. The corollary is
 the half a reader is likelier to assume than to read:
@@ -192,8 +192,8 @@ the half a reader is likelier to assume than to read:
 > model's responsibility but the modeller's.** It can only be found by self-review or cross-review after the
 > modelling is done.
 
-Nothing in this collection reads the words nobody extracted. Nothing in it judges whether a need says what
-the passage it anchors into said, or whether a requirement says what the need it refines obliged. Those are
+Nothing in this collection reads the words nobody extracted. Nothing in it judges whether a `SourceNeed` says
+what the passage it anchors into said, or whether a requirement says what the `SourceNeed` it refines obliged. Those are
 judgements over content, made by whoever knows the material, and a review is the only instrument that finds
 them. What follows for a reader is one sentence, and it is the one to carry away:
 
@@ -209,7 +209,7 @@ cite while declining to detect one. This section draws it once more, over the me
 the three are one posture held at three scales.
 
 Two decisions record it. K40 states the boundary. K41 refuses the instrument somebody will otherwise propose
-for closing it — a coverage report over which passages of a source no need cites, and any metric of
+for closing it — a coverage report over which passages of a source no `SourceNeed` cites, and any metric of
 extraction built on one — and `02-requirement-analysis-model.md` §11 carries that refusal beside the rule
 that checks extraction from the side a model can check.
 

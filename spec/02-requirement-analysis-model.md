@@ -24,7 +24,7 @@ what it keeps, what it drops, and on what condition it may drop anything — is 
 document, once everything the projection draws from has been introduced.
 
 One rule governs everything that follows, and it is stated here because every section after this one assumes
-it: **the requirement model changes only through sources** (K11). A review does not update a need, a
+it: **the requirement model changes only through sources** (K11). A review does not update a `SourceNeed`, a
 definition, or a requirement directly; whatever a review decided — in a meeting, on a call, or by the team's
 own judgement, with no other party involved — is itself entered as a source first, and the change follows
 from it. This is what keeps the chain total rather than merely well-intentioned: there is no path from
@@ -45,7 +45,7 @@ A source carries five things.
 Three rules govern a source, and each rests on a decision already taken.
 
 1. **A source is material of record.** It is quoted whole and never edited (D45). Everything anchored to a
-   source — a need's passage, a citation in a review — points at words that stay exactly as given; if the
+   source — a `SourceNeed`'s passage, a citation in a review — points at words that stay exactly as given; if the
    source could change after the fact, an anchor into it would drift from what was actually said, and a
    later reader could no longer tell whether a quotation still means what it meant when it was captured.
 2. **A source is never decomposed.** The raw material stays raw rather than being broken into parts and
@@ -147,8 +147,7 @@ unfulfilled the way an unrefined statement can. It opens something instead, and 
 `answers` edge (§3): a later source `answers` the source the question's passage sits in.
 
 **How `SourceQuestion` subdivides, and whether it names the party expected to answer it, is not settled
-here.** Nothing today reads such a subdivision. This is recorded as an open question at the end of this
-document.
+here.** Nothing today reads such a subdivision. This is recorded as OQ16 in `06-decisions.md`.
 
 ### `SourceStatement`
 
@@ -443,14 +442,14 @@ modeller's to classify.
 The edge that records the derivation is the **refinement** edge. It sits on the requirement and names the
 `SourceNeed`s the requirement was assembled from, by their identifiers (D28). It is list-valued rather than
 singular, because a requirement is routinely assembled from more than one statement, and an edge that could
-name only a single need would force an arbitrary choice among equally contributing ones (D48). This is the
+name only a single `SourceNeed` would force an arbitrary choice among equally contributing ones (D48). This is the
 half of a requirement's origin that `01-requirement-model.md` describes as projected away: it is defined
 here, where `SourceNeed` is defined, and the invariant that every requirement names its origin is only
 decidable with this edge in view.
 
 **A requirement also names the definition it was produced under.** Beside the refinement edge, and unlike it,
-a requirement carries an edge naming exactly one `RequirementDef` — the definition a need's subject selected,
-whose rules turned the stater's free words into the requirement's bound wording. Exactly one, because the
+a requirement carries an edge naming exactly one `RequirementDef` — the definition a `SourceNeed`'s passage
+selected, whose rules turned the stater's free words into the requirement's bound wording. Exactly one, because the
 kind rides along with the definition (K8): a requirement's kind is read off what that one definition
 specialises (K30), and a requirement produced under two definitions would have two kinds or none. This edge
 is what makes K13's recoverability condition true of what K33 drops. K33 decides that the product
@@ -505,9 +504,11 @@ which does have identity (K21).
 requirements in force, with their identity, text and values, and the derivation edges between them.
 
 **What it drops** is everything this model adds, and every requirement no longer in force. Sources and the
-`answers` edge between them; needs and the refinement edge that names them; definitions, the edge by which a
-requirement names the one it was produced under, their specialisation hierarchy and therefore the kind of any
-requirement (K33); decisions; and findings. A requirement no longer in force is dropped with them, and so is
+`answers` edge between them; `SourceNeed`s, `SourceDecision`s and the `refine` edge that names them;
+`SourceQuestion`s and `RequirementQuestion`s — new elements of this model, and no more able to cross into the
+product than anything else this list names; definitions, the edge by which a requirement names the one it was
+produced under, their specialisation hierarchy and therefore the kind of any requirement (K33);
+`RequirementDecision`s; and findings. A requirement no longer in force is dropped with them, and so is
 the property that says it is: being no longer in force is a property of this model, not of the product (K35).
 A reader of the requirement model alone sees a register of what is in force, with traceability between its
 requirements and nothing else, which is exactly what makes that document independently adoptable (K19).
@@ -639,13 +640,13 @@ value's own gap — is not settled by this document.** One case that motivates a
 `RequirementDef`'s own *what to ask* (§7) already covers a single missing parameter, but a `Requirement`
 whose kind implies that other kinds of `Requirement` should also exist is a different, broader gap, and how
 that implication is stated is Project Lifecycle Model territory this document does not enter. This is
-recorded as an open question at the end of this document.
+recorded as OQ17 in `06-decisions.md`.
 
 This metamodel introduces no `Task`, or any output shaped like one, for a `RequirementQuestion` in the
 raised state. The state itself is already the complete signal: querying for raised `RequirementQuestion`s
-is finding the worklist, on the same terms §11's own findings discussion already reads an unsatisfied
-requirement without a dedicated element for it, and `00-overview.md` §1 excludes task-shaped vocabulary from
-this metamodel by name (K65).
+is finding the worklist, on the same terms K53 already reads an unsatisfied requirement without a dedicated
+element for it (see `05-binding-contract.md` §2), and `00-overview.md` §1 excludes task-shaped vocabulary
+from this metamodel by name (K65).
 
 ### Findings
 
@@ -679,7 +680,7 @@ what was said rather than only that somebody was satisfied.
 failed checks; neither is a question.
 
 1. **A `SourceNeed` that no `Requirement` refines is a failed check, not a question** (K38, D31). A
-   `SourceNeed` obliges something (§4, K37), so a `SourceNeed` nothing refines is a record in which something
+   `SourceNeed` obliges something (§5, K37), so a `SourceNeed` nothing refines is a record in which something
    obliged is unaccounted for. EventML shipped this as a question rule (D31); K38 overturns that, and
    [`docs/eventml-decisions.md`](../docs/eventml-decisions.md) records the overturn.
 2. **A requirement carrying no origin edge at all — neither refinement nor derivation — is a failed check, not
@@ -695,7 +696,7 @@ check — and nothing about either justified the difference.
 **A `SourceNeed` that no `Requirement` refines has exactly two honest resolutions.** Write the requirement
 the `SourceNeed` obliges, or delete the `SourceNeed`, because extracting it was a mistake. There is no third,
 and in particular there is no record that the `SourceNeed` was examined and deliberately produced nothing: a
-passage obliging nothing is not a `SourceNeed` (§4, K37), so the state of affairs such a record would attest
+passage obliging nothing is not a `SourceNeed` (§5, K37), so the state of affairs such a record would attest
 to does not arise.
 
 **Deleting a `SourceNeed` loses nothing of record, which is why deletion is safe here and forbidden one
@@ -736,7 +737,7 @@ against the edge rather than along it.
 
 **This rule checks the extraction from the only side a model can check it, and that is why it belongs with
 extraction rather than only with refinement.** What it catches is over-extraction: something was extracted
-that obliges nothing, and a passage obliging nothing is not a `SourceNeed` (§4, K37). That is not a complaint
+that obliges nothing, and a passage obliging nothing is not a `SourceNeed` (§5, K37). That is not a complaint
 that the refinement step was lazy; it is the record saying the boundary was drawn in the wrong place at
 extraction, which is why one of its two resolutions is to delete the `SourceNeed`.
 

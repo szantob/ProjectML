@@ -44,9 +44,9 @@ predecessor would force an arbitrary choice among equally contributing ones.
 **Every requirement names its origin.** This is the invariant K9 rests on: a requirement's origin is its
 refinement, its derivation, or both, and a requirement carrying neither is an incomplete record rather than
 a root (D49). In this model, only the derivation half of that origin is directly visible — the edge just
-described, between one requirement and another. The refinement half, which names the needs a requirement was
-assembled from, has been projected away; it lives in `02-requirement-analysis-model.md`, where `SourceNeed`
-is defined. A requirement with no derivation edge here is therefore not yet known to be a root: it may still
+described, between one requirement and another. The refinement half, which names the `SourceNeed`s a
+requirement was assembled from, has been projected away; it lives in `02-requirement-analysis-model.md`,
+where `SourceNeed` is defined. A requirement with no derivation edge here is therefore not yet known to be a root: it may still
 name its origin through refinement, recorded one document over.
 
 ### K33 — does a requirement name the definition it came from, and its kind?
@@ -112,10 +112,10 @@ A baseline's condition is losslessness and recoverability: everything in force a
 present in it, nothing in force is dropped, and anything dropped stays in the working model rather than
 being lost (K13).
 
-A baseline is not, itself, a model that must pass the requirement analysis model's checks. It has no need
-layer — needs, and the rules written over them, belong to the requirement analysis model, not to this one —
-so running a rule over needs against a baseline is not a check that fails; it is a check that
-does not apply, asked of a model that carries nothing for it to inspect (K13).
+A baseline is not, itself, a model that must pass the requirement analysis model's checks. It has no
+`SourceNeed` layer — `SourceNeed`s, and the rules written over them, belong to the requirement analysis
+model, not to this one — so running a rule over `SourceNeed`s against a baseline is not a check that fails;
+it is a check that does not apply, asked of a model that carries nothing for it to inspect (K13).
 
 One further thing a baseline names, beyond a date and an identifier: the implementation package and the
 version of it the baseline was cut under. An implementation carries a rule-set a project may vary as it
