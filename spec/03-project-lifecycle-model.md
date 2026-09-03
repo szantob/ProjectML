@@ -32,9 +32,21 @@ how a gap is resolved without either of them having climbed down a level the oth
 
 ## 2. What a rule-set may state
 
-A rule-set states three kinds of thing, and no more than three have been found. Each closes a gap
-`02-requirement-analysis-model.md` leaves open on purpose, because closing it there would fix an
-organisation's way of working into the metamodel itself.
+A rule-set states three kinds of thing. That count is what the evidence found so far supports, not a
+ceiling the metamodel places on it: the list is not closed, and an implementation needing to state a fourth
+kind of thing is evidence the metamodel must then account for, not a violation of it.
+
+**The same argument applies here as one level over.** A requirement kind is deliberately not fixed by the
+metamodel, and the reason is structural rather than a courtesy: a fixed taxonomy would fix a single
+classification axis, and would make the metamodel unattachable to a design language that classifies on
+another axis (K30). A closed list of statement kinds a rule-set may make would fix the same mistake one level
+up — it would bake one way of thinking about how a rule-set governs behaviour into the metamodel itself,
+which is exactly what K22 and K23 exist to refuse: a rule-set is a model of its own, built with its own
+metamodel, precisely so that an adopting organisation's way of working is not fixed into this one.
+
+Each of the three found so far closes a gap `02-requirement-analysis-model.md` leaves open on purpose,
+because closing it there would fix an organisation's way of working into the metamodel itself. Recorded as
+K42 in [`06-decisions.md`](06-decisions.md).
 
 | A rule-set states | The gap it fills |
 |---|---|

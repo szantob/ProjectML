@@ -122,6 +122,15 @@ the modeller must do — and K41 refuses the one instrument that would blur it.
 | K40 | **This metamodel's job is that no extracted information or decision is lost during the project-management process.** Whether every piece of information has been extracted, and whether every mapping is accurate, is not the model's responsibility but the modeller's: it can only be found by self-review or cross-review after the modelling is done. It follows that a model on which no check fails is not thereby a correct model — it is a model with no *detectable* error | A metamodel that claimed to guarantee completeness would be claiming what it cannot deliver. Completeness of extraction is measured against material the model does not hold — everything a source says that nobody took up — so the claim could never be tested, and a guarantee that cannot be tested devalues the ones that can. The line is the one K24 already draws between a syntactic constraint the metamodel decides and a semantic one it leaves to review, and the one K7 draws for contradiction, applied once more to the metamodel's own promise |
 | K41 | The metamodel defines **no source-coverage report** — no report over which passages of a source no need cites — and **no metric over the completeness of extraction**. None is to be added. What it states over extraction is the one rule that runs the other way: a need that no requirement refines is a failed check (K38) | Two reasons, and each carries the decision on its own. **First, a source is free-form and its information density varies.** A salutation can be a twentieth of the text and none of the information, while a single clause buried in a paragraph can carry the only real constraint; a figure that puts those on one denominator says nothing, and a list of everything uncited is mostly noise by construction, because every source permanently contains uncited text (§4, D33). **Second, K10's own criterion says there is nothing to model.** K10 makes a finding a modelled element when it must keep its identity between reviews. A contradiction must: it cannot simply be fixed, it needs adjudication, and the next review has to see that somebody already found it. A missed extraction does not — the moment it is noticed it is extracted, so the finding and the fix are the same act, and nothing persists for a record to hold. That asymmetry is principled rather than convenient, which is why this sits beside K7 without contradicting it. The refusal is recorded rather than left as an absence because the prior art carries such a report (D33), and a later reader meeting it will otherwise propose adding one |
 
+## Decision K42
+
+Taken in [`03-project-lifecycle-model.md`](03-project-lifecycle-model.md), §2, which carries the full
+argument.
+
+| # | Decision | Reason |
+|---|---|---|
+| K42 | The list of what a rule-set may state is not closed at three. Three are what the evidence found so far supports; an implementation needing to state a fourth kind of thing is evidence the metamodel must then account for, not a violation of it | The same structural argument K30 makes for a requirement kind's taxonomy applies one level over: a closed list here would fix one way of thinking about a process into the metamodel, which is exactly what K22 and K23 exist to refuse |
+
 ## Open questions, OQ9–OQ11
 
 Raised in [the design record of 2026-09-02](../docs/superpowers/specs/2026-09-02-spec-structure-and-oq2-design.md),
@@ -142,6 +151,24 @@ rather than answered there.
 |---|---|---|
 | OQ12 | Is the seam edge under-specified, and in what three respects? Its **cardinality** is fixed nowhere: whether one element may satisfy several requirements, and whether several elements may satisfy one. Every other edge in the collection fixes this and `satisfies` does not. The **check over the seam** that [`05-binding-contract.md`](05-binding-contract.md) §4.1 cites by name — whether every requirement in a baseline is satisfied by something — is stated in no document of the collection, and a declaration exists there to make a check computable that has never been written down. And whether the edge **pins a baseline** is undecided: a requirement's identity persists across baselines, so the edge as specified cannot distinguish satisfying a requirement as of one baseline from satisfying it as of another | Before the SysML v2 binding is written, not during it. That binding is phase 2's test of K2, and a phase filling holes in the seam while testing it cannot tell a false claim of symmetry from a gap it has just closed by hand. The question is a brainstorm's to answer rather than this collection's to settle in passing |
 
+## Open question OQ13
+
+Raised here, over a gap the founding record's own OQ6 already named and left unaddressed. OQ6 lists five
+pieces of project-management work as this metamodel's material, on the ground that "not one of those five is
+AV-specific." Four have since landed: an implementation declares its requirement kinds (K30); project-
+management logic, in the Project Lifecycle Model (K22, K23); what produces a decision, partly — the Project
+Lifecycle Model says when a gap becomes one; and how the model survives change (K5, K35). **The fifth, the
+question lifecycle, is nowhere: `spec/` does not mention it.**
+
+This is not a theoretical gap. The reasoning that dissolved OQ3 (K37–K39) identified the question lifecycle
+as exactly what would hold the interval between somebody being asked and somebody answering — a real stretch
+of project time during which a check goes on failing and nothing in the model records that the failure is
+being waited on rather than ignored.
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ13 | Nothing in the metamodel records that a question has been put and that an answer is outstanding. A review finding's *closure* is already modelled — it is opened by a source and closed by a later source that `answers` it (K10, K11; `02-requirement-analysis-model.md` §9) — and a failed check or a question is itself recomputed rather than modelled (same section). What is missing is the *opening* of that interval and the interval itself: nothing distinguishes "this failure is being worked" from "this failure is being ignored," for as long as it stands unanswered | Nothing forces an answer before an implementation runs the loop and actually lives through that interval, so realistically phase 4. It is the last of OQ6's five pieces of work and, as of this decision record, the only one still unrecorded |
+
 ## Status of the founding record's open questions
 
 | # | Status |
@@ -150,7 +177,7 @@ rather than answered there.
 | OQ2 | **Answered** — K27, K28, K29, K30 |
 | OQ3 | **Dissolved** — K37, K38, K39. Its premise did not hold: it assumed a need might oblige nothing, and a passage obliging nothing is not a need, so there is no disposition left to record |
 | OQ4 | **Answered** — K22, K23 |
-| OQ5 | Unchanged |
-| OQ6 | Unchanged |
-| OQ7 | Unchanged |
-| OQ8 | Unchanged |
+| OQ5 | **Deliberately deferred, in the founding record itself** — its own §7 says the name "waits for the rest on purpose"; not open by accident |
+| OQ6 | **Settled enough to act on, in the founding record itself** — its own §7 says what remains of it "is settled enough by K15 and K16 to act on: the slot is metamodel, the list is implementation" |
+| OQ7 | **Answered, in the founding record itself** — its own §4 names the winning option (one implementation, plus the SysML binding on paper) and the decision that settled its placement (K17) |
+| OQ8 | **Answered, in the founding record itself** — its own §4 says the circularity is resolved by the four phases in §7, which order the work rather than qualify the freeze |
