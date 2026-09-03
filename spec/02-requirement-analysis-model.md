@@ -545,10 +545,11 @@ recoverable. Nothing the projection drops is deleted by dropping it.
 
 The second is stated here because the argument above rests on it: **every element the projection carries
 resolves back to its origin in this model.** A requirement in the product is the same requirement here, under
-the same identity, and everything this model holds about it — its source, its need, its definition, the
-decisions and the findings around it — is reachable from that identity. This is the leg that lets a baseline
-carry only what is in force without losing anything: the product is a narrower view of this model, never a
-separate register that could drift from it, so no element of the product is a dead end and nothing about one
+the same identity, and everything this model holds about it — its source, its `SourceNeed`, its definition,
+the `RequirementDecision`s and the findings around it — is reachable from that identity. This is the leg
+that lets a baseline carry only what is in force without losing anything: the product is a narrower view of
+this model, never a separate register that could drift from it, so no element of the product is a dead end
+and nothing about one
 has to be reconstructed.
 
 Together the two conditions are what makes the drop legitimate, and they are why this model, and not the
