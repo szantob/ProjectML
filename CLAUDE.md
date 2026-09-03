@@ -93,6 +93,11 @@ metamodel that carries no notation and no library.
   or header key carries it. A metamodel that talks about files has quietly become an implementation.
 - **"Attribute", not "field."**
 - Where a diagram and the prose beside it disagree, the prose wins.
+- **Ask what every event derives from.** Whenever the metamodel says something happens — a requirement goes
+  out of force, a need is discharged, a finding closes — ask what produced it, and check that the model
+  records the answer rather than merely guaranteeing one exists. This repository's whole subject is
+  provenance, so a construct whose own cause is untraceable is a defect however sensible it reads. The
+  question has already found holes that reviewing for consistency did not.
 - Commit after every task. Never push.
 
 ## 6. How verification works
