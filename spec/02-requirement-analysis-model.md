@@ -420,29 +420,33 @@ and what if anything it may override is not defined here. That is OQ9, and it wa
 it — realistically the first implementation that declares kinds. K30 chooses the mechanism; it does not define
 its semantics.
 
-## 8. The derivation, retirement, and the projection
+## 10. The derivation, retirement, and the projection
 
 ### The derivation
 
-A requirement is not written; it is **derived**. The founding record's procedure states the step: a need's
-subject selects the definition, and the rules on that definition turn the stater's free words into the
-requirement's bound professional wording. The parameters the definition declares are filled from the need and
-from whatever else the model already holds, and each filled value carries a value state on the same terms as
-any other value in the collection.
+A requirement is not written; it is **derived**. The founding record's procedure states the step: a
+`SourceNeed`'s passage selects the definition, and the rules on that definition turn the stater's free words
+into the requirement's bound professional wording. The parameters the definition declares are filled from the
+`SourceNeed`'s passage and from whatever else the model already holds, and each filled value carries a value
+state on the same terms as any other value in the collection. The same crossing — a passage anchored on the
+source side, restated on the model's own, under a definition's rules — is `refine`, and it is not particular
+to `SourceNeed`: a `SourceDecision` crosses the same way, into a `RequirementDecision`, on the terms K58
+states and this document's §11 uses (K43, K58).
 
-**The kind rides along with the definition, and needs are not classified** (K8). This is what keeps the two
-axes from colliding: a need is selected against by its subject, and the classification of the requirement that
-results is fixed by which definition produced it — by what that definition specialises — so it arrives with
-the definition rather than being decided separately. A need carries no kind for the same reason it carries no
-lifecycle state — it belongs to its source, and nothing about a quotation is the modeller's to classify.
+**The kind rides along with the definition, and `SourceNeed`s are not classified** (K8). This is what keeps
+the two axes from colliding: a `SourceNeed` is selected against by its passage, and the classification of the
+requirement that results is fixed by which definition produced it — by what that definition specialises — so
+it arrives with the definition rather than being decided separately. A `SourceNeed` carries no kind for the
+same reason it carries no lifecycle state — it belongs to its source, and nothing about a quotation is the
+modeller's to classify.
 
 The edge that records the derivation is the **refinement** edge. It sits on the requirement and names the
-needs the requirement was assembled from, by their identifiers (D28). It is list-valued rather than singular,
-because a requirement is routinely assembled from more than one statement, and an edge that could name only a
-single need would force an arbitrary choice among equally contributing ones (D48). This is the half of a
-requirement's origin that `01-requirement-model.md` describes as projected away: it is defined here, where
-`Need` is defined, and the invariant that every requirement names its origin is only decidable with this edge
-in view.
+`SourceNeed`s the requirement was assembled from, by their identifiers (D28). It is list-valued rather than
+singular, because a requirement is routinely assembled from more than one statement, and an edge that could
+name only a single need would force an arbitrary choice among equally contributing ones (D48). This is the
+half of a requirement's origin that `01-requirement-model.md` describes as projected away: it is defined
+here, where `SourceNeed` is defined, and the invariant that every requirement names its origin is only
+decidable with this edge in view.
 
 **A requirement also names the definition it was produced under.** Beside the refinement edge, and unlike it,
 a requirement carries an edge naming exactly one `RequirementDef` — the definition a need's subject selected,
@@ -455,14 +459,15 @@ because the binding is not thereby lost: it is recorded here, in the working mod
 deleted, exactly as K13 asks of anything the projection drops. The projection drops this edge along with the
 definitions it points at.
 
-**The relation between a need's words and a requirement's wording is a semantic constraint** (K24). The
-metamodel states what the relation is — a requirement's text is the professional restatement of the needs it
-refines — and states what a reviewer must cite when it is found broken: both texts, the need's and the
-requirement's. It does not evaluate the relation. This is K7's posture applied to a second subject: the
-metamodel defines what the finding is, what must be cited and how it is recorded, and leaves the judgement to
-a human or an AI review, because a rule-based test would catch only the restatements somebody anticipated by
-writing a rule, which is the case that least needs catching. The wording rules that produce a restatement for
-a given kind belong to an implementation, and who reviews it and when belongs to a rule-set.
+**The relation between a `SourceNeed`'s words and a requirement's wording is a semantic constraint** (K24).
+The metamodel states what the relation is — a requirement's text is the professional restatement of the
+`SourceNeed`s it refines — and states what a reviewer must cite when it is found broken: both texts, the
+`SourceNeed`'s and the requirement's. It does not evaluate the relation. This is K7's posture applied to a
+second subject: the metamodel defines what the finding is, what must be cited and how it is recorded, and
+leaves the judgement to a human or an AI review, because a rule-based test would catch only the restatements
+somebody anticipated by writing a rule, which is the case that least needs catching. The wording rules that
+produce a restatement for a given kind belong to an implementation, and who reviews it and when belongs to a
+rule-set.
 
 ### No longer in force
 
@@ -480,8 +485,10 @@ the requirement was a considered choice rather than an oversight. Marking a requ
 keeps the requirement, the finding, and the fact that somebody acted on it all present at once, so a later
 reader can tell "this was resolved" apart from "this was made to disappear."
 
-Retirement arrives the way everything else here arrives: through a source (K11). Nothing marks a requirement
-no longer in force directly. A source enters the model saying so, and the change follows from it.
+Retirement arrives the way everything else here arrives: through a source (K11), and now with a traceable
+element behind it rather than a bare phrase. A `RequirementDecision` carries `retires`, an edge to zero or
+more `Requirement`s (K62), and a `Requirement`'s becoming no longer in force is that edge taking effect: a
+`RequirementDecision`, which never exists without a `SourceDecision` origin (K61), names it.
 
 **One syntactic constraint follows** (K24), and it is argued here, beside the property it refers to: a
 requirement in this model carries exactly one of "in force" or "no longer in force" at any time — never
