@@ -162,22 +162,24 @@ obliges an outcome on the model's own side — so one that never crosses over is
 asserted went unaccounted for. §11 states this rule for `SourceNeed` in full, on terms `SourceDecision`
 inherits without needing its own restatement of the same rule, because both are `SourceStatement`s.
 
-## 4. `Need`
+## 5. `SourceNeed`
 
-A need is a passage of a source that **obliges something**. That narrowing is the whole of it, and what
-follows in this section and in section 9 follows from it: a passage of a source that obliges nothing is not
-a need which happened to produce nothing, it is not a need at all, and extracting it was a mistake (K37).
+A `SourceNeed` is a `SourceStatement` (§4) whose passage **obliges something**. That narrowing is the whole
+of it, and what follows in this section and in §11 follows from it: a passage of a source that obliges
+nothing is not a `SourceNeed` which happened to produce nothing, it is not a `SourceNeed` at all, and
+anchoring it as one was a mistake (K37).
 
-**Extraction is already selective, and always was.** Nobody takes a greeting or a signature into a need, and
-nothing in this model ever asked anybody to. A source permanently contains text no need cites, and that text
-is not a defect in the model. The prior art reached the same conclusion from the other end and declined to
-make uncited text a rule, on the ground that a condition which never clears is not a question (D33); this
-metamodel goes one step further and states nothing over uncited text at all, for reasons §9 gives and K41
-records. *Not need-bearing* is therefore an existing and ordinary category, and it needs no record of its
-own. A passage nobody extracted leaves no element behind for a record to sit on.
+**Extraction is already selective, and always was.** Nobody anchors a greeting or a signature as a
+`SourceNeed`, and nothing in this model ever asked anybody to. A source permanently contains text no
+`SourceNeed` cites, and that text is not a defect in the model. The prior art reached the same conclusion
+from the other end and declined to make uncited text a rule, on the ground that a condition which never
+clears is not a question (D33); this metamodel goes one step further and states nothing over uncited text at
+all, for reasons §12 gives and K41 records. *Not need-bearing* is therefore an existing and ordinary
+category, and it needs no record of its own. A passage nobody anchored leaves no element behind for a record
+to sit on.
 
-**A passage of a source is either a need or it is uncited. There is no third home, and none is to be
-invented.** This model defines no context element — no element for a statement worth keeping that obliges
+**A passage of a source is either a `SourceNeed`, another `SourceStatement`, a `SourceQuestion`, or it is
+uncited.** This model defines no context element — no element for a statement worth keeping that obliges
 nothing — and it is not to acquire one, because the case that would motivate one does not survive
 examination. A statement about the environment the work happens in, about where it happens or when a place
 is available, is a constraint on the environment the system must work within, and a constraint on the
@@ -190,32 +192,35 @@ comparison with SysML v2 finds SysML's nearest category a poor fit on the same g
 the *system's* physical properties where this class describes the *environment* constraining the system.
 Both readings treat such a passage as bearing a requirement. Neither treats it as inert.
 
-A need carries three things.
+A `SourceNeed` carries nothing beyond `SourceElement`'s three shared attributes — identity, its anchor, and
+being material of record (§4, K57). It does not carry a value: what a `SourceNeed`'s passage expresses,
+once interpreted, is a reading of the passage rather than a fact about it, and a reading belongs on the
+model's own side, in the `values` a `Requirement` carries once `refine` (§10) has run
+(`01-requirement-model.md` §2, K57). This revises how D27 was previously read as applying directly to this
+element: the value-state model still governs every value wherever one occurs (`04-value-states.md` §4), but
+a `SourceNeed` is not a place a value occurs, because nothing on the source side is a value at all.
 
-| Attribute | Carries |
-|---|---|
-| identity | A stable identifier, distinct from every other need's |
-| passage | The passage of the source the need anchors into |
-| value | An optional value, carrying a value state on the same terms as any other value in the collection (see `04-value-states.md`) |
+The name is adopted rather than coined: *stakeholder need* is ISO/IEC/IEEE 29148's term (D23), carried by
+`SourceNeed` on the same terms K47 states for every prefixed element — the prefix marks which side of the
+model the element is on, exchanging one qualifier (*stakeholder*) for another that also disambiguates it
+from `RequirementDef`'s and `01-requirement-model.md`'s independent use of *statement*-adjacent language.
 
-The name is adopted rather than coined: *stakeholder need* is ISO/IEC/IEEE 29148's term (D23).
+Two rules govern a `SourceNeed`, beyond what `SourceElement` already governs for every `SourceElement`.
 
-Three rules govern a need.
+1. **A `SourceNeed` anchors into exactly one passage of exactly one source.** A `SourceNeed` with no anchor
+   fails a syntactic check: there is nothing in it to ask a stakeholder about, and nothing for a reviewer to
+   weigh — only an omission to fix (D34, D26). This is `SourceElement`'s own anchor requirement, restated
+   here because it is the constraint a `SourceNeed`'s own syntactic-constraints entry (§12) cites.
+2. **A `SourceNeed` that produces no `Requirement` is a failed check, not a question** (K38, D31, and §4's
+   general statement of this rule for every `SourceStatement`). A `SourceNeed` obliges something by
+   definition, so one nothing refines is a record in which something obliged is unaccounted for. EventML
+   shipped this as a question rule (D31); K38 overturns that, and
+   [`docs/eventml-decisions.md`](../docs/eventml-decisions.md) records the overturn.
 
-1. **A need anchors into exactly one passage of exactly one source.** A need with no anchor fails a
-   syntactic check: there is nothing in it to ask a stakeholder about, and nothing for a reviewer to weigh —
-   only an omission to fix (D34, D26).
-2. **A need carries no lifecycle state.** It belongs to its source, a source is material of record, and a
-   quotation cannot cease to be true — there is no state for a need to hold that would ever change while the
-   source behind it stays what it was (K6). The narrowing above does not touch this. A need extracted in
-   error is deleted rather than marked as anything (§9, K39), and deletion is not a state a need carries;
-   what is removed is a wrong pointer, not a quotation that stopped being true.
-3. **A need's value is optional**, and where present it carries a value state like any other value in the
-   collection: stated, derived, assumed, unknown, or conflicting (D27).
-
-Passage anchoring adopts the W3C Web Annotation Data Model (D26). No requirements standard was adopted for
-it instead, because none serves here: a need anchors into a source before any requirement exists, at a stage
-SysML v2 places outside itself and has nothing to say about.
+Passage anchoring adopts the W3C Web Annotation Data Model (D26), stated once for every `SourceElement` in
+§4 rather than repeated per specialisation. No requirements standard was adopted for it instead, because
+none serves here: a `SourceNeed` anchors into a source before any requirement exists, at a stage SysML v2
+places outside itself and has nothing to say about.
 
 ## 5. `RequirementDef`
 
