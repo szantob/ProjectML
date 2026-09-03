@@ -35,3 +35,14 @@ work, not releases.
 - The binding contract's seam clarified: a binding may give the requirement a native element of its own, or
   a bare reference, and both are symmetric under K2 — the identifier map is what does the work of getting a
   requirement into a design language's own model, not `satisfy`. OQ10's premise is corrected accordingly.
+- The requirement analysis model's source side rebuilt around a `SourceElement` family — abstract, carrying
+  identity, an anchor, and being material of record — specialised into `SourceQuestion` and, itself
+  specialised, `SourceStatement`, with `SourceNeed` (`Need`, renamed, its `value` attribute dropped per K57)
+  and `SourceDecision` beneath it. `refine` now covers both `SourceNeed`→`Requirement` and
+  `SourceDecision`→`RequirementDecision`; a newly coined edge, `poses`, covers the reverse direction,
+  `RequirementQuestion`→`SourceQuestion`. `Decision` is replaced by `RequirementDecision` — carrying a
+  mandatory origin, a `retires` edge to the requirements it makes no longer in force, and an open/closed
+  state whose closure criterion is left to the Project Lifecycle Model — and by `RequirementQuestion`,
+  carrying raised/posed states. K43–K50 and K57–K65 record the decisions; OQ15 is closed, OQ17 is opened.
+  Findings from the two design-record passes and the integration itself are in
+  [`docs/superpowers/specs/2026-09-03-source-element-hierarchy-design.md`](docs/superpowers/specs/2026-09-03-source-element-hierarchy-design.md).
