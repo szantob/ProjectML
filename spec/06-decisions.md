@@ -145,7 +145,7 @@ by reasoning from first principles, which is what house rule 10 asks for where a
 | K53 | **One check runs over the seam — which requirements in a baseline no satisfying element names — and it is a question rather than a failure.** It is stated in the binding contract | A requirement nothing satisfies is the normal state of one captured but not yet designed for: a check whose failing state is the ordinary condition of ongoing work is a question, not a failure. It sits in the binding contract because it reads the seam, and because K19 requires the requirement model to stay adoptable by a reader who has attached nothing |
 | K54 | **The metamodel describes the far side of the seam and does not name it**, in prose and in any diagram | K3 says the metamodel does not define what lies below the seam, and a class in a diagram half-defines what it draws. SysML does not name that side either. Naming it would also make K4's first declaration partly redundant |
 
-## Open questions, OQ9–OQ11
+## Open questions, OQ9–OQ10
 
 Raised in [the design record of 2026-09-02](../docs/superpowers/specs/2026-09-02-spec-structure-and-oq2-design.md),
 which carries the full argument for each.
@@ -154,7 +154,30 @@ which carries the full argument for each.
 |---|---|---|
 | OQ9 | What does specialisation mean? What a subtype of `RequirementDef` may add, narrow or override. K30 chooses the mechanism and does not define its semantics | When something exercises it — realistically phase 4, when the first kinds are declared |
 | OQ10 | Does `verifies` become a second edge kind on the one seam? SysML puts verification as an edge from a verification element to a requirement, in the same direction and shape as `satisfies`. K4's first declaration would widen by one word to carry it. Nothing exercises it: no verification elements exist anywhere yet | Phase 2, where the SysML binding meets it, or later |
-| OQ11 | Does the metamodel need a subject? SysML requires every requirement to have one. The metamodel does not have one, and the `satisfies` edge appears to determine it, since SysML's own `satisfy` binds the subject to the enclosing element. If that is not enough, a binding must synthesise one, which is the shape a false K2 would take | Phase 2 — this is the binding's job to settle |
+
+## Decision K56
+
+Taken in [the design record of 2026-09-03 on phase 2](../docs/superpowers/specs/2026-09-03-sysml-binding-approach-design.md)
+§3, which carries the full argument. K56 closes OQ11.
+
+| # | Decision | Reason |
+|---|---|---|
+| K56 | **The metamodel does not need a subject.** Where a design language carries the concept of a requirement's subject, it is entirely that design language's own internal affair, covered by K4's second declaration; where a design language carries no such concept, nothing depending on the kernel notices the absence. The seam edge neither supplies a subject nor needs to | Checked against two design languages rather than reasoned about in the abstract, which is what phase 2 exists to do. SysML v2 carries the concept deeply — a `SubjectMembership` declared on the requirement itself, independent of `satisfy`, and narrowed per requirement kind by its own standard library (`FunctionalRequirementCheck`, `PhysicalRequirementCheck`, and others) through the same specialisation mechanism K30 already chose for this metamodel. EventML, frozen prior art, carries none: its `Requirement` has no subject-shaped attribute, and `Part.satisfies` is an untyped list of identifiers. Both attach to the one-field seam on the same terms. A subject synthesised by the seam itself, richly for the first and out of nothing for the second, is exactly the shape a false K2 would take (OQ11, as raised); refusing to synthesise one at all is the reading that stays symmetric across both |
+
+## Open question OQ11 — answered
+
+**Answered by K56, and no longer open.** SysML v2 turned out to answer half the question on its own terms —
+its `satisfy` is defined in terms of a subject the requirement already carries, not one the seam invents —
+and EventML answered the other half by carrying no subject concept at all, with nothing breaking as a
+result. Neither needed the kernel to supply, carry or synthesise anything for `satisfies` to work, which is
+what K56 records.
+
+Raised in [`05-binding-contract.md`](05-binding-contract.md) §5, and recorded here rather than answered
+there.
+
+| # | Question, as asked | When answerable |
+|---|---|---|
+| OQ11 | Does the metamodel need a subject? A design language may require every requirement to name the element it is a requirement of, and the seam edge, by naming both a satisfying element and the requirement it satisfies, may already supply that on its own. Whether it does, or whether a binding must synthesise a subject where the seam does not supply one, is not decided here. Getting this wrong is the shape a false K2 would take — a subject synthesised one way for one design language and another way for another would quietly reopen the privileged path K2 rules out — which is exactly why it is left to the phase built to test K2, rather than guessed at here | Phase 2 — this is the binding's job to settle |
 
 ## Open question OQ12 — answered
 

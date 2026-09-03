@@ -169,23 +169,21 @@ information a future resolution of OQ1 would need to work from.
 
 ## 5. What is open
 
-Three questions bear directly on this seam, and this document answers none of them. All three are recorded
-as open, in `spec/06-decisions.md`, and all three are phase 2's to settle — a binding is where each first
-has to be answered concretely, which is why phase 2 comes early rather than after the metamodel is otherwise
-finished. The third, OQ12, is different in kind from the other two: it names what this document leaves
-under-specified about the seam itself — the edge's cardinality, the check over it that section 4 cites by
-name, and whether the edge pins a baseline. It is to be answered **before** a binding is written rather than
-during it, because a binding is the test of K2 and should not be testing K2 and filling holes at once.
+One question bears directly on this seam and remains open here.
 
 - **OQ10 — does a second edge kind join the seam, for verification?** A requirement's origin is one thing an
   element outside the kernel can name; whether the requirement was shown to hold is another. SysML v2 already
   has an edge for it, from a verification element to a requirement, in the same direction and shape as
   satisfies. Widening the first declaration by one word would carry it, but nothing exercises the question
-  today, and this document does not answer it.
-- **OQ11 — does the metamodel need a subject?** A design language may require every requirement to name the
-  element it is a requirement of, and the seam edge, by naming both a satisfying element and the requirement
-  it satisfies, may already supply that on its own. Whether it does, or whether a binding must synthesise a
-  subject where the seam does not supply one, is not decided here. Getting this wrong is the shape a false K2
-  would take — a subject synthesised one way for one design language and another way for another would
-  quietly reopen the privileged path K2 rules out — which is exactly why it is left to the phase built to
-  test K2, rather than guessed at here.
+  today, and this document does not answer it. It is recorded, in `spec/06-decisions.md`, as phase 2's to
+  settle — a binding is where it first has to be answered concretely, if it is answered at all.
+
+Two further questions were raised alongside OQ10 and are both closed. **OQ11** asked whether the metamodel
+needs a subject of its own, since a design language may require every requirement to name the element it is
+a requirement of. K56 answers no: where a design language carries the concept, as SysML v2 does, richly and
+independently of `satisfy`, it is that language's own affair, covered by §4.2 above; where
+a design language carries no such concept, as EventML's requirement model does not, nothing depending on the
+kernel notices the absence. **OQ12** named what this document itself left under-specified about the seam
+above — the edge's cardinality, the check over it that section 4 cites by name, and whether the edge pins a
+baseline — and was answered before this document reached its current form, by K51–K54, which section 2
+already carries.

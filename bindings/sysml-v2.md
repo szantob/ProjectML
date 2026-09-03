@@ -16,9 +16,19 @@ Language (KerML) v1.0, which SysML v2 is built on and which several terms cited 
 among several: `checkSatisfyRequirementUsageBindingConnector` requires a `SatisfyRequirementUsage` to hold
 "a `BindingConnector` between its `subjectParameter` and some `Feature` other than the `subjectParameter`"
 (§8.3.21.10), and every usage SysML defines — a part usage, an action usage, an item usage, and every other
-kind — is a `Feature`. Nothing about the requirement side narrows this further: a requirement's subject
-parameter is declared with the most general type, `Anything` (§8.4.17.2), and is narrowed only by whatever a
-particular requirement definition chooses to specialize it to.
+kind — is a `Feature`. Nothing about the requirement side narrows this further at the base case: the subject
+of `Requirements::RequirementCheck`, the most general requirement definition, is typed `Anything`
+(§8.4.17.2), the most general type there is.
+
+**That base case is the floor, not the whole answer.** SysML v2's own Systems Model Library ships several
+requirement kinds that already narrow it: `FunctionalRequirementCheck` redefines the subject to `Action`,
+`InterfaceRequirementCheck` to `BinaryInterface`, `PerformanceRequirementCheck` to `AttributeValue`, and
+`PhysicalRequirementCheck` and `DesignConstraintCheck` to `Part` (§9.2.14.2.3–9.2.14.2.7). A requirement kind
+is a specialization of `RequirementCheck` on the same terms as any other, so a model built on one of these —
+or on a further specialization of one — inherits the narrower subject, and whatever satisfies that
+requirement must be typed to conform to it. What this declaration can promise across every SysML model
+without exception is *any `Feature`*; what a given requirement actually accepts is fixed by which kind it
+specializes from, and can be narrower than that.
 
 The relationship is written in either of two shapes, and both are open to whichever element carries it.
 Standalone, naming both ends:
