@@ -20,7 +20,7 @@ family — then the model side: `RequirementDef`, the derivation it governs, `Re
 
 This model **projects** to the requirement model: the product model defined in `01-requirement-model.md`,
 which a reader can adopt on its own, without ever having read this document (K20). The projection itself —
-what it keeps, what it drops, and on what condition it may drop anything — is defined in section 8 of this
+what it keeps, what it drops, and on what condition it may drop anything — is defined in section 10 of this
 document, once everything the projection draws from has been introduced.
 
 One rule governs everything that follows, and it is stated here because every section after this one assumes
@@ -74,7 +74,7 @@ properties hold of it, each already settled:
 The founding record's section 5 makes a further finding about this edge worth carrying forward here: `answers`
 is the natural closing edge for a review finding. A finding is opened by a source and closed by a later one
 that answers it, so closing a finding is not a tick somebody applies to a record — it is itself evidence,
-carrying the same source that closes it as everything else in this model does. Section 9 uses the edge on
+carrying the same source that closes it as everything else in this model does. Section 11 uses the edge on
 exactly these terms.
 
 ## 4. `SourceElement`, `SourceQuestion`, and `SourceStatement`
@@ -250,11 +250,11 @@ K64, and §11 states the rule in full where `RequirementDecision` is defined). W
 modeller knows must be taken, but has not been" is a `RequirementQuestion` in the raised state (§11), never a
 bare `RequirementDecision`.
 
-## 5. `RequirementDef`
+## 7. `RequirementDef`
 
 `RequirementDef` is **abstract**. No element in a model is a `RequirementDef` and nothing more: a definition
 exists only as a specialisation of it, and which specialisations exist is declared by an implementation
-rather than here (K30). Section 7 gives the reasoning and says what the specialisation relation carries;
+rather than here (K30). Section 9 gives the reasoning and says what the specialisation relation carries;
 this section says what every definition carries, whatever it specialises.
 
 The name is adopted rather than coined. SysML v2 splits an element into a definition and a usage of it, and
@@ -293,9 +293,9 @@ carrying the same seven things are the same definition to this metamodel however
 out. Beyond the core, a definition holds whatever an implementation's own notation and rule-set need: the
 core is a floor the metamodel can reason over, not a ceiling (K27).
 
-## 6. What is not on a `RequirementDef`, and the two tests
+## 8. What is not on a `RequirementDef`, and the two tests
 
-The list in section 5 needs a criterion that outlives it, because the next attribute somebody proposes will
+The list in section 7 needs a criterion that outlives it, because the next attribute somebody proposes will
 not be one of the seven. Two tests decide the question, and they are stated here in full, because they are
 the part of this section a later reader actually reuses.
 
@@ -313,7 +313,7 @@ be resolved into elements the metamodel does not define is a second seam whateve
 in the direction K3 forbids. The record test is K7's posture made into a criterion, and its load-bearing word
 is *stated* — a rule that might one day be written does not qualify, or everything qualifies. Note what the
 record test does not require: it is satisfied by a rule that fails on an attribute's **absence**, which is
-how *how it would be verified* passes without anything ever reading its prose. Section 10 states the rule
+how *how it would be verified* passes without anything ever reading its prose. Section 12 states the rule
 that does it.
 
 The two tests are independent of each other. How they relate, and what that relation costs one of the seven,
@@ -341,7 +341,7 @@ settling it is the binding's job.
 **They are not a conjunction, and on the core they do not agree everywhere.** An earlier reading of this
 section said they did. It had one candidate to reason from, and that candidate fails both tests on a single
 structural fact, so it could not have separated them however they related. Applied to the seven, they
-separate. Section 10 states the syntactic constraints this model genuinely carries, and no rule among them
+separate. Section 12 states the syntactic constraints this model genuinely carries, and no rule among them
 fails on *when it applies*: its absence is deliberately a gap rather than a claim, so the rule that is
 available over it reports rather than fails, and the record test's word is *fail*. Nor does any of them fail
 on *name*, which the metamodel reads for no purpose of its own.
@@ -358,7 +358,7 @@ it. The seam test has no such weakness. Whether an attribute can be interpreted 
 to an element the metamodel does not define is a fact about the attribute, unchanged by which rules happen to
 exist over it.
 
-Section 5's own definition of the core already reads this way, in one word: the core is what the metamodel
+Section 7's own definition of the core already reads this way, in one word: the core is what the metamodel
 **can interpret, or can fail on**, without reading anything an implementation supplies. The two clauses are
 the two tests, and the connective between them is *or*. An attribute the metamodel can carry without opening
 a second seam is in the core; an attribute a stated rule can fail on is in the core and is checkable as well.
@@ -372,7 +372,7 @@ actually there is a question for whoever knows. Admitting this costs nothing the
 test's verdict on an attribute is a report on how much work that attribute does, not a verdict on whether it
 belongs. Recorded as K36 in `spec/06-decisions.md`.
 
-## 7. Requirement kinds are specialisations
+## 9. Requirement kinds are specialisations
 
 A requirement kind is a **specialisation of `RequirementDef`**, never an attribute on it (K30). Three reasons
 carry this, and they are independent of each other.
@@ -415,7 +415,7 @@ prose disagree, the prose wins.
 **What an implementation must do:** declare its kinds, as subtypes of `RequirementDef`. **What the metamodel
 does not do:** name any of them, say how many there are, or say on what axis they divide.
 
-**What specialisation means is open.** What a subtype may add to the core of section 5, what it may narrow,
+**What specialisation means is open.** What a subtype may add to the core of section 7, what it may narrow,
 and what if anything it may override is not defined here. That is OQ9, and it waits for something to exercise
 it — realistically the first implementation that declares kinds. K30 chooses the mechanism; it does not define
 its semantics.
@@ -492,7 +492,7 @@ more `Requirement`s (K62), and a `Requirement`'s becoming no longer in force is 
 
 **One syntactic constraint follows** (K24), and it is argued here, beside the property it refers to: a
 requirement in this model carries exactly one of "in force" or "no longer in force" at any time — never
-both, and never neither. Section 10 gathers it with the rest of this model's syntactic constraints.
+both, and never neither. Section 12 gathers it with the rest of this model's syntactic constraints.
 
 ### The projection
 
@@ -636,7 +636,7 @@ needed to follow the chain from one to the other (K61).
 
 **Where a `RequirementQuestion` comes from — what triggers the modeller to raise one, beyond an individual
 value's own gap — is not settled by this document.** One case that motivates a class of them: a
-`RequirementDef`'s own *what to ask* (§8) already covers a single missing parameter, but a `Requirement`
+`RequirementDef`'s own *what to ask* (§7) already covers a single missing parameter, but a `Requirement`
 whose kind implies that other kinds of `Requirement` should also exist is a different, broader gap, and how
 that implication is stated is Project Lifecycle Model territory this document does not enter. This is
 recorded as an open question at the end of this document.
@@ -703,14 +703,14 @@ element over** (K39). A source is material of record — quoted whole, never dec
 D45, D25) — and a `SourceNeed` is a pointer into a passage of it. Delete the pointer and the passage remains,
 unchanged, in the source, available to be pointed at again by whoever extracts better. A requirement is not
 like that. It is this model's own construct, with no other home, so deleting one destroys the only record of
-it and silences the check that fired on it, which is what K5 exists to prevent (§8). The asymmetry between K5
+it and silences the check that fired on it, which is what K5 exists to prevent (§10). The asymmetry between K5
 and this is not an inconsistency; it is the difference between a construct and a pointer into material held
 elsewhere. Nor is a deletion here retirement, and nor does it give a `SourceNeed` a state: what is removed is
 a wrong pointer (§4, K6).
 
 **The criterion that decides between the two resolutions is whether a declared definition covers the
 statement** (K38). A requirement is produced under a `RequirementDef`, and it names the definition it was
-produced under (§8); definitions exist only for the kinds an implementation has declared (§7, K30). Where
+produced under (§10); definitions exist only for the kinds an implementation has declared (§9, K30). Where
 some declared definition covers the statement, the resolution is to write the requirement under it. Where
 none does, there was nothing for a requirement to be produced from, and the extraction was wrong.
 
@@ -758,10 +758,10 @@ review. This section states the syntactic constraints over the elements this doc
 `01-requirement-model.md` §5 uses for the product model's own.
 
 Several of them were argued above, beside the element they refer to, and are given here in one line so that
-the set is visible at once rather than assembled by a reader out of six sections; where that is so, the
+the set is visible at once rather than assembled by a reader out of ten sections; where that is so, the
 section carrying the argument is named. None of them reads the content of anything: every one is decidable
 from what is present and what is absent, which is what K24 means by *without judgement* and what the record
-test (§6) means by *without reading its content*.
+test (§8) means by *without reading its content*.
 
 **Over `Source`, and the edge between sources.**
 
@@ -792,21 +792,21 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 
 **Over `RequirementDef`.**
 
-- A definition's identity is unique among every definition in the model (§5).
+- A definition's identity is unique among every definition in the model (§7).
 - No element is a `RequirementDef` and nothing more: every definition in a model is an instance of some
-  specialisation of it (§5, §7, K30).
-- A definition states the template its requirements' wording is produced from (§5). A definition without one
+  specialisation of it (§7, §9, K30).
+- A definition states the template its requirements' wording is produced from (§7). A definition without one
   produces nothing, and the derivation §10 describes cannot be run against it.
 - Every parameter a definition declares names the value domain it draws from. Which domains exist is an
-  implementation's business; that a parameter names one is not (§5, `04-value-states.md` §5).
+  implementation's business; that a parameter names one is not (§7, `04-value-states.md` §5).
 - Every parameter a definition declares carries its own ask. A parameter with no ask is a failed check on the
   definition: *what to ask* exists so that a value in the unknown state has a stated route out of it, and a
-  parameter missing its ask is exactly the case where that route is absent (§5).
+  parameter missing its ask is exactly the case where that route is absent (§7).
 - **Every definition states how a requirement produced under it would be verified.** Absence of the statement
   is a failed check on the definition itself, independent of anything any requirement produced under it says.
   A definition whose requirements cannot be verified independently meets this constraint by saying so, in
   that same attribute: the check reads whether the statement is there, never which of the two things it says.
-  This is ISO/IEC/IEEE 29148's verifiability characteristic held one level up, where §5 places the method —
+  This is ISO/IEC/IEEE 29148's verifiability characteristic held one level up, where §7 places the method —
   29148 requires verifiability of a requirement, and a requirement inherits its definition's method — and it
   is the stated rule K29 rests on.
 
@@ -849,16 +849,16 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 question: both are decided without judgement and neither is modelled, but a failed check says the record is
 wrong where a question says something was left open and somebody has to look at it. **A definition that does
 not say when it applies is reported as a question.** It is not a failed check, and making it one would
-contradict the row of §5 that defines the attribute: an unwritten applicability is a gap, not a claim that
+contradict the row of §7 that defines the attribute: an unwritten applicability is a gap, not a claim that
 the definition applies unconditionally, and the honest report is that nobody has written it down rather than
 that the record is defective. It is the only rule in this document that reports rather than fails. The two
 origin rules §11 states were once read this way and are not: in each of those the record is wrong rather than
 merely incomplete, which is what makes both of them failed checks (K9, K38). This is also why *when it
-applies* does not pass the record test, which §6 settles.
+applies* does not pass the record test, which §8 settles.
 
 **What is not stated here, and why the omission is deliberate.** No rule requires a definition to carry a
 *name*. One could be written in a line, and it would fail on an absence without reading any content — which
-is exactly §6's point about what a presence rule proves. The metamodel reads a name for no purpose of its
+is exactly §8's point about what a presence rule proves. The metamodel reads a name for no purpose of its
 own, so requiring one is record hygiene an implementation is better placed to state over its own definitions,
 the core being a floor rather than a ceiling (K27). Nothing here is stated in order to make an attribute pass
 a test: a rule nothing would ever fire on is worse than an admitted gap.
