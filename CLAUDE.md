@@ -98,6 +98,11 @@ metamodel that carries no notation and no library.
   records the answer rather than merely guaranteeing one exists. This repository's whole subject is
   provenance, so a construct whose own cause is untraceable is a defect however sensible it reads. The
   question has already found holes that reviewing for consistency did not.
+- **Ask which actor an act belongs to.** The project manager and the modeller are different actors, even
+  when one person wears both hats. The modeller administers: they extract, restate, and raise gaps and
+  questions. **They take no decision about the project**, so anything in the model that commits the project
+  came from the project manager, and under K11 it reached the model as a source. When a construct lets the
+  modeller commit something, that is a defect. This is why K11 holds rather than merely being good practice.
 - Commit after every task. Never push.
 
 ## 6. How verification works
