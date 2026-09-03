@@ -4,14 +4,19 @@
 
 This is the requirement analysis model, one member of the collection ProjectML metamodels (K19). It is the
 **working model**: the model in which a requirement system is actually built, rather than the model handed
-to somebody who was not in the room while it was assembled. Six things make it up, and naming all six here
-lets a reader see the shape before meeting the parts: `Source`, the material a project starts from; `Need`,
-a passage of a source that obliges something, anchored so it can be worked with; `RequirementDef`, the
-definition a requirement is produced under; `Requirement`, the bound statement that definition yields;
-`Decision`, the record of why one outcome was chosen over another; and the findings a review produces over
-all of it. This document defines the first three — `Source`, the edge between sources, and `Need` — in the
-sections that follow.
-`RequirementDef`, the derivation it governs, `Decision` and the findings follow after.
+to somebody who was not in the room while it was assembled.
+
+Its elements divide by which language they are in (K43): one side is somebody's words, anchored in a passage
+of a source; the other is the model's own bound terms. A `Source` yields `SourceElement`s — `SourceQuestion`,
+and `SourceStatement`, itself specialised into `SourceNeed` and `SourceDecision` (K44, K45) — and each has a
+counterpart on the model's own side. `SourceNeed` and `SourceDecision` cross inward, by `refine`, into
+`Requirement` and `RequirementDecision`; `RequirementQuestion` crosses outward, by `poses`, into
+`SourceQuestion` (K47, K48, K58, K59). `RequirementDef` is the definition a `Requirement` is produced under,
+and findings are what a review produces over all of it.
+
+This document defines the source side first — `Source`, the edge between sources, and the `SourceElement`
+family — then the model side: `RequirementDef`, the derivation it governs, `RequirementDecision`,
+`RequirementQuestion`, and findings.
 
 This model **projects** to the requirement model: the product model defined in `01-requirement-model.md`,
 which a reader can adopt on its own, without ever having read this document (K20). The projection itself —
