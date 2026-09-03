@@ -9,9 +9,9 @@ requirement analysis model, its source (K20), which is written next, in `02-requ
 A reader who wants a requirements register with traceability between requirements, and nothing else, can
 stop at the end of this document. Everything this document defines — a requirement, the edge by which one
 requirement is derived from another, and the baseline that gives a cut of the register a name and a date —
-stands on its own, without the analysis apparatus that produced it: no source, no need, no definition, no
-decision, no finding. That apparatus is what `02-requirement-analysis-model.md` adds, and it is reached from
-here, not required by here.
+stands on its own, without the analysis apparatus that produced it: no source, no `SourceElement`, no
+definition, no `RequirementDecision`, no finding. That apparatus is what
+`02-requirement-analysis-model.md` adds, and it is reached from here, not required by here.
 
 This asymmetry is what "product" means in K20's terms: the requirement analysis model is where a requirement
 is assembled and justified, and the requirement model is what survives being handed to somebody who was not
@@ -45,8 +45,8 @@ predecessor would force an arbitrary choice among equally contributing ones.
 refinement, its derivation, or both, and a requirement carrying neither is an incomplete record rather than
 a root (D49). In this model, only the derivation half of that origin is directly visible — the edge just
 described, between one requirement and another. The refinement half, which names the needs a requirement was
-assembled from, has been projected away; it lives in `02-requirement-analysis-model.md`, where `Need` is
-defined. A requirement with no derivation edge here is therefore not yet known to be a root: it may still
+assembled from, has been projected away; it lives in `02-requirement-analysis-model.md`, where `SourceNeed`
+is defined. A requirement with no derivation edge here is therefore not yet known to be a root: it may still
 name its origin through refinement, recorded one document over.
 
 ### K33 — does a requirement name the definition it came from, and its kind?
@@ -72,8 +72,8 @@ that is exactly the forward dependency independent adoptability rules out. K13, 
 satisfied by the same escape clause that already carries the rest of the analysis apparatus: the binding
 between a requirement and its definition is not lost, only not projected into this type. It stays in the
 requirement analysis model, in exactly the sense K13 asks of anything dropped — recoverable, not deleted —
-and it sits there beside the refinement edge, `Source`, `Need` and `Decision`, none of which are named on
-the product `Requirement` either. Recorded as K33 in `spec/06-decisions.md`.
+and it sits there beside the refinement edge, `Source`, `SourceNeed` and `RequirementDecision`, none of
+which are named on the product `Requirement` either. Recorded as K33 in `spec/06-decisions.md`.
 
 ## 3. Requirements in force
 
