@@ -77,6 +77,91 @@ that answers it, so closing a finding is not a tick somebody applies to a record
 carrying the same source that closes it as everything else in this model does. Section 9 uses the edge on
 exactly these terms.
 
+## 4. `SourceElement`, `SourceQuestion`, and `SourceStatement`
+
+A source is never read directly by the rest of this model. What a source yields — what a `Source`'s text is
+segmented into, one unit at a time — is a `SourceElement`.
+
+```mermaid
+classDiagram
+    class SourceElement {
+        <<abstract>>
+        identity
+        anchor into one passage of one source
+        material of record
+    }
+    class SourceStatement {
+        <<abstract>>
+    }
+    SourceElement <|-- SourceQuestion
+    SourceElement <|-- SourceStatement
+    SourceStatement <|-- SourceNeed
+    SourceStatement <|-- SourceDecision
+```
+
+The diagram draws what this section and the next state; where the two disagree, the prose wins. The
+abstraction and generalisation conventions are the diagram language's own, adopted rather than coined (K32).
+
+### `SourceElement`
+
+`SourceElement` is **abstract**. Every element a source yields is some specialisation of it, and it carries
+three things, shared by every specialisation and nothing beyond them.
+
+| Attribute | Carries |
+|---|---|
+| identity | A stable identifier, distinct from every other `SourceElement`'s |
+| anchor | A passage of exactly one source, on the same terms `01-requirement-model.md`'s predecessor
+  attribute did — adopting the W3C Web Annotation Data Model |
+| material of record | Never edited, and carrying no lifecycle state. Inherited from the source it anchors
+  into: a source is quoted whole and never decomposed (§2), so nothing anchored into one can cease to be
+  true while the source behind it stays what it was |
+
+**A `SourceElement` segments; it does not interpret.** Nothing a `SourceElement` carries is a reading of
+what its passage says — no extracted value, no restated content, nothing beyond the fact that this passage
+exists and is anchored. Interpretation happens only on the crossing to the model's own side, governed by
+whatever definition's rules apply there (K43, K57). This is a syntactic constraint over every
+`SourceElement`: none of them carries an attribute beyond the three above, and a candidate attribute naming a
+reading of the passage's content does not belong here, on K43's own axis — it would let something already
+interpreted sit on the side of the model that K43 keeps to segmentation alone.
+
+**Provenance stops at the source.** This model does not say what produced a stakeholder's own words, because
+it cannot see the procedures behind them. `Source` is the root of this model's traceability not because
+nothing precedes it, but because nothing before it is visible to a model built from what a project was told.
+
+**The list of specialisations is not closed.** Two exist today, on the terms the next two subsections state:
+`SourceQuestion`, and `SourceStatement`. K42's reasoning, stated for the Project Lifecycle Model, applies
+here without change: a closed list would fix one way of reading a source into this model, and a fifth kind
+arriving is evidence to account for, not a violation of what stands today.
+
+### `SourceQuestion`
+
+A `SourceQuestion` is a `SourceElement` — nothing more. It carries the three shared attributes and no
+others: an unanswered `SourceQuestion` names no state of its own beyond what `SourceElement` already gives
+it.
+
+**An unanswered `SourceQuestion` is normal.** It is the ordinary condition of a project with something
+outstanding, not a defect. This is the reason `SourceQuestion` sits beside `SourceStatement` rather than
+beneath it: were it a `SourceStatement`, every unanswered question would report as a failed check under the
+rule the next section states, which would be wrong — a question asserts nothing, so nothing about it can go
+unfulfilled the way an unrefined statement can. It opens something instead, and what closes it is the
+`answers` edge (§3): a later source `answers` the source the question's passage sits in.
+
+**How `SourceQuestion` subdivides, and whether it names the party expected to answer it, is not settled
+here.** Nothing today reads such a subdivision. This is recorded as an open question at the end of this
+document.
+
+### `SourceStatement`
+
+`SourceStatement` is **abstract**, a specialisation of `SourceElement` carrying nothing beyond what
+`SourceElement` already gives it. It has two specialisations of its own, `SourceNeed` (§5) and
+`SourceDecision` (§6).
+
+**A `SourceStatement` that produces nothing is a failed check, not a question.** Unlike `SourceQuestion`'s
+silence, a `SourceStatement` asserts something — it is the source-side counterpart of a passage that
+obliges an outcome on the model's own side — so one that never crosses over is a record in which something
+asserted went unaccounted for. §11 states this rule for `SourceNeed` in full, on terms `SourceDecision`
+inherits without needing its own restatement of the same rule, because both are `SourceStatement`s.
+
 ## 4. `Need`
 
 A need is a passage of a source that **obliges something**. That narrowing is the whole of it, and what
