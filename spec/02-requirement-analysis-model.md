@@ -616,7 +616,7 @@ A `RequirementQuestion` is what the modeller must find out (K49) — the model-s
 modeller has identified, before anybody has been asked to close it. It is not itself a `SourceQuestion`: it
 crosses outward, by `poses` (K59), into one once the modeller actually puts the question to somebody.
 
-A `RequirementQuestion` carries one of two states.
+A `RequirementQuestion` carries one of two states (K60).
 
 | State | Meaning |
 |---|---|
@@ -689,7 +689,7 @@ failed checks; neither is a question.
    overturn and the consequence that goes with it.
 
 The two are one break in the chain, read from opposite ends: a `SourceNeed` with no `Requirement` beneath it,
-and a requirement with nothing above it. They were treated asymmetrically — one a question, one a failed
+and a `Requirement` with nothing above it. They were treated asymmetrically — one a question, one a failed
 check — and nothing about either justified the difference.
 
 **A `SourceNeed` that no `Requirement` refines has exactly two honest resolutions.** Write the requirement

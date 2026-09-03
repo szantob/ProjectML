@@ -91,7 +91,7 @@ baseline goes on satisfying a requirement that baseline still contains.
 None of this permits deletion, and none of it makes retirement invisible. **A requirement is never
 deleted** (K5). The property of being no longer in force, and the reasoning that requires it, belong to the
 requirement analysis model, where every requirement a project has ever held is kept and where being
-retired is a state to carry — `02-requirement-analysis-model.md` §8. That is the same shape §2 already
+retired is a state to carry — `02-requirement-analysis-model.md` §10. That is the same shape §2 already
 describes for the refinement edge: a pointer to where something is recorded, not a dependency this document
 has on the other. A reader who stops here has the register of what is in force, with traceability between its
 requirements, which is what §1 promises and nothing less.

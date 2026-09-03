@@ -58,11 +58,13 @@ this derived value right" is always "check the rule and the inputs," never a fac
 ## 4. Reach
 
 A value state applies to any value in any member of the collection, not to one kind of element within it: a
-value carried by a need, a parameter of a requirement, a value belonging to a design language's own elements
-beyond the seam all carry a value state on the same terms. It is a property of values wherever they occur,
-not a property confined to one member of the collection. D27 records this for a need's own value
-specifically — a need's value is optional, and the value-state model applies to it exactly as it applies
-everywhere else, untouched by that optionality. The founding record's section 5 finding is the general form:
+parameter of a requirement, a value belonging to a design language's own elements beyond the seam, all carry
+a value state on the same terms. It is a property of values wherever they occur, not a property confined to
+one member of the collection. D27 first recorded this for the source side of the requirement analysis model;
+K57 has since moved the value it was read against entirely off that side, so a `SourceNeed` is not a place a
+value occurs at all (`02-requirement-analysis-model.md` §5) — what D27 protected now applies to the value a
+`Requirement` carries once `refine` has run, on exactly the same terms as everywhere else. The founding
+record's section 5 finding is the general form:
 the value-state model attaches to every value or to none, and it is this reach, set against the evidence
 chain's single seam, that forces the collection into the two-piece structure standing behind OQ1.
 

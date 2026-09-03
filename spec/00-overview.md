@@ -210,7 +210,7 @@ the three are one posture held at three scales.
 
 Two decisions record it. K40 states the boundary. K41 refuses the instrument somebody will otherwise propose
 for closing it — a coverage report over which passages of a source no need cites, and any metric of
-extraction built on one — and `02-requirement-analysis-model.md` §9 carries that refusal beside the rule
+extraction built on one — and `02-requirement-analysis-model.md` §11 carries that refusal beside the rule
 that checks extraction from the side a model can check.
 
 ## 6. The diagram conventions

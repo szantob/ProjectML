@@ -67,7 +67,7 @@ Taken in [`01-requirement-model.md`](01-requirement-model.md), §2, which carrie
 **Superseded. K35 reverses it, and K35 is the decision in force.** K34 is kept here because a decision record
 keeps its history: a later reader meeting the argument below elsewhere needs to find where it was answered.
 
-Taken in [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md), §8, which no longer carries
+Taken in [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md), §10, which no longer carries
 the argument — it carries K35's.
 
 | # | Decision, superseded | Reason it was taken |
@@ -81,7 +81,7 @@ is frozen. Its second leg fell with the first: K12 needs no narrow reading, and 
 
 ## Decision K35
 
-Taken in [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md), §8, which carries the full
+Taken in [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md), §10, which carries the full
 argument. K35 supersedes K34.
 
 | # | Decision | Reason |
@@ -90,8 +90,8 @@ argument. K35 supersedes K34.
 
 ## Decision K36
 
-Taken in [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md), §6, which carries the full
-argument. §10 of that document states the syntactic constraints the decision is measured against.
+Taken in [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md), §8, which carries the full
+argument. §12 of that document states the syntactic constraints the decision is measured against.
 
 | # | Decision | Reason |
 |---|---|---|
@@ -99,7 +99,7 @@ argument. §10 of that document states the syntactic constraints the decision is
 
 ## Decisions K37–K39
 
-Taken in [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md), §4 and §9, which carry the
+Taken in [`02-requirement-analysis-model.md`](02-requirement-analysis-model.md), §5 and §11, which carry the
 full argument. Together they **dissolve** the founding record's OQ3 rather than answering it: OQ3 asks what
 to record when a need is examined and found to have deliberately produced nothing, and K37 removes the state
 of affairs it asks about.
@@ -113,14 +113,14 @@ of affairs it asks about.
 ## Decisions K40–K41
 
 Taken in [`00-overview.md`](00-overview.md), §5, and in
-[`02-requirement-analysis-model.md`](02-requirement-analysis-model.md), §4 and §9, which carry the full
+[`02-requirement-analysis-model.md`](02-requirement-analysis-model.md), §5 and §11, which carry the full
 argument. K40 states the second boundary the collection draws — between what the model guarantees and what
 the modeller must do — and K41 refuses the one instrument that would blur it.
 
 | # | Decision | Reason |
 |---|---|---|
 | K40 | **This metamodel's job is that no extracted information or decision is lost during the project-management process.** Whether every piece of information has been extracted, and whether every mapping is accurate, is not the model's responsibility but the modeller's: it can only be found by self-review or cross-review after the modelling is done. It follows that a model on which no check fails is not thereby a correct model — it is a model with no *detectable* error | A metamodel that claimed to guarantee completeness would be claiming what it cannot deliver. Completeness of extraction is measured against material the model does not hold — everything a source says that nobody took up — so the claim could never be tested, and a guarantee that cannot be tested devalues the ones that can. The line is the one K24 already draws between a syntactic constraint the metamodel decides and a semantic one it leaves to review, and the one K7 draws for contradiction, applied once more to the metamodel's own promise |
-| K41 | The metamodel defines **no source-coverage report** — no report over which passages of a source no need cites — and **no metric over the completeness of extraction**. None is to be added. What it states over extraction is the one rule that runs the other way: a need that no requirement refines is a failed check (K38) | Two reasons, and each carries the decision on its own. **First, a source is free-form and its information density varies.** A salutation can be a twentieth of the text and none of the information, while a single clause buried in a paragraph can carry the only real constraint; a figure that puts those on one denominator says nothing, and a list of everything uncited is mostly noise by construction, because every source permanently contains uncited text (§4, D33). **Second, K10's own criterion says there is nothing to model.** K10 makes a finding a modelled element when it must keep its identity between reviews. A contradiction must: it cannot simply be fixed, it needs adjudication, and the next review has to see that somebody already found it. A missed extraction does not — the moment it is noticed it is extracted, so the finding and the fix are the same act, and nothing persists for a record to hold. That asymmetry is principled rather than convenient, which is why this sits beside K7 without contradicting it. The refusal is recorded rather than left as an absence because the prior art carries such a report (D33), and a later reader meeting it will otherwise propose adding one |
+| K41 | The metamodel defines **no source-coverage report** — no report over which passages of a source no need cites — and **no metric over the completeness of extraction**. None is to be added. What it states over extraction is the one rule that runs the other way: a need that no requirement refines is a failed check (K38) | Two reasons, and each carries the decision on its own. **First, a source is free-form and its information density varies.** A salutation can be a twentieth of the text and none of the information, while a single clause buried in a paragraph can carry the only real constraint; a figure that puts those on one denominator says nothing, and a list of everything uncited is mostly noise by construction, because every source permanently contains uncited text (§5, D33). **Second, K10's own criterion says there is nothing to model.** K10 makes a finding a modelled element when it must keep its identity between reviews. A contradiction must: it cannot simply be fixed, it needs adjudication, and the next review has to see that somebody already found it. A missed extraction does not — the moment it is noticed it is extracted, so the finding and the fix are the same act, and nothing persists for a record to hold. That asymmetry is principled rather than convenient, which is why this sits beside K7 without contradicting it. The refusal is recorded rather than left as an absence because the prior art carries such a report (D33), and a later reader meeting it will otherwise propose adding one |
 
 ## Decision K42
 
@@ -248,7 +248,7 @@ being waited on rather than ignored.
 
 | # | Question | When answerable |
 |---|---|---|
-| OQ13 | Nothing in the metamodel records that a question has been put and that an answer is outstanding. A review finding's *closure* is already modelled — it is opened by a source and closed by a later source that `answers` it (K10, K11; `02-requirement-analysis-model.md` §9) — and a failed check or a question is itself recomputed rather than modelled (same section). What is missing is the *opening* of that interval and the interval itself: nothing distinguishes "this failure is being worked" from "this failure is being ignored," for as long as it stands unanswered | Nothing forces an answer before an implementation runs the loop and actually lives through that interval, so realistically phase 4. It is the last of OQ6's five pieces of work and, as of this decision record, the only one still unrecorded |
+| OQ13 | Nothing in the metamodel records that a question has been put and that an answer is outstanding. A review finding's *closure* is already modelled — it is opened by a source and closed by a later source that `answers` it (K10, K11; `02-requirement-analysis-model.md` §11) — and a failed check or a question is itself recomputed rather than modelled (same section). What is missing is the *opening* of that interval and the interval itself: nothing distinguishes "this failure is being worked" from "this failure is being ignored," for as long as it stands unanswered | Nothing forces an answer before an implementation runs the loop and actually lives through that interval, so realistically phase 4. It is the last of OQ6's five pieces of work and, as of this decision record, the only one still unrecorded |
 
 ## Open questions, OQ14, OQ16, OQ17
 
