@@ -174,7 +174,7 @@ anchoring it as one was a mistake (K37).
 `SourceNeed` cites, and that text is not a defect in the model. The prior art reached the same conclusion
 from the other end and declined to make uncited text a rule, on the ground that a condition which never
 clears is not a question (D33); this metamodel goes one step further and states nothing over uncited text at
-all, for reasons §12 gives and K41 records. *Not need-bearing* is therefore an existing and ordinary
+all, for reasons §11 gives and K41 records. *Not need-bearing* is therefore an existing and ordinary
 category, and it needs no record of its own. A passage nobody anchored leaves no element behind for a record
 to sit on.
 
