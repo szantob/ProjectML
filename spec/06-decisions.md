@@ -131,6 +131,42 @@ argument.
 |---|---|---|
 | K42 | The list of what a rule-set may state is not closed at three. Three are what the evidence found so far supports; an implementation needing to state a fourth kind of thing is evidence the metamodel must then account for, not a violation of it | The same structural argument K30 makes for a requirement kind's taxonomy applies one level over: a closed list here would fix one way of thinking about a process into the metamodel, which is exactly what K22 and K23 exist to refuse |
 
+## Decisions K43–K50
+
+Taken in [the design record of 2026-09-03 on the source-element hierarchy](../docs/superpowers/specs/2026-09-03-source-element-hierarchy-design.md)
+§§2–5, which carries the full argument for each. Written into `spec/02-requirement-analysis-model.md` and
+`spec/01-requirement-model.md` by [the integration plan of 2026-09-03](../docs/superpowers/plans/2026-09-03-source-element-hierarchy-integration-plan.md).
+
+| # | Decision | Reason |
+|---|---|---|
+| K43 | The requirement analysis model's elements divide by which language they are in, not by *extracted* against *produced*. Information travels inward, from words to bound terms; questions travel outward | This is the distinction the metamodel already had for the `Need`/`Requirement` pair, generalised to everything else a source contains. *Extracted against produced* puts a question on the wrong side: it is produced, and still somebody's words addressed to a person |
+| K44 | A source yields `SourceElement`s: abstract, carrying identity, an anchor into one passage of one source, and being material of record. Two specialisations exist and the list is not closed: `SourceQuestion`, and `SourceStatement`, itself specialised into `SourceNeed` and `SourceDecision` | Three properties shared across four types is a type rather than a coincidence. The list is left open on K42's own reasoning: a closed list fixes one way of reading a source, and a fifth kind arriving is evidence to account for |
+| K45 | `SourceQuestion` and `SourceStatement` are siblings, not one beneath the other, because their discharge conditions differ in opposite directions: an unrefined `SourceStatement` is a failed check; an unanswered `SourceQuestion` is normal | Putting `SourceQuestion` beneath `SourceStatement` would report every unanswered question as a defect. A question asserts nothing; it opens something |
+| K46 | Provenance stops at the source. The metamodel does not model what produced a stakeholder's words | A boundary, not a gap. It also explains why `Source` roots the chain: not because nothing precedes it, but because nothing before it is visible |
+| K47 | A prefix names the side an element belongs to. `Source` and `Requirement` carry no prefix, and that absence is the signal that they are the model's two protagonists | The prefix marks which language an element is in, disambiguating a source-side question from a derived question and a recorded decision from what it does. The absence of a prefix on the two protagonists is normative |
+| K48 | Implementation is the move between the two sides, in both directions. `SourceNeed`→`Requirement` and `SourceDecision`→`RequirementDecision` run inward; `RequirementQuestion`→`SourceQuestion` runs outward | The reversal follows the actor rule: the modeller's only sanctioned output is a question, so only a question originates on the model side and is realised in somebody's words |
+| K49 | `RequirementDecision` and `RequirementQuestion` are elements of the model side. `RequirementDecision` is what a decision does to the requirement model; `RequirementQuestion` is what the modeller must find out | `RequirementDecision` resolves the deferral `spec/` recorded against itself — a decision with no edge to what it resolves. `RequirementQuestion` gives OQ13 its shape without answering it |
+| K50 | Who authored a passage is a signal, not a dispatch. What an element is follows from what the passage does, never from who wrote it | The founding record's §5 already reaches this for a source's origin attribute. It disposes of edge cases — an experienced client's next-step question, a project manager asking what the model already holds — without new machinery |
+
+## Decisions K57–K65
+
+Taken in [the design record of 2026-09-03 on the source-element hierarchy](../docs/superpowers/specs/2026-09-03-source-element-hierarchy-design.md)
+§§9–13, which carries the full argument for each. Written into `spec/` by
+[the integration plan of 2026-09-03](../docs/superpowers/plans/2026-09-03-source-element-hierarchy-integration-plan.md).
+K58 and K59 together close OQ15.
+
+| # | Decision | Reason |
+|---|---|---|
+| K57 | `SourceElement`s carry no attribute beyond K44's three. `SourceNeed` carries no `value`; a need's value, once extracted, is a reading of the passage and belongs on the `Requirement` side, in `values` | `SourceElement`'s claim to carry only identity, anchor, and record-status should be true of every specialisation, not three of four. Nothing today checks `Need.value` through a stated syntactic constraint, so removing it costs no check anything currently runs |
+| K58 | `refine` covers both of K48's inward moves: `SourceNeed`→`Requirement`, unchanged, and `SourceDecision`→`RequirementDecision`, newly | Both are the same mechanism under K43's axis. Coining a second name for a mechanically identical relationship would violate house rule 10 |
+| K59 | `poses` is a new, coined edge: `RequirementQuestion`→`SourceQuestion`, K48's outward move | Nothing upstream of this metamodel has had to name a model realising itself outward into somebody's words, so nothing exists to adopt |
+| K60 | A `RequirementQuestion` carries one of two states: raised (no `SourceQuestion` yet) or posed (a `poses` edge names one). The edge's presence is the transition. Further discharge is not stated here | This gives OQ13 the opening half of the interval it asks about without answering the interval itself, keeping this pass inside K48/K49's commitments and out of OQ13's territory |
+| K61 | A `RequirementDecision`'s origin — `refine` from at least one `SourceDecision` — is mandatory. Missing it is not a failed check; the element is not well-formed at all, on K9's terms. An anticipated but not-yet-made decision is a `RequirementQuestion` in the raised state, never a bare `RequirementDecision` | K49's own definition of `RequirementDecision` as *what a decision does* presupposes the decision happened. This also removes the need for any dedicated edge between `RequirementQuestion` and `RequirementDecision`: the connection already traces through `poses` + `answers` + `refine` |
+| K62 | `RequirementDecision` carries `retires`, an edge to zero or more `Requirement`s | This is the edge the first pass's own citation of the defect named directly: none of `Decision`'s five attributes named what it resolved |
+| K63 | `RequirementDecision` carries an open/closed state; this record does not state what closes one. The criterion is left to the Project Lifecycle Model | What closes a `RequirementDecision` depends on the same unworked territory as `supersedes` and what finding it closes; stating the slot without the criterion matches `RequirementDef`'s own *"when it applies"* |
+| K64 | An unrefined `SourceDecision` is a failed check, already covered by K45 and needing no restatement. A `RequirementDecision` without a `SourceDecision` is not a failed check at all — it is excluded by K61 as not well-formed. These are K24's two categories, not two severities of one defect | Confirms rather than revises: `SourceDecision` inherits K45 automatically as a `SourceStatement`; the other half was already K61 |
+| K65 | The metamodel introduces no `Task`, or any output shaped like one, for a raised `RequirementQuestion`. The raised state is already the complete signal | Nothing is bought — a `Task` would duplicate what the state already carries, the same objection behind K41's refusal of a coverage report. `00-overview.md` §1 excludes this vocabulary by name |
+
 ## Decisions K51–K54
 
 Taken in [`05-binding-contract.md`](05-binding-contract.md), §2, which carries the full argument, and in
@@ -213,6 +249,31 @@ being waited on rather than ignored.
 | # | Question | When answerable |
 |---|---|---|
 | OQ13 | Nothing in the metamodel records that a question has been put and that an answer is outstanding. A review finding's *closure* is already modelled — it is opened by a source and closed by a later source that `answers` it (K10, K11; `02-requirement-analysis-model.md` §9) — and a failed check or a question is itself recomputed rather than modelled (same section). What is missing is the *opening* of that interval and the interval itself: nothing distinguishes "this failure is being worked" from "this failure is being ignored," for as long as it stands unanswered | Nothing forces an answer before an implementation runs the loop and actually lives through that interval, so realistically phase 4. It is the last of OQ6's five pieces of work and, as of this decision record, the only one still unrecorded |
+
+## Open questions, OQ14, OQ16, OQ17
+
+Raised in [the design record of 2026-09-03 on the source-element hierarchy](../docs/superpowers/specs/2026-09-03-source-element-hierarchy-design.md),
+which carries the full argument for each.
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ14 | Is there a model-side abstract type, as `SourceElement` is for the source side? The owner's judgement is that one will probably be needed and that the side is not yet fully seen | When the model side is understood as well as the source side is |
+| OQ16 | How does `SourceQuestion` subdivide, and does it name the party expected to answer? | With OQ13, realistically |
+| OQ17 | What does the Project Lifecycle Model's fourth rule-set item look like, and how does a `RequirementQuestion` reference what it fires on? Gathered here alongside `supersedes` and what a `RequirementDecision` closes and what closes one, since none of the three is answerable without `spec/03-project-lifecycle-model.md` being worked out first | A dedicated session on the Project Lifecycle Model |
+
+## Open question OQ15 — answered
+
+**Answered by K58 and K59, and no longer open.** It asked whether implementation is a new edge or the
+generalisation of one that exists; the answer is neither alone — the inward half generalises `refine`
+(K58), the outward half is the new, coined `poses` (K59), and no umbrella "implementation" edge sits above
+both.
+
+Raised in [the design record of 2026-09-03 on the source-element hierarchy](../docs/superpowers/specs/2026-09-03-source-element-hierarchy-design.md)
+§6, and recorded here rather than answered there.
+
+| # | Question, as asked | When answerable |
+|---|---|---|
+| OQ15 | Is implementation a new edge, or the generalisation of one that already exists? The refinement edge already runs from a requirement to the needs it refines, which is the inward half of K48 under another name — and that name is adopted from SysML v2, so it cannot simply be replaced | With OQ14, and for the same reason: it is a question about the model side |
 
 ## Status of the founding record's open questions
 
