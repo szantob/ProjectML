@@ -86,6 +86,13 @@ to supply on its own.
 admits any printable character (KerML §8.2.2.3). A requirement identifier that is not a legal `BASIC_NAME`
 on its own — one containing a hyphen, for instance — is written quoted, and still has a `reqId` to occupy.
 
+**Once this map exists, §1's answer stops looking like a weak one.** A requirement, carried into a SysML
+model this way, is a `RequirementUsage` like any other SysML declares — nothing marks it as standing for
+something outside SysML. So when §1 says any `Feature` may satisfy it, that is not SysML declining to
+narrow a boundary crossing; there is no crossing left to narrow by the time `satisfy` is written. The map
+above is what gives the requirement standing inside SysML at all; `satisfy` afterward relates two elements
+that are both already, and entirely, SysML's own.
+
 ## 4. How far it takes the value model
 
 Not at all. A SysML attribute either carries a value or it does not; nothing in the language distinguishes

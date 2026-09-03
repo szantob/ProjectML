@@ -38,6 +38,17 @@ edge rather than to a kind of its own. Naming it would also make the first of th
 partly redundant, since that declaration exists precisely so a design language can say which of *its* kinds
 may carry the edge (K54).
 
+**Whether the requirement itself gains a standing element inside the design language is not fixed here, and
+does not need to be.** A binding may give it one, native to the design language and something its other
+constructs can point to like anything else the design language defines — the SysML v2 binding does exactly
+this, by way of §4.3's identifier map, so that a `satisfy` relationship, once written, relates two elements
+that are both natively SysML's own. Or a binding may do without any such element, and let the satisfying
+element carry a bare reference that resolves through the map alone, with nothing requirement-shaped standing
+anywhere in the design language's own model. Either is symmetric under K2. What the metamodel needs is only
+that the edge, however it is carried, can be read back through the map; the mechanics of carrying it —
+standing element or bare reference — belong entirely to the design language, on the same terms §4.2 already
+grants everything else beneath the seam.
+
 **The edge is many-to-many, with no bound in either direction.** A satisfying element may name any number of
 requirements, and a requirement may be named by any number of satisfying elements. This is adopted rather
 than decided here: it is what SysML does in both of its versions, where more than one element may help
@@ -172,11 +183,15 @@ information a future resolution of OQ1 would need to work from.
 One question bears directly on this seam and remains open here.
 
 - **OQ10 — does a second edge kind join the seam, for verification?** A requirement's origin is one thing an
-  element outside the kernel can name; whether the requirement was shown to hold is another. SysML v2 already
-  has an edge for it, from a verification element to a requirement, in the same direction and shape as
-  satisfies. Widening the first declaration by one word would carry it, but nothing exercises the question
-  today, and this document does not answer it. It is recorded, in `spec/06-decisions.md`, as phase 2's to
-  settle — a binding is where it first has to be answered concretely, if it is answered at all.
+  element outside the kernel can name; whether the requirement was shown to hold is another. SysML v2 has a
+  construct for this, `verify`, in the same direction as `satisfies` but not the same shape: it is carried by
+  a whole verification case rather than by an arbitrary element, so finding it asks a different question of a
+  design language than finding `satisfy` does. Adding it would not widen the first declaration by a word; it
+  would ask for a declaration of its own, on the terms the first declaration already sets, and only once the
+  kernel decides it wants a check over verification the way it already has one, above, over satisfaction.
+  Nothing exercises the question today, and this document does not answer it. It is recorded, in
+  `spec/06-decisions.md`, as phase 2's to settle — a binding is where it first has to be answered concretely,
+  if it is answered at all.
 
 Two further questions were raised alongside OQ10 and are both closed. **OQ11** asked whether the metamodel
 needs a subject of its own, since a design language may require every requirement to name the element it is

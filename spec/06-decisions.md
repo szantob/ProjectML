@@ -153,7 +153,7 @@ which carries the full argument for each.
 | # | Question | When answerable |
 |---|---|---|
 | OQ9 | What does specialisation mean? What a subtype of `RequirementDef` may add, narrow or override. K30 chooses the mechanism and does not define its semantics | When something exercises it — realistically phase 4, when the first kinds are declared |
-| OQ10 | Does `verifies` become a second edge kind on the one seam? SysML puts verification as an edge from a verification element to a requirement, in the same direction and shape as `satisfies`. K4's first declaration would widen by one word to carry it. Nothing exercises it: no verification elements exist anywhere yet | Phase 2, where the SysML binding meets it, or later |
+| OQ10 | Does `verifies` become a second edge kind on the one seam? SysML has a construct for it, `verify`, in the same direction as `satisfies` but not the same shape — it is carried by a whole verification case, not by an arbitrary element, so finding it asks a different question of a design language than finding `satisfy` does. Widening K4's first declaration by one word does not carry it; it would need a declaration of its own, and only once the kernel decides it wants a check over verification the way it already has one over satisfaction. Nothing exercises it: no verification elements exist anywhere yet | Phase 2, where the SysML binding meets it, or later |
 
 ## Decision K56
 

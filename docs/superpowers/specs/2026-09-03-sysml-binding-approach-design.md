@@ -156,7 +156,47 @@ synthesise a subject to do it. Where a design language has the concept, K4 §4.2
 — already accounts for it without a fifth declaration; where it does not, nothing depending on the kernel
 notices the absence. Recorded as **K56** in `spec/06-decisions.md`, closing OQ11.
 
-## 4. Where this landed
+## 4. Where the seam actually does its work
+
+Writing §2 and §3 back to back surfaced something neither finding said on its own: **the boundary is not
+between the kernel's requirement and SysML's elements, standing apart from each other with `satisfy` as the
+one bridge between them.** The identifier map in §4.3 is what carries a requirement across at all — once it
+exists, a requirement is a `RequirementUsage`, a SysML element like any other, carrying its identity as a
+`reqId` rather than as a pointer to something outside. `satisfy`, written after that, relates two elements
+that are both already SysML's own. Nothing about it reaches anywhere; there is nothing left to reach by the
+time it is written.
+
+**This is the missing half of the 4.1 finding, not a correction to it.** §2's "any `Feature`, buys nothing
+at the base case" stands — the specification says what it says — but the reason it is unsurprising, rather
+than a weakness, is this: SysML never needed a narrower answer, because `satisfy` was never doing the work
+of crossing anything. The crossing is §4.3's, done once, before any `satisfy` is written. `bindings/sysml-v2.md`
+§3 now says this directly.
+
+**This also corrects OQ10's premise more precisely than the previous pass through it did.** That pass found
+that `verify`'s shape — a whole `VerificationCase`, not a `BindingConnector` — makes "widen 4.1 by one word"
+wrong, and stopped there, framing the finding as being about `verify`'s structural weight. It is not about
+weight. `verify`, exactly like `satisfy`, only ever needs to reach a `RequirementUsage` that the map has
+already made native to SysML — there is no seam-crossing question for `verify` to fail either, any more than
+there was one for `satisfy` to pass. What actually differs is narrower and more useful than "verify is
+heavier": if the kernel ever wants a check over verification shaped like K53's check over satisfaction —
+*which requirements does nothing verify* — a binding would need to say where to look for that fact in a
+given design language, the way §4.1 already says where to look for satisfaction. For SysML that recipe is
+`VerificationCase` → `objective` → subrequirement, not a `BindingConnector`, so it could not literally reuse
+§4.1's wording — but this was never a question of whether `verify` fits through a boundary. It is a question
+of whether the kernel wants a second check, and, only if so, what a binding would need to say to make that
+check a lookup rather than a search. `spec/05-binding-contract.md` §2 and §5, and the OQ10 row in
+`spec/06-decisions.md`, are now worded to this finding rather than the earlier one.
+
+**The general point, stated once, generalises past SysML.** A binding may give the requirement a standing
+element of its own, as SysML's does — or it may not, and let the satisfying element carry a bare reference
+that resolves through the map alone, with no requirement-shaped element anywhere in the design language's
+model. EventML today, still pre-extraction, is closer to the second shape: `Part.satisfies` is a plain list
+of identifiers, with no local element standing for what they name. Both shapes are symmetric under K2 —
+`spec/05-binding-contract.md` §2 now says so directly, beside the paragraph on the far end being described
+rather than named, which is the same idea one level up: the metamodel does not care how, or whether, a
+design language gives the far end a body, only that the edge can be read back through the map.
+
+## 5. Where this landed
 
 The binding is written, at [`bindings/sysml-v2.md`](../../../bindings/sysml-v2.md), in the order this
 section originally recommended — 4.3 first, then 4.1, then 4.2 and 4.4 — though the document itself presents
