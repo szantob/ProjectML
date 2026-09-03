@@ -25,15 +25,33 @@ the same direction, from the satisfying element to the requirement it satisfies,
 is not arbitrary here either.
 
 ```mermaid
-classDiagram
-    class SatisfyingElement {
-        <<a design language's own element>>
-    }
-    class Requirement {
-        <<in a baseline>>
-    }
-    SatisfyingElement --> Requirement : satisfies
+graph LR
+    SE["an element the design language defines,<br/>and this metamodel does not"]
+    R["<b>Requirement</b><br/>in a baseline"]
+    SE -->|"satisfies"| R
 ```
+
+**The far end of the edge is described rather than named, and the diagram says so too.** The metamodel does
+not define what lies below the seam (K3), and giving that end a type in a diagram would half-define it. This
+is not caution on our part: SysML does not name that side either, referring to whatever element carries the
+edge rather than to a kind of its own. Naming it would also make the first of the four declarations below
+partly redundant, since that declaration exists precisely so a design language can say which of *its* kinds
+may carry the edge (K54).
+
+**The edge is many-to-many, with no bound in either direction.** A satisfying element may name any number of
+requirements, and a requirement may be named by any number of satisfying elements. This is adopted rather
+than decided here: it is what SysML does in both of its versions, where more than one element may help
+satisfy a single requirement and a satisfying element may carry as many of the edges as it has requirements
+to name. A bound in either direction would also exclude design languages that organise differently, which
+K2 forbids. No lower bound is meaningful: an element naming no requirement is not a satisfying element, and
+the metamodel does not see it — beyond the seam it sees only what carries the edge (K51).
+
+**How a design language writes the edge is its own business.** Whether it spells the relationship as one
+edge carrying several names or as several edges each carrying one is notation, and beyond the seam the
+notation is not this metamodel's (K52). The point is not abstract: SysML settles it two ways within one
+standard family, spelling the relationship as a stereotyped dependency standing between the two ends in one
+version and as a requirement usage nested inside the satisfying element in the next. A metamodel that fixed
+the shape could bind one of those and not the other.
 
 The edge lands on a requirement in a **baseline**, never on the requirement model's live projection. A
 baseline has identity; the projection does not, because it is recomputed on every reading and gives no
@@ -41,6 +59,22 @@ guarantee that two readings name the same thing (K21). A binding depends on iden
 between the two ends of the edge — the satisfying element does not move once it is written, and neither may
 the requirement it names — and only a baseline offers that; the term itself is adopted from ISO/IEC/IEEE
 29148 rather than coined (K12).
+
+**One check runs over the seam, and it is a question rather than a failure.** It asks which requirements in
+a baseline no satisfying element names. A requirement in that condition is not a modelling error: it is the
+normal state of one that has been captured but not yet designed for, and a model is expected to hold
+requirements in it, sometimes for weeks. The check is stated here rather than with the requirement model,
+because it reads the seam, and because the requirement model has to remain adoptable on its own by a reader
+who has attached no design language at all (K19, K53). A check whose failing state is the ordinary condition
+of ongoing work is a question; one whose failing state means somebody erred is a failed check, and this is
+the first kind.
+
+**The check is unaffected by a limit SysML leaves open, and a binding's owner should know the limit is
+theirs too.** Where two satisfying elements name one requirement, nothing says whether both are needed or
+either suffices; SysML records this as something asked for and not supplied, and this metamodel does not
+supply it either. *Is any element naming this requirement* has the same answer under both readings, because
+both need at least one. Only the stronger question — *is the requirement actually met* — divides on it, and
+that is verification, which this metamodel does not undertake (K7, K40).
 
 This has a consequence for traceability that a design language's owner should expect rather than go looking
 for a workaround to. A baseline is an instance of the requirement model, the product member of the
@@ -59,6 +93,15 @@ already bound to never changes underneath the elements bound to it, so a `satisf
 come to point at nothing. A requirement retired after that cut is absent from the next baseline instead, and
 that absence is the notice — when the design rebases onto the later baseline and the requirement it was
 built against is not there, what was built on it needs rework.
+
+**What that notice does not yet say is which kind of rework.** A requirement can be absent because it was
+replaced, in which case there is a successor to read and follow, or because it was dropped, in which case
+there is nothing to design for and the work comes out. The two demand different responses, and the metamodel
+cannot presently tell them apart: it records that a requirement is no longer in force without recording what
+took its place. That gap is named here rather than left for a binding's owner to discover, and it belongs to
+the Project Lifecycle Model, where what produces a decision is still being worked out. Until it closes, the
+answer is reachable but not by the model: every retirement arrives through a source (K11), so the source
+that caused it can be read.
 
 ## 3. Symmetry
 

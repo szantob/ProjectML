@@ -131,6 +131,20 @@ argument.
 |---|---|---|
 | K42 | The list of what a rule-set may state is not closed at three. Three are what the evidence found so far supports; an implementation needing to state a fourth kind of thing is evidence the metamodel must then account for, not a violation of it | The same structural argument K30 makes for a requirement kind's taxonomy applies one level over: a closed list here would fix one way of thinking about a process into the metamodel, which is exactly what K22 and K23 exist to refuse |
 
+## Decisions K51–K54
+
+Taken in [`05-binding-contract.md`](05-binding-contract.md), §2, which carries the full argument, and in
+[the design record of 2026-09-03 on the seam](../docs/superpowers/specs/2026-09-03-seam-cardinality-and-check-design.md),
+which settled them. Together they close OQ12. Each was reached by asking what SysML already does rather than
+by reasoning from first principles, which is what house rule 10 asks for where a source exists.
+
+| # | Decision | Reason |
+|---|---|---|
+| K51 | **The seam edge is many-to-many, with no bound in either direction.** A satisfying element may name any number of requirements, and a requirement may be named by any number of satisfying elements | Adopted: it is what SysML does in both of its versions. A bound either way would exclude design languages that organise differently, against K2, and no lower bound is meaningful because an element naming no requirement is not one the metamodel sees |
+| K52 | **The metamodel fixes the edge's multiplicity and not its shape.** How a design language writes the relationship down is its own business | SysML settles the shape two ways in one standard family — a stereotyped dependency in one version, a nested requirement usage in the next — so fixing it would bind one and not the other, and not hypothetically but for the language phase 2 binds |
+| K53 | **One check runs over the seam — which requirements in a baseline no satisfying element names — and it is a question rather than a failure.** It is stated in the binding contract | A requirement nothing satisfies is the normal state of one captured but not yet designed for: a check whose failing state is the ordinary condition of ongoing work is a question, not a failure. It sits in the binding contract because it reads the seam, and because K19 requires the requirement model to stay adoptable by a reader who has attached nothing |
+| K54 | **The metamodel describes the far side of the seam and does not name it**, in prose and in any diagram | K3 says the metamodel does not define what lies below the seam, and a class in a diagram half-defines what it draws. SysML does not name that side either. Naming it would also make K4's first declaration partly redundant |
+
 ## Open questions, OQ9–OQ11
 
 Raised in [the design record of 2026-09-02](../docs/superpowers/specs/2026-09-02-spec-structure-and-oq2-design.md),
@@ -142,12 +156,20 @@ which carries the full argument for each.
 | OQ10 | Does `verifies` become a second edge kind on the one seam? SysML puts verification as an edge from a verification element to a requirement, in the same direction and shape as `satisfies`. K4's first declaration would widen by one word to carry it. Nothing exercises it: no verification elements exist anywhere yet | Phase 2, where the SysML binding meets it, or later |
 | OQ11 | Does the metamodel need a subject? SysML requires every requirement to have one. The metamodel does not have one, and the `satisfies` edge appears to determine it, since SysML's own `satisfy` binds the subject to the enclosing element. If that is not enough, a binding must synthesise one, which is the shape a false K2 would take | Phase 2 — this is the binding's job to settle |
 
-## Open question OQ12
+## Open question OQ12 — answered
+
+**Answered by K51–K54, and no longer open.** Its three parts: the cardinality is K51 and K52, the check is
+K53, and the part asking whether the edge pins a baseline **dissolved on a false premise**. That part assumed
+a requirement's content can change while its identity persists. It cannot — a change to what a requirement
+obliges produces a new requirement rather than an edit — so an identity never changes meaning, an edge naming
+a requirement is unambiguous forever, and nothing had to be added. K54 was found while settling the first and
+is recorded with them. The question is kept here as it was asked, because what it got wrong is as much a part
+of the record as what it got right.
 
 Raised over the seam that [`05-binding-contract.md`](05-binding-contract.md) §2 states, and recorded here
 rather than answered there.
 
-| # | Question | When answerable |
+| # | Question, as asked | When answerable |
 |---|---|---|
 | OQ12 | Is the seam edge under-specified, and in what three respects? Its **cardinality** is fixed nowhere: whether one element may satisfy several requirements, and whether several elements may satisfy one. Every other edge in the collection fixes this and `satisfies` does not. The **check over the seam** that [`05-binding-contract.md`](05-binding-contract.md) §4.1 cites by name — whether every requirement in a baseline is satisfied by something — is stated in no document of the collection, and a declaration exists there to make a check computable that has never been written down. And whether the edge **pins a baseline** is undecided: a requirement's identity persists across baselines, so the edge as specified cannot distinguish satisfying a requirement as of one baseline from satisfying it as of another | Before the SysML v2 binding is written, not during it. That binding is phase 2's test of K2, and a phase filling holes in the seam while testing it cannot tell a false claim of symmetry from a gap it has just closed by hand. The question is a brainstorm's to answer rather than this collection's to settle in passing |
 
