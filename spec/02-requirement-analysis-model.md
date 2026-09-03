@@ -222,6 +222,34 @@ Passage anchoring adopts the W3C Web Annotation Data Model (D26), stated once fo
 none serves here: a `SourceNeed` anchors into a source before any requirement exists, at a stage SysML v2
 places outside itself and has nothing to say about.
 
+## 6. `SourceDecision`
+
+A `SourceDecision` is a `SourceStatement` (§4) whose passage records a decision as somebody stated it — a
+project manager's note that the client decided X, a client's own email settling a choice, a meeting record
+of an agreed outcome. Like `SourceNeed`, it carries nothing beyond `SourceElement`'s three shared attributes:
+identity, its anchor, and being material of record. What the decision means for the requirement model —
+what it retires, and, once the Project Lifecycle Model states the criterion, what it supersedes and what
+finding it closes — is not read off the `SourceDecision` itself; it is produced on the model's own side, by
+`refine`, as `RequirementDecision` (§10, §11).
+
+The name and its shape are adopted from the same source `SourceNeed`'s is: ISO/IEC/IEEE 42010's *Architecture
+Decision*, carried here as the record of a decision **as stated**, prefixed on K47's terms to mark it as
+belonging to this side of the model. The interpreted decision — the choice among alternatives, and the
+rationale for it — is not this element's to carry; §11 states where that interpretation lands and why.
+
+**A `SourceDecision` that produces no `RequirementDecision` is a failed check, not a question.** This is not
+a new rule: `SourceDecision` is a `SourceStatement`, and §4 already states that a `SourceStatement` producing
+nothing is a failed check (K38's rule, generalised by K45). Nothing about `SourceDecision` needs its own
+version of this rule; it inherits it.
+
+**A `RequirementDecision` never exists without a `SourceDecision` behind it, and this is the sharper,
+asymmetric half of the same pair.** Where an unrefined `SourceDecision` is a failed check — a record that
+can exist, awaiting resolution — a `RequirementDecision` with no `SourceDecision` origin is not a lesser
+version of the same problem; it is excluded outright, as not a well-formed element of this model at all (K61,
+K64, and §11 states the rule in full where `RequirementDecision` is defined). What stands for "a decision the
+modeller knows must be taken, but has not been" is a `RequirementQuestion` in the raised state (§11), never a
+bare `RequirementDecision`.
+
 ## 5. `RequirementDef`
 
 `RequirementDef` is **abstract**. No element in a model is a `RequirementDef` and nothing more: a definition
