@@ -84,6 +84,9 @@ specialisation hierarchy exists.
 classDiagram
     class Rule {
         <<abstract>>
+        identity
+        when it applies
+        what to consider
     }
     Rule <|-- ConflictRule
     Rule <|-- CompletenessRule
@@ -126,7 +129,42 @@ kind.
 
 ### `Rule`
 
-`Rule` is **abstract**. Its specialisations divide by **mechanism** — what happens when the rule fires — not
+**A `Rule` directs attention; it does not prescribe an outcome** (K83). It states which subjects must be
+dealt with when a requirement arises under the `RequirementDefinition` it hangs on — never what the
+resulting requirement should say. This is what keeps a rule-set from quietly becoming a second definition
+layer: a `RequirementDefinition` says what a requirement of some kind looks like, and section 1 already
+places what a requirement's wording should be outside a rule-set's territory entirely.
+
+**A negative answer to a subject a rule raises is a full answer.** Where a project decides it needs nothing
+in the subject raised, that decision appears as a `Requirement` like any other, and the `RequirementInquiry`
+`discharges` to it; while no such `Requirement` exists, the question stands open, which is
+`02-requirement-analysis-model.md` §11's existing rule rather than a new one (K79). That closing
+`Requirement` is produced the ordinary way — a source, a `SourceNeed`, `refine` — never by the question
+itself, so the commitment still enters through a source (K11) and the modeller's own instrument does not
+commit the project. A subject raised and declined therefore leaves a record, and a later reader asking why
+some subject carries no requirement finds an answer rather than silence.
+
+`Rule` is **abstract**, and carries three things.
+
+| Attribute | Carries |
+|---|---|
+| identity | Local to the `RequirementDefinition` that owns it; the full identifier is the composition of the two (K85) |
+| when it applies | One sentence stating when this rule is relevant. Prose, not an evaluable expression, on the same terms `02-requirement-analysis-model.md` §7's own *when it applies* is prose (D20) |
+| what to consider | The subject this rule raises: what has to be dealt with, never what the answer should be (K83, K84) |
+
+**The two prose fields are split so that the judgement below reads one of them rather than the whole rule.**
+Neither form is coined: a `RequirementDefinition` already carries a *when it applies* on exactly these terms,
+and a *what to ask* that raises a missing parameter where *what to consider* raises a missing subject, one
+level up. House rule 10 is met by adopting this collection's own established forms rather than inventing a
+third.
+
+**The identity is local because the attachment already is.** A `Rule` is reachable only through the
+`RuleSet` of the `RequirementDefinition` that owns it, so an identifier unique beneath that owner is unique
+in the model. **How the composition is written down is not fixed here**: spelling out a composed identifier
+would be notation, which K15 excludes, and an implementation's identifier space is exactly what
+`05-binding-contract.md`'s fourth declaration already leaves to it (K4).
+
+Its specialisations divide by **mechanism** — what happens when the rule fires — not
 by section 2's four descriptive rows, which remain a description of *subject matter*, closer to an open,
 `Source.kind`-shaped label than to a type boundary (K71). The two axes are independent and do not correlate
 one-to-one: two different subject-matter rows below share the same mechanism shape — *detect a gap, then
