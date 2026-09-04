@@ -713,15 +713,24 @@ chain as a direct, optional convenience reference, not in place of it: the chain
 connection always exists and is consistent; `discharges` is what lets a reader, or a checker, find the answer
 without walking three hops to get there. Both readings are true at once, deliberately.
 
-**Where a `RequirementQuestion` comes from is now settled for two mechanisms and open for the rest.** A
-`RequirementDefinition`'s own *what to ask* (§7) already covers a single missing parameter. A conflict
-between a new `Requirement` and an existing in-force one is `03-project-lifecycle-model.md` §3's
-`ConflictRule`, raising a `RequirementChoice`. A `Requirement` whose kind implies that another kind should
-also exist is that section's `CompletenessRule`, raising a `RequirementInquiry` — this was OQ17's own
-original case, now answered. Two further rule-set statements — whether a silent default must be owned, and
-when a gap's wait becomes a decision — do not yet have a worked mechanism, and whether either raises a
-`RequirementQuestion` the same way, or needs something structurally different, is recorded as OQ18 in
-`06-decisions.md`.
+**Every `RequirementQuestion` comes from a `Rule`, without exception** (K87). Its *triggered by* is never
+absent, because a rule-set is the procedure a project works to: it can be amended, but it cannot be departed
+from. A modeller who finds that no rule covers something proposes a rule — adding one is the project
+manager's act, since it commits the project (`03-project-lifecycle-model.md` §3) — rather than raising a
+question outside the procedure. This is the strongest available reading of the rule that every event record
+its cause: a `RequirementQuestion`'s cause is not merely guaranteed to exist, it is named.
+
+**A `RequirementDefinition`'s own *what to ask* (§7) is not a second origin.** It covers a single missing
+parameter through the definition's own machinery, which is why that case raises no `RequirementQuestion` at
+all.
+
+**Two mechanisms are worked out, and the rest are open.** A conflict between a new `Requirement` and an
+existing in-force one is `03-project-lifecycle-model.md` §3's `ConflictRule`, raising a `RequirementChoice`.
+A `Requirement` whose kind implies that another kind should also exist is that section's `CompletenessRule`,
+raising a `RequirementInquiry` — this was OQ17's own original case, now answered. Two further rule-set
+statements — whether a silent default must be owned, and when a gap's wait becomes a decision — do not yet
+have a worked mechanism, and whether either raises a `RequirementQuestion` the same way, or needs something
+structurally different, is recorded as OQ18 in `06-decisions.md`.
 
 **`RequirementQuestion` — both specialisations — belongs to the *review finding* family in the findings table
 below, not to the *failed check* or *question* rows** (K77). It is judged by whether a `Rule`'s condition
