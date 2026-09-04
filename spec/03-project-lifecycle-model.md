@@ -7,8 +7,10 @@ a term only where no standard has one, and this is that case for both.
 
 ## 1. What this is, and what it is not
 
-A **rule-set** is a model: what an organisation loads to state its own way of working, built with its own
-metamodel rather than being a layer of this one (K22). Different teams working in the same domain, on the
+A **rule-set** is a model: what a project loads to state its own way of working, built with its own metamodel
+rather than being a layer of this one (K22). How an organisation manages rule-sets across more than one
+project — export, import, version comparison between projects — is out of this model's scope; this document's
+own scope is one project, the same scope every other member of the collection keeps (K70). Different teams working in the same domain, on the
 same requirement analysis model, load different rule-sets, and they do not thereby stand at different
 levels. K16's three levels — metamodel, implementation, project model — are untouched.
 
