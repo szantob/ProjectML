@@ -260,7 +260,7 @@ The name is adopted rather than coined. SysML v2 splits an element into a defini
 `RequirementDef` is the definition half of that split on the same terms: the thing a requirement is produced
 under, not the requirement itself.
 
-A definition carries seven things. This is the **core** — what the metamodel can interpret, or can fail on,
+A definition carries eight things. This is the **core** — what the metamodel can interpret, or can fail on,
 without reading anything an implementation supplies (K27).
 
 | Attribute | What it is |
@@ -272,8 +272,9 @@ without reading anything an implementation supplies (K27).
 | parameters | Each parameter declares a value domain. Which domains exist is an implementation's business, exactly as the set of kinds is (K30, and `04-value-states.md` §5) |
 | what to ask | For each parameter, how a non-expert is asked for what is missing |
 | how it would be verified | The method by which a requirement produced under this definition would be shown to hold. Prose |
+| wording rule | A well-formedness rule for the wording a requirement produced under this definition must satisfy. Prose, on the same terms *how it would be verified* is prose (K66) |
 
-Two of the seven bottom out in the value-state model rather than in anything a design language supplies. A
+Two of the eight bottom out in the value-state model rather than in anything a design language supplies. A
 parameter with no value is a value in the unknown state like any other, and the ask is how that value is
 obtained from somebody who holds it — which is why *what to ask* sits beside *parameters* and is written per
 parameter rather than per definition.
@@ -287,15 +288,25 @@ carries one is verifiable in 29148's sense without carrying the method itself. W
 instance-side is not the method but what actually verified one particular requirement, and nothing in this
 model carries that today; OQ10 records the edge that would (K29).
 
-**What the metamodel does not say about any of the seven is how it is written down.** Two definitions
-carrying the same seven things are the same definition to this metamodel however differently they are set
+**Why a definition also states a wording rule, beside its template.** *text* gives the structural template a
+requirement's wording is produced from; it says nothing about the qualities that wording must have once
+produced. `03-project-lifecycle-model.md` §1 already states, of a rule-set, that it *"says nothing about...
+what a requirement's wording should be"* — which settles where such a rule does **not** belong, without saying
+where it does. ISO/IEC/IEEE 29148's own *characteristics of a good requirement* (unambiguous, singular, and so
+on) is exactly this second, missing thing, generic to a kind rather than to one requirement, which is what
+places it on the definition rather than the instance (K66). The seam test and the record test both admit it
+on exactly the argument that seated *how it would be verified* (K29): the rule can be stated without resolving
+a reference to an element the metamodel does not define, and a stated rule can fail on its absence.
+
+**What the metamodel does not say about any of the eight is how it is written down.** Two definitions
+carrying the same eight things are the same definition to this metamodel however differently they are set
 out. Beyond the core, a definition holds whatever an implementation's own notation and rule-set need: the
 core is a floor the metamodel can reason over, not a ceiling (K27).
 
 ## 8. What is not on a `RequirementDef`, and the two tests
 
 The list in section 7 needs a criterion that outlives it, because the next attribute somebody proposes will
-not be one of the seven. Two tests decide the question, and they are stated here in full, because they are
+not be one of the eight. Two tests decide the question, and they are stated here in full, because they are
 the part of this section a later reader actually reuses.
 
 > **The seam test.** An attribute belongs to the metamodel if the metamodel can interpret it without
@@ -315,7 +326,7 @@ record test does not require: it is satisfied by a rule that fails on an attribu
 how *how it would be verified* passes without anything ever reading its prose. Section 12 states the rule
 that does it.
 
-The two tests are independent of each other. How they relate, and what that relation costs one of the seven,
+The two tests are independent of each other. How they relate, and what that relation costs one of the eight,
 is stated at the end of this section, after the one candidate both of them reject.
 
 **The one candidate that fails both.** A rule attached to a definition, stating what must hold of the design
@@ -339,7 +350,7 @@ settling it is the binding's job.
 
 **They are not a conjunction, and on the core they do not agree everywhere.** An earlier reading of this
 section said they did. It had one candidate to reason from, and that candidate fails both tests on a single
-structural fact, so it could not have separated them however they related. Applied to the seven, they
+structural fact, so it could not have separated them however they related. Applied to the eight, they
 separate. Section 12 states the syntactic constraints this model genuinely carries, and no rule among them
 fails on *when it applies*: its absence is deliberately a gap rather than a claim, so the rule that is
 available over it reports rather than fails, and the record test's word is *fail*. Nor does any of them fail
@@ -356,20 +367,6 @@ write in an afternoon, and an attribute's place in a metamodel cannot turn on wh
 it. The seam test has no such weakness. Whether an attribute can be interpreted without resolving a reference
 to an element the metamodel does not define is a fact about the attribute, unchanged by which rules happen to
 exist over it.
-
-Section 7's own definition of the core already reads this way, in one word: the core is what the metamodel
-**can interpret, or can fail on**, without reading anything an implementation supplies. The two clauses are
-the two tests, and the connective between them is *or*. An attribute the metamodel can carry without opening
-a second seam is in the core; an attribute a stated rule can fail on is in the core and is checkable as well.
-
-**Where this leaves *when it applies*: it stays.** It is admitted by the seam test, being one sentence of
-prose that resolves nothing the metamodel does not define. It is not load-bearing under the record test, and
-it cannot be made so without reversing the position that its absence is a gap and not a claim — a position
-taken deliberately, because a definition whose applicability nobody wrote down is not thereby one that
-applies unconditionally, and a rule failing on the absence would report a defective record where what is
-actually there is a question for whoever knows. Admitting this costs nothing the collection needs: the record
-test's verdict on an attribute is a report on how much work that attribute does, not a verdict on whether it
-belongs. Recorded as K36 in `spec/06-decisions.md`.
 
 ## 9. Requirement kinds are specialisations
 
