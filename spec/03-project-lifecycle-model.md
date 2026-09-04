@@ -202,14 +202,25 @@ state, rather than a per-instance obligation, is what keeps a growing model from
 combinatorially — once the implied kind exists once, the query returns no gap for every requirement
 thereafter, without anything needing to be closed by hand.
 
-### Matching a `Rule`'s condition
+### Walking a `RuleSet`
 
-**Whether a `Rule`'s free-text condition holds of a free-text `Requirement` is a semantic constraint (K24),
-not a syntactic one** (K76). The metamodel does not guarantee this runs exhaustively or automatically; it is
-carried out by judgement, human or AI, on the same terms `00-overview.md` §5 and
-`02-requirement-analysis-model.md` §11 already hold extraction completeness to (K40, K41). Both a `Rule`'s
-condition and a `Requirement`'s wording are prose; nothing decides whether one matches the other without
-reading content.
+**A `RuleSet` is a written procedure, and matching is a relevance judgement made while walking it** (K86).
+When a new requirement arises in a subject, the `RuleSet`s that reach it are walked, and a reader — human or
+AI — judges which entries are relevant by reading each rule's *when it applies*. This is not the evaluation
+of a condition for its truth value against a requirement, which is how K76 first described it; that
+description is corrected here, its verdict is not.
+
+**The verdict stands: this is a semantic constraint (K24), not a syntactic one.** The meaning of free text is
+matched against the meaning of free text, which no conventional algorithm decides. The metamodel does not
+guarantee the walk runs exhaustively or automatically; it is carried out by judgement, on the same terms
+`00-overview.md` §5 and `02-requirement-analysis-model.md` §11 already hold extraction completeness to (K40,
+K41).
+
+**Which `RuleSet`s reach a requirement needs no new concept.** A `RuleSet` hangs on a
+`RequirementDefinition`, and the `RequirementDefinition` hierarchy is the subject hierarchy — so the rules
+relevant in a subject are exactly those on that `RequirementDefinition` and its ancestors, which is the walk
+the rule above already defines (K69). Nothing here adds a notion of *subject* beside the one the
+specialisation tree already carries.
 
 ## 4. What the metamodel does not do
 
