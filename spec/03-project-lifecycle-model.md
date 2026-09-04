@@ -122,6 +122,41 @@ silent-vs-owned-default rule and a gap-timeout rule, section 2's first and secon
 document does not claim they share this shape merely because they would sit in the same abstract type's
 specialisation list; whether either does is recorded as OQ18 in `06-decisions.md` (K72).
 
+### `ConflictRule`
+
+A `ConflictRule` fires when a new `Requirement` contradicts an existing in-force one, and raises a
+`RequirementChoice` (`02-requirement-analysis-model.md` §11) naming the alternatives a reviewer must choose
+among (K73). *"No requirement may contradict an active requirement,"* stated once at the `RequirementDef`
+root and inherited everywhere by the rule above, is this mechanism's canonical case. This sharpens section 2's
+third row — *how a conflict of a given kind is resolved* — which describes only the resolution half;
+detection is the other half a `Rule` must also carry, and resolution is exactly what a `RequirementChoice`,
+discharged by a `RequirementDecision`, records.
+
+### `CompletenessRule`
+
+A `CompletenessRule` fires when a `RequirementDef` kind is present without an implied companion kind, and
+raises a `RequirementInquiry` (`02-requirement-analysis-model.md` §11) (K74). This is the case section 2's
+fourth row now states directly: *"which other requirement kinds a given kind implies should also be
+present."*
+
+**The check is set-level, not per-instance.** It asks whether at least one `Requirement` of the implied kind
+exists anywhere the rule's `RequirementDef` reaches, never whether every triggering `Requirement` has its own
+(K75). Consequently, while a given `CompletenessRule`'s gap stays open, a newly triggering `Requirement`
+extends the existing open `RequirementInquiry`'s list of triggering requirements rather than raising a second
+one: **at most one open `RequirementInquiry` per `Rule` at a time.** Reading the check as a query over current
+state, rather than a per-instance obligation, is what keeps a growing model from re-triggering the same rule
+combinatorially — once the implied kind exists once, the query returns no gap for every requirement
+thereafter, without anything needing to be closed by hand.
+
+### Matching a `Rule`'s condition
+
+**Whether a `Rule`'s free-text condition holds of a free-text `Requirement` is a semantic constraint (K24),
+not a syntactic one** (K76). The metamodel does not guarantee this runs exhaustively or automatically; it is
+carried out by judgement, human or AI, on the same terms `00-overview.md` §5 and
+`02-requirement-analysis-model.md` §11 already hold extraction completeness to (K40, K41). Both a `Rule`'s
+condition and a `Requirement`'s wording are prose; nothing decides whether one matches the other without
+reading content.
+
 ## 4. What the metamodel does not do
 
 **The metamodel states no rules.** It names this model and says what a rule-set may state; the rule itself —
