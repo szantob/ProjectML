@@ -637,11 +637,38 @@ assumed and derived, for the same reason.
 
 ### `RequirementQuestion`
 
-A `RequirementQuestion` is what the modeller must find out (K49) — the model-side record of a gap the
-modeller has identified, before anybody has been asked to close it. It is not itself a `SourceQuestion`: it
-crosses outward, by `poses` (K59), into one once the modeller actually puts the question to somebody.
+`RequirementQuestion` is **abstract**. What the modeller must find out (K49) — the model-side record of a gap
+the modeller has identified, before anybody has been asked to close it — is common to every specialisation,
+and it is abstract because K79 gives it two.
 
-A `RequirementQuestion` carries one of two states (K60).
+```mermaid
+classDiagram
+    class RequirementQuestion {
+        <<abstract>>
+        identity
+        statement
+        triggered by (Rule)
+        triggering Requirements
+        state: raised | posed
+    }
+    class RequirementChoice {
+        candidate alternatives
+    }
+    RequirementQuestion <|-- RequirementInquiry
+    RequirementQuestion <|-- RequirementChoice
+```
+
+The diagram draws what this subsection states; where the two disagree, the prose wins.
+
+A `RequirementQuestion` carries, beyond its identity, three things shared by every specialisation (K78).
+
+| Attribute | Carries |
+|---|---|
+| statement | A free, professional-register text statement of the question |
+| triggered by | A reference to the `Rule` (`03-project-lifecycle-model.md` §3) that fired and produced it |
+| triggering `Requirement`s | Every `Requirement` that triggered it. List-valued, and may grow while the question stays open (`03-project-lifecycle-model.md` §3, K75) |
+
+It also carries one of two states (K60).
 
 | State | Meaning |
 |---|---|
@@ -649,28 +676,63 @@ A `RequirementQuestion` carries one of two states (K60).
 | posed | A `poses` edge names an actual `SourceQuestion` — the edge's presence is the transition itself, not
   a marker recorded beside it |
 
-**What happens after posing — whether and how the question is answered — carries no state here.** That
-discharge is OQ13's own territory, which this document does not attempt to close; `RequirementQuestion`
-gives OQ13 the *opening* half of the interval it asks about, and no more.
+It is not itself a `SourceQuestion`: it crosses outward, by `poses` (K59), into one once the modeller actually
+puts the question to somebody. **What happens after posing — whether and how the question is answered —
+carries no further state here.** That discharge is OQ13's own territory, which this document does not attempt
+to close; `RequirementQuestion` gives OQ13 the *opening* half of the interval it asks about, and no more.
 
-**Closing a `RequirementQuestion` needs no dedicated edge to `RequirementDecision`.** The connection is
-already traceable through machinery this document already has: `RequirementQuestion` --poses-->
-`SourceQuestion`, whose source a later source `answers` (§3); if that answering source carries a
-`SourceDecision`, it `refine`s into the `RequirementDecision` that answers the question. Nothing new is
-needed to follow the chain from one to the other (K61).
+**`RequirementQuestion` specialises into `RequirementInquiry` and `RequirementChoice`, one per mechanism
+`03-project-lifecycle-model.md` §3 names** (K79). Both carry `discharges`: an edge to whatever closes them,
+optional because it is absent for as long as the question stands open. `RequirementInquiry` discharges to a
+`Requirement`; `RequirementChoice` discharges to a `RequirementDecision`.
 
-**Where a `RequirementQuestion` comes from — what triggers the modeller to raise one, beyond an individual
-value's own gap — is not settled by this document.** One case that motivates a class of them: a
-`RequirementDef`'s own *what to ask* (§7) already covers a single missing parameter, but a `Requirement`
-whose kind implies that other kinds of `Requirement` should also exist is a different, broader gap, and how
-that implication is stated is Project Lifecycle Model territory this document does not enter. This is
-recorded as OQ17 in `06-decisions.md`.
+`discharges` is a coined edge rather than a reuse of `answers`: `answers` is a `Source`↔`Source`, evidentiary
+edge — one passage of material responding to another — where `discharges` names, on the model's own side,
+what closed a question, a different kind of relationship entirely. Reusing `answers` here would blur exactly
+the distinction K47 draws between the two sides of this model. The word itself is not new to this collection:
+OQ13 already speaks of *"its discharge"* as the machinery it still asks for, and `discharges` names the
+phenomenon the corpus was already calling by this word.
 
-This metamodel introduces no `Task`, or any output shaped like one, for a `RequirementQuestion` in the
-raised state. The state itself is already the complete signal: querying for raised `RequirementQuestion`s
-is finding the worklist, on the same terms K53 already reads an unsatisfied requirement without a dedicated
-element for it (see `05-binding-contract.md` §2), and `00-overview.md` §1 excludes task-shaped vocabulary
-from this metamodel by name (K65).
+**`RequirementInquiry` carries nothing beyond the shared shape above and its `discharges` edge** (K80). A
+completeness gap (`03-project-lifecycle-model.md` §3) names a missing kind, and the shared *triggering
+`Requirement`s* list plus the `Rule` itself already identify it in full — nothing further is needed before
+discharge.
+
+**`RequirementChoice` additionally carries the candidate alternatives being decided among** (K80). A conflict
+needs the options named before anyone can decide among them, and these alternatives deliberately prefigure
+what `RequirementDecision`'s own *the choice* attribute (above) will record once discharged — the same
+alternatives, read once as open and once as settled.
+
+**Closing a `RequirementInquiry` or `RequirementChoice` needs no dedicated edge to reach a
+`RequirementDecision`, and `discharges` does not change that.** The connection was already traceable through
+machinery this document has independently of `discharges`: `RequirementQuestion` --poses--> `SourceQuestion`,
+whose source a later source `answers` (§3); if that answering source carries a `SourceDecision`, it `refine`s
+into the `RequirementDecision` that answers the question (K61). `discharges` sits *beside* that traceable
+chain as a direct, optional convenience reference, not in place of it: the chain is what guarantees the
+connection always exists and is consistent; `discharges` is what lets a reader, or a checker, find the answer
+without walking three hops to get there. Both readings are true at once, deliberately.
+
+**Where a `RequirementQuestion` comes from is now settled for two mechanisms and open for the rest.** A
+`RequirementDef`'s own *what to ask* (§7) already covers a single missing parameter. A conflict between a new
+`Requirement` and an existing in-force one is `03-project-lifecycle-model.md` §3's `ConflictRule`, raising a
+`RequirementChoice`. A `Requirement` whose kind implies that another kind should also exist is that section's
+`CompletenessRule`, raising a `RequirementInquiry` — this was OQ17's own original case, now answered. Two
+further rule-set statements — whether a silent default must be owned, and when a gap's wait becomes a decision
+— do not yet have a worked mechanism, and whether either raises a `RequirementQuestion` the same way, or needs
+something structurally different, is recorded as OQ18 in `06-decisions.md`.
+
+**`RequirementQuestion` — both specialisations — belongs to the *review finding* family in the findings table
+below, not to the *failed check* or *question* rows** (K77). It is judged by whether a `Rule`'s condition
+holds (`03-project-lifecycle-model.md` §3, K76), it is modelled, and it carries state (K60) — the three
+properties that table already uses to seat *review finding* apart from the other two. Nothing about
+`RequirementQuestion` changes because of this: it is a naming of what it already is, for a reader who reaches
+the table below looking for where it fits.
+
+This metamodel introduces no `Task`, or any output shaped like one, for a `RequirementQuestion` in the raised
+state. The state itself is already the complete signal: querying for raised `RequirementQuestion`s is finding
+the worklist, on the same terms K53 already reads an unsatisfied requirement without a dedicated element for
+it (see `05-binding-contract.md` §2), and `00-overview.md` §1 excludes task-shaped vocabulary from this
+metamodel by name (K65).
 
 ### Findings
 
