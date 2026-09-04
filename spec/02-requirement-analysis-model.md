@@ -732,12 +732,23 @@ statements — whether a silent default must be owned, and when a gap's wait bec
 have a worked mechanism, and whether either raises a `RequirementQuestion` the same way, or needs something
 structurally different, is recorded as OQ18 in `06-decisions.md`.
 
-**`RequirementQuestion` — both specialisations — belongs to the *review finding* family in the findings table
-below, not to the *failed check* or *question* rows** (K77). It is judged by whether a `Rule`'s condition
-holds (`03-project-lifecycle-model.md` §3, K76), it is modelled, and it carries state (K60) — the three
-properties that table already uses to seat *review finding* apart from the other two. Nothing about
-`RequirementQuestion` changes because of this: it is a naming of what it already is, for a reader who reaches
-the table below looking for where it fits.
+**`RequirementQuestion` is not a *review finding*, and belongs to no row of the findings table below** (K89,
+narrowing K77). It does share the three properties that table uses to seat a review finding apart from the
+other two — it is judged, it is modelled, and it carries state (K60) — but the table classifies what a
+**review** produces over this model (K10), and walking a rule-set is ordinary modelling work performed when a
+requirement arises, not a separate act of review.
+
+The table's own rules confirm the separation rather than merely failing to fit it. A review finding *"is
+opened by a source"*, where a `RequirementQuestion` is raised by a `Rule` firing over the model; and
+*"nothing marks a finding closed directly"*, where `discharges` does exactly that.
+
+**Three checking modes exist, and only two had names before this.** Static model checking decides without
+judgement and produces a failed check or a question, recomputed rather than modelled. Walking a `RuleSet`
+takes judgement and produces a `RequirementQuestion` (`03-project-lifecycle-model.md` §3, K86). A review
+takes judgement and produces a review finding. K77 saw only the first distinction — judgement or none — and
+so placed `RequirementQuestion` with review findings on the strength of the three shared properties. What a
+review *is*, as an act, this document still does not state; that gap is recorded as OQ23 in
+`06-decisions.md`.
 
 This metamodel introduces no `Task`, or any output shaped like one, for a `RequirementQuestion` in the raised
 state. The state itself is already the complete signal: querying for raised `RequirementQuestion`s is finding
