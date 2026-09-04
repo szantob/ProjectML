@@ -34,9 +34,9 @@ how a gap is resolved without either of them having climbed down a level the oth
 
 ## 2. What a rule-set may state
 
-A rule-set states three kinds of thing. That count is what the evidence found so far supports, not a
-ceiling the metamodel places on it: the list is not closed, and an implementation needing to state a fourth
-kind of thing is evidence the metamodel must then account for, not a violation of it.
+A rule-set states four kinds of thing. That count is what the evidence found so far supports, not a ceiling
+the metamodel places on it: the list is not closed at four either, and an implementation needing to state a
+fifth kind of thing is evidence the metamodel must then account for, not a violation of it.
 
 **The same argument applies here as one level over.** A requirement kind is deliberately not fixed by the
 metamodel, and the reason is structural rather than a courtesy: a fixed taxonomy would fix a single
@@ -55,13 +55,21 @@ K42 in [`06-decisions.md`](06-decisions.md).
 | Whether an applied default may be silent, or must be owned by somebody | Nothing today says which defaults are a choice somebody must answer for |
 | When a gap stops being waited on and becomes a decision | Nothing today says at what point waiting ends |
 | How a conflict of a given kind is resolved | Nothing today says who resolves what, or how |
+| Which other requirement kinds a given kind implies should also be present | Nothing today says whether one requirement's kind, on its own, calls for other kinds to co-exist |
 
-These three are not proposed here; they are measured. EventML's v0.5 record counted what its 22 written
+The first three are not proposed here; they are measured. EventML's v0.5 record counted what its 22 written
 requirement definitions already carried — when a definition applies, what it needs, how a missing value is
 asked for, how it would be verified — and found exactly these three missing, each sitting at the moment
 somebody has to act rather than merely read. The founding record's OQ6 reasons from that same list when it
 argues the kernel needs a repository of its own, on the ground that not one item on it is specific to any one
 domain: the three statements above are kernel material for the same reason the rest of that list was.
+
+**The fourth was not found the same way, and is kernel material on a different ground.** It was not among
+EventML's own v0.5 gaps; it surfaced instead while working out how a `RequirementQuestion` references what
+fires on it (`02-requirement-analysis-model.md` §11), and section 3's `CompletenessRule` states its mechanism.
+It passes the same test the other three do — nothing about which requirement kinds imply which companions is
+specific to any one domain — which is what earns it a place in this table on K42's own terms rather than as an
+exception to them.
 
 **They are stated per kind, not per definition.** A rule-set says how a default belonging to a kind of
 requirement is treated, how long a gap of that kind is waited on, how a conflict between requirements of that
