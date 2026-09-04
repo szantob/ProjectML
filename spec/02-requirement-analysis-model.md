@@ -368,6 +368,20 @@ it. The seam test has no such weakness. Whether an attribute can be interpreted 
 to an element the metamodel does not define is a fact about the attribute, unchanged by which rules happen to
 exist over it.
 
+Section 7's own definition of the core already reads this way, in one word: the core is what the metamodel
+**can interpret, or can fail on**, without reading anything an implementation supplies. The two clauses are
+the two tests, and the connective between them is *or*. An attribute the metamodel can carry without opening
+a second seam is in the core; an attribute a stated rule can fail on is in the core and is checkable as well.
+
+**Where this leaves *when it applies*: it stays.** It is admitted by the seam test, being one sentence of
+prose that resolves nothing the metamodel does not define. It is not load-bearing under the record test, and
+it cannot be made so without reversing the position that its absence is a gap and not a claim — a position
+taken deliberately, because a definition whose applicability nobody wrote down is not thereby one that
+applies unconditionally, and a rule failing on the absence would report a defective record where what is
+actually there is a question for whoever knows. Admitting this costs nothing the collection needs: the record
+test's verdict on an attribute is a report on how much work that attribute does, not a verdict on whether it
+belongs. Recorded as K36 in `spec/06-decisions.md`.
+
 ## 9. Requirement kinds are specialisations
 
 A requirement kind is a **specialisation of `RequirementDef`**, never an attribute on it (K30). Three reasons
