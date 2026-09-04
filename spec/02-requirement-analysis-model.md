@@ -952,6 +952,9 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 - A `RequirementQuestion`'s identity is unique among every `RequirementQuestion` in the model (§11).
 - No element is a `RequirementQuestion` and nothing more: every `RequirementQuestion` in a model is an
   instance of `RequirementInquiry` or `RequirementChoice` (§11, K79).
+- A `RequirementQuestion` names exactly one `Rule` as the origin that produced it. One naming none is not a
+  well-formed element of this model, on the same footing as a `RequirementDecision` naming no `SourceDecision`
+  (§11, `03-project-lifecycle-model.md` §3, K61, K87).
 - A `RequirementQuestion` carries exactly one of "raised" or "posed" at any time. A `RequirementQuestion` in
   the posed state names, by its `poses` edge, exactly the `SourceQuestion` that made it so (§11, K60).
 - A `RequirementInquiry`'s `discharges` edge, where present, names a `Requirement`. A `RequirementChoice`'s
