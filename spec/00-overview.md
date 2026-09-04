@@ -107,7 +107,7 @@ decision the collection rests on (K31).
 ## 3. The three levels
 
 There are three levels, not two, and the boundary §4 states is a boundary at the top of them (K16). A
-metamodel says what a `RequirementDef` is; an implementation is a filled set of them, together with the
+metamodel says what a `RequirementDefinition` is; an implementation is a filled set of them, together with the
 notation that writes them down and the rule-set a project may vary as it runs; a project model is what an
 adopting team builds with that implementation, checked against it the way the implementation is checked
 against the metamodel. An implementation is therefore itself a metamodel, for the project models built
@@ -161,7 +161,7 @@ The test is why the following never appears here, whatever else about this colle
 - a schema or a grammar, for the reason a notation does not appear: there is no concrete syntax here to give
   one to;
 - a filled definition — an actual kind of requirement, with its own name, its own wording, its own
-  parameters — because the metamodel says what a `RequirementDef` is and holds none itself; the moment one
+  parameters — because the metamodel says what a `RequirementDefinition` is and holds none itself; the moment one
   element goes into a definition, the sentence that names it is no longer true of a project modelled any
   other way, and the test above has failed it;
 - a worked example in a notation, because a worked example is written in one, and there is none to write it
@@ -220,7 +220,7 @@ things are true of all of them (K32).
 
 A diagram here is a metalanguage. CLAUDE.md already draws the line every diagram in this collection stays
 inside of: "an abstract-syntax diagram is not notation; it is how a metamodel is drawn." Drawing
-`RequirementDef` as an abstract type with placeholder subtypes named after no real kind is not giving a
+`RequirementDefinition` as an abstract type with placeholder subtypes named after no real kind is not giving a
 requirement kind a concrete syntax; it is saying, in a second medium, exactly what the prose beside it
 already says in the first.
 

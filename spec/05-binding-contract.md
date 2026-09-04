@@ -8,7 +8,7 @@ not the founding record, not the other members of the collection beyond the two 
 model — and no acquaintance with any design language that has already attached. It states what attaching
 underneath ProjectML requires, and nothing more. What it does not ask for is an implementation. K18 draws that line
 precisely: a binding carries K4's four declarations and none of an implementation's three burdens — no
-notation, no filled set of `RequirementDef`s, and no rule-set a project may vary as it runs. Writing a
+notation, no filled set of `RequirementDefinition`s, and no rule-set a project may vary as it runs. Writing a
 binding against this document is one undertaking; building an implementation on top of it is a separate,
 later one, and this document does not ask for it.
 
