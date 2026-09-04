@@ -175,6 +175,12 @@ Taken in [the design record of 2026-09-04](../docs/superpowers/specs/2026-09-04-
 itself. Written into `spec/` by that same plan. K74 and K78 together answer OQ17's own question; the plan
 narrows OQ17 to what was only ever gathered beside it, and opens OQ18–OQ19.
 
+**Three of these rows have since been revised, and stand here as taken.** K68's cardinality is corrected by
+K82; K76's description of the matching mechanism — not its verdict — by K86; and K77's classification is
+narrowed by K89. All three are in
+[the design record of 2026-09-04 on `Rule`'s shape](../docs/superpowers/specs/2026-09-04-rule-shape-design.md).
+A decision record keeps its history, on the same terms K34 is kept beside K35.
+
 | # | Decision | Reason |
 |---|---|---|
 | K66 | `RequirementDefinition` carries an eighth attribute: a well-formedness rule for the wording a requirement produced under it must satisfy | The seam test and the record test both pass, on the argument that already seated *how it would be verified* (K29): a well-formedness rule is exactly ISO/IEC/IEEE 29148's *characteristics of a good requirement*, generic to a kind rather than to one requirement |
@@ -193,6 +199,25 @@ narrows OQ17 to what was only ever gathered beside it, and opens OQ18–OQ19.
 | K79 | `RequirementQuestion` specialises into `RequirementInquiry` and `RequirementChoice`, one per mechanism K72 names. Both carry `discharges`, optional, to whatever closes them — `RequirementInquiry` to a `Requirement`, `RequirementChoice` to a `RequirementDecision` | `discharges` is coined rather than reusing `replies`: `replies` is a `Source`↔`Source` evidentiary edge, and this is a different kind of relationship, on the model's own side of K43's axis. The word is already live in this collection's vocabulary, in OQ13's "its discharge" |
 | K80 | `RequirementInquiry` carries nothing beyond the shared shape and `discharges`. `RequirementChoice` additionally carries the candidate alternatives being decided among | A completeness gap names a missing kind, which the shared shape already identifies in full. A conflict needs its options named before anyone can decide among them, and these alternatives prefigure `RequirementDecision.the choice` once discharged |
 | K81 | `ConflictRule` and `CompletenessRule` name K73 and K74's two worked `Rule` mechanisms | Neither name is stated in the design record, which refers to them only descriptively. No standard names a rule-firing mechanism of this shape, so house rule 10's coining clause applies; each name is taken directly from the descriptive phrase that already identifies it, on the same grounds K59 coined `poses` from K48's own description. Recorded here rather than in the design record because it is this plan's own naming decision, not one the design record itself took |
+
+## Decisions K82–K89
+
+Taken in [the design record of 2026-09-04 on `Rule`'s shape](../docs/superpowers/specs/2026-09-04-rule-shape-design.md),
+which carries the full argument for each. Written into `spec/` by
+[the integration plan of 2026-09-04](../docs/superpowers/plans/2026-09-04-rule-shape-integration-plan.md).
+Together they close OQ20 and open OQ21–OQ23. K82 revises K68, K86 revises K76's description of the mechanism
+but not its verdict, and K89 narrows K77.
+
+| # | Decision | Reason |
+|---|---|---|
+| K82 | Exactly one `RuleSet` belongs to each `RequirementDefinition`, and it may be empty. Revises K68, which made it zero or one | The distinction between no `RuleSet` and an empty one carries no meaning, and removing it removes a null case from every reading of the structure |
+| K83 | A `Rule` directs attention rather than prescribing an outcome: it states which subjects must be dealt with, never what the resulting requirement should say. A negative answer to a subject it raises is a full answer, appearing as a `Requirement` the `RequirementInquiry` discharges to; while none exists the question stands open (K79). That closing `Requirement` is produced the ordinary way, never by the question itself | A rule that prescribed content would state what a requirement's wording should be, which `03-project-lifecycle-model.md` §1 already puts outside a rule-set's territory and K66 places on `RequirementDefinition`. Keeping the closing `Requirement` on the ordinary route protects K11 and the actor rule at once, and leaves a record for a subject raised and declined |
+| K84 | A `Rule` carries an identity, a *when it applies*, and a *what to consider*. Both prose fields, neither an evaluable expression | The split lets the relevance judgement read one field rather than the whole rule. Neither form is coined: `RequirementDefinition` already carries a *when it applies* on these terms (D20), and a *what to ask* raising a missing parameter where *what to consider* raises a missing subject |
+| K85 | A `Rule`'s identity is local to the `RequirementDefinition` that owns it; the full identifier is the composition of the two. How that composition is written down is not fixed | Locality follows the structural attachment K68 establishes. Refusing to fix the spelling is K15 holding — a composed identifier written out would be notation — and an identifier space is what K4's fourth declaration leaves to an implementation |
+| K86 | Rule-matching is a relevance judgement made while walking a `RuleSet`, not the evaluation of a condition against a `Requirement`. The semantic classification K76 gives is unchanged; its description of the mechanism is corrected | A rule-set is a written procedure walked when a requirement arises in its subject, and a reader judges which entries are relevant. The correction also shows *subject* needs no new concept: the `RequirementDefinition` hierarchy is the subject hierarchy, so the rules relevant in a subject are those K69's inheritance already reaches |
+| K87 | A `RequirementQuestion`'s *triggered by* is mandatory, without exception. `spec/02` §11's wording, which read a `RequirementDefinition`'s *what to ask* as a second origin, is corrected | The rule-set is the procedure: amendable, but not departable-from. A modeller who finds no rule covering something proposes a rule, and proposing is as far as the modeller goes, since adding one commits the project and is the project manager's act. Every `RequirementQuestion`'s cause is therefore named, not merely guaranteed |
+| K88 | A `Rule` carries no provenance. The metamodel does not record what produced a rule or who approved it | K46's boundary from the other side: a rule-set is one of the procedures K46 says the metamodel cannot see behind. The chain does not break where it matters — a rule commits nothing and decides nothing, and the project manager's answer to the question it raises enters as a source under K11 |
+| K89 | A `RequirementQuestion` is not a *review finding* and belongs to no row of `spec/02` §11's findings table. It is the product of a third checking mode: static model checking needs no judgement, walking a `RuleSet` does and produces a `RequirementQuestion`, review does and produces a review finding. Narrows K77 | The table classifies what a *review* produces (K10), and walking a rule-set is ordinary modelling work, not an act of review. The table's own rules confirm it: a review finding is opened by a source where a `RequirementQuestion` is raised by a rule firing, and nothing marks a finding closed directly where `discharges` does. K77 saw only the judgement/no-judgement distinction |
 
 ## Decisions K51–K54
 
@@ -339,7 +364,15 @@ Raised in [the design record of 2026-09-03 on the source-element hierarchy](../d
 |---|---|---|
 | OQ15 | Is implementation a new edge, or the generalisation of one that already exists? The refinement edge already runs from a requirement to the needs it refines, which is the inward half of K48 under another name — and that name is adopted from SysML v2, so it cannot simply be replaced | With OQ14, and for the same reason: it is a question about the model side |
 
-## Open question OQ20
+## Open question OQ20 — answered
+
+**Answered by K82–K89, and no longer open.** Its three parts were answered, but not in the form they were
+asked — two corrections reframed the question first. `Rule`'s attributes are K84's three plus K85's
+locality, reachable only once K83 settled what a rule is *for*. *triggered by* turned out to need no
+optional form at all: K87 makes it mandatory without exception, because a rule-set is a procedure that can
+be amended but not departed from. And K77's classification was not qualified but narrowed — K89 finds that
+`RequirementQuestion` belongs to no row of the findings table, being the product of a third checking mode
+the table never named. The question is kept below as it was asked.
 
 Raised in this session's own whole-branch review of the K66–K81 integration (2026-09-04), not in a design
 record — three related gaps in `Rule`'s shape, found only once the material was read as a finished whole
@@ -370,6 +403,17 @@ exception, is open.
 | # | Question | When answerable |
 |---|---|---|
 | OQ20 | What is `Rule`'s full attribute shape (at minimum, whatever an identity and a condition require); is `RequirementQuestion`'s *triggered by* optional, and if so what marks its absence; and does `RequirementQuestion`'s membership in the *review finding* family need qualifying against that family's own stated rules? | A dedicated session on `Rule`'s shape — naturally alongside OQ18, since working out the two still-unworked `Rule` mechanisms (silent-vs-owned-default, gap-timeout) needs `Rule`'s actual attribute shape settled first, and this question is what that session would need to resolve anyway |
+
+## Open questions OQ21–OQ23
+
+Raised in [the design record of 2026-09-04 on `Rule`'s shape](../docs/superpowers/specs/2026-09-04-rule-shape-design.md),
+which carries the full argument for each.
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ21 | Should a `Rule` carry parameter criteria, letting an algorithmic filter run before the semantic judgement? The shape is a guard, as a flowchart uses the word: it could *exclude* a rule mechanically, never admit one, so the judgement K86 describes still decides everything reaching it — a narrowing of what reaches judgement, not a third category beside K24's two. Half the machinery exists: a `RequirementDefinition` declares `parameters` and a `Requirement` carries `values`. The `Rule`-side criterion and the join between them are missing | When the cost of judging every rule in a walked `RuleSet` is actually felt, which needs an implementation running the loop. Until then it is an unexercised construct and waits |
+| OQ22 | How does a fired rule become a posed question? A rule detects that a subject needs dealing with; the modeller writes the question. Whether one firing yields one question or several, whether *what to consider* supplies a template for the wording, and whether K75's "at most one open `RequirementInquiry` per `Rule`" is general or specific to `CompletenessRule`, are all unstated | With the `Rule` specialisations, since the last part is a question about one of them |
+| OQ23 | What is a review, as an act? `spec/02` §11 states a review finding's lifecycle — a source opens it, a later source that `replies` to it closes it — but nothing states the act producing one: who performs it, when, against what. Only static model checking and, since K86, walking a `RuleSet` are worked out | Unforced. Recorded because K89 makes the gap visible while deliberately not entering it |
 
 ## Status of the founding record's open questions
 
