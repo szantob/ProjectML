@@ -60,3 +60,12 @@ work, not releases.
   `RequirementDefinition`, matching SysML v2's own term rather than an abbreviation of it; the `Source` edge
   previously named `answers` is now `replies`, correcting a likely translation artefact (the edge covers any
   later source responding to an earlier one, disagreement included, not only a question being answered).
+- `Rule` given a shape and, first, a purpose: it directs attention rather than prescribing an outcome,
+  carrying an identity local to the `RequirementDefinition` that owns it, a *when it applies* and a *what to
+  consider*. Matching is corrected to what it actually is — a relevance judgement made while walking a
+  `RuleSet`, which is a written procedure — leaving K76's semantic classification intact and its description
+  replaced. Every `RequirementQuestion` now names the `Rule` that produced it without exception, and
+  `RequirementQuestion` is removed from the *review finding* family: it is the product of a third checking
+  mode, between static checking and review. K82–K89 record the decisions; OQ20 is closed, OQ21–OQ23 opened.
+  Findings are in
+  [`docs/superpowers/specs/2026-09-04-rule-shape-design.md`](docs/superpowers/specs/2026-09-04-rule-shape-design.md).
