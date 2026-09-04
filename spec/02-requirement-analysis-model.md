@@ -421,11 +421,11 @@ the type where D53's check read an attribute, and D55 is not revised at all — 
 
 ```mermaid
 classDiagram
-    class RequirementDef {
+    class RequirementDefinition {
         <<abstract>>
     }
-    RequirementDef <|-- KindA
-    RequirementDef <|-- KindB
+    RequirementDefinition <|-- KindA
+    RequirementDefinition <|-- KindB
 ```
 
 The diagram says what the paragraphs above it say: `RequirementDefinition` is abstract, and a kind is a subtype of
