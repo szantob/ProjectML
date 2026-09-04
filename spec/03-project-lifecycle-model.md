@@ -70,7 +70,59 @@ exist before a rule-set is useful at all: a rule-set speaks about a classificati
 mechanism for and an implementation fills, and it has nothing to attach a statement to until that
 specialisation hierarchy exists.
 
-## 3. What the metamodel does not do
+## 3. `RuleSet` and `Rule`
+
+```mermaid
+classDiagram
+    class Rule {
+        <<abstract>>
+    }
+    Rule <|-- ConflictRule
+    Rule <|-- CompletenessRule
+```
+
+The diagram draws what this section states; where the two disagree, the prose wins. Two more `Rule`
+specialisations are named but not yet shaped — see the end of this section — and are left off the diagram for
+the same reason a design record leaves an open question out of a decision table: nothing here defines them
+yet.
+
+### `RuleSet`
+
+A **`RuleSet`** belongs to a `RequirementDef` — zero or one per `RequirementDef` — not to a project as a whole
+(K68). It gathers the `Rule`s stated over that `RequirementDef` specifically. There is no reification of
+"everything a project has loaded" as an element of its own.
+
+This is the natural unit, on two grounds. Section 2 already states that a rule-set's statements are *"stated
+per kind, not per definition"* — and a kind is exactly a `RequirementDef` (`02-requirement-analysis-model.md`
+§9, K30) — so attaching a `RuleSet` at the `RequirementDef` is following that sentence rather than adding to
+it. And it narrows the search a check needs to run: finding every `Rule` that could apply to a `Requirement`
+is walking that `Requirement`'s own `RequirementDef` ancestry and reading each node's own `RuleSet`, not
+filtering a project-wide collection by a separate reference naming which `RequirementDef` a `Rule` applies to.
+A design carrying a `Rule.appliesTo` reference, pointing at an arbitrary `RequirementDef` node, does the same
+job at the cost of a second mechanism where the attachment itself already suffices — it is not adopted.
+
+**A `Rule` attached to a `RequirementDef` applies to every specialisation of it, not only to that node**
+(K69). This needs no mechanism of its own beyond the specialisation tree K30 already builds: a rule stated at
+the root applies everywhere beneath it; a rule stated three levels down applies only beneath that point. A
+project's most consequential rules — *"no requirement may contradict an active one,"* below — belong at the
+root precisely because they should reach every kind a project declares, without being restated once per leaf
+kind.
+
+### `Rule`
+
+`Rule` is **abstract**. Its specialisations divide by **mechanism** — what happens when the rule fires — not
+by section 2's four descriptive rows, which remain a description of *subject matter*, closer to an open,
+`Source.kind`-shaped label than to a type boundary (K71). The two axes are independent and do not correlate
+one-to-one: two different subject-matter rows below share the same mechanism shape — *detect a gap, then
+raise a `RequirementQuestion` subtype* — while the other two have no worked-out mechanism at all, and may turn
+out to need something structurally different, from each other as much as from these two.
+
+Two mechanisms are worked out here: `ConflictRule` and `CompletenessRule`, below. Two more — a
+silent-vs-owned-default rule and a gap-timeout rule, section 2's first and second rows — are not, and this
+document does not claim they share this shape merely because they would sit in the same abstract type's
+specialisation list; whether either does is recorded as OQ18 in `06-decisions.md` (K72).
+
+## 4. What the metamodel does not do
 
 **The metamodel states no rules.** It names this model and says what a rule-set may state; the rule itself —
 which defaults are silent, how long a given kind waits, how a given conflict resolves — belongs to whoever
@@ -91,7 +143,7 @@ how. It does not say what the kinds are, how many origins split them, or which o
 implementation classifies its kinds however it needs to, and a rule-set speaks to whatever classification
 results, on terms this document does not fix.
 
-## 4. How this answers OQ4
+## 5. How this answers OQ4
 
 The founding record's OQ4 asked whether the metamodel names the loop's steps normatively, and put three
 options: entities only; entities plus the procedure's steps as a normative process; or entities plus
