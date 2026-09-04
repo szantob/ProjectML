@@ -339,6 +339,38 @@ Raised in [the design record of 2026-09-03 on the source-element hierarchy](../d
 |---|---|---|
 | OQ15 | Is implementation a new edge, or the generalisation of one that already exists? The refinement edge already runs from a requirement to the needs it refines, which is the inward half of K48 under another name — and that name is adopted from SysML v2, so it cannot simply be replaced | With OQ14, and for the same reason: it is a question about the model side |
 
+## Open question OQ20
+
+Raised in this session's own whole-branch review of the K66–K81 integration (2026-09-04), not in a design
+record — three related gaps in `Rule`'s shape, found only once the material was read as a finished whole
+rather than task by task.
+
+**`Rule` has no stated attributes.** `spec/03-project-lifecycle-model.md` §3's `### Rule` subsection says only
+that the type is abstract and specialises by mechanism; it names no identity, no condition, nothing. Yet K76
+already reasons about *"a `Rule`'s free-text condition"*, and `spec/02-requirement-analysis-model.md` §11
+already gives `RequirementQuestion` a *triggered by* attribute holding *"a reference to the `Rule` ... that
+fired"* — a reference that needs an identity to name. Every other new type this collection defines gets an
+attribute table opening with identity; `Rule` and `RuleSet` are the only ones that do not.
+
+**Whether *triggered by* is optional is unstated.** `spec/02` §11 states it as one of three things carried by
+*"every"* `RequirementQuestion` specialisation, without qualification. But the same section's own "Where a
+`RequirementQuestion` comes from" discussion names a `RequirementDef`'s *what to ask* gap (§7) as one origin
+of a `RequirementQuestion` — and that origin is not a `Rule` firing. Either that case does not actually
+produce a `RequirementQuestion` in the sense this document means, or *triggered by* needs to be optional the
+way `discharges` already is, stated explicitly rather than left to be inferred.
+
+**K77's classification does not fully hold.** K77 seats `RequirementQuestion` — both specialisations — in
+`spec/02` §11's *review finding* family, on the ground that it is judged, modelled, and carries state. But
+that family's own stated rules do not all hold of it: a review finding *"is opened by a source"* (§11's
+Findings subsection), where a `RequirementQuestion` is raised by a `Rule` firing over the model, not by a
+source entering it; and *"nothing marks a finding closed directly"*, where `discharges` does exactly that.
+Whether the classification needs qualifying, or the findings family's own stated rules need to admit an
+exception, is open.
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ20 | What is `Rule`'s full attribute shape (at minimum, whatever an identity and a condition require); is `RequirementQuestion`'s *triggered by* optional, and if so what marks its absence; and does `RequirementQuestion`'s membership in the *review finding* family need qualifying against that family's own stated rules? | A dedicated session on `Rule`'s shape — naturally alongside OQ18, since working out the two still-unworked `Rule` mechanisms (silent-vs-owned-default, gap-timeout) needs `Rule`'s actual attribute shape settled first, and this question is what that session would need to resolve anyway |
+
 ## Status of the founding record's open questions
 
 | # | Status |
