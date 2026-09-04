@@ -167,6 +167,33 @@ K58 and K59 together close OQ15.
 | K64 | An unrefined `SourceDecision` is a failed check, already covered by K45 and needing no restatement. A `RequirementDecision` without a `SourceDecision` is not a failed check at all — it is excluded by K61 as not well-formed. These are K24's two categories, not two severities of one defect | Confirms rather than revises: `SourceDecision` inherits K45 automatically as a `SourceStatement`; the other half was already K61 |
 | K65 | The metamodel introduces no `Task`, or any output shaped like one, for a raised `RequirementQuestion`. The raised state is already the complete signal | Nothing is bought — a `Task` would duplicate what the state already carries, the same objection behind K41's refusal of a coverage report. `00-overview.md` §1 excludes this vocabulary by name |
 
+## Decisions K66–K81
+
+Taken in [the design record of 2026-09-04](../docs/superpowers/specs/2026-09-04-project-lifecycle-model-design.md)
+§§2–13, which carries the full argument for each, except K81, taken in
+[the integration plan of 2026-09-04](../docs/superpowers/plans/2026-09-04-project-lifecycle-model-integration-plan.md)
+itself. Written into `spec/` by that same plan. K74 and K78 together answer OQ17's own question; the plan
+narrows OQ17 to what was only ever gathered beside it, and opens OQ18–OQ19.
+
+| # | Decision | Reason |
+|---|---|---|
+| K66 | `RequirementDef` carries an eighth attribute: a well-formedness rule for the wording a requirement produced under it must satisfy | The seam test and the record test both pass, on the argument that already seated *how it would be verified* (K29): a well-formedness rule is exactly ISO/IEC/IEEE 29148's *characteristics of a good requirement*, generic to a kind rather than to one requirement |
+| K67 | `Requirement` and `RequirementDef` are connected by an association — the *produced under* relation — never by inheritance. `Requirement` stays single and unspecialised regardless of how deep or wide the `RequirementDef` tree grows | Verified against SysML v2's primary specification: its kind hierarchy specialises `RequirementCheck`, "the base type of all `RequirementDefinition`s," entirely on the definition side, while `RequirementUsage` stays one uniform type. Confirms rather than revises what K33 already presupposed |
+| K68 | A `RuleSet` belongs to a `RequirementDef` — zero or one per `RequirementDef` — not to a project as a whole | Follows `03-project-lifecycle-model.md` §2's own "stated per kind, not per definition," and narrows the search a check needs to run to walking one `RequirementDef`'s ancestry rather than filtering a project-wide collection |
+| K69 | A `Rule` attached to a `RequirementDef` applies to every specialisation of it, not only to that node | A direct reading of the specialisation tree K30 already builds; needs no mechanism of its own |
+| K70 | `spec/03` §1's "what an organisation loads" is corrected to name a project, not an organisation across projects | The phrasing survived from an earlier reading with cross-project tooling in mind — export, import, version comparison — which is tooling territory, not metamodel territory, on the same boundary K46 draws for provenance |
+| K71 | `Rule` is abstract, and its specialisations divide by mechanism — what happens when the rule fires — not by `spec/03` §2's four descriptive categories, which remain subject-matter labels | The two axes do not correlate one-to-one: two different subject-matter rows share one mechanism shape, while the other two rows have no worked-out mechanism at all |
+| K72 | Two mechanisms are worked out — `ConflictRule` and `CompletenessRule`; two more (silent-vs-owned-default, gap-timeout) are not, and stay open as OQ18 | Named directly rather than glossed over: this record does not claim the other two share this shape merely because they would sit in the same abstract type's list |
+| K73 | A conflict-detecting `Rule`, when it finds that a new `Requirement` contradicts an existing in-force one, raises a `RequirementChoice` | Sharpens `spec/03` §2's third row, which describes only the resolution half; detection is the other half a `Rule` must also carry |
+| K74 | A completeness-detecting `Rule`, when it finds that a `RequirementDef` kind is present without an implied companion kind, raises a `RequirementInquiry` | Closes OQ17's own original case: the rule-set's fourth statement, now given a mechanism rather than only a name |
+| K75 | A completeness check is set-level, not per-instance: it asks whether at least one `Requirement` of the implied kind exists anywhere the rule's `RequirementDef` reaches. At most one open `RequirementInquiry` per `Rule` at a time; a new triggering `Requirement` extends it | Resolves a cost concern about a growing model re-triggering the same rule combinatorially, by reading the check as a query over current state rather than a per-instance obligation |
+| K76 | Rule-matching — whether a `Rule`'s free-text condition holds of a free-text `Requirement` — is a semantic constraint (K24), not a syntactic one | Both a `Rule`'s condition and a `Requirement`'s wording are prose; nothing decides a match without reading content, on the same terms K40/K41 already hold extraction completeness to |
+| K77 | `RequirementQuestion` — both specialisations — belongs to the *review finding* family in `spec/02` §11's three-way table, not to the *failed check* or *question* rows | It is judged, modelled, and carries state — the three properties that table already uses to seat *review finding* apart from the other two. No change to `RequirementQuestion` follows; this is a naming of what it already is |
+| K78 | `RequirementQuestion` is abstract, and carries, beyond identity and its raised/posed states: a free professional-register statement of the question; a reference to the `Rule` that triggered it; and a list-valued list of every triggering `Requirement`, which may grow while the question stays open | The earlier concern that a "which rule" reference would open a second seam dissolves once `Rule` is itself metamodel-defined: referencing it is no different from `Requirement` referencing `RequirementDef` |
+| K79 | `RequirementQuestion` specialises into `RequirementInquiry` and `RequirementChoice`, one per mechanism K72 names. Both carry `discharges`, optional, to whatever closes them — `RequirementInquiry` to a `Requirement`, `RequirementChoice` to a `RequirementDecision` | `discharges` is coined rather than reusing `answers`: `answers` is a `Source`↔`Source` evidentiary edge, and this is a different kind of relationship, on the model's own side of K43's axis. The word is already live in this collection's vocabulary, in OQ13's "its discharge" |
+| K80 | `RequirementInquiry` carries nothing beyond the shared shape and `discharges`. `RequirementChoice` additionally carries the candidate alternatives being decided among | A completeness gap names a missing kind, which the shared shape already identifies in full. A conflict needs its options named before anyone can decide among them, and these alternatives prefigure `RequirementDecision.the choice` once discharged |
+| K81 | `ConflictRule` and `CompletenessRule` name K73 and K74's two worked `Rule` mechanisms | Neither name is stated in the design record, which refers to them only descriptively. No standard names a rule-firing mechanism of this shape, so house rule 10's coining clause applies; each name is taken directly from the descriptive phrase that already identifies it, on the same grounds K59 coined `poses` from K48's own description. Recorded here rather than in the design record because it is this plan's own naming decision, not one the design record itself took |
+
 ## Decisions K51–K54
 
 Taken in [`05-binding-contract.md`](05-binding-contract.md), §2, which carries the full argument, and in
@@ -251,16 +278,52 @@ being waited on rather than ignored.
 |---|---|---|
 | OQ13 | Nothing in the metamodel records the interval between a question being put and an answer arriving, or how that interval closes. A review finding's *closure* is already modelled — it is opened by a source and closed by a later source that `answers` it (K10, K11; `02-requirement-analysis-model.md` §11) — and a failed check or a question is itself recomputed rather than modelled (same section). K60 already supplies the *opening* half, through `RequirementQuestion`'s raised/posed states. What remains open is the interval itself and its discharge: nothing distinguishes "this failure is being worked" from "this failure is being ignored," for as long as it stands posed and unanswered | Nothing forces an answer before an implementation runs the loop and actually lives through that interval, so realistically phase 4. It is the last of OQ6's five pieces of work and, as of this decision record, the only one whose interval and discharge remain unrecorded |
 
-## Open questions, OQ14, OQ16, OQ17
+## Open questions, OQ14 and OQ16
 
 Raised in [the design record of 2026-09-03 on the source-element hierarchy](../docs/superpowers/specs/2026-09-03-source-element-hierarchy-design.md),
-which carries the full argument for each.
+which carries the full argument for each. OQ17, raised in the same record, is narrowed below rather than
+listed here, once [the design record of 2026-09-04](../docs/superpowers/specs/2026-09-04-project-lifecycle-model-design.md)
+answered its own two-part question.
 
 | # | Question | When answerable |
 |---|---|---|
 | OQ14 | Is there a model-side abstract type, as `SourceElement` is for the source side? The owner's judgement is that one will probably be needed and that the side is not yet fully seen | When the model side is understood as well as the source side is |
 | OQ16 | How does `SourceQuestion` subdivide, and does it name the party expected to answer? | With OQ13, realistically |
-| OQ17 | What does the Project Lifecycle Model's fourth rule-set item look like, and how does a `RequirementQuestion` reference what it fires on? Gathered here alongside `supersedes` and what a `RequirementDecision` closes and what closes one, since none of the three is answerable without `spec/03-project-lifecycle-model.md` being worked out first | A dedicated session on the Project Lifecycle Model |
+
+## Open question OQ17 — narrowed
+
+**Its own two-part question is answered, and is not what stays open.** What the Project Lifecycle Model's
+fourth rule-set item looks like is `CompletenessRule` (K74); how a `RequirementQuestion` references what it
+fires on is the *triggered by* and *triggering `Requirement`s* attributes K78 gives every
+`RequirementQuestion`. Both are settled in
+[the design record of 2026-09-04](../docs/superpowers/specs/2026-09-04-project-lifecycle-model-design.md) and
+written into `spec/` by
+[the integration plan of 2026-09-04](../docs/superpowers/plans/2026-09-04-project-lifecycle-model-integration-plan.md).
+
+**What was only ever gathered beside OQ17, never part of its own question, is what remains open:
+`supersedes`, what finding a `RequirementDecision` closes, and what closes a `RequirementDecision` itself.**
+None of the three was answerable without `spec/03-project-lifecycle-model.md` being worked out further than
+the 2026-09-04 record takes it, and none of the three is answered by that record either — K63 already records
+the closure criterion as deferred, and nothing here revisits it. This is not the same shape as OQ12's third
+part, which dissolved on a false premise: nothing here rests on a mistaken assumption, the territory is simply
+still unworked, which is why this question is narrowed rather than marked answered.
+
+Raised in [the design record of 2026-09-03 on the source-element hierarchy](../docs/superpowers/specs/2026-09-03-source-element-hierarchy-design.md)
+§14, and narrowed here rather than there.
+
+| # | Question, as asked | When answerable |
+|---|---|---|
+| OQ17 | What does `supersedes` mean; what finding does a `RequirementDecision` close; and what closes a `RequirementDecision`? Originally gathered alongside the fourth rule-set item and the `RequirementQuestion` reference mechanism, both answered above, because none of the three was answerable without `spec/03-project-lifecycle-model.md` being worked out first | A further session on the Project Lifecycle Model, once `supersedes` itself is worked out |
+
+## Open questions OQ18–OQ19
+
+Raised in [the design record of 2026-09-04](../docs/superpowers/specs/2026-09-04-project-lifecycle-model-design.md),
+which carries the full argument for each.
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ18 | What mechanism do a silent-vs-owned-default `Rule` and a gap-timeout `Rule` actually carry? K72 names the gap directly rather than guessing at it. Both may share `RequirementChoice`/`RequirementInquiry`'s "detect, then raise" shape, or may need something structurally different — a direct value-state edit for the first, an escalation of something already raised for the second | When one of the two is actually exercised, the same discipline that settled the other two |
+| OQ19 | Does a baseline need to name which `RuleSet`(s), and which version of each, it was checked against — separately from the implementation package and version `01-requirement-model.md` §4 already names? K68 makes a `RuleSet` per-`RequirementDef` rather than a single project-wide version, which may mean this question is really *N* small questions — one per `RequirementDef` a baseline's requirements touch — rather than one | Needs `01-requirement-model.md` §4 read again with K68–K70 in view |
 
 ## Open question OQ15 — answered
 
