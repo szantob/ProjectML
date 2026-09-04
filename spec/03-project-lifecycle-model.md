@@ -18,11 +18,11 @@ The distinction is worth stating plainly, because a reader arrives at the same p
 did before settling K22: a rule-set looks at first like a natural fourth level, one step further down than a
 project model, since K15 already speaks of "a base rule-set a project may vary as it runs" in roughly that
 position. What makes the three levels a ladder is a relation of *filling*: an implementation fills the
-declared points a `RequirementDef` leaves open (K27) and supplies the specialisations of it that give a
+declared points a `RequirementDefinition` leaves open (K27) and supplies the specialisations of it that give a
 requirement its kind (K16, K30); a project model is built out of what the implementation declared. Each level
 down adds content at a point the level above deliberately left as a slot for it.
 
-A rule-set does not fill any such point. It does not specialise `RequirementDef`, and it declares no kind. It
+A rule-set does not fill any such point. It does not specialise `RequirementDefinition`, and it declares no kind. It
 says nothing about what a value's domain contains, what a parameter asks for, or what a requirement's wording
 should be. What it states instead concerns elements that already exist in full, wherever they occur: how a
 gap in one of them is resolved, when waiting on it ends, how a conflict is settled. It governs behaviour over
@@ -96,20 +96,20 @@ yet.
 
 ### `RuleSet`
 
-A **`RuleSet`** belongs to a `RequirementDef` — zero or one per `RequirementDef` — not to a project as a whole
-(K68). It gathers the `Rule`s stated over that `RequirementDef` specifically. There is no reification of
+A **`RuleSet`** belongs to a `RequirementDefinition` — zero or one per `RequirementDefinition` — not to a project as a whole
+(K68). It gathers the `Rule`s stated over that `RequirementDefinition` specifically. There is no reification of
 "everything a project has loaded" as an element of its own.
 
 This is the natural unit, on two grounds. Section 2 already states that a rule-set's statements are *"stated
-per kind, not per definition"* — and a kind is exactly a `RequirementDef` (`02-requirement-analysis-model.md`
-§9, K30) — so attaching a `RuleSet` at the `RequirementDef` is following that sentence rather than adding to
+per kind, not per definition"* — and a kind is exactly a `RequirementDefinition` (`02-requirement-analysis-model.md`
+§9, K30) — so attaching a `RuleSet` at the `RequirementDefinition` is following that sentence rather than adding to
 it. And it narrows the search a check needs to run: finding every `Rule` that could apply to a `Requirement`
-is walking that `Requirement`'s own `RequirementDef` ancestry and reading each node's own `RuleSet`, not
-filtering a project-wide collection by a separate reference naming which `RequirementDef` a `Rule` applies to.
-A design carrying a `Rule.appliesTo` reference, pointing at an arbitrary `RequirementDef` node, does the same
+is walking that `Requirement`'s own `RequirementDefinition` ancestry and reading each node's own `RuleSet`, not
+filtering a project-wide collection by a separate reference naming which `RequirementDefinition` a `Rule` applies to.
+A design carrying a `Rule.appliesTo` reference, pointing at an arbitrary `RequirementDefinition` node, does the same
 job at the cost of a second mechanism where the attachment itself already suffices — it is not adopted.
 
-**A `Rule` attached to a `RequirementDef` applies to every specialisation of it, not only to that node**
+**A `Rule` attached to a `RequirementDefinition` applies to every specialisation of it, not only to that node**
 (K69). This needs no mechanism of its own beyond the specialisation tree K30 already builds: a rule stated at
 the root applies everywhere beneath it; a rule stated three levels down applies only beneath that point. A
 project's most consequential rules — *"no requirement may contradict an active one,"* below — belong at the
@@ -134,7 +134,7 @@ specialisation list; whether either does is recorded as OQ18 in `06-decisions.md
 
 A `ConflictRule` fires when a new `Requirement` contradicts an existing in-force one, and raises a
 `RequirementChoice` (`02-requirement-analysis-model.md` §11) naming the alternatives a reviewer must choose
-among (K73). *"No requirement may contradict an active requirement,"* stated once at the `RequirementDef`
+among (K73). *"No requirement may contradict an active requirement,"* stated once at the `RequirementDefinition`
 root and inherited everywhere by the rule above, is this mechanism's canonical case. This sharpens section 2's
 third row — *how a conflict of a given kind is resolved* — which describes only the resolution half;
 detection is the other half a `Rule` must also carry, and resolution is exactly what a `RequirementChoice`,
@@ -142,13 +142,13 @@ discharged by a `RequirementDecision`, records.
 
 ### `CompletenessRule`
 
-A `CompletenessRule` fires when a `RequirementDef` kind is present without an implied companion kind, and
+A `CompletenessRule` fires when a `RequirementDefinition` kind is present without an implied companion kind, and
 raises a `RequirementInquiry` (`02-requirement-analysis-model.md` §11) (K74). This is the case section 2's
 fourth row now states directly: *"which other requirement kinds a given kind implies should also be
 present."*
 
 **The check is set-level, not per-instance.** It asks whether at least one `Requirement` of the implied kind
-exists anywhere the rule's `RequirementDef` reaches, never whether every triggering `Requirement` has its own
+exists anywhere the rule's `RequirementDefinition` reaches, never whether every triggering `Requirement` has its own
 (K75). Consequently, while a given `CompletenessRule`'s gap stays open, a newly triggering `Requirement`
 extends the existing open `RequirementInquiry`'s list of triggering requirements rather than raising a second
 one: **at most one open `RequirementInquiry` per `Rule` at a time.** Reading the check as a query over current
