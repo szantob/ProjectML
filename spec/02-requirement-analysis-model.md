@@ -279,7 +279,7 @@ parameter with no value is a value in the unknown state like any other, and the 
 obtained from somebody who holds it — which is why *what to ask* sits beside *parameters* and is written per
 parameter rather than per definition.
 
-**Why the last row sits on the definition rather than on the requirement.** A verification method is generic
+**Why *how it would be verified* sits on the definition rather than on the requirement.** A verification method is generic
 to a kind of requirement: how a thing of this kind would be shown to hold is a property of the kind, and the
 definition-and-usage split puts a generic property on the definition. ISO/IEC/IEEE 29148 makes verifiability
 a required characteristic of a *requirement* rather than of a definition, and the two statements do not

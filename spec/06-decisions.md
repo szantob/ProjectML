@@ -129,7 +129,7 @@ argument.
 
 | # | Decision | Reason |
 |---|---|---|
-| K42 | The list of what a rule-set may state is not closed at three. Three are what the evidence found so far supports; an implementation needing to state a fourth kind of thing is evidence the metamodel must then account for, not a violation of it | The same structural argument K30 makes for a requirement kind's taxonomy applies one level over: a closed list here would fix one way of thinking about a process into the metamodel, which is exactly what K22 and K23 exist to refuse |
+| K42 | The list of what a rule-set may state is not closed at three — nor, since K74 added a fourth, at four. Three were what the evidence first found; an implementation needing to state a fifth kind of thing is evidence the metamodel must then account for, not a violation of it | The same structural argument K30 makes for a requirement kind's taxonomy applies one level over: a closed list here would fix one way of thinking about a process into the metamodel, which is exactly what K22 and K23 exist to refuse |
 
 ## Decisions K43–K50
 

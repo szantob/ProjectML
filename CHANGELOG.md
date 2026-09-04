@@ -46,3 +46,13 @@ work, not releases.
   carrying raised/posed states. K43–K50 and K57–K65 record the decisions; OQ15 is closed, OQ17 is opened.
   Findings from the two design-record passes and the integration itself are in
   [`docs/superpowers/specs/2026-09-03-source-element-hierarchy-design.md`](docs/superpowers/specs/2026-09-03-source-element-hierarchy-design.md).
+- The Project Lifecycle Model's rule metamodel: a `RuleSet`, zero or one per `RequirementDef`, gathering the
+  `Rule`s stated over it and inherited down its specialisation tree; `Rule`, abstract, specialising by
+  mechanism rather than subject matter into `ConflictRule` (raises a `RequirementChoice` on a contradiction)
+  and `CompletenessRule` (raises a `RequirementInquiry` on a missing implied kind, closing the rule-set's
+  fourth statement). `RequirementQuestion` is now abstract, carrying a statement, a reference to the `Rule`
+  that triggered it, and the list of triggering `Requirement`s, and specialises into `RequirementInquiry` and
+  `RequirementChoice`, both carrying a new `discharges` edge to whatever closes them. `RequirementDef` gains
+  an eighth attribute, a wording rule. K66–K81 record the decisions; OQ17 is narrowed rather than closed, and
+  OQ18–OQ19 are opened. Findings are in
+  [`docs/superpowers/specs/2026-09-04-project-lifecycle-model-design.md`](docs/superpowers/specs/2026-09-04-project-lifecycle-model-design.md).

@@ -46,7 +46,7 @@ up — it would bake one way of thinking about how a rule-set governs behaviour 
 which is exactly what K22 and K23 exist to refuse: a rule-set is a model of its own, built with its own
 metamodel, precisely so that an adopting organisation's way of working is not fixed into this one.
 
-Each of the three found so far closes a gap `02-requirement-analysis-model.md` leaves open on purpose,
+Each of the four found so far closes a gap `02-requirement-analysis-model.md` leaves open on purpose,
 because closing it there would fix an organisation's way of working into the metamodel itself. Recorded as
 K42 in [`06-decisions.md`](06-decisions.md).
 
@@ -199,5 +199,5 @@ the metamodel neither prescribes a process nor stays silent about one, but provi
 The concern that made the third option attractive — that a process is the least portable thing a metamodel
 could make normative — is exactly what makes this option work rather than counting against it, because a
 rule-set is built to differ per organisation by design. Two organisations running the same procedure over the
-same requirement analysis model can load rule-sets that disagree on all three of section 2's questions
+same requirement analysis model can load rule-sets that disagree on all four of section 2's questions
 without either one being wrong, and without the metamodel having taken a position on which is right.

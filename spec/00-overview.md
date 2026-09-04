@@ -37,7 +37,7 @@ ProjectML metamodels a collection of connected models, not a single model (K19).
 |---|---|---|
 | The requirement model | The product: a requirement, the edge by which one requirement is derived from another, and the baseline that names a dated cut of the requirements in force | Yes — a reader who wants a requirements register with traceability between requirements, and nothing else, reads it and stops |
 | The requirement analysis model | The working model: where a requirement is actually built and justified, from a stated source, through a `SourceNeed` and the definition chosen for it, to the decisions and findings that stand behind it | No — it projects to the requirement model (K20), and is read for what produced the product, not instead of it |
-| The Project Lifecycle Model | What a rule-set — an organisation's own way of resolving a gap, ending a wait, or settling a conflict — may state about the requirement analysis model's own elements, and what it may not | No — a rule-set written under it states rules over elements the requirement analysis model already defines in full |
+| The Project Lifecycle Model | What a rule-set — an organisation's own way of resolving a gap, ending a wait, settling a conflict, or stating what kinds a kind implies — may state about the requirement analysis model's own elements, and what it may not | No — a rule-set written under it states rules over elements the requirement analysis model already defines in full |
 | The value-state model | What is known about a value, wherever a value occurs in any of the other three: stated, derived, assumed, unknown, or conflicting | No, by nature — it crosscuts the other three rather than standing beside them, and it is not a step in the adoption order below: every member carries it |
 
 The four connect three ways, and the value-state model crosscuts all three connections rather than joining
@@ -67,8 +67,8 @@ which it derives from another requirement — and by dropping the requirements n
 retirement being a property of the working model rather than of the product (K35). The Project Lifecycle
 Model provides the means to model a rule-set, and a rule-set — never the metamodel itself — is what states
 rules over the requirement analysis model's own elements: how a gap in one of them is resolved, when waiting
-on it ends, how a conflict among them is settled, without adding to what those elements already define in
-full (K22, K23). A design language attaches
+on it ends, how a conflict among them is settled, or what kinds a kind implies should also exist, without
+adding to what those elements already define in full (K22, K23). A design language attaches
 to the requirement model, and only there, through exactly one edge: an element the metamodel does not
 define, carrying `satisfies`, and naming a requirement in a baseline — a named, dated instance of the
 requirement model a design language can depend on, where the live projection itself cannot be depended on
@@ -118,8 +118,8 @@ a gap the metamodel deliberately leaves open. It is not one: a rule-set is a mod
 with its own metamodel, stating how a gap in an element that is already fully defined gets resolved, rather
 than adding content beneath a slot an implementation declared. It says nothing about what a value's domain
 contains or what a requirement's wording should be — the things an implementation fills — and everything
-about how a gap is resolved, when a wait ends, and how a conflict is settled once the elements it speaks
-about already exist in full (K22). Two teams sharing one implementation may load rule-sets that disagree on
+about how a gap is resolved, when a wait ends, how a conflict is settled, and what kinds a kind implies
+should also exist, once the elements it speaks about already exist in full (K22). Two teams sharing one implementation may load rule-sets that disagree on
 all of that without either one having climbed down a level the other stayed on. The metamodel names this
 model and says what a rule-set may state; it states no rules itself (K23). `03-project-lifecycle-model.md` is
 where both halves of that are stated in full.
