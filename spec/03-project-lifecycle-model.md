@@ -93,7 +93,7 @@ classDiagram
 ```
 
 The diagram draws what this section states; where the two disagree, the prose wins. Two more `Rule`
-specialisations are named but not yet shaped — see the end of this section — and are left off the diagram for
+specialisations are named but not yet shaped — see the `Rule` subsection below — and are left off the diagram for
 the same reason a design record leaves an open question out of a decision table: nothing here defines them
 yet.
 
@@ -135,14 +135,15 @@ resulting requirement should say. This is what keeps a rule-set from quietly bec
 layer: a `RequirementDefinition` says what a requirement of some kind looks like, and section 1 already
 places what a requirement's wording should be outside a rule-set's territory entirely.
 
-**A negative answer to a subject a rule raises is a full answer.** Where a project decides it needs nothing
-in the subject raised, that decision appears as a `Requirement` like any other, and the `RequirementInquiry`
-`discharges` to it; while no such `Requirement` exists, the question stands open, which is
-`02-requirement-analysis-model.md` §11's existing rule rather than a new one (K79). That closing
-`Requirement` is produced the ordinary way — a source, a `SourceNeed`, `refine` — never by the question
-itself, so the commitment still enters through a source (K11) and the modeller's own instrument does not
-commit the project. A subject raised and declined therefore leaves a record, and a later reader asking why
-some subject carries no requirement finds an answer rather than silence.
+**A negative answer to a subject a rule raises is a full answer.** Where a project decides it needs nothing in
+the subject raised, that decision appears as a `Requirement` like any other, and the `RequirementInquiry` raised
+for that subject `discharges` to it; while no such `Requirement` exists, the question stands open, which is
+`02-requirement-analysis-model.md` §11's existing rule rather than a new one (K79). That closing `Requirement`
+is produced the ordinary way — a source, a `SourceNeed`, `refine` — never by the question itself, so the
+commitment still enters through a source (K11) and the modeller's own instrument does not commit the project. A
+subject raised and declined therefore leaves a record, and a later reader asking why some subject carries no
+requirement finds an answer rather than silence. This is the inquiry case specifically: a conflict raises no
+subject to decline, but alternatives to choose among, which `RequirementChoice` carries instead (K79).
 
 `Rule` is **abstract**, and carries three things.
 
@@ -162,14 +163,14 @@ third.
 `RuleSet` of the `RequirementDefinition` that owns it, so an identifier unique beneath that owner is unique
 in the model. **How the composition is written down is not fixed here**: spelling out a composed identifier
 would be notation, which K15 excludes, and an implementation's identifier space is exactly what
-`05-binding-contract.md`'s fourth declaration already leaves to it (K4).
+`05-binding-contract.md`'s third declaration already leaves to it (K4).
 
-Its specialisations divide by **mechanism** — what happens when the rule fires — not
-by section 2's four descriptive rows, which remain a description of *subject matter*, closer to an open,
-`Source.kind`-shaped label than to a type boundary (K71). The two axes are independent and do not correlate
-one-to-one: two different subject-matter rows below share the same mechanism shape — *detect a gap, then
-raise a `RequirementQuestion` subtype* — while the other two have no worked-out mechanism at all, and may turn
-out to need something structurally different, from each other as much as from these two.
+`Rule`'s specialisations divide by **mechanism** — what happens when the rule fires — not by section 2's four
+descriptive rows, which remain a description of *subject matter*, closer to an open, `Source.kind`-shaped label
+than to a type boundary (K71). The two axes are independent and do not correlate one-to-one: two different
+subject-matter rows below share the same mechanism shape — *detect a gap, then raise a `RequirementQuestion`
+subtype* — while the other two have no worked-out mechanism at all, and may turn out to need something
+structurally different, from each other as much as from these two.
 
 Two mechanisms are worked out here: `ConflictRule` and `CompletenessRule`, below. Two more — a
 silent-vs-owned-default rule and a gap-timeout rule, section 2's first and second rows — are not, and this
@@ -235,9 +236,11 @@ question. When the project manager answers that question, the answer enters as a
 K11 like every other commitment, so everything that changes the requirement model still names its origin.
 
 **Amending the procedure is the project manager's act.** A modeller who finds that no rule covers something
-proposes a rule rather than working around the gap; adding one commits the project to checking it, and
-anything that commits the project comes from the project manager and reaches the model as a source (K11).
-The rule-set can be amended — it cannot be departed from, which is why
+proposes a rule rather than working around the gap. A rule's content commits nothing; *adopting* one commits
+the project to checking it, and what commits the project is the project manager's to do, never the
+modeller's. Whether that amendment leaves a record of its own is the rule-set's business as a model in its
+own right (K22), not this model's (K88). The rule-set can be amended — it cannot be departed from, which is
+why
 `02-requirement-analysis-model.md` §11 makes a `RequirementQuestion`'s *triggered by* mandatory (K87).
 
 ## 4. What the metamodel does not do

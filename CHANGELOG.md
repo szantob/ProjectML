@@ -66,6 +66,8 @@ work, not releases.
   `RuleSet`, which is a written procedure — leaving K76's semantic classification intact and its description
   replaced. Every `RequirementQuestion` now names the `Rule` that produced it without exception, and
   `RequirementQuestion` is removed from the *review finding* family: it is the product of a third checking
-  mode, between static checking and review. K82–K89 record the decisions; OQ20 is closed, OQ21–OQ23 opened.
+  mode, between static checking and review. A `RuleSet` is now exactly one per `RequirementDefinition`,
+  possibly empty, correcting the zero-or-one above. K82–K89 record the decisions; OQ20 is closed, OQ21–OQ23
+  opened.
   Findings are in
   [`docs/superpowers/specs/2026-09-04-rule-shape-design.md`](docs/superpowers/specs/2026-09-04-rule-shape-design.md).
