@@ -222,6 +222,24 @@ relevant in a subject are exactly those on that `RequirementDefinition` and its 
 the rule above already defines (K69). Nothing here adds a notion of *subject* beside the one the
 specialisation tree already carries.
 
+### What a `Rule` does not carry
+
+**A `Rule` carries no provenance: this model does not record what produced a rule or who approved it**
+(K88). This is K46's boundary seen from the other side. K46 stops provenance at the source because the
+metamodel cannot see the procedures behind a stakeholder's words; a rule-set is one of those procedures —
+an organisation's or a project manager's own way of working — and its own origin is outside what this model
+can see. Recording a rule's authorship would model the organisation rather than the project.
+
+**The chain does not break where it matters.** A `Rule` commits nothing and decides nothing; it raises a
+question. When the project manager answers that question, the answer enters as a source and runs through
+K11 like every other commitment, so everything that changes the requirement model still names its origin.
+
+**Amending the procedure is the project manager's act.** A modeller who finds that no rule covers something
+proposes a rule rather than working around the gap; adding one commits the project to checking it, and
+anything that commits the project comes from the project manager and reaches the model as a source (K11).
+The rule-set can be amended — it cannot be departed from, which is why
+`02-requirement-analysis-model.md` §11 makes a `RequirementQuestion`'s *triggered by* mandatory (K87).
+
 ## 4. What the metamodel does not do
 
 **The metamodel states no rules.** It names this model and says what a rule-set may state; the rule itself —
