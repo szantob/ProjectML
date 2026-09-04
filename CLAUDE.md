@@ -78,6 +78,12 @@ with reasoning, is in the founding document — these are the ones that constrai
 | `bindings/` | One document per design language, each stating K4's four declarations. The SysML v2 binding lives here (K17) |
 | `docs/` | The founding record sits at the top level here, because it is the repository's constitution rather than one release's paperwork. [`eventml-decisions.md`](docs/eventml-decisions.md) sits beside it for the same reason — it is a standing reference, not one release's paperwork. Per-release design records go in `docs/superpowers/specs/` and their plans in `docs/superpowers/plans/`, matching EventML |
 
+**A historical record keeps the terminology current when it was written.** The founding record,
+`eventml-decisions.md`, and every document under `docs/superpowers/specs/` and `docs/superpowers/plans/` are
+snapshots — a later rename in `spec/` does not retroactively update them, on the same principle that git
+history is not rewritten. A citation from current `spec/` prose into one of these may therefore name something
+under an earlier name; that is expected, not a defect to fix.
+
 `spec/` and `bindings/` do not exist yet. **Phase 1 designs the structure of `spec/` before creating it** —
 do not scaffold empty files, and do not copy EventML's eight-file layout without deciding it is right for a
 metamodel that carries no notation and no library.
