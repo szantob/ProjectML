@@ -401,6 +401,18 @@ carry this, and they are independent of each other.
    of the types this metamodel defines. Using specialisation for the level boundary and something else for
    kinds would describe one relation twice, in two mechanisms that could then disagree.
 
+**`Requirement` itself never specialises, however deep or wide the `RequirementDef` tree grows.** The kind
+hierarchy lives entirely on the definition side, and `Requirement` and `RequirementDef` connect only by the
+*produced under* relation (§10), never by inheritance: a requirement produced under a leaf kind is a plain
+`Requirement` naming which `RequirementDef` it was produced under, not a member of some `Requirement`-subtype
+(K67). This is SysML v2's own `def`/`usage` split, checked directly against the primary specification rather
+than assumed: its kind hierarchy — `FunctionalRequirementCheck`, `PhysicalRequirementCheck`, and the rest —
+specialises `RequirementCheck`, stated as *the base type of all `RequirementDefinition`s*, entirely on the
+definition side; `RequirementUsage` stays one uniform type throughout, typed by whichever definition it names,
+never itself specialised. This confirms rather than revises what `01-requirement-model.md` §2's K33 already
+reads as though true — a `Requirement` naming no kind of its own presupposes it has none to name — stated
+explicitly here because the question turned out not to be obvious without it.
+
 **This revises prior art, and does so by permission.** D51–D55 are *imported* rather than inherited — K15
 moves their subject into the metamodel, so this repository takes its own decision on it. The one revised is
 D53, which has each definition name the kind it belongs to. What the others protect survives: a set of
