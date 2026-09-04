@@ -56,7 +56,7 @@ work, not releases.
   an eighth attribute, a wording rule. K66–K81 record the decisions; OQ17 is narrowed rather than closed, and
   OQ18–OQ19 are opened. Findings are in
   [`docs/superpowers/specs/2026-09-04-project-lifecycle-model-design.md`](docs/superpowers/specs/2026-09-04-project-lifecycle-model-design.md).
-- Two corpus-wide renames, both mechanical — no design change: `RequirementDef` is now `RequirementDefinition`,
-  matching SysML v2's own term rather than an abbreviation of it; the `Source` edge previously named `answers`
-  is now `replies`, correcting a likely translation artefact (the edge covers any later source responding to
-  an earlier one, disagreement included, not only a question being answered).
+- Two corpus-wide renames, both mechanical — no design change: `RequirementDef` is now
+  `RequirementDefinition`, matching SysML v2's own term rather than an abbreviation of it; the `Source` edge
+  previously named `answers` is now `replies`, correcting a likely translation artefact (the edge covers any
+  later source responding to an earlier one, disagreement included, not only a question being answered).

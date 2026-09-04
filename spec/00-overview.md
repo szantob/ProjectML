@@ -161,9 +161,9 @@ The test is why the following never appears here, whatever else about this colle
 - a schema or a grammar, for the reason a notation does not appear: there is no concrete syntax here to give
   one to;
 - a filled definition — an actual kind of requirement, with its own name, its own wording, its own
-  parameters — because the metamodel says what a `RequirementDefinition` is and holds none itself; the moment one
-  element goes into a definition, the sentence that names it is no longer true of a project modelled any
-  other way, and the test above has failed it;
+  parameters — because the metamodel says what a `RequirementDefinition` is and holds none itself; the
+  moment one element goes into a definition, the sentence that names it is no longer true of a project
+  modelled any other way, and the test above has failed it;
 - a worked example in a notation, because a worked example is written in one, and there is none to write it
   in here;
 - anything executable — a validator, a script, a parser, an exporter — because nothing an implementation

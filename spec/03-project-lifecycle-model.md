@@ -96,18 +96,20 @@ yet.
 
 ### `RuleSet`
 
-A **`RuleSet`** belongs to a `RequirementDefinition` — zero or one per `RequirementDefinition` — not to a project as a whole
-(K68). It gathers the `Rule`s stated over that `RequirementDefinition` specifically. There is no reification of
-"everything a project has loaded" as an element of its own.
+A **`RuleSet`** belongs to a `RequirementDefinition` — zero or one per `RequirementDefinition` — not
+to a project as a whole (K68). It gathers the `Rule`s stated over that `RequirementDefinition`
+specifically. There is no reification of "everything a project has loaded" as an element of its own.
 
-This is the natural unit, on two grounds. Section 2 already states that a rule-set's statements are *"stated
-per kind, not per definition"* — and a kind is exactly a `RequirementDefinition` (`02-requirement-analysis-model.md`
-§9, K30) — so attaching a `RuleSet` at the `RequirementDefinition` is following that sentence rather than adding to
-it. And it narrows the search a check needs to run: finding every `Rule` that could apply to a `Requirement`
-is walking that `Requirement`'s own `RequirementDefinition` ancestry and reading each node's own `RuleSet`, not
-filtering a project-wide collection by a separate reference naming which `RequirementDefinition` a `Rule` applies to.
-A design carrying a `Rule.appliesTo` reference, pointing at an arbitrary `RequirementDefinition` node, does the same
-job at the cost of a second mechanism where the attachment itself already suffices — it is not adopted.
+This is the natural unit, on two grounds. Section 2 already states that a rule-set's statements are
+*"stated per kind, not per definition"* — and a kind is exactly a `RequirementDefinition`
+(`02-requirement-analysis-model.md` §9, K30) — so attaching a `RuleSet` at the `RequirementDefinition`
+is following that sentence rather than adding to it. And it narrows the search a check needs to run:
+finding every `Rule` that could apply to a `Requirement` is walking that `Requirement`'s own
+`RequirementDefinition` ancestry and reading each node's own `RuleSet`, not filtering a project-wide
+collection by a separate reference naming which `RequirementDefinition` a `Rule` applies to. A design
+carrying a `Rule.appliesTo` reference, pointing at an arbitrary `RequirementDefinition` node, does the
+same job at the cost of a second mechanism where the attachment itself already suffices — it is not
+adopted.
 
 **A `Rule` attached to a `RequirementDefinition` applies to every specialisation of it, not only to that node**
 (K69). This needs no mechanism of its own beyond the specialisation tree K30 already builds: a rule stated at

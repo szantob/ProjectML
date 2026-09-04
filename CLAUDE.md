@@ -7,8 +7,8 @@ written here.
 ## 1. What this repo is, and the one mistake to avoid
 
 ProjectML is a **metamodel**. It defines concepts and types: what a `Source` is, what a `Need` is, what a
-`Requirement` is, what a `RequirementDefinition` is, which edges connect them, what states a value can be in, and
-what a design language must declare to attach underneath. It says all of that in **prose and diagrams**.
+`Requirement` is, what a `RequirementDefinition` is, which edges connect them, what states a value can be in,
+and what a design language must declare to attach underneath. It says all of that in **prose and diagrams**.
 
 **It is not a language implementation, and the most common failure in this project is drifting into one.**
 
@@ -29,9 +29,9 @@ Diagrams are welcome and expected — Mermaid, rendered in place on GitHub and d
 An abstract-syntax diagram is not notation; it is how a metamodel is drawn.
 
 **What an implementation is**, so the boundary is visible from both sides: an implementation is a
-self-contained package carrying a notation, a filled set of `RequirementDefinition`s, and a rule-set a project may
-vary as it runs. It lives in its own repository — except the SysML v2 binding, which lives here because
-nobody outside this project would maintain it. See §2, K17 and K18.
+self-contained package carrying a notation, a filled set of `RequirementDefinition`s, and a rule-set a
+project may vary as it runs. It lives in its own repository — except the SysML v2 binding, which lives here
+because nobody outside this project would maintain it. See §2, K17 and K18.
 
 ## 2. Where this came from
 

@@ -52,10 +52,10 @@ name its origin through refinement, recorded one document over.
 ### K33 — does a requirement name the definition it came from, and its kind?
 
 A further question about origin belongs here, and answering it is this document's own decision to take
-rather than one to inherit. `02-requirement-analysis-model.md` defines `RequirementDefinition`: the definition whose
-rules turned a stater's free words into a requirement's bound wording, and whose specialisation (K30) gives a
-requirement its kind. Does a `Requirement` in this product model name the `RequirementDefinition` it was produced
-under, and that definition's kind?
+rather than one to inherit. `02-requirement-analysis-model.md` defines `RequirementDefinition`: the
+definition whose rules turned a stater's free words into a requirement's bound wording, and whose
+specialisation (K30) gives a requirement its kind. Does a `Requirement` in this product model name the
+`RequirementDefinition` it was produced under, and that definition's kind?
 
 Two things must both hold, and they pull in opposite directions. K13's condition on the projection asks that
 everything in force be present, that nothing in force be dropped, and that whatever is dropped remain
@@ -64,16 +64,17 @@ recoverable in the working model. K19's independent adoptability asks that this 
 `02-requirement-analysis-model.md`, which a reader adopting only this document has not read and, by §1, is
 not required to read.
 
-**Decision: no.** A `Requirement` in the product model does not name the `RequirementDefinition` it came from, nor
-that definition's kind. The two criteria are not symmetric here. K19 admits no partial reading: naming a
-`RequirementDefinition` — even by a bare identifier — asks the reader to accept that such a thing exists, that it
-has a kind, and that the kind comes from a specialisation hierarchy, none of which this document defines;
-that is exactly the forward dependency independent adoptability rules out. K13, on the other hand, is
-satisfied by the same escape clause that already carries the rest of the analysis apparatus: the binding
-between a requirement and its definition is not lost, only not projected into this type. It stays in the
-requirement analysis model, in exactly the sense K13 asks of anything dropped — recoverable, not deleted —
-and it sits there beside the refinement edge, `Source`, `SourceNeed` and `RequirementDecision`, none of
-which are named on the product `Requirement` either. Recorded as K33 in `spec/06-decisions.md`.
+**Decision: no.** A `Requirement` in the product model does not name the `RequirementDefinition` it came
+from, nor that definition's kind. The two criteria are not symmetric here. K19 admits no partial reading:
+naming a `RequirementDefinition` — even by a bare identifier — asks the reader to accept that such a thing
+exists, that it has a kind, and that the kind comes from a specialisation hierarchy, none of which this
+document defines; that is exactly the forward dependency independent adoptability rules out. K13, on the
+other hand, is satisfied by the same escape clause that already carries the rest of the analysis
+apparatus: the binding between a requirement and its definition is not lost, only not projected into this
+type. It stays in the requirement analysis model, in exactly the sense K13 asks of anything dropped —
+recoverable, not deleted — and it sits there beside the refinement edge, `Source`, `SourceNeed` and
+`RequirementDecision`, none of which are named on the product `Requirement` either. Recorded as K33 in
+`spec/06-decisions.md`.
 
 ## 3. Requirements in force
 

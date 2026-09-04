@@ -11,8 +11,8 @@ of a source; the other is the model's own bound terms. A `Source` yields `Source
 and `SourceStatement`, itself specialised into `SourceNeed` and `SourceDecision` (K44, K45) — and each has a
 counterpart on the model's own side. `SourceNeed` and `SourceDecision` cross inward, by `refine`, into
 `Requirement` and `RequirementDecision`; `RequirementQuestion` crosses outward, by `poses`, into
-`SourceQuestion` (K47, K48, K58, K59). `RequirementDefinition` is the definition a `Requirement` is produced under,
-and findings are what a review produces over all of it.
+`SourceQuestion` (K47, K48, K58, K59). `RequirementDefinition` is the definition a `Requirement` is produced
+under, and findings are what a review produces over all of it.
 
 This document defines the source side first — `Source`, the edge between sources, and the `SourceElement`
 family — then the model side: `RequirementDefinition`, the derivation it governs, `RequirementDecision`,
@@ -56,8 +56,8 @@ Three rules govern a source, and each rests on a decision already taken.
    attributes carry a domain leak — a kind of material and two things it can come from that exist only in
    that domain — and a vocabulary fixed here would carry the same leak into every project that adopts this
    metamodel. K30 makes the same move for a requirement's kind, though through a different mechanism: there
-   the vocabulary is carried by specialisation of `RequirementDefinition` rather than by an attribute. What the two
-   share is the metamodel naming a slot and leaving an implementation to fill it.
+   the vocabulary is carried by specialisation of `RequirementDefinition` rather than by an attribute. What
+   the two share is the metamodel naming a slot and leaving an implementation to fill it.
 
 ## 3. The edge between sources
 
@@ -251,14 +251,14 @@ bare `RequirementDecision`.
 
 ## 7. `RequirementDefinition`
 
-`RequirementDefinition` is **abstract**. No element in a model is a `RequirementDefinition` and nothing more: a definition
-exists only as a specialisation of it, and which specialisations exist is declared by an implementation
-rather than here (K30). Section 9 gives the reasoning and says what the specialisation relation carries;
-this section says what every definition carries, whatever it specialises.
+`RequirementDefinition` is **abstract**. No element in a model is a `RequirementDefinition` and nothing
+more: a definition exists only as a specialisation of it, and which specialisations exist is declared by an
+implementation rather than here (K30). Section 9 gives the reasoning and says what the specialisation
+relation carries; this section says what every definition carries, whatever it specialises.
 
 The name is adopted rather than coined. SysML v2 splits an element into a definition and a usage of it, and
-`RequirementDefinition` is the definition half of that split on the same terms: the thing a requirement is produced
-under, not the requirement itself.
+`RequirementDefinition` is the definition half of that split on the same terms: the thing a requirement is
+produced under, not the requirement itself.
 
 A definition carries eight things. This is the **core** — what the metamodel can interpret, or can fail on,
 without reading anything an implementation supplies (K27).
@@ -384,8 +384,8 @@ belongs. Recorded as K36 in `spec/06-decisions.md`.
 
 ## 9. Requirement kinds are specialisations
 
-A requirement kind is a **specialisation of `RequirementDefinition`**, never an attribute on it (K30). Three reasons
-carry this, and they are independent of each other.
+A requirement kind is a **specialisation of `RequirementDefinition`**, never an attribute on it (K30). Three
+reasons carry this, and they are independent of each other.
 
 1. **It is the mechanism the neighbouring language already recommends.** SysML v2's own way of building a
    hierarchy of requirement definitions is specialisation rather than a dependency between them, and SysML
@@ -401,17 +401,18 @@ carry this, and they are independent of each other.
    of the types this metamodel defines. Using specialisation for the level boundary and something else for
    kinds would describe one relation twice, in two mechanisms that could then disagree.
 
-**`Requirement` itself never specialises, however deep or wide the `RequirementDefinition` tree grows.** The kind
-hierarchy lives entirely on the definition side, and `Requirement` and `RequirementDefinition` connect only by the
-*produced under* relation (§10), never by inheritance: a requirement produced under a leaf kind is a plain
-`Requirement` naming which `RequirementDefinition` it was produced under, not a member of some `Requirement`-subtype
-(K67). This is SysML v2's own `def`/`usage` split, checked directly against the primary specification rather
-than assumed: its kind hierarchy — `FunctionalRequirementCheck`, `PhysicalRequirementCheck`, and the rest —
-specialises `RequirementCheck`, stated as *the base type of all `RequirementDefinition`s*, entirely on the
-definition side; `RequirementUsage` stays one uniform type throughout, typed by whichever definition it names,
-never itself specialised. This confirms rather than revises what `01-requirement-model.md` §2's K33 already
-reads as though true — a `Requirement` naming no kind of its own presupposes it has none to name — stated
-explicitly here because the question turned out not to be obvious without it.
+**`Requirement` itself never specialises, however deep or wide the `RequirementDefinition` tree grows.** The
+kind hierarchy lives entirely on the definition side, and `Requirement` and `RequirementDefinition` connect
+only by the *produced under* relation (§10), never by inheritance: a requirement produced under a leaf kind
+is a plain `Requirement` naming which `RequirementDefinition` it was produced under, not a member of some
+`Requirement`-subtype (K67). This is SysML v2's own `def`/`usage` split, checked directly against the
+primary specification rather than assumed: its kind hierarchy — `FunctionalRequirementCheck`,
+`PhysicalRequirementCheck`, and the rest — specialises `RequirementCheck`, stated as *the base type of all
+`RequirementDefinition`s*, entirely on the definition side; `RequirementUsage` stays one uniform type
+throughout, typed by whichever definition it names, never itself specialised. This confirms rather than
+revises what `01-requirement-model.md` §2's K33 already reads as though true — a `Requirement` naming no
+kind of its own presupposes it has none to name — stated explicitly here because the question turned out not
+to be obvious without it.
 
 **This revises prior art, and does so by permission.** D51–D55 are *imported* rather than inherited — K15
 moves their subject into the metamodel, so this repository takes its own decision on it. The one revised is
@@ -434,8 +435,8 @@ it. `KindA` and `KindB` are placeholders named after no real kind, because the m
 generalisation conventions the diagram language already carries and coins nothing (K32); where it and the
 prose disagree, the prose wins.
 
-**What an implementation must do:** declare its kinds, as subtypes of `RequirementDefinition`. **What the metamodel
-does not do:** name any of them, say how many there are, or say on what axis they divide.
+**What an implementation must do:** declare its kinds, as subtypes of `RequirementDefinition`. **What the
+metamodel does not do:** name any of them, say how many there are, or say on what axis they divide.
 
 **What specialisation means is open.** What a subtype may add to the core of section 7, what it may narrow,
 and what if anything it may override is not defined here. That is OQ9, and it waits for something to exercise
@@ -471,14 +472,14 @@ here, where `SourceNeed` is defined, and the invariant that every requirement na
 decidable with this edge in view.
 
 **A requirement also names the definition it was produced under.** Beside the refinement edge, and unlike it,
-a requirement carries an edge naming exactly one `RequirementDefinition` — the definition a `SourceNeed`'s passage
-selected, whose rules turned the stater's free words into the requirement's bound wording. Exactly one, because the
-kind rides along with the definition (K8): a requirement's kind is read off what that one definition
-specialises (K30), and a requirement produced under two definitions would have two kinds or none. This edge
-is what makes K13's recoverability condition true of what K33 drops. K33 decides that the product
-`Requirement` names neither its definition nor its kind, and that decision is legitimate only
-because the binding is not thereby lost: it is recorded here, in the working model, recoverable rather than
-deleted, exactly as K13 asks of anything the projection drops. The projection drops this edge along with the
+a requirement carries an edge naming exactly one `RequirementDefinition` — the definition a `SourceNeed`'s
+passage selected, whose rules turned the stater's free words into the requirement's bound wording. Exactly
+one, because the kind rides along with the definition (K8): a requirement's kind is read off what that one
+definition specialises (K30), and a requirement produced under two definitions would have two kinds or none.
+This edge is what makes K13's recoverability condition true of what K33 drops. K33 decides that the product
+`Requirement` names neither its definition nor its kind, and that decision is legitimate only because the
+binding is not thereby lost: it is recorded here, in the working model, recoverable rather than deleted,
+exactly as K13 asks of anything the projection drops. The projection drops this edge along with the
 definitions it points at.
 
 **The relation between a `SourceNeed`'s words and a requirement's wording is a semantic constraint** (K24).
@@ -713,13 +714,14 @@ connection always exists and is consistent; `discharges` is what lets a reader, 
 without walking three hops to get there. Both readings are true at once, deliberately.
 
 **Where a `RequirementQuestion` comes from is now settled for two mechanisms and open for the rest.** A
-`RequirementDefinition`'s own *what to ask* (§7) already covers a single missing parameter. A conflict between a new
-`Requirement` and an existing in-force one is `03-project-lifecycle-model.md` §3's `ConflictRule`, raising a
-`RequirementChoice`. A `Requirement` whose kind implies that another kind should also exist is that section's
-`CompletenessRule`, raising a `RequirementInquiry` — this was OQ17's own original case, now answered. Two
-further rule-set statements — whether a silent default must be owned, and when a gap's wait becomes a decision
-— do not yet have a worked mechanism, and whether either raises a `RequirementQuestion` the same way, or needs
-something structurally different, is recorded as OQ18 in `06-decisions.md`.
+`RequirementDefinition`'s own *what to ask* (§7) already covers a single missing parameter. A conflict
+between a new `Requirement` and an existing in-force one is `03-project-lifecycle-model.md` §3's
+`ConflictRule`, raising a `RequirementChoice`. A `Requirement` whose kind implies that another kind should
+also exist is that section's `CompletenessRule`, raising a `RequirementInquiry` — this was OQ17's own
+original case, now answered. Two further rule-set statements — whether a silent default must be owned, and
+when a gap's wait becomes a decision — do not yet have a worked mechanism, and whether either raises a
+`RequirementQuestion` the same way, or needs something structurally different, is recorded as OQ18 in
+`06-decisions.md`.
 
 **`RequirementQuestion` — both specialisations — belongs to the *review finding* family in the findings table
 below, not to the *failed check* or *question* rows** (K77). It is judged by whether a `Rule`'s condition
