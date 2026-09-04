@@ -96,9 +96,15 @@ yet.
 
 ### `RuleSet`
 
-A **`RuleSet`** belongs to a `RequirementDefinition` — zero or one per `RequirementDefinition` — not
-to a project as a whole (K68). It gathers the `Rule`s stated over that `RequirementDefinition`
-specifically. There is no reification of "everything a project has loaded" as an element of its own.
+**Exactly one `RuleSet` belongs to each `RequirementDefinition`, and it may be empty** (K82) — not one per
+project as a whole (K68). It gathers the `Rule`s stated over that `RequirementDefinition` specifically.
+There is no reification of "everything a project has loaded" as an element of its own.
+
+Making it exactly one rather than zero-or-one removes a distinction that carries no meaning: a
+`RequirementDefinition` with no rules stated over it and one holding an empty `RuleSet` are the same state
+of affairs, and modelling them apart would add a null case to every reading of the structure without
+buying anything. What is left is a `RuleSet` that is in effect a property of the `RequirementDefinition`,
+modelled separately because K22 makes a rule-set a model in its own right.
 
 This is the natural unit, on two grounds. Section 2 already states that a rule-set's statements are
 *"stated per kind, not per definition"* — and a kind is exactly a `RequirementDefinition`
