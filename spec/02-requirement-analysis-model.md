@@ -896,6 +896,11 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
   This is ISO/IEC/IEEE 29148's verifiability characteristic held one level up, where §7 places the method —
   29148 requires verifiability of a requirement, and a requirement inherits its definition's method — and it
   is the stated rule K29 rests on.
+- **Every definition states a well-formedness rule for the wording a requirement produced under it must
+  satisfy.** Absence of the statement is a failed check on the definition itself, independent of anything any
+  requirement produced under it says. This is ISO/IEC/IEEE 29148's *characteristics of a good requirement*
+  held one level up, on the same footing §7 already places *how it would be verified* — it is the stated rule
+  K66 rests on.
 
 **Over the derivation, and over being no longer in force.**
 
@@ -920,11 +925,18 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
   `RequirementDecision`. Whether the alternatives recorded were genuine ones is a judgement and therefore a
   semantic matter under K24, outside this check.
 
-**Over `RequirementQuestion`.**
+**Over `RequirementQuestion`, `RequirementInquiry`, and `RequirementChoice`.**
 
 - A `RequirementQuestion`'s identity is unique among every `RequirementQuestion` in the model (§11).
+- No element is a `RequirementQuestion` and nothing more: every `RequirementQuestion` in a model is an
+  instance of `RequirementInquiry` or `RequirementChoice` (§11, K79).
 - A `RequirementQuestion` carries exactly one of "raised" or "posed" at any time. A `RequirementQuestion` in
   the posed state names, by its `poses` edge, exactly the `SourceQuestion` that made it so (§11, K60).
+- A `RequirementInquiry`'s `discharges` edge, where present, names a `Requirement`. A `RequirementChoice`'s
+  `discharges` edge, where present, names a `RequirementDecision`. Both are optional (§11, K79).
+- At most one `RequirementInquiry` per `Rule` is open at a time; a `Requirement` that triggers a
+  `CompletenessRule` while one is already open extends its triggering-`Requirement`s list rather than raising
+  a second `RequirementInquiry` (§11, `03-project-lifecycle-model.md` §3, K75).
 
 **Over findings.**
 
