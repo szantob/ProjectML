@@ -61,19 +61,19 @@ Three rules govern a source, and each rests on a decision already taken.
 
 ## 3. The edge between sources
 
-Sources connect to each other through exactly one edge: a later source **`answers`** an earlier one. Four
+Sources connect to each other through exactly one edge: a later source **`replies`** to an earlier one. Four
 properties hold of it, each already settled:
 
 - It sits on the later source and names the earlier one it responds to, not the reverse (D35).
-- It points backward in time: a source can only answer something that came before it (D38).
+- It points backward in time: a source can only reply to something that came before it (D38).
 - It changes no value on its own. Both the earlier statement and the later one stand as made; which of them
   prevails, if they disagree, is not decided by the edge but by a decision recorded separately (D37).
 - One edge relates exactly one source to exactly one source, but a source may carry any number of them —
-  answering several earlier sources, or being answered by several later ones (D29).
+  replying to several earlier sources, or being replied to by several later ones (D29).
 
-The founding record's section 5 makes a further finding about this edge worth carrying forward here: `answers`
+The founding record's section 5 makes a further finding about this edge worth carrying forward here: `replies`
 is the natural closing edge for a review finding. A finding is opened by a source and closed by a later one
-that answers it, so closing a finding is not a tick somebody applies to a record — it is itself evidence,
+that replies to it, so closing a finding is not a tick somebody applies to a record — it is itself evidence,
 carrying the same source that closes it as everything else in this model does. Section 11 uses the edge on
 exactly these terms.
 
@@ -144,9 +144,9 @@ outstanding, not a defect. This is the reason `SourceQuestion` sits beside `Sour
 beneath it: were it a `SourceStatement`, every unanswered question would report as a failed check under the
 rule the next section states, which would be wrong — a question asserts nothing, so nothing about it can go
 unfulfilled the way an unrefined statement can. It opens something instead, and what closes it is the
-`answers` edge (§3): a later source `answers` the source the question's passage sits in.
+`replies` edge (§3): a later source `replies` to the source the question's passage sits in.
 
-**How `SourceQuestion` subdivides, and whether it names the party expected to answer it, is not settled
+**How `SourceQuestion` subdivides, and whether it names the party expected to reply to it, is not settled
 here.** Nothing today reads such a subdivision. This is recorded as OQ16 in `06-decisions.md`.
 
 ### `SourceStatement`
@@ -527,7 +527,7 @@ which does have identity (K21).
 requirements in force, with their identity, text and values, and the derivation edges between them.
 
 **What it drops** is everything this model adds, and every requirement no longer in force. Sources and the
-`answers` edge between them; `SourceNeed`s, `SourceDecision`s and the `refine` edge that names them;
+`replies` edge between them; `SourceNeed`s, `SourceDecision`s and the `refine` edge that names them;
 `SourceQuestion`s and `RequirementQuestion`s — new elements of this model, and no more able to cross into the
 product than anything else this list names; definitions, the edge by which a requirement names the one it was
 produced under, their specialisation hierarchy and therefore the kind of any requirement (K33);
@@ -686,9 +686,9 @@ to close; `RequirementQuestion` gives OQ13 the *opening* half of the interval it
 optional because it is absent for as long as the question stands open. `RequirementInquiry` discharges to a
 `Requirement`; `RequirementChoice` discharges to a `RequirementDecision`.
 
-`discharges` is a coined edge rather than a reuse of `answers`: `answers` is a `Source`↔`Source`, evidentiary
+`discharges` is a coined edge rather than a reuse of `replies`: `replies` is a `Source`↔`Source`, evidentiary
 edge — one passage of material responding to another — where `discharges` names, on the model's own side,
-what closed a question, a different kind of relationship entirely. Reusing `answers` here would blur exactly
+what closed a question, a different kind of relationship entirely. Reusing `replies` here would blur exactly
 the distinction K47 draws between the two sides of this model. The word itself is not new to this collection:
 OQ13 already speaks of *"its discharge"* as the machinery it still asks for, and `discharges` names the
 phenomenon the corpus was already calling by this word.
@@ -706,7 +706,7 @@ alternatives, read once as open and once as settled.
 **Closing a `RequirementInquiry` or `RequirementChoice` needs no dedicated edge to reach a
 `RequirementDecision`, and `discharges` does not change that.** The connection was already traceable through
 machinery this document has independently of `discharges`: `RequirementQuestion` --poses--> `SourceQuestion`,
-whose source a later source `answers` (§3); if that answering source carries a `SourceDecision`, it `refine`s
+whose source a later source `replies` to (§3); if that replying source carries a `SourceDecision`, it `refine`s
 into the `RequirementDecision` that answers the question (K61). `discharges` sits *beside* that traceable
 chain as a direct, optional convenience reference, not in place of it: the chain is what guarantees the
 connection always exists and is consistent; `discharges` is what lets a reader, or a checker, find the answer
@@ -757,7 +757,7 @@ can outlive the fact that produced it. A review finding cannot be recomputed at 
 modelled, and is therefore the only one of the three with a state to carry — it is open until it is closed.
 
 **Closure is evidence, not a tick.** A review finding is opened by a source and closed by a later source that
-`answers` it, on exactly the terms section 3 sets out for that edge. Nothing marks a finding closed directly;
+`replies` to it, on exactly the terms section 3 sets out for that edge. Nothing marks a finding closed directly;
 what closes it is a source entering the model, which is K11 holding at the top of the chain as it holds
 everywhere else. A finding closed this way carries the material that closed it, so a later reader can read
 what was said rather than only that somebody was satisfied.
@@ -813,7 +813,7 @@ invent, and the second removes a pointer while leaving the source it pointed int
 from it.** That is a **dilemma**, and it needs no new element, because it already has a home. It is a review
 finding — the
 one of the three kinds above decided by judgement, and the only one carrying a state. It is opened by a
-source and closed by a later source that `answers` it, on the terms this section has already set out, and
+source and closed by a later source that `replies` to it, on the terms this section has already set out, and
 its answer therefore arrives as a source like every other change (K11). The requirement that finally issues
 may carry both origins at once, refining a stater's own words and derived from another requirement in the
 same breath, which is the case D49's invariant is written to admit. One consequence of the edge's direction
@@ -853,9 +853,9 @@ test (§8) means by *without reading its content*.
 **Over `Source`, and the edge between sources.**
 
 - A source's identity is unique among every source in the model (§2).
-- The `answers` edge points backward in time: the source carrying it is dated later than the source it names
+- The `replies` edge points backward in time: the source carrying it is dated later than the source it names
   (§3, D38).
-- One `answers` edge names exactly one earlier source; a source may carry any number of them (§3, D29).
+- One `replies` edge names exactly one earlier source; a source may carry any number of them (§3, D29).
 
 **Over `SourceElement`, and every specialisation of it.**
 
@@ -941,7 +941,7 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 **Over findings.**
 
 - A review finding names at least two elements (§11, K10).
-- A review finding recorded as closed names the later source that closed it, and that source `answers` the
+- A review finding recorded as closed names the later source that closed it, and that source `replies` to the
   source the finding was opened by. Nothing marks a finding closed directly (§11, K11).
 
 **One rule over these elements reports rather than fails.** §11's table separates a failed check from a
