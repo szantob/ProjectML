@@ -877,13 +877,37 @@ followed by a table with these three rows:
 | OQ25 | What produces `04-value-states.md` §2's marking of a value as one to ask about? The marking occurs once in the whole of `spec/` and nothing states its origin, which the rule that every event record its cause makes a defect however sensible it reads. Two origins are available — a modeller's judgement, and a `Rule` — and whether the marking is modelled or recomputed cannot be settled until it is known which applies when. That document permits stated, derived and conflicting values to be marked as well as assumed ones, so the question is not confined to defaults | Before OQ18's first half, which it blocks. Small, and close |
 | OQ26 | Does K83's negative-answer path hold? K83 says a subject a rule raises may be answered negatively, and that the answer appears as a `Requirement` like any other, which the `RequirementInquiry` then `discharges` to. This rests on two premises the corpus never states: that "this project needs nothing here" obliges something, as K37 requires of every `SourceNeed`; and that some declared `RequirementDefinition` covers a negative statement, as K8 requires of every requirement. The second has a plausible answer — the implied kind's own definition — and the first may be false in a way that matters: a decision to need nothing reads more naturally as a `SourceDecision` refining into a `RequirementDecision`, and K79 fixes `RequirementInquiry`'s `discharges` on a `Requirement`, which would not admit it | Used by K97's statement that a retracted rule leaves its open questions to close the ordinary way, but never worked, so it is recorded rather than settled |
 
-- [ ] **Step 5: Check the numbering**
+- [ ] **Step 5: Back-link the K98 paragraph to OQ24**
+
+OQ24 exists only once this task has run, so the paragraph that depends on it could not cite it earlier. In
+`spec/03-project-lifecycle-model.md`, in the `### \`ConflictRule\`` subsection's paragraph beginning
+`**What such a rule would have covered is already covered, three ways.**`, replace the sentence:
+
+```
+Where two sources disagree about the
+same thing, the value-state model carries it and needs no rule: `04-value-states.md` §2's **conflicting**
+state holds the competing values, each with its source.
+```
+
+with:
+
+```
+Where two sources disagree about the
+same thing, the value-state model carries it and needs no rule: `04-value-states.md` §2's **conflicting**
+state holds the competing values, each with its source. That this is one requirement carrying a contested
+value, rather than two requirements that disagree, is what `06-decisions.md` records as OQ24.
+```
+
+This is the same back-link the `Rule` subsection already carries to OQ26, written for the same reason: a
+sentence that leans on an unsettled question says so.
+
+- [ ] **Step 6: Check the numbering**
 
 Confirm K90–K100 are each used exactly once, that no earlier K number was reused, and that OQ24–OQ26 are each
 used exactly once. Confirm the `## Status of the founding record's open questions` section, which stays last
 in the file, is still last.
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
 git add spec/06-decisions.md
