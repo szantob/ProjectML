@@ -123,9 +123,9 @@ adopted.
 **A `Rule` attached to a `RequirementDefinition` applies to every specialisation of it, not only to that node**
 (K69). This needs no mechanism of its own beyond the specialisation tree K30 already builds: a rule stated at
 the root applies everywhere beneath it; a rule stated three levels down applies only beneath that point. A
-project's most consequential rules — *"no requirement may contradict an active one,"* below — belong at the
-root precisely because they should reach every kind a project declares, without being restated once per leaf
-kind.
+rule that should reach every kind beneath some point belongs at that point rather than being restated once
+per leaf kind: a project holding that every technical requirement implies a requirement for somebody to
+operate what it describes states that once, high in the tree, and every technical kind inherits it.
 
 ### `Rule`
 
@@ -234,13 +234,38 @@ recorded as OQ18 in `06-decisions.md` (K72, K90).
 
 ### `ConflictRule`
 
-A `ConflictRule` fires when a new `Requirement` contradicts an existing in-force one, and raises a
+A `ConflictRule` fires when a `Requirement` that has arisen contradicts one already in force, and raises a
 `RequirementChoice` (`02-requirement-analysis-model.md` §11) naming the alternatives a reviewer must choose
-among (K73). *"No requirement may contradict an active requirement,"* stated once at the `RequirementDefinition`
-root and inherited everywhere by the rule above, is this mechanism's canonical case. This sharpens section 2's
+among (K73). Its canonical case is a conflict **between two kinds**, on terms somebody had to state because
+nothing in the model could find them: a requirement for catering whose headcount falls short of a requirement
+stating how many people are expected. Neither requirement is wrong on its own, no parameter they share is in
+dispute, and the relation between the two kinds is exactly what the rule carries. This sharpens section 2's
 third row — *how a conflict of a given kind is resolved* — which describes only the resolution half;
 detection is the other half a `Rule` must also carry, and resolution is exactly what a `RequirementChoice`,
 discharged by a `RequirementDecision`, records.
+
+**A `ConflictRule` carries nothing beyond the shape every `Rule` has** (K96). This asks to be justified rather
+than merely stated, because both specialisations relate two requirement kinds and only the other one names
+its partner in a typed reference. The difference is the one the axis above draws: a `ConflictRule`'s partner
+is **present** when the rule fires, and the judgement reads it anyway, so naming that partner in the prose of
+*what to look for* is sufficient. Narrowing mechanically what must be examined before the judgement runs is a
+guard, and belongs to the question `06-decisions.md` records as OQ21 rather than to this type.
+
+**There is no universal contradiction rule, and this model states none** (K98). A rule holding that no
+requirement may contradict an in-force one — stated once at the root and inherited everywhere — reads as this
+mechanism's most obvious case and is not a `Rule` at all. Every one of the four attributes above degenerates
+on it: *when it applies* is "always"; *what to look for* restates the type's own name; its state could never
+be anything but in force; and its identity exists only so that a question has something to name. Four vacuous
+attributes is not a badly written rule but the mark of something that is not one, because a rule-set states
+how **this project** works, and this is true of every project and carries no content.
+
+**What such a rule would have covered is already covered, three ways.** Where two sources disagree about the
+same thing, the value-state model carries it and needs no rule: `04-value-states.md` §2's **conflicting**
+state holds the competing values, each with its source. Where two different kinds are incompatible on terms
+somebody had to state, that is a `ConflictRule` — the case above. Whatever neither covers requires judgement
+and follows no procedure, which makes it a review, the third of the checking modes
+`02-requirement-analysis-model.md` §11 names. **No fourth checking mode is needed**, and introducing one here
+would add a construct nothing exercises.
 
 ### `CompletenessRule`
 
