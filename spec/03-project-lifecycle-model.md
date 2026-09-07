@@ -274,14 +274,50 @@ raises a `RequirementInquiry` (`02-requirement-analysis-model.md` §11) (K74). T
 fourth row now states directly: *"which other requirement kinds a given kind implies should also be
 present."*
 
-**The check is set-level, not per-instance.** It asks whether at least one `Requirement` of the implied kind
-exists anywhere the rule's `RequirementDefinition` reaches, never whether every triggering `Requirement` has its own
-(K75). Consequently, while a given `CompletenessRule`'s gap stays open, a newly triggering `Requirement`
-extends the existing open `RequirementInquiry`'s list of triggering requirements rather than raising a second
-one: **at most one open `RequirementInquiry` per `Rule` at a time.** Reading the check as a query over current
-state, rather than a per-instance obligation, is what keeps a growing model from re-triggering the same rule
-combinatorially — once the implied kind exists once, the query returns no gap for every requirement
-thereafter, without anything needing to be closed by hand.
+**A `CompletenessRule` names the kind it implies, by a reference to a `RequirementDefinition`, beside the
+prose of *what to look for*** (K93). This is the one place a `Rule` carries a typed reference, and it is
+necessary rather than merely permitted: the implied kind is **absent** when the rule fires, so nothing about
+it can be read from the model, and a rule that had not named it in advance could not run its own test. It
+opens no second seam, `RequirementDefinition` being an element this metamodel defines
+(`02-requirement-analysis-model.md` §7) rather than one a design language supplies — which is the whole
+difference between this reference and the candidate §8 of that document rejects. What the metamodel states is
+that the reference exists; **which** definition any rule names is a project's business, on the same terms as
+everything else a rule-set holds.
+
+**Exactly one implied `RequirementDefinition` per `CompletenessRule`** (K94). A kind implying several
+companions is several rules, not one rule naming several kinds. The reason is machinery already in place
+rather than tidiness: at most one `RequirementInquiry` per rule is open at a time, and `discharges` names
+exactly one `Requirement` (`02-requirement-analysis-model.md` §11, §12). A rule naming five implied kinds,
+three of them missing, would open one inquiry covering three gaps, which no single `Requirement` could
+discharge and nothing could therefore close. Separate rules also give the behaviour anybody would want: where
+one implied kind is present and another is not, one question opens rather than several.
+
+**The check is set-level, not per-instance.** It asks whether at least one **in-force** `Requirement`
+produced under the implied `RequirementDefinition`, **or under any specialisation of it**, exists **in the
+project model** — never whether every triggering `Requirement` has its own (K75, K95). All three
+qualifications carry weight. *In force*, because a retired requirement stays in the model
+(`02-requirement-analysis-model.md` §10, K5) and does not fill a gap. *Or any specialisation*, because the
+definition tree is a kind hierarchy, so a more specific kind satisfies a more general implication. *In the
+project model*, which is the separation stated above: the owner's subtree is where a rule is triggered,
+never where its target is found. Consequently, while a given `CompletenessRule`'s gap stays open, a newly
+triggering `Requirement` extends the existing open `RequirementInquiry`'s list of triggering requirements
+rather than raising a second one: **at most one open `RequirementInquiry` per `Rule` at a time.** Reading
+the check as a query over current state, rather than a per-instance obligation, is what keeps a growing
+model from re-triggering the same rule combinatorially — once the implied kind exists once, the query
+returns no gap for every requirement thereafter, without anything needing to be closed by hand.
+
+**What the set-level reading cannot express, said where a reader will need it.** One in-force requirement of
+the implied kind anywhere satisfies the rule for every triggering requirement, and this model has no way to
+say that each of them needs its own. That is deliberate, taken against a growing model re-triggering the same
+rule combinatorially. Where per-instance behaviour is actually wanted, it is obtained by refining the implied
+kind rather than by changing the check: a rule stated further down the tree implies a more specific companion
+kind, and the set-level question then asks the narrower thing.
+
+**The same move marks the limit on what a rule may imply at all.** A rule may imply a more specific kind
+wherever an implementation declares one; it may never state what a requirement of the implied kind should
+say. **An implied kind, yes; an implied parameter value, never.** That line is what keeps a rule-set from
+becoming a second definition layer, and it is the same one the `Rule` subsection above draws in saying a rule
+never states what the resulting requirement should say (K83).
 
 ### Walking a `RuleSet`
 
