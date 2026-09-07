@@ -344,8 +344,9 @@ a definition are.
 ### Walking a `RuleSet`
 
 **A `RuleSet` is a written procedure, and matching is a relevance judgement made while walking it** (K86).
-When a new requirement arises in a subject, the `RuleSet`s that reach it are walked, and a reader — human or
-AI — judges which entries are relevant by reading each rule's *when it applies*. This is not the evaluation
+When a new requirement arises in a subject, the `RuleSet`s that reach it are walked. A rule no longer in
+force is passed over without anything being read (K97); of the rest, a reader — human or AI — judges which
+are relevant by reading each rule's *when it applies*. This is not the evaluation
 of a condition for its truth value against a requirement, which is how K76 first described it; that
 description is corrected here, its verdict is not.
 
@@ -360,6 +361,36 @@ K41).
 relevant in a subject are exactly those on that `RequirementDefinition` and its ancestors, which is the walk
 the rule above already defines (K69). Nothing here adds a notion of *subject* beside the one the
 specialisation tree already carries.
+
+**Two steps happen here, and only the first is common to every rule.** Judging relevance reads *when it
+applies* and is the same act whatever the rule is. What follows when a rule is found relevant — the firing —
+differs by specialisation, and is not uniformly a judgement: a `ConflictRule`'s test reads two requirements'
+texts and cannot be decided without doing so, where a `CompletenessRule`'s asks whether a requirement of some
+kind exists and reads no text at all. The semantic classification above holds because of the first step,
+which every walk runs; it does not follow that everything after it is judged.
+
+```mermaid
+flowchart TD
+    A["A Requirement arises under a RequirementDefinition"]
+    A --> B["Walk the RuleSets on that definition and on its ancestors"]
+    B --> S{"Is this Rule in force?"}
+    S -->|"no — decided without judgement"| Z["Nothing follows"]
+    S -->|"yes"| C{"Is it relevant?<br/>read its 'when it applies'"}
+    C -->|"no"| Z
+    C -->|"yes — a judgement, semantic"| D["The Rule fires"]
+    D --> E{"ConflictRule — tests a pair:<br/>does this contradict an in-force Requirement?"}
+    D --> F{"CompletenessRule — tests a set:<br/>does any in-force Requirement of the implied kind exist?"}
+    E -->|"no"| Z
+    E -->|"yes — judged, reads both texts"| G["RequirementChoice, one per contradicting pair"]
+    F -->|"at least one"| Z
+    F -->|"none — decided without judgement"| H["RequirementInquiry, at most one open per Rule"]
+```
+
+The diagram draws what this section states; where the two disagree, the prose wins. **It draws this model's
+own mechanism and not a project's way of working**: who walks a `RuleSet`, when, how often, and how that sits
+beside a review are deliberately unstated here, and section 5 says why. Nothing in it promises the walk runs
+exhaustively or automatically — the paragraph above already refuses that guarantee, and the diagram is read
+under it.
 
 ### What a `Rule` does not carry
 
