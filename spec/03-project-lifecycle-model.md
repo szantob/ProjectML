@@ -85,17 +85,23 @@ classDiagram
     class Rule {
         <<abstract>>
         identity
+        state: in force | no longer in force
         when it applies
-        what to consider
+        what to look for
+    }
+    class CompletenessRule {
+        implied RequirementDefinition
     }
     Rule <|-- ConflictRule
     Rule <|-- CompletenessRule
+    CompletenessRule --> RequirementDefinition : implies
 ```
 
-The diagram draws what this section states; where the two disagree, the prose wins. Two more `Rule`
-specialisations are named but not yet shaped — see the `Rule` subsection below — and are left off the diagram for
-the same reason a design record leaves an open question out of a decision table: nothing here defines them
-yet.
+The diagram draws what this section states; where the two disagree, the prose wins. `ConflictRule` carries
+nothing of its own, which is a decision rather than an omission and is argued in its own subsection below.
+Two further `Rule` specialisations are named but not shaped — see the `Rule` subsection — and are left off the
+diagram for the same reason a design record leaves an open question out of a decision table: nothing here
+defines them yet.
 
 ### `RuleSet`
 
@@ -318,6 +324,22 @@ wherever an implementation declares one; it may never state what a requirement o
 say. **An implied kind, yes; an implied parameter value, never.** That line is what keeps a rule-set from
 becoming a second definition layer, and it is the same one the `Rule` subsection above draws in saying a rule
 never states what the resulting requirement should say (K83).
+
+### What each firing produces
+
+```mermaid
+classDiagram
+    RequirementChoice --> ConflictRule : triggered by
+    RequirementInquiry --> CompletenessRule : triggered by
+    RequirementChoice --> RequirementDecision : discharges
+    RequirementInquiry --> Requirement : discharges
+```
+
+The diagram draws what this section and `02-requirement-analysis-model.md` §11 state between them; where a
+diagram and the prose disagree, the prose wins. **The edge directions are the point.** There is no *raises*
+edge in this model: a `RequirementQuestion` carries *triggered by* toward its `Rule`, so nothing leads from a
+rule down to the questions it produced. They are found by querying, exactly as the requirements produced under
+a definition are.
 
 ### Walking a `RuleSet`
 
