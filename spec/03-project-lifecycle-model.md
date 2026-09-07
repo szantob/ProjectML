@@ -145,25 +145,57 @@ subject raised and declined therefore leaves a record, and a later reader asking
 requirement finds an answer rather than silence. This is the inquiry case specifically: a conflict raises no
 subject to decline, but alternatives to choose among, which `RequirementChoice` carries instead (K79).
 
-`Rule` is **abstract**, and carries three things.
+`Rule` is **abstract**, and carries four things, read by the walk below in this order.
 
 | Attribute | Carries |
 |---|---|
 | identity | Local to the `RequirementDefinition` that owns it; the full identifier is the composition of the two (K85) |
+| state | One of "in force" or "no longer in force". Read mechanically, before anything is judged (K97) |
 | when it applies | One sentence stating when this rule is relevant. Prose, not an evaluable expression, on the same terms `02-requirement-analysis-model.md` §7's own *when it applies* is prose (D20) |
-| what to consider | The subject this rule raises: what has to be dealt with, never what the answer should be (K83, K84) |
+| what to look for | What this rule seeks in the model: what has to be found, never what the answer should be (K83, K91) |
 
-**The two prose fields are split so that the judgement below reads one of them rather than the whole rule.**
-Neither form is coined: a `RequirementDefinition` already carries a *when it applies* on exactly these terms,
-and a *what to ask* that raises a missing parameter where *what to consider* raises a missing subject, one
-level up. House rule 10 is met by adopting this collection's own established forms rather than inventing a
-third.
+**The two prose attributes are split so that the judgement below reads one of them rather than the whole
+rule.** Neither form is coined: a `RequirementDefinition` already carries a *when it applies* on exactly
+these terms, and a *what to ask* one level up. House rule 10 is met by adopting this collection's own
+established forms rather than inventing a third.
+
+**The second is named for what it seeks, not for what it raises** (K91). Where a rule looks for something
+**absent**, what it is looking for and what somebody must then deal with are one sentence — which is why an
+earlier reading described this attribute as the subject a rule raises. Where a rule looks for a **present**
+clash, the two come apart: the rule states what counts as a contradiction, while the subject anybody deals
+with is the particular pair found, which is instance-side and sits on the `RequirementChoice` the firing
+raises. The subject-reading is a special case of the seeking-reading, so the attribute common to every rule
+is named for the general one.
 
 **The identity is local because the attachment already is.** A `Rule` is reachable only through the
 `RuleSet` of the `RequirementDefinition` that owns it, so an identifier unique beneath that owner is unique
 in the model. **How the composition is written down is not fixed here**: spelling out a composed identifier
 would be notation, which K15 excludes, and an implementation's identifier space is exactly what
 `05-binding-contract.md`'s third declaration already leaves to it (K4).
+
+**A `Rule` is never deleted; it is taken out of force** (K97). It carries one of "in force" or "no longer in
+force", on exactly the terms `01-requirement-model.md` §3 and `02-requirement-analysis-model.md` §10 already
+hold a requirement to (K5) — the vocabulary is that one rather than a synonym coined beside it. The reason is
+`02-requirement-analysis-model.md` §11's own: every `RequirementQuestion` names the `Rule` that produced it,
+without exception, and one naming none is not a well-formed element at all (K87). A deletable `Rule`
+withdraws the target of that reference, taking back the strongest thing this collection says about a
+question's cause — that it is not merely guaranteed to exist but named.
+
+**Taking a rule out of force is the project manager's act, never the modeller's.** This is the mirror of what
+this subsection already states in the other direction: adopting a rule commits the project to checking it,
+and what commits the project is the project manager's to do. The modeller does not *skip* a rule that is no
+longer in force — it never reaches them, filtered out by the same walk that selects which `RuleSet`s reach a
+requirement at all.
+
+**A state is not provenance, and K88 below is untouched.** What caused a rule to be adopted or retracted
+stays outside this model and enters, like every commitment, as a source (K11). The *fact* is recorded here
+because the walk cannot run without reading it and because K87 needs the rule to persist; the *cause* stays
+where K88 puts it.
+
+**A rule leaving force does not close the questions it raised.** Retraction is not an answer, and an open
+question stands until something closes it the ordinary way. Where the answer is that the project needs
+nothing in the subject, that is a full answer and appears as a `Requirement` like any other (K83) — a path
+resting on premises `06-decisions.md` records as OQ26.
 
 `Rule`'s specialisations divide by **mechanism** — what happens when the rule fires — not by section 2's four
 descriptive rows, which remain a description of *subject matter*, closer to an open, `Source.kind`-shaped label
