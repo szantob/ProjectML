@@ -197,17 +197,40 @@ question stands until something closes it the ordinary way. Where the answer is 
 nothing in the subject, that is a full answer and appears as a `Requirement` like any other (K83) — a path
 resting on premises `06-decisions.md` records as OQ26.
 
-`Rule`'s specialisations divide by **mechanism** — what happens when the rule fires — not by section 2's four
-descriptive rows, which remain a description of *subject matter*, closer to an open, `Source.kind`-shaped label
-than to a type boundary (K71). The two axes are independent and do not correlate one-to-one: two different
-subject-matter rows below share the same mechanism shape — *detect a gap, then raise a `RequirementQuestion`
-subtype* — while the other two have no worked-out mechanism at all, and may turn out to need something
-structurally different, from each other as much as from these two.
+**A `Rule` specialisation is fixed by what its firing test ranges over, and every other difference between
+specialisations follows from it** (K90). `ConflictRule` tests a **pair** — the requirement that arose against
+one already in force. `CompletenessRule` tests a **set** — the requirements the implied kind would have to
+appear among. Section 2's four descriptive rows are not this axis and never were: they remain a description
+of *subject matter*, closer to an open, `Source.kind`-shaped label than to a type boundary (K71), and they
+predict a mechanism in neither direction.
 
-Two mechanisms are worked out here: `ConflictRule` and `CompletenessRule`, below. Two more — a
-silent-vs-owned-default rule and a gap-timeout rule, section 2's first and second rows — are not, and this
-document does not claim they share this shape merely because they would sit in the same abstract type's
-specialisation list; whether either does is recorded as OQ18 in `06-decisions.md` (K72).
+Each consequence below is derived rather than stipulated. A pairwise test has both elements present when it
+fires, so there is something to choose between: it yields alternatives, hence a `RequirementChoice`; each
+pair is its own case, hence as many open questions as there are pairs; and deciding whether one requirement
+contradicts another reads both texts, hence a judgement. A set-level test finds something **absent**, so
+there is nothing to choose between: it yields a gap, hence a `RequirementInquiry` carrying nothing beyond the
+shared shape; the gap is one property of the whole set, hence at most one open at a time; and deciding
+whether any requirement of a kind exists reads no text at all, hence no judgement.
+
+**One sentence accounts for what each specialisation carries, and for the inversion between the two sides.**
+On the question side, `RequirementChoice` carries something extra and `RequirementInquiry` carries nothing
+(`02-requirement-analysis-model.md` §11, K80); on the rule side this reverses. The reason is that **an
+absence must be named in advance, where a presence can be read at firing time**: a pairwise rule needs to
+carry nothing, because at firing both elements stand in the model, while a set-level rule must name its
+target in advance, because the target is not there to be read.
+
+**A `Rule`'s attachment determines what *triggers* it, not what its test ranges over** (K92). The inheritance
+above says which requirements bring a rule into play; the test then ranges over the project model. The two
+cannot be the same thing: a rule stated on one `RequirementDefinition` may look for requirements produced
+under another, anywhere in the specialisation tree, and searching only the owner's own subtree would find
+nothing in any project. This corrects the reach the `CompletenessRule` subsection below once stated for its
+own check (K75), not that check's set-level verdict.
+
+Two specialisations are worked out here: `ConflictRule` and `CompletenessRule`, below. Two more — a
+silent-vs-owned-default rule and a gap-timeout rule, section 2's first and second rows — are not. Placed on
+this axis, each ranges over something neither of the worked two does — a single value, and an open question
+together with elapsed time — and each is held by a prerequisite the collection does not yet meet; both are
+recorded as OQ18 in `06-decisions.md` (K72, K90).
 
 ### `ConflictRule`
 
