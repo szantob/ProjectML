@@ -303,6 +303,12 @@ carrying the same eight things are the same definition to this metamodel however
 out. Beyond the core, a definition holds whatever an implementation's own notation and rule-set need: the
 core is a floor the metamodel can reason over, not a ceiling (K27).
 
+**Whether that opening is where a company's sizing knowledge belongs is open.** The derivation from a
+requirement's parameters to what its answer must be — how many pieces, which kit, what height — is none of
+the eight, and `03-project-lifecycle-model.md`'s K83 excludes it from a `Rule`. The first implementation to
+carry a real domain put it in a rule's prose anyway. `06-decisions.md` records the question as OQ28,
+including why that evidence does not yet settle it.
+
 ## 8. What is not on a `RequirementDefinition`, and the two tests
 
 The list in section 7 needs a criterion that outlives it, because the next attribute somebody proposes will

@@ -430,6 +430,29 @@ stage's in the second. Nothing in this collection forbids that, and nothing in i
 |---|---|---|
 | OQ27 | Does a value domain fix a unit, and if it does, what makes two values comparable? `04-value-states.md` §5 leaves *which* domains exist to an implementation, but leaving the set open is not the same as leaving a value's **shape** open, and two constructs already assume values can be compared. `04-value-states.md` §2's **conflicting** state holds competing values, each with its source — competing presupposes comparable. `03-project-lifecycle-model.md`'s `ConflictRule` fires when a requirement contradicts an in-force one, and its canonical case is a headcount falling short of another (K73) — a comparison, not a textual difference. If a domain fixes a unit, then 2 m and 200 cm sit in different domains, a genuine contradiction between them is undetectable, and an implementation needs one domain per pair of measure and unit. If a domain does not fix a unit, a value must carry its own, and nothing here says a value has that structure | When something actually compares two values: a `ConflictRule`'s firing test, or the **conflicting** state being populated from two sources. Both need an implementation running a walk over a project model, which is why the question could not arise until one existed. Until then it is an unexercised construct and waits |
 
+## Open question OQ28
+
+Raised by the same implementation package as OQ27. Several of its rules put a **computation** into *what to
+look for*: a stage skirt's height and piece count as `⌈H·100/20⌉·20 cm` over three sides; a LED wall's
+support parts as `floor(W)` uprights with `ceil((N−1)/2)` back braces above 2 m; a video processor's port
+count as `ceil(pixel / 650 000)`, with the named kit that covers it. That is not what has to be found. It is
+what the answer is.
+
+**K83 and K91 are not ambiguous about this.** A `Rule` directs attention and never states what the resulting
+requirement should say; *what to look for* carries what the rule seeks, "never what the answer should be";
+and `03-project-lifecycle-model.md`'s `CompletenessRule` puts it flatly — an implied kind, yes; an implied
+parameter value, never. The package holds the line elsewhere in its own rule-set, which is why this reads as
+a displaced thing rather than a misunderstanding: its stair rule detects that no stair may be built above
+1,75 m and hands over to a decision, and its power rule names the alternatives a clash forces without
+choosing among them.
+
+So the question is not whether these belong in a `Rule`. It is where a company's sizing knowledge belongs at
+all — and whether the evidence yet shows a gap.
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ28 | Where does an implementation's sizing knowledge live — the derivation from a requirement's parameters to what the answer must be? It is not the wording (`text` is the template), not *how it would be verified*, not the *wording rule*, and K83 excludes a `Rule`. K27 appears to answer it already: beyond the core of eight, a definition holds whatever an implementation's own notation and rule-set need, the core being "a floor the metamodel can reason over, not a ceiling". **But the evidence cannot yet distinguish two readings.** Either the metamodel has no home for this and one is missing, or K27's opening is the home and a real implementation simply did not use it — because the editor that produced this package implements the core eight and nothing else, so a `Rule`'s prose was the only field wide enough to type into. The tool, not the metamodel, may be what displaced it | When an implementation carries beyond-core content on a `RequirementDefinition` and one can see whether sizing knowledge sits there naturally. A second reading becomes available once a walk runs: if a rule turns out to need a computation to *detect* at all — rather than to answer — then K83's line falls in a different place than it reads today |
+
 ## Status of the founding record's open questions
 
 | # | Status |
