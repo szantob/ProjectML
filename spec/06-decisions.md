@@ -415,6 +415,21 @@ which carries the full argument for each.
 | OQ22 | How does a fired rule become a posed question? A rule detects that a subject needs dealing with; the modeller writes the question. Whether one firing yields one question or several, whether *what to consider* supplies a template for the wording, and whether K75's "at most one open `RequirementInquiry` per `Rule`" is general or specific to `CompletenessRule`, are all unstated | With the `Rule` specialisations, since the last part is a question about one of them |
 | OQ23 | What is a review, as an act? `spec/02` §11 states a review finding's lifecycle — a source opens it, a later source that `replies` to it closes it — but nothing states the act producing one: who performs it, when, against what. Only static model checking and, since K86, walking a `RuleSet` are worked out | Unforced. Recorded because K89 makes the gap visible while deliberately not entering it |
 
+## Open question OQ27
+
+**OQ24–OQ26 are reserved** by [the design record of 2026-09-07 on the `Rule` specialisations](../docs/superpowers/specs/2026-09-07-rule-specialisations-design.md),
+whose decisions `spec/03` already carries and cites; they have not yet been transcribed into this document.
+The next number free for anything else is therefore OQ27.
+
+Raised by the first implementation package written with a working editor: a live-event AV company's own
+domain, declaring twenty-six value domains, among them `Hossz (m)` and `Magasság (cm)`. Both are lengths.
+They differ in nothing but their unit, and the package uses each for a height — a LED wall's in the first, a
+stage's in the second. Nothing in this collection forbids that, and nothing in it says whether it is right.
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ27 | Does a value domain fix a unit, and if it does, what makes two values comparable? `04-value-states.md` §5 leaves *which* domains exist to an implementation, but leaving the set open is not the same as leaving a value's **shape** open, and two constructs already assume values can be compared. `04-value-states.md` §2's **conflicting** state holds competing values, each with its source — competing presupposes comparable. `03-project-lifecycle-model.md`'s `ConflictRule` fires when a requirement contradicts an in-force one, and its canonical case is a headcount falling short of another (K73) — a comparison, not a textual difference. If a domain fixes a unit, then 2 m and 200 cm sit in different domains, a genuine contradiction between them is undetectable, and an implementation needs one domain per pair of measure and unit. If a domain does not fix a unit, a value must carry its own, and nothing here says a value has that structure | When something actually compares two values: a `ConflictRule`'s firing test, or the **conflicting** state being populated from two sources. Both need an implementation running a walk over a project model, which is why the question could not arise until one existed. Until then it is an unexercised construct and waits |
+
 ## Status of the founding record's open questions
 
 | # | Status |

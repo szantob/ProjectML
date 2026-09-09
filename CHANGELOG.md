@@ -71,3 +71,8 @@ work, not releases.
   opened.
   Findings are in
   [`docs/superpowers/specs/2026-09-04-rule-shape-design.md`](docs/superpowers/specs/2026-09-04-rule-shape-design.md).
+- OQ27 opened, the first open question raised by an implementation rather than by reading the metamodel: a
+  live-event AV company's domain declared `Hossz (m)` and `Magasság (cm)` — two value domains for one
+  measure, differing only in unit. `04-value-states.md` §5 leaves *which* domains exist to an
+  implementation, but not what a domain constrains, and both the **conflicting** state and `ConflictRule`
+  presuppose that two values can be compared.

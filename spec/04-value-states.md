@@ -81,3 +81,9 @@ not."*
 which domains exist, and what they are called, is declared by an implementation rather than fixed here. This
 is the same move K30 makes for requirement kinds: the metamodel provides the slot a domain fills without
 naming what goes into it.
+
+**What a domain constrains is a different question, and it is open.** Leaving the *set* of domains to an
+implementation does not settle whether a domain fixes a unit, nor what makes two values comparable — which
+section 2's **conflicting** state and `03-project-lifecycle-model.md`'s `ConflictRule` both presuppose.
+`06-decisions.md` records it as OQ27, raised by an implementation that declared two domains for the same
+measure in different units.
