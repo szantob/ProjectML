@@ -362,12 +362,12 @@ relevant in a subject are exactly those on that `RequirementDefinition` and its 
 the rule above already defines (K69). Nothing here adds a notion of *subject* beside the one the
 specialisation tree already carries.
 
-**Two steps happen here, and only the first is common to every rule.** Judging relevance reads *when it
-applies* and is the same act whatever the rule is. What follows when a rule is found relevant — the firing —
-differs by specialisation, and is not uniformly a judgement: a `ConflictRule`'s test reads two requirements'
-texts and cannot be decided without doing so, where a `CompletenessRule`'s asks whether a requirement of some
-kind exists and reads no text at all. The semantic classification above holds because of the first step,
-which every walk runs; it does not follow that everything after it is judged.
+**Two steps happen to a rule in force, and only the first is common to every rule.** Judging relevance reads
+*when it applies* and is the same act whatever the rule is. What follows when a rule is found relevant — the
+firing test — differs by specialisation, and is not uniformly a judgement: a `ConflictRule`'s test reads two
+requirements' texts and cannot be decided without doing so, where a `CompletenessRule`'s asks whether a
+requirement of some kind exists and reads no text at all. The semantic classification above holds because of
+the first step, which every walk runs; it does not follow that everything after it is judged.
 
 ```mermaid
 flowchart TD
@@ -377,9 +377,9 @@ flowchart TD
     S -->|"no — decided without judgement"| Z["Nothing follows"]
     S -->|"yes"| C{"Is it relevant?<br/>read its 'when it applies'"}
     C -->|"no"| Z
-    C -->|"yes — a judgement, semantic"| D["The Rule fires"]
-    D --> E{"ConflictRule — tests a pair:<br/>does this contradict an in-force Requirement?"}
-    D --> F{"CompletenessRule — tests a set:<br/>does any in-force Requirement of the implied kind exist?"}
+    C -->|"yes — a judgement, semantic"| D["The Rule's firing test runs"]
+    D -->|"ConflictRule"| E{"tests a pair:<br/>does this contradict an in-force Requirement?"}
+    D -->|"CompletenessRule"| F{"tests a set:<br/>does any in-force Requirement of the implied kind exist?"}
     E -->|"no"| Z
     E -->|"yes — judged, reads both texts"| G["RequirementChoice, one per contradicting pair"]
     F -->|"at least one"| Z
@@ -389,7 +389,7 @@ flowchart TD
 The diagram draws what this section states; where the two disagree, the prose wins. **It draws this model's
 own mechanism and not a project's way of working**: who walks a `RuleSet`, when, how often, and how that sits
 beside a review are deliberately unstated here, and section 5 says why. Nothing in it promises the walk runs
-exhaustively or automatically — the paragraph above already refuses that guarantee, and the diagram is read
+exhaustively or automatically — this subsection already refuses that guarantee, and the diagram is read
 under it.
 
 ### What a `Rule` does not carry
