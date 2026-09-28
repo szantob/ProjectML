@@ -448,3 +448,48 @@ could make normative — is exactly what makes this option work rather than coun
 rule-set is built to differ per organisation by design. Two organisations running the same procedure over the
 same requirement analysis model can load rule-sets that disagree on all four of section 2's questions
 without either one being wrong, and without the metamodel having taken a position on which is right.
+
+## 6. The syntactic constraints of this model
+
+K24 divides constraints over the collection in two: a syntactic constraint refers only to elements the
+metamodel defines and is decidable without judgement, where a semantic one judges content and is a matter for
+review. This section states the syntactic constraints over the elements this document defines, in the shape
+`01-requirement-model.md` §5 and `02-requirement-analysis-model.md` §12 use for their own. Each was argued in
+section 3 beside the element it refers to, and is given here in one line so that the set is visible at once.
+None of them reads the content of anything.
+
+**Over `RuleSet`.**
+
+- Exactly one `RuleSet` belongs to each `RequirementDefinition`. It may be empty, and an empty one is not a
+  defect (§3, K82).
+
+**Over `Rule`, and every specialisation of it.**
+
+- A `Rule`'s identity is unique among the `Rule`s of the `RuleSet` that owns it. Its full identifier is the
+  composition of that identity with its owner's, and how that composition is written down is an
+  implementation's business (§3, K85).
+- No element is a `Rule` and nothing more: every `Rule` in a model is an instance of `ConflictRule` or
+  `CompletenessRule` (§3, K90).
+- A `Rule` carries exactly one of "in force" or "no longer in force" at any time — never both, and never
+  neither. This mirrors the constraint `02-requirement-analysis-model.md` §12 states over a requirement, and
+  for the same reason: neither element is ever deleted (§3, K5, K97).
+- A `Rule` states what to look for. A `Rule` without one seeks nothing and cannot fire, so its absence is a
+  failed check on the `Rule` itself (§3, K84, K91).
+
+**Over `CompletenessRule`.**
+
+- A `CompletenessRule` names exactly one implied `RequirementDefinition`. Naming none, or naming more than
+  one, is a failed check: with none the rule cannot run its own test, and with more than one the
+  `RequirementInquiry` it raises could not be discharged (§3, K93, K94).
+
+**One rule over these elements reports rather than fails.** **A `Rule` that does not say when it applies is
+reported as a question, not a failed check.** This is exactly the position
+`02-requirement-analysis-model.md` §12 takes over a `RequirementDefinition`'s own *when it applies*, held for
+the same reason (K36): an unwritten applicability is a gap rather than a claim that the rule is always
+relevant, and the honest report is that nobody has written it down. It is the only rule in this document that
+reports rather than fails, and the contrast with the constraint over *what to look for* is the point — a rule
+seeking nothing is a defective record, where a rule whose relevance nobody stated is an incomplete one.
+
+**What is not stated here, and why the omission is deliberate.** No constraint requires a `ConflictRule` to
+carry anything of its own, because it carries nothing (§3, K96) — and no constraint is written over a `Rule`'s
+provenance, because it has none to check (§3, K88).
