@@ -82,8 +82,15 @@ which domains exist, and what they are called, is declared by an implementation 
 is the same move K30 makes for requirement kinds: the metamodel provides the slot a domain fills without
 naming what goes into it.
 
-**What a domain constrains is a different question, and it is open.** Leaving the *set* of domains to an
-implementation does not settle whether a domain fixes a unit, nor what makes two values comparable — which
-section 2's **conflicting** state and `03-project-lifecycle-model.md`'s `ConflictRule` both presuppose.
-`06-decisions.md` records it as OQ27, raised by an implementation that declared two domains for the same
-measure in different units.
+**A domain fixes no unit; it declares how its values compare** (K101). Leaving the *set* of domains to an
+implementation left open whether a domain also fixes a unit, and what makes two values comparable. Neither
+section 2's **conflicting** state nor `03-project-lifecycle-model.md`'s `ConflictRule` needs an algorithm to
+answer that: a `ConflictRule`'s test reads both requirements' texts and is a judgement (K90), and the
+conflicting state records that two sources disagree without saying what establishes it. The first construct
+that compares values without judgement is a `Rule`'s guard, and a guard compares one parameter's value with a
+constant written against that same parameter — never values of two domains. What a domain declares is
+therefore what a guard needs: one of three levels of comparability, **not comparable**, **comparable for
+equality**, or **ordered**, the last including the second. How an implementation achieves the level it
+declares — a fixed unit, a dimension with its conversions, an enumeration, anything else — is its own
+business, exactly as the set of domains is. Two domains for one measure in different units are, under this,
+two ordered domains, each in its own unit, and no guard ever converts between them.
