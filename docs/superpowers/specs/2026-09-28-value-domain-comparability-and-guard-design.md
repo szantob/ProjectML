@@ -53,7 +53,7 @@ can be decided without judgement, and nothing else.** Every decision in section 
 |---|---|---|
 | K101 | **A value domain fixes no unit. It declares one of three levels of comparability: not comparable; comparable for equality; ordered.** Ordered includes equality. How an implementation achieves the level it declares — a fixed unit, a dimension with conversion, an enumeration, anything else — is the implementation's business, exactly as the set of domains is (`04-value-states.md` §5, K27). This closes OQ27 | A guard compares one parameter's value with a constant written against that same parameter (K102), so it never compares values of two domains. What a guard needs from a domain is therefore not a unit but the knowledge of which operations are defined on its values. Three levels cover the two guards real material offers — *only outdoors*, an equality over an enumerated domain, and *only above 2 m*, an ordering — at the cost of one declaration. The attribute passes both tests of §8: it is stated without referring to anything the metamodel does not define, and a stated rule fails on it (§6, constraint 3) |
 
-**What this says about the package that raised OQ27.** It declared `Hossz (m)` and `Magasság (cm)`, two
+**What this says about the package that raised OQ27.** It declared one domain for a length in metres and one for a height in centimetres, two
 lengths differing only in unit, and used each for a height. Under K101 that is correct: two ordered domains,
 each in its own unit. No guard ever has to convert between them, because no guard ever compares across
 domains. Whether two domains for one measure is *good modelling* is a judgement, and stays one.

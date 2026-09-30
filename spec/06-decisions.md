@@ -494,9 +494,10 @@ judgement, and the conflicting state does not say what establishes a disagreemen
 is correct under K101 — two ordered domains, each in its own unit.
 
 Raised by the first implementation package written with a working editor: a live-event AV company's own
-domain, declaring twenty-six value domains, among them `Hossz (m)` and `Magasság (cm)`. Both are lengths.
-They differ in nothing but their unit, and the package uses each for a height — a LED wall's in the first, a
-stage's in the second. Nothing in this collection forbids that, and nothing in it says whether it is right.
+domain, declaring twenty-six value domains, among them one for a length in metres and one for a height in
+centimetres. Both are lengths. They differ in nothing but their unit, and the package uses each for a height
+of a different piece of equipment. Nothing in this collection forbids that, and nothing in it says whether it
+is right.
 
 | # | Question | When answerable |
 |---|---|---|
@@ -505,18 +506,17 @@ stage's in the second. Nothing in this collection forbids that, and nothing in i
 ## Open question OQ28
 
 Raised by the same implementation package as OQ27. Several of its rules put a **computation** into *what to
-look for*: a stage skirt's height and piece count as `⌈H·100/20⌉·20 cm` over three sides; a LED wall's
-support parts as `floor(W)` uprights with `ceil((N−1)/2)` back braces above 2 m; a video processor's port
-count as `ceil(pixel / 650 000)`, with the named kit that covers it. That is not what has to be found. It is
-what the answer is.
+look for*: a height rounded up to a module size and a piece count derived from it; a count of support parts
+derived from a width, with extra bracing above a threshold height; a port count derived from a pixel total,
+with the named kit that covers it. That is not what has to be found. It is what the answer is.
 
 **K83 and K91 are not ambiguous about this.** A `Rule` directs attention and never states what the resulting
-requirement should say; *what to look for* carries what the rule seeks, "never what the answer should be";
-and `03-project-lifecycle-model.md`'s `CompletenessRule` puts it flatly — an implied kind, yes; an implied
-parameter value, never. The package holds the line elsewhere in its own rule-set, which is why this reads as
-a displaced thing rather than a misunderstanding: its stair rule detects that no stair may be built above
-1,75 m and hands over to a decision, and its power rule names the alternatives a clash forces without
-choosing among them.
+requirement should say; *what to look for* carries what the rule seeks, "never what the answer should be"; and
+`03-project-lifecycle-model.md`'s `CompletenessRule` puts it flatly — an implied kind, yes; an implied
+parameter value, never. The package holds the line elsewhere in its own rule-set, which is why this reads as a
+displaced thing rather than a misunderstanding: one of its rules detects that a limit on a measure is exceeded
+and hands over to a decision, and another rule names the alternatives a clash forces without choosing among
+them.
 
 So the question is not whether these belong in a `Rule`. It is where a company's sizing knowledge belongs at
 all — and whether the evidence yet shows a gap.

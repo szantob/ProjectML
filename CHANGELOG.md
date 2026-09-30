@@ -72,13 +72,13 @@ work, not releases.
   Findings are in
   [`docs/superpowers/specs/2026-09-04-rule-shape-design.md`](docs/superpowers/specs/2026-09-04-rule-shape-design.md).
 - OQ28 opened, from the same package: several of its rules put a computation into *what to look for* — a
-  skirt's height, a support's part count, a processor's ports — which K83 and K91 exclude from a `Rule`.
+  rounded height with its piece count, a count of support parts, a number of ports — which K83 and K91 exclude from a `Rule`.
   Where an implementation's sizing knowledge does belong is unsettled, and the evidence is not yet clean:
   K27 already lets a definition carry more than the core, but the editor that produced the package
   implements the core eight and nothing else, so a rule's prose was the only field wide enough to type into.
 - OQ27 opened, the first open question raised by an implementation rather than by reading the metamodel: a
-  live-event AV company's domain declared `Hossz (m)` and `Magasság (cm)` — two value domains for one
-  measure, differing only in unit. `04-value-states.md` §5 leaves *which* domains exist to an
+  live-event AV company's domain declared one value domain for a length in metres and one for a height in
+  centimetres — two value domains for one measure, differing only in unit. `04-value-states.md` §5 leaves *which* domains exist to an
   implementation, but not what a domain constrains, and both the **conflicting** state and `ConflictRule`
   presuppose that two values can be compared.
 - The `Rule` specialisations given their own shape, and the axis that decides how many there are: a
