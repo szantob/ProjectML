@@ -268,11 +268,11 @@ how **this project** works, and this is true of every project and carries no con
 **What such a rule would have covered is already covered, three ways.** Where two sources disagree about the
 same thing, the value-state model carries it and needs no rule: `04-value-states.md` §2's **conflicting**
 state holds the competing values, each with its source. That this is one requirement carrying a contested
-value, rather than two requirements that disagree, is what `06-decisions.md` records as OQ24. Where two different kinds are incompatible on terms
-somebody had to state, that is a `ConflictRule` — the case above. Whatever neither covers requires judgement
-and follows no procedure, which makes it a review, the third of the checking modes
-`02-requirement-analysis-model.md` §11 names. **No fourth checking mode is needed**, and introducing one here
-would add a construct nothing exercises.
+value, rather than two requirements that disagree, is what `06-decisions.md` records as OQ24. Where two
+different kinds are incompatible on terms somebody had to state, that is a `ConflictRule` — the case above.
+Whatever neither covers requires judgement and follows no procedure, which makes it a review, the third of the
+checking modes `02-requirement-analysis-model.md` §11 names. **No fourth checking mode is needed**, and
+introducing one here would add a construct nothing exercises.
 
 ### `CompletenessRule`
 
