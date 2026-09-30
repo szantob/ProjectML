@@ -730,13 +730,15 @@ its cause: a `RequirementQuestion`'s cause is not merely guaranteed to exist, it
 parameter through the definition's own machinery, which is why that case raises no `RequirementQuestion` at
 all.
 
-**Two mechanisms are worked out, and the rest are open.** A conflict between a new `Requirement` and an
-existing in-force one is `03-project-lifecycle-model.md` §3's `ConflictRule`, raising a `RequirementChoice`.
-A `Requirement` whose kind implies that another kind should also exist is that section's `CompletenessRule`,
-raising a `RequirementInquiry` — this was OQ17's own original case, now answered. Two further rule-set
-statements — whether a silent default must be owned, and when a gap's wait becomes a decision — do not yet
-have a worked mechanism, and whether either raises a `RequirementQuestion` the same way, or needs something
-structurally different, is recorded as OQ18 in `06-decisions.md`.
+**Two mechanisms are worked out, and the rest are open.** A `Requirement` incompatible with one already in
+force, on terms a project had to state because the two are of different kinds, is
+`03-project-lifecycle-model.md` §3's `ConflictRule`, raising a `RequirementChoice`; where instead two sources
+disagree about the same thing, no rule is involved at all and `04-value-states.md` §2's **conflicting** state
+carries it. A `Requirement` whose kind implies that another kind should also exist is that section's
+`CompletenessRule`, raising a `RequirementInquiry` — this was OQ17's own original case, now answered. Two
+further rule-set statements — whether a silent default must be owned, and when a gap's wait becomes a
+decision — do not yet have a worked mechanism; neither shares this "detect, then raise" shape, and each is
+held by a prerequisite named in `06-decisions.md` under OQ18.
 
 **`RequirementQuestion` is not a *review finding*, and belongs to no row of the findings table below** (K89,
 narrowing K77). It does share the three properties that table uses to seat a review finding apart from the
