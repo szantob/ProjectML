@@ -468,10 +468,10 @@ A requirement is not written; it is **derived**. The founding record's procedure
 `SourceNeed`'s passage selects the definition, and the rules on that definition turn the stater's free words
 into the requirement's bound professional wording. The parameters the definition has, its own and those it
 inherits (§9, K107), are filled from the `SourceNeed`'s passage and from whatever else the model already
-holds, and each filled value carries a value state on the same terms as any other value in the collection. The same crossing — a passage anchored on the
-source side, restated on the model's own, under a definition's rules — is `refine`, and it is not particular
-to `SourceNeed`: a `SourceDecision` crosses the same way, into a `RequirementDecision`, on the terms K58
-states and this document's §11 uses (K43, K58).
+holds, and each filled value carries a value state on the same terms as any other value in the collection. The
+same crossing — a passage anchored on the source side, restated on the model's own, under a definition's
+rules — is `refine`, and it is not particular to `SourceNeed`: a `SourceDecision` crosses the same way, into a
+`RequirementDecision`, on the terms K58 states and this document's §11 uses (K43, K58).
 
 **The kind rides along with the definition, and `SourceNeed`s are not classified** (K8). This is what keeps
 the two axes from colliding: a `SourceNeed` is selected against by its passage, and the classification of the
