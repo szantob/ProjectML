@@ -234,8 +234,8 @@ parameter, an element `02-requirement-analysis-model.md` §7 defines.
 
 - [ ] **Step 2: Change the count and the table**
 
-Replace `` `Rule` is **abstract**, and carries four things, read by the walk below in this order. `` with
-`` `Rule` is **abstract**, and carries five things, read by the walk below in this order. ``
+Replace `` `Rule` is **abstract**, and carries four things, read by the walk below in this order (K84). `` with
+`` `Rule` is **abstract**, and carries five things, read by the walk below in this order (K84, K102). ``
 
 In the table beneath it, insert this row between the *state* row and the *when it applies* row:
 
