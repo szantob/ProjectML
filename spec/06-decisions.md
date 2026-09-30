@@ -248,6 +248,25 @@ what its check ranges over, leaving its set-level verdict intact; and K98 replac
 K69's illustration without changing either mechanism. The superseded rows stay above as they were taken, on
 the same terms K34 is kept beside K35.
 
+## Decisions K101–K108
+
+Taken in [the design record of 2026-09-28 on value domain comparability and the guard](../docs/superpowers/specs/2026-09-28-value-domain-comparability-and-guard-design.md),
+which carries the full argument for each. Written into `spec/` by
+[the integration plan of 2026-09-28](../docs/superpowers/plans/2026-09-28-value-domain-comparability-and-guard-integration-plan.md).
+Together they close OQ21 and OQ27, narrow OQ9, and open OQ29. K102 adds to the shape K84, K91 and K97 give a
+`Rule`, and K105 adds a step to the walk K86 and K97 describe; neither revises them.
+
+| # | Decision | Reason |
+|---|---|---|
+| K101 | A value domain fixes no unit. It declares one of three levels of comparability: not comparable, comparable for equality, or ordered, which includes equality. How the level is achieved is the implementation's | A guard compares one parameter's value with a constant written against that parameter, never values of two domains, so what it needs from a domain is which operations are defined, not a unit. Neither `ConflictRule`'s test nor the conflicting state needs a comparison made by an algorithm |
+| K102 | A `Rule` may carry a guard: a list of criteria, each naming a parameter of the owning definition — declared or inherited — an operation, and a constant. It belongs to the shape every `Rule` has | OQ21 named the missing half as the rule-side criterion and the join; the criterion is that half and the parameter it names is the join. A guard only excludes, so what it admits is judged as before, and the firing test's range is untouched (K92) |
+| K103 | A criterion is decided only on a stated or derived value. On an assumed, unknown or conflicting value, or an absent parameter, it is undecided | A guard concludes that a rule does not concern a requirement, and that is only as firm as the value. An assumption is the value somebody may need to correct, and excluding on it would let a wrong assumption silence a rule unread |
+| K104 | The criteria of a guard are conjunctive: a rule is excluded when at least one is decided false. A disjunction across parameters is two rules | One criterion decided false decides the conjunction, so exclusion stays decidable when others are not. *Is one of* covers disjunction over one parameter; anything more would make a filter a language |
+| K105 | The guard is applied after the rules not in force are set aside and before the relevance judgement. An excluded rule raises nothing | Both steps only remove, so their order changes no outcome. The guard narrows what reaches judgement and adds no category beside K24's two, as OQ21 required |
+| K106 | A parameter carries an identity local to the definition declaring it | A criterion must name a parameter, and *what to ask* is already per parameter. Locality follows K85's precedent for a `Rule` |
+| K107 | A specialisation has every parameter its ancestors declare, in addition to its own. This answers the part of OQ9 concerning added parameters, and nothing else | Without it an inherited rule's guard would be undecided on every descendant. Decided directly by the owner rather than left as a side effect of the guard |
+| K108 | A specialisation declares no parameter carrying the identity of one an ancestor declares | K107 is safe only if a guard's parameter is the same parameter, with the same domain, on every descendant. Forbidding redeclaration is the reversible choice: lifting it later breaks nothing, withdrawing a permission breaks every package that used it |
+
 ## Decisions K51–K54
 
 Taken in [`05-binding-contract.md`](05-binding-contract.md), §2, which carries the full argument, and in
@@ -271,6 +290,11 @@ which carries the full argument for each.
 |---|---|---|
 | OQ9 | What does specialisation mean? What a subtype of `RequirementDefinition` may add, narrow or override. K30 chooses the mechanism and does not define its semantics | When something exercises it — realistically phase 4, when the first kinds are declared |
 | OQ10 | Does `verifies` become a second edge kind on the one seam? SysML has a construct for it, `verify`, in the same direction as `satisfies` but not the same shape — it is carried by a whole verification case, not by an arbitrary element, so finding it asks a different question of a design language than finding `satisfy` does. Widening K4's first declaration by one word does not carry it; it would need a declaration of its own, and only once the kernel decides it wants a check over verification the way it already has one over satisfaction. Nothing exercises it: no verification elements exist anywhere yet | Phase 2, where the SysML binding meets it, or later |
+
+**OQ9 is narrowed by K107 and K108.** A specialisation has its ancestors' parameters and may not redeclare
+one. What stays open is whether an inherited parameter may ever be overridden or narrowed, what
+specialisation means for the rest of the core, and whether an inherited parameter must appear in a
+descendant's template.
 
 ## Decision K56
 
@@ -444,6 +468,11 @@ which carries the full argument for each.
 | OQ22 | How does a fired rule become a posed question? Narrowed by K100: what remains is whether *what to look for* supplies a template for the question's wording, or the modeller writes it freely. The other two parts are answered — K90 gives one question per contradicting pair and at most one per `CompletenessRule`, the latter specific to that specialisation rather than general, and `03-project-lifecycle-model.md` §3 now states the relation between judging relevance and firing that this question was partly about | Unforced. What remains is a question about wording, which nothing exercises until an implementation writes questions for real |
 | OQ23 | What is a review, as an act? `spec/02` §11 states a review finding's lifecycle — a source opens it, a later source that `replies` to it closes it — but nothing states the act producing one: who performs it, when, against what. Only static model checking and, since K86, walking a `RuleSet` are worked out | Unforced. Recorded because K89 makes the gap visible while deliberately not entering it |
 
+**OQ21 is answered by K102–K105 and is no longer open.** A `Rule` may carry a guard; the criterion and the
+join OQ21 found missing are K102's criterion and the parameter it names. It was answered before the cost of
+judging every rule was felt, because OQ27 needed it: the guard is the first construct that compares values
+without judgement, so what a value domain declares could not be settled without it.
+
 ## Open questions OQ24–OQ26
 
 All three were opened by the `Rule` specialisation work rather than by anything it settled. Each is recorded
@@ -456,11 +485,13 @@ where it was found rather than pursued, and the full argument for each is in
 | OQ25 | What produces `04-value-states.md` §2's marking of a value as one to ask about? The marking occurs once in the whole of `spec/` and nothing states its origin, which the rule that every event record its cause makes a defect however sensible it reads. Two origins are available — a modeller's judgement, and a `Rule` — and whether the marking is modelled or recomputed cannot be settled until it is known which applies when. That document permits stated, derived and conflicting values to be marked as well as assumed ones, so the question is not confined to defaults | Before OQ18's first half, which it blocks. Small, and close |
 | OQ26 | Does K83's negative-answer path hold? K83 says a subject a rule raises may be answered negatively, and that the answer appears as a `Requirement` like any other, which the `RequirementInquiry` then `discharges` to. This rests on two premises the corpus never states: that "this project needs nothing here" obliges something, as K37 requires of every `SourceNeed`; and that some declared `RequirementDefinition` covers a negative statement, as K8 requires of every requirement. The second has a plausible answer — the implied kind's own definition — and the first may be false in a way that matters: a decision to need nothing reads more naturally as a `SourceDecision` refining into a `RequirementDecision`, and K79 fixes `RequirementInquiry`'s `discharges` on a `Requirement`, which would not admit it | Used by K97's statement that a retracted rule leaves its open questions to close the ordinary way, but never worked, so it is recorded rather than settled |
 
-## Open question OQ27
+## Open question OQ27 — answered
 
-**OQ24–OQ26 are reserved** by [the design record of 2026-09-07 on the `Rule` specialisations](../docs/superpowers/specs/2026-09-07-rule-specialisations-design.md),
-whose decisions `spec/03` already carries and cites; they have not yet been transcribed into this document.
-The next number free for anything else is therefore OQ27.
+**Answered by K101, and no longer open.** A value domain fixes no unit; it declares a level of comparability,
+which is what a `Rule`'s guard needs, since a guard never compares values of two domains. The two
+constructs the question named turned out not to need an algorithmic comparison: a `ConflictRule`'s test is a
+judgement, and the conflicting state does not say what establishes a disagreement. The package that raised it
+is correct under K101 — two ordered domains, each in its own unit.
 
 Raised by the first implementation package written with a working editor: a live-event AV company's own
 domain, declaring twenty-six value domains, among them `Hossz (m)` and `Magasság (cm)`. Both are lengths.
@@ -493,6 +524,14 @@ all — and whether the evidence yet shows a gap.
 | # | Question | When answerable |
 |---|---|---|
 | OQ28 | Where does an implementation's sizing knowledge live — the derivation from a requirement's parameters to what the answer must be? It is not the wording (`text` is the template), not *how it would be verified*, not the *wording rule*, and K83 excludes a `Rule`. K27 appears to answer it already: beyond the core of eight, a definition holds whatever an implementation's own notation and rule-set need, the core being "a floor the metamodel can reason over, not a ceiling". **But the evidence cannot yet distinguish two readings.** Either the metamodel has no home for this and one is missing, or K27's opening is the home and a real implementation simply did not use it — because the editor that produced this package implements the core eight and nothing else, so a `Rule`'s prose was the only field wide enough to type into. The tool, not the metamodel, may be what displaced it | When an implementation carries beyond-core content on a `RequirementDefinition` and one can see whether sizing knowledge sits there naturally. A second reading becomes available once a walk runs: if a rule turns out to need a computation to *detect* at all — rather than to answer — then K83's line falls in a different place than it reads today |
+
+## Open question OQ29
+
+Raised in [the design record of 2026-09-28 on value domain comparability and the guard](../docs/superpowers/specs/2026-09-28-value-domain-comparability-and-guard-design.md).
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ29 | Does the walk run again when a value's state changes — an unknown value becoming stated, an assumed one confirmed or corrected? The walk begins when a requirement arises, so a rule a guard left undecided then was judged then, and a rule a guard would now exclude, or no longer exclude, is not revisited. K103 keeps the guard safe without an answer, since it never excludes on a value not yet firm; the question is whether the walk is complete without one | When an implementation runs the walk over a project whose values change after its requirements arise, which is every real project |
 
 ## Status of the founding record's open questions
 
