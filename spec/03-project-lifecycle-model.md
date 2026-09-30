@@ -524,6 +524,11 @@ None of them reads the content of anything.
   for the same reason: neither element is ever deleted (§3, K5, K97).
 - A `Rule` states what to look for. A `Rule` without one seeks nothing and cannot fire, so its absence is a
   failed check on the `Rule` itself (§3, K84, K91).
+- Every criterion of a `Rule`'s guard names a parameter the `RequirementDefinition` owning the rule has,
+  declared there or inherited (§3, K102; `02-requirement-analysis-model.md` §9, K107).
+- Every criterion's operation is one its parameter's domain defines: *equals* and *is one of* need a domain
+  comparable for equality or ordered, the four orderings an ordered one. No criterion names a parameter whose
+  domain is not comparable (§3, K101, K102; `04-value-states.md` §5).
 
 **Over `CompletenessRule`.**
 
@@ -539,6 +544,8 @@ relevant, and the honest report is that nobody has written it down. It is the on
 reports rather than fails, and the contrast with the constraint over *what to look for* is the point — a rule
 seeking nothing is a defective record, where a rule whose relevance nobody stated is an incomplete one.
 
-**What is not stated here, and why the omission is deliberate.** No constraint requires a `ConflictRule` to
-carry anything of its own, because it carries nothing (§3, K96) — and no constraint is written over a `Rule`'s
-provenance, because it has none to check (§3, K88).
+**What is not stated here, and why the omission is deliberate.** No constraint requires a
+`ConflictRule` to carry anything of its own, because it carries nothing (§3, K96) — and no constraint is
+written over a `Rule`'s provenance, because it has none to check (§3, K88). Nor does any require a
+criterion's constant to be a value of its parameter's domain: what a domain's values are is the
+implementation's to declare, and such a check is one it states over its own domains (K27).

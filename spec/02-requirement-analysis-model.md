@@ -930,6 +930,9 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 - Every parameter a definition declares carries its own ask. A parameter with no ask is a failed check on the
   definition: *what to ask* exists so that a value in the unknown state has a stated route out of it, and a
   parameter missing its ask is exactly the case where that route is absent (§7).
+- A definition declares no parameter carrying the identity of a parameter one of its ancestors declares. Every
+  parameter a definition has, its own and those it inherits, is therefore one parameter on every descendant,
+  drawing from one domain (§7, §9, K106, K107, K108).
 - **Every definition states how a requirement produced under it would be verified.** Absence of the statement
   is a failed check on the definition itself, independent of anything any requirement produced under it says.
   A definition whose requirements cannot be verified independently meets this constraint by saying so, in
