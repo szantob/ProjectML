@@ -311,7 +311,7 @@ core is a floor the metamodel can reason over, not a ceiling (K27).
 
 **Whether that opening is where a company's sizing knowledge belongs is open.** The derivation from a
 requirement's parameters to what its answer must be — how many pieces, which kit, what height — is none of
-the eight, and `03-project-lifecycle-model.md`'s K83 excludes it from a `Rule`. The first implementation to
+the eight, and K83 (`03-project-lifecycle-model.md` §3) excludes it from a `Rule`. The first implementation to
 carry a real domain put it in a rule's prose anyway. `06-decisions.md` records the question as OQ28,
 including why that evidence does not yet settle it.
 
@@ -742,7 +742,7 @@ parameter through the definition's own machinery, which is why that case raises 
 all.
 
 **Two mechanisms are worked out, and the rest are open.** A `Requirement` incompatible with one already in
-force, on terms a project had to state because the two are of different kinds, is
+force, canonically on terms a project had to state because the two are of different kinds, is
 `03-project-lifecycle-model.md` §3's `ConflictRule`, raising a `RequirementChoice`; where instead two sources
 disagree about the same thing, no rule is involved at all and `04-value-states.md` §2's **conflicting** state
 carries it. A `Requirement` whose kind implies that another kind should also exist is that section's

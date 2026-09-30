@@ -89,7 +89,7 @@ answer that: a `ConflictRule`'s test reads both requirements' texts and is a jud
 conflicting state records that two sources disagree without saying what establishes it. The first construct
 that compares values without judgement is a `Rule`'s guard, and a guard compares one parameter's value with a
 constant written against that same parameter — never values of two domains. What a domain declares is
-therefore what a guard needs: one of three levels of comparability, **not comparable**, **comparable for
+therefore what a guard needs: exactly one of three levels of comparability, **not comparable**, **comparable for
 equality**, or **ordered**, the last including the second. How an implementation achieves the level it
 declares — a fixed unit, a dimension with its conversions, an enumeration, anything else — is its own
 business, exactly as the set of domains is. Two domains for one measure in different units are, under this,

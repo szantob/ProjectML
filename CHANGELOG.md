@@ -71,16 +71,17 @@ work, not releases.
   opened.
   Findings are in
   [`docs/superpowers/specs/2026-09-04-rule-shape-design.md`](docs/superpowers/specs/2026-09-04-rule-shape-design.md).
-- OQ28 opened, from the same package: several of its rules put a computation into *what to look for* — a
-  rounded height with its piece count, a count of support parts, a number of ports — which K83 and K91 exclude from a `Rule`.
-  Where an implementation's sizing knowledge does belong is unsettled, and the evidence is not yet clean:
-  K27 already lets a definition carry more than the core, but the editor that produced the package
-  implements the core eight and nothing else, so a rule's prose was the only field wide enough to type into.
 - OQ27 opened, the first open question raised by an implementation rather than by reading the metamodel: a
   live-event AV company's domain declared one value domain for a length in metres and one for a height in
-  centimetres — two value domains for one measure, differing only in unit. `04-value-states.md` §5 leaves *which* domains exist to an
-  implementation, but not what a domain constrains, and both the **conflicting** state and `ConflictRule`
-  presuppose that two values can be compared.
+  centimetres — two value domains for one measure, differing only in unit. `04-value-states.md` §5 leaves
+  *which* domains exist to an implementation, but not what a domain constrains, and both the **conflicting**
+  state and `ConflictRule` presuppose that two values can be compared.
+- OQ28 opened, from the same package: several of its rules put a computation into *what to look for* — a
+  rounded height with its piece count, a count of support parts, a number of ports — which K83 and K91 exclude
+  from a `Rule`. Where an implementation's sizing knowledge does belong is unsettled, and the evidence is not
+  yet clean: K27 already lets a definition carry more than the core, but the editor that produced the package
+  implements the core eight and nothing else, so a rule's prose was the only attribute wide enough to type
+  into.
 - The `Rule` specialisations given their own shape, and the axis that decides how many there are: a
   specialisation is fixed by what its firing test ranges over — `ConflictRule` a pair of requirements,
   `CompletenessRule` the set a kind would appear among — from which every other difference between them
@@ -101,6 +102,7 @@ work, not releases.
   judgement; it excludes a rule only where a criterion is decided false on a stated or derived value, and so
   excludes exactly what is decidable without judgement. A parameter gains an identity local to its
   definition, and a specialisation has its ancestors' parameters without redeclaring any, which answers the
-  part of OQ9 the guard needs. K101–K108 record the decisions; OQ9 is narrowed and OQ29 opened. Findings are
+  part of OQ9 concerning added parameters. Three new syntactic constraints follow, one over parameters and two
+  over a guard. K101–K108 record the decisions; OQ9 is narrowed and OQ29 opened. Findings are
   in
   [`docs/superpowers/specs/2026-09-28-value-domain-comparability-and-guard-design.md`](docs/superpowers/specs/2026-09-28-value-domain-comparability-and-guard-design.md).

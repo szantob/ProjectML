@@ -159,7 +159,7 @@ subject raised and declined therefore leaves a record, and a later reader asking
 requirement finds an answer rather than silence. This is the inquiry case specifically: a conflict raises no
 subject to decline, but alternatives to choose among, which `RequirementChoice` carries instead (K79).
 
-`Rule` is **abstract**, and carries five things, read by the walk below in this order (K84, K102).
+`Rule` is **abstract**, and carries five things, read by the walk below in this order (K84, K91, K97, K102).
 
 | Attribute | Carries |
 |---|---|
@@ -207,14 +207,15 @@ stays outside this model and enters, like every commitment, as a source (K11). T
 because the walk cannot run without reading it and because K87 needs the rule to persist; the *cause* stays
 where K88 puts it.
 
-**A `Rule` may carry a guard, and a guard only excludes** (K102). A guard is a list of criteria, empty when
-the rule has none. Each criterion names a parameter of the `RequirementDefinition` that owns the rule —
-declared there or inherited (`02-requirement-analysis-model.md` §9, K107) — an operation, and a constant. The
-operations are *equals*, *is one of*, and the four orderings; the constant is a value of that parameter's
-domain, or for *is one of* a set of them. How a constant is written down is notation, and not fixed here
-(K15). The guard belongs to the shape every `Rule` has, so both specialisations may carry one, and it decides
-only whether the arising requirement brings the rule into play — never what the firing test then ranges over
-(K92).
+**A `Rule` may carry a guard, and a guard only excludes** (K102). The word is adopted from the guard condition
+of UML and SysML v2 state machines and activities, where it gates a transition without deciding what follows.
+A guard is a list of criteria, empty when the rule has none. Each criterion names a parameter of the
+`RequirementDefinition` that owns the rule — declared there or inherited (`02-requirement-analysis-model.md`
+§9, K107) — an operation, and a constant. The operations are *equals*, *is one of*, and the four orderings —
+*less than*, *at most*, *greater than*, *at least* — and the constant is a value of that parameter's domain, or for
+*is one of* a set of them. How a constant is written down is notation, and not fixed here (K15). The guard
+belongs to the shape every `Rule` has, so both specialisations may carry one, and it decides only whether the
+arising requirement brings the rule into play — never what the firing test then ranges over (K92).
 
 **A guard excludes exactly what can be decided without judgement, and nothing else.** That one sentence fixes
 how a criterion is evaluated (K103). A criterion is decided only on a value in the stated or derived state
@@ -300,11 +301,12 @@ guard, which every `Rule` may carry (K102) and which is therefore not this type'
 
 **There is no universal contradiction rule, and this model states none** (K98). A rule holding that no
 requirement may contradict an in-force one — stated once at the root and inherited everywhere — reads as this
-mechanism's most obvious case and is not a `Rule` at all. Every one of the four attributes above degenerates
-on it: *when it applies* is "always"; *what to look for* restates the type's own name; its state could never
-be anything but in force; and its identity exists only so that a question has something to name. Four vacuous
-attributes is not a badly written rule but the mark of something that is not one, because a rule-set states
-how **this project** works, and this is true of every project and carries no content.
+mechanism's most obvious case and is not a `Rule` at all. Every attribute of the shape above degenerates on
+it: *when it applies* is "always"; *what to look for* restates the type's own name; its state could never be
+anything but in force; its identity exists only so that a question has something to name; and its guard is
+empty, there being nothing for it to exclude. Five vacuous attributes is not a badly written rule but the mark
+of something that is not one, because a rule-set states how **this project** works, and this is true of every
+project and carries no content.
 
 **What such a rule would have covered is already covered, three ways.** Where two sources disagree about the
 same thing, the value-state model carries it and needs no rule: `04-value-states.md` §2's **conflicting**
@@ -386,12 +388,12 @@ a definition are.
 ### Walking a `RuleSet`
 
 **A `RuleSet` is a written procedure, and matching is a relevance judgement made while walking it** (K86).
-When a new requirement arises in a subject, the `RuleSet`s that reach it are walked. A rule no longer in
-force is passed over without anything being read (K97); a rule whose guard the arising requirement
-decidably fails is set aside next, again without judgement (K105); of the rest, a reader — human or AI
-— judges which are relevant by reading each rule's *when it applies*. This is not the evaluation of a
-condition for its truth value against a requirement, which is how K76 first described it; that
-description is corrected here, its verdict is not.
+When a new requirement arises in a subject, the `RuleSet`s that reach it are walked. A rule no longer in force
+is passed over without anything being read (K97); a rule whose guard the arising requirement decidably fails
+is set aside next, again without judgement (K105); of the rest, a reader — human or AI — judges which are
+relevant by reading each rule's *when it applies*. This is not the evaluation of a condition for its truth
+value against a requirement, which is how K76 first described it; that description is corrected here, its
+verdict is not.
 
 **The verdict stands: this is a semantic constraint (K24), not a syntactic one.** The meaning of free text is
 matched against the meaning of free text, which no conventional algorithm decides. The metamodel does not
@@ -405,12 +407,13 @@ relevant in a subject are exactly those on that `RequirementDefinition` and its 
 the rule above already defines (K69). Nothing here adds a notion of *subject* beside the one the
 specialisation tree already carries.
 
-**Two steps happen to a rule in force, and only the first is common to every rule.** Judging relevance reads
-*when it applies* and is the same act whatever the rule is. What follows when a rule is found relevant — the
-firing test — differs by specialisation, and is not uniformly a judgement: a `ConflictRule`'s test reads two
-requirements' texts and cannot be decided without doing so, where a `CompletenessRule`'s asks whether a
-requirement of some kind exists and reads no text at all. The semantic classification above holds because of
-the first step, which every walk runs; it does not follow that everything after it is judged.
+**Two steps happen to a rule in force that its guard does not exclude, and only the first is common to every
+rule.** Judging relevance reads *when it applies* and is the same act whatever the rule is. What follows when
+a rule is found relevant — the firing test — differs by specialisation, and is not uniformly a judgement: a
+`ConflictRule`'s test reads two requirements' texts and cannot be decided without doing so, where a
+`CompletenessRule`'s test asks whether a requirement of some kind exists and reads no text at all. The
+semantic classification above holds because of the first step, which every walk runs; it does not follow that
+everything after it is judged.
 
 A guard is not a third step beside these two. It removes rules before the first and removes only what is
 decided without judgement, so it narrows what reaches judgement and adds no category beside K24's two
@@ -536,16 +539,16 @@ None of them reads the content of anything.
   one, is a failed check: with none the rule cannot run its own test, and with more than one the
   `RequirementInquiry` it raises could not be discharged (§3, K93, K94).
 
-**One rule over these elements reports rather than fails.** **A `Rule` that does not say when it applies is
-reported as a question, not a failed check.** This is exactly the position
+**One rule over these elements reports rather than fails.** A `Rule` that does not say when it applies is
+reported as a question, not a failed check. This is exactly the position
 `02-requirement-analysis-model.md` §12 takes over a `RequirementDefinition`'s own *when it applies*, held for
 the same reason (K36): an unwritten applicability is a gap rather than a claim that the rule is always
 relevant, and the honest report is that nobody has written it down. It is the only rule in this document that
 reports rather than fails, and the contrast with the constraint over *what to look for* is the point — a rule
 seeking nothing is a defective record, where a rule whose relevance nobody stated is an incomplete one.
 
-**What is not stated here, and why the omission is deliberate.** No constraint requires a
-`ConflictRule` to carry anything of its own, because it carries nothing (§3, K96) — and no constraint is
-written over a `Rule`'s provenance, because it has none to check (§3, K88). Nor does any require a
-criterion's constant to be a value of its parameter's domain: what a domain's values are is the
-implementation's to declare, and such a check is one it states over its own domains (K27).
+**What is not stated here, and why the omission is deliberate.** No constraint requires a `ConflictRule` to
+carry anything of its own, because it carries nothing (§3, K96) — and no constraint is written over a `Rule`'s
+provenance, because it has none to check (§3, K88). Nor does any require a criterion's constant to be a value
+of its parameter's domain: what a domain's values are is the implementation's to declare, and such a check is
+one it states over its own domains (K27).
