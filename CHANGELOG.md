@@ -94,3 +94,13 @@ work, not releases.
   `03-project-lifecycle-model.md` gains a syntactic-constraints section in the shape its two siblings use.
   K90–K100 record the decisions; OQ18 and OQ22 are narrowed, and OQ24–OQ26 opened. Findings are in
   [`docs/superpowers/specs/2026-09-07-rule-specialisations-design.md`](docs/superpowers/specs/2026-09-07-rule-specialisations-design.md).
+- Value domain comparability and the guard, closing OQ27 and OQ21 together. A value domain fixes no unit; it
+  declares one of three levels of comparability — not comparable, comparable for equality, or ordered — and
+  how it achieves that level is the implementation's. A `Rule` may carry a guard, a list of criteria each
+  naming a parameter, an operation and a constant, applied after the in-force check and before the relevance
+  judgement; it excludes a rule only where a criterion is decided false on a stated or derived value, and so
+  excludes exactly what is decidable without judgement. A parameter gains an identity local to its
+  definition, and a specialisation has its ancestors' parameters without redeclaring any, which answers the
+  part of OQ9 the guard needs. K101–K108 record the decisions; OQ9 is narrowed and OQ29 opened. Findings are
+  in
+  [`docs/superpowers/specs/2026-09-28-value-domain-comparability-and-guard-design.md`](docs/superpowers/specs/2026-09-28-value-domain-comparability-and-guard-design.md).
