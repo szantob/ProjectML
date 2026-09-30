@@ -420,11 +420,11 @@ At the end of the `**Over \`Rule\`, and every specialisation of it.**` list, app
 - [ ] **Step 3: Extend §6's closing paragraph**
 
 In `spec/03` §6's paragraph beginning `**What is not stated here, and why the omission is deliberate.**`,
-replace its final `.` with:
+append after its last sentence (which already carries one `—` clause, so a second would read badly):
 
 ```
- — and none requires a criterion's constant to be a value of its parameter's domain, because what a domain's
-values are is the implementation's to declare, and such a check is one it states over its own domains (K27).
+Nor does any require a criterion's constant to be a value of its parameter's domain: what a domain's values
+are is the implementation's to declare, and such a check is one it states over its own domains (K27).
 ```
 
 and rewrap the paragraph.
