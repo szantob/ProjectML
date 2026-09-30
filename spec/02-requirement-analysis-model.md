@@ -269,7 +269,7 @@ without reading anything an implementation supplies (K27).
 | name | Human-readable |
 | text | The template the requirement's wording is produced from, with places for its parameters |
 | when it applies | One sentence stating when this definition comes into play. It is prose, not an evaluable expression (D20). Its absence means applicability has not been written down, which is a gap, not a claim that the definition applies unconditionally |
-| parameters | Each parameter declares a value domain. Which domains exist is an implementation's business, exactly as the set of kinds is (K30, and `04-value-states.md` §5) |
+| parameters | Each parameter declares a value domain, and carries an identity local to the definition declaring it (K106). Which domains exist is an implementation's business, exactly as the set of kinds is (K30, and `04-value-states.md` §5) |
 | what to ask | For each parameter, how a non-expert is asked for what is missing |
 | how it would be verified | The method by which a requirement produced under this definition would be shown to hold. Prose |
 | wording rule | A well-formedness rule for the wording a requirement produced under this definition must satisfy. Prose, on the same terms *how it would be verified* is prose (K66) |
@@ -278,6 +278,12 @@ Two of the eight bottom out in the value-state model rather than in anything a d
 parameter with no value is a value in the unknown state like any other, and the ask is how that value is
 obtained from somebody who holds it — which is why *what to ask* sits beside *parameters* and is written per
 parameter rather than per definition.
+
+**A parameter's identity is local to the definition declaring it** (K106). A `Rule`'s guard names a parameter
+(`03-project-lifecycle-model.md` §3), and *what to ask* is already written per parameter, so a parameter has
+to be nameable. It exists only on the definition that declares it, so an identity unique beneath that
+definition is enough — the precedent K85 sets for a `Rule`'s identity. How the identity is written down is not
+fixed here.
 
 **Why *how it would be verified* sits on the definition rather than on the requirement.** A verification method is generic
 to a kind of requirement: how a thing of this kind would be shown to hold is a property of the kind, and the
@@ -444,10 +450,15 @@ prose disagree, the prose wins.
 **What an implementation must do:** declare its kinds, as subtypes of `RequirementDefinition`. **What the
 metamodel does not do:** name any of them, say how many there are, or say on what axis they divide.
 
-**What specialisation means is open.** What a subtype may add to the core of section 7, what it may narrow,
-and what if anything it may override is not defined here. That is OQ9, and it waits for something to exercise
-it — realistically the first implementation that declares kinds. K30 chooses the mechanism; it does not define
-its semantics.
+**What specialisation means is open, except for parameters.** A specialisation has every parameter its
+ancestors declare, in addition to its own (K107), and declares no parameter carrying the identity of one an
+ancestor declares (K108). Both are decided because a `Rule` stated on a definition reaches every
+specialisation of it (`03-project-lifecycle-model.md` §3, K69), and a guard naming a parameter must find the
+*same* parameter — the same domain, so the same comparability — on every descendant it reaches. Everything
+else is not defined here: whether an inherited parameter may ever be overridden or narrowed; what a subtype
+may add to, narrow or override among the other attributes of section 7's core; and whether an inherited
+parameter must appear as a placeholder in a descendant's template. That is OQ9, and it waits for something to
+exercise it. K30 chooses the mechanism; it does not define its semantics.
 
 ## 10. The derivation, retirement, and the projection
 
