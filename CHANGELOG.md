@@ -81,3 +81,16 @@ work, not releases.
   measure, differing only in unit. `04-value-states.md` §5 leaves *which* domains exist to an
   implementation, but not what a domain constrains, and both the **conflicting** state and `ConflictRule`
   presuppose that two values can be compared.
+- The `Rule` specialisations given their own shape, and the axis that decides how many there are: a
+  specialisation is fixed by what its firing test ranges over — `ConflictRule` a pair of requirements,
+  `CompletenessRule` the set a kind would appear among — from which every other difference between them
+  follows. `Rule` gains a fourth attribute, a state of in force or no longer in force, since a deletable rule
+  would withdraw the target of the reference every `RequirementQuestion` must carry; its third attribute is
+  renamed *what to look for*, the earlier name having generalised from one of the two cases. `ConflictRule`
+  carries nothing of its own, and the universal check against contradicting an in-force requirement is
+  removed as not being a rule at all — what it covered divides among the conflicting value state, a
+  cross-kind `ConflictRule`, and review. `CompletenessRule` names exactly one implied `RequirementDefinition`
+  by a typed reference, and its query is stated in full. Three diagrams are added or replaced, and
+  `03-project-lifecycle-model.md` gains a syntactic-constraints section in the shape its two siblings use.
+  K90–K100 record the decisions; OQ18 and OQ22 are narrowed, and OQ24–OQ26 opened. Findings are in
+  [`docs/superpowers/specs/2026-09-07-rule-specialisations-design.md`](docs/superpowers/specs/2026-09-07-rule-specialisations-design.md).
