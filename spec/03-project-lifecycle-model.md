@@ -151,7 +151,7 @@ subject raised and declined therefore leaves a record, and a later reader asking
 requirement finds an answer rather than silence. This is the inquiry case specifically: a conflict raises no
 subject to decline, but alternatives to choose among, which `RequirementChoice` carries instead (K79).
 
-`Rule` is **abstract**, and carries four things, read by the walk below in this order.
+`Rule` is **abstract**, and carries four things, read by the walk below in this order (K84).
 
 | Attribute | Carries |
 |---|---|
