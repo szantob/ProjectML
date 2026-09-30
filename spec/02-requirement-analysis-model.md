@@ -466,9 +466,9 @@ exercise it. K30 chooses the mechanism; it does not define its semantics.
 
 A requirement is not written; it is **derived**. The founding record's procedure states the step: a
 `SourceNeed`'s passage selects the definition, and the rules on that definition turn the stater's free words
-into the requirement's bound professional wording. The parameters the definition declares are filled from the
-`SourceNeed`'s passage and from whatever else the model already holds, and each filled value carries a value
-state on the same terms as any other value in the collection. The same crossing — a passage anchored on the
+into the requirement's bound professional wording. The parameters the definition has, its own and those it
+inherits (§9, K107), are filled from the `SourceNeed`'s passage and from whatever else the model already
+holds, and each filled value carries a value state on the same terms as any other value in the collection. The same crossing — a passage anchored on the
 source side, restated on the model's own, under a definition's rules — is `refine`, and it is not particular
 to `SourceNeed`: a `SourceDecision` crosses the same way, into a `RequirementDecision`, on the terms K58
 states and this document's §11 uses (K43, K58).
@@ -930,6 +930,7 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 - Every parameter a definition declares carries its own ask. A parameter with no ask is a failed check on the
   definition: *what to ask* exists so that a value in the unknown state has a stated route out of it, and a
   parameter missing its ask is exactly the case where that route is absent (§7).
+- A parameter's identity is unique among the parameters its definition declares (§7, K106).
 - A definition declares no parameter carrying the identity of a parameter one of its ancestors declares. Every
   parameter a definition has, its own and those it inherits, is therefore one parameter on every descendant,
   drawing from one domain (§7, §9, K106, K107, K108).

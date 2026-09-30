@@ -219,7 +219,7 @@ only whether the arising requirement brings the rule into play — never what th
 **A guard excludes exactly what can be decided without judgement, and nothing else.** That one sentence fixes
 how a criterion is evaluated (K103). A criterion is decided only on a value in the stated or derived state
 (`04-value-states.md` §2): there it either holds or is decided false. On a value that is assumed, unknown or
-conflicting, or on a parameter the requirement does not have, it is undecided. An unknown value has nothing to
+conflicting, or on a parameter the requirement carries no value for, it is undecided. An unknown value has nothing to
 compare, and a conflicting one has several. An assumed value is a single value, and the comparison itself
 could be computed; but what a guard concludes is that the rule does not concern this requirement, and that
 conclusion is only as firm as the value — an assumption is exactly the value `04-value-states.md` §3 says
