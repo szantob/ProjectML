@@ -89,15 +89,23 @@ classDiagram
         when it applies
         what to look for
     }
+    class Criterion {
+        operation
+        constant
+    }
     class CompletenessRule {
         implied RequirementDefinition
     }
     Rule <|-- ConflictRule
     Rule <|-- CompletenessRule
+    Rule "1" *-- "0..*" Criterion : guard
+    Criterion --> Parameter : names
     CompletenessRule --> RequirementDefinition : implies
 ```
 
-The diagram draws what this section states; where the two disagree, the prose wins. `ConflictRule` carries
+The diagram draws what this section states; where the two disagree, the prose wins.
+A guard is drawn as the criteria a `Rule` owns rather than as an attribute, because each criterion names a
+parameter, an element `02-requirement-analysis-model.md` §7 defines. `ConflictRule` carries
 nothing of its own, which is a decision rather than an omission and is argued in its own subsection below.
 Two further `Rule` specialisations are named but not shaped — see the `Rule` subsection — and are left off the
 diagram for the same reason a design record leaves an open question out of a decision table: nothing here
@@ -151,12 +159,13 @@ subject raised and declined therefore leaves a record, and a later reader asking
 requirement finds an answer rather than silence. This is the inquiry case specifically: a conflict raises no
 subject to decline, but alternatives to choose among, which `RequirementChoice` carries instead (K79).
 
-`Rule` is **abstract**, and carries four things, read by the walk below in this order (K84).
+`Rule` is **abstract**, and carries five things, read by the walk below in this order (K84, K102).
 
 | Attribute | Carries |
 |---|---|
 | identity | Local to the `RequirementDefinition` that owns it; the full identifier is the composition of the two (K85) |
 | state | One of "in force" or "no longer in force". Read mechanically, before anything is judged (K97) |
+| guard | A list of criteria, each naming a parameter, an operation and a constant; empty when the rule has none. Read mechanically, after the state and before anything is judged (K102–K105) |
 | when it applies | One sentence stating when this rule is relevant. Prose, not an evaluable expression, on the same terms `02-requirement-analysis-model.md` §7's own *when it applies* is prose (D20) |
 | what to look for | What this rule seeks in the model: what has to be found, never what the answer should be (K83, K91) |
 
@@ -197,6 +206,38 @@ requirement at all.
 stays outside this model and enters, like every commitment, as a source (K11). The *fact* is recorded here
 because the walk cannot run without reading it and because K87 needs the rule to persist; the *cause* stays
 where K88 puts it.
+
+**A `Rule` may carry a guard, and a guard only excludes** (K102). A guard is a list of criteria, empty when
+the rule has none. Each criterion names a parameter of the `RequirementDefinition` that owns the rule —
+declared there or inherited (`02-requirement-analysis-model.md` §9, K107) — an operation, and a constant. The
+operations are *equals*, *is one of*, and the four orderings; the constant is a value of that parameter's
+domain, or for *is one of* a set of them. How a constant is written down is notation, and not fixed here
+(K15). The guard belongs to the shape every `Rule` has, so both specialisations may carry one, and it decides
+only whether the arising requirement brings the rule into play — never what the firing test then ranges over
+(K92).
+
+**A guard excludes exactly what can be decided without judgement, and nothing else.** That one sentence fixes
+how a criterion is evaluated (K103). A criterion is decided only on a value in the stated or derived state
+(`04-value-states.md` §2): there it either holds or is decided false. On a value that is assumed, unknown or
+conflicting, or on a parameter the requirement does not have, it is undecided. An unknown value has nothing to
+compare, and a conflicting one has several. An assumed value is a single value, and the comparison itself
+could be computed; but what a guard concludes is that the rule does not concern this requirement, and that
+conclusion is only as firm as the value — an assumption is exactly the value `04-value-states.md` §3 says
+somebody with standing may need to correct. A guard excluding on one would let a wrong assumption silence a
+rule nobody then reads.
+
+**The criteria of one guard are conjunctive** (K104). A rule is excluded when at least one of its criteria is
+decided false, and kept otherwise: a single criterion decided false settles the guard whatever the others are,
+so exclusion stays decidable where some criteria are not. *Is one of* expresses a disjunction over one
+parameter; a disjunction across parameters is written as two rules. An operation must be one the parameter's
+domain declares — *equals* and *is one of* need a domain **comparable for equality** or **ordered**, the four
+orderings an **ordered** one (`04-value-states.md` §5, K101) — which section 6 states as a constraint.
+
+**An exclusion creates nothing, so it leaves nothing to trace.** It raises no question and closes none. It is
+reproducible from the guard and the values it read, and each already carries its own provenance: the guard as
+part of a rule-set, which is a model in its own right (K22), and each value in its state and, when stated,
+its source. Writing a guard is the act of whoever writes the rule-set; applying it is the walk's, and decides
+nothing about the project.
 
 **A rule leaving force does not close the questions it raised.** Retraction is not an answer, and an open
 question stands until something closes it the ordinary way. Where the answer is that the project needs
@@ -251,11 +292,11 @@ detection is the other half a `Rule` must also carry, and resolution is exactly 
 discharged by a `RequirementDecision`, records.
 
 **A `ConflictRule` carries nothing beyond the shape every `Rule` has** (K96). This asks to be justified rather
-than merely stated, because both specialisations relate two requirement kinds and only the other one names
-its partner in a typed reference. The difference is the one the axis above draws: a `ConflictRule`'s partner
-is **present** when the rule fires, and the judgement reads it anyway, so naming that partner in the prose of
+than merely stated, because both specialisations relate two requirement kinds and only the other one names its
+partner in a typed reference. The difference is the one the axis above draws: a `ConflictRule`'s partner is
+**present** when the rule fires, and the judgement reads it anyway, so naming that partner in the prose of
 *what to look for* is sufficient. Narrowing mechanically what must be examined before the judgement runs is a
-guard, and belongs to the question `06-decisions.md` records as OQ21 rather than to this type.
+guard, which every `Rule` may carry (K102) and which is therefore not this type's own.
 
 **There is no universal contradiction rule, and this model states none** (K98). A rule holding that no
 requirement may contradict an in-force one — stated once at the root and inherited everywhere — reads as this
