@@ -387,9 +387,10 @@ a definition are.
 
 **A `RuleSet` is a written procedure, and matching is a relevance judgement made while walking it** (K86).
 When a new requirement arises in a subject, the `RuleSet`s that reach it are walked. A rule no longer in
-force is passed over without anything being read (K97); of the rest, a reader — human or AI — judges which
-are relevant by reading each rule's *when it applies*. This is not the evaluation
-of a condition for its truth value against a requirement, which is how K76 first described it; that
+force is passed over without anything being read (K97); a rule whose guard the arising requirement
+decidably fails is set aside next, again without judgement (K105); of the rest, a reader — human or AI
+— judges which are relevant by reading each rule's *when it applies*. This is not the evaluation of a
+condition for its truth value against a requirement, which is how K76 first described it; that
 description is corrected here, its verdict is not.
 
 **The verdict stands: this is a semantic constraint (K24), not a syntactic one.** The meaning of free text is
@@ -411,13 +412,19 @@ requirements' texts and cannot be decided without doing so, where a `Completenes
 requirement of some kind exists and reads no text at all. The semantic classification above holds because of
 the first step, which every walk runs; it does not follow that everything after it is judged.
 
+A guard is not a third step beside these two. It removes rules before the first and removes only what is
+decided without judgement, so it narrows what reaches judgement and adds no category beside K24's two
+(K105).
+
 ```mermaid
 flowchart TD
     A["A Requirement arises under a RequirementDefinition"]
     A --> B["Walk the RuleSets on that definition and on its ancestors"]
     B --> S{"Is this Rule in force?"}
     S -->|"no — decided without judgement"| Z["Nothing follows"]
-    S -->|"yes"| C{"Is it relevant?<br/>read its 'when it applies'"}
+    S -->|"yes"| Q{"Does its guard exclude it?<br/>a criterion decided false"}
+    Q -->|"yes — decided without judgement"| Z
+    Q -->|"no — or the guard is undecided"| C{"Is it relevant?<br/>read its 'when it applies'"}
     C -->|"no"| Z
     C -->|"yes — a judgement, semantic"| D["The Rule's firing test runs"]
     D -->|"ConflictRule"| E{"tests a pair:<br/>does this contradict an in-force Requirement?"}
