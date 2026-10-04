@@ -951,8 +951,11 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 - A definition's identity is unique among every definition in the model (§7).
 - No element is a `RequirementDefinition` and nothing more: every definition in a model is an instance of some
   specialisation of it (§7, §9, K30).
-- A definition states the template its requirements' wording is produced from (§7). A definition without one
-  produces nothing, and the derivation §10 describes cannot be run against it.
+- A definition that is not abstract states the template its requirements' wording is produced from (§7). A
+  definition without one produces nothing, and the derivation §10 describes cannot be run against it. An
+  abstract definition states none: nothing is produced under it (§7, K109, K110).
+- In the template of a definition that is not abstract, every placeholder names a parameter the definition
+  has, declared or inherited, and every parameter it has appears as a placeholder (§9, K107, K111).
 - Every parameter a definition declares names the value domain it draws from. Which domains exist is an
   implementation's business; that a parameter names one is not (§7, `04-value-states.md` §5).
 - Every parameter a definition declares carries its own ask. A parameter with no ask is a failed check on the
@@ -962,22 +965,26 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 - A definition declares no parameter carrying the identity of a parameter one of its ancestors declares. Every
   parameter a definition has, its own and those it inherits, is therefore one parameter on every descendant,
   drawing from one domain (§7, §9, K106, K107, K108).
-- **Every definition states how a requirement produced under it would be verified.** Absence of the statement
-  is a failed check on the definition itself, independent of anything any requirement produced under it says.
-  A definition whose requirements cannot be verified independently meets this constraint by saying so, in
-  that same attribute: the check reads whether the statement is there, never which of the two things it says.
-  This is ISO/IEC/IEEE 29148's verifiability characteristic held one level up, where §7 places the method —
-  29148 requires verifiability of a requirement, and a requirement inherits its definition's method — and it
-  is the stated rule K29 rests on.
-- **Every definition states a well-formedness rule for the wording a requirement produced under it must
-  satisfy.** Absence of the statement is a failed check on the definition itself, independent of anything any
-  requirement produced under it says. This is ISO/IEC/IEEE 29148's *characteristics of a good requirement*
-  held one level up, on the same footing §7 already places *how it would be verified* — it is the stated rule
-  K66 rests on.
+- **Every definition that is not abstract states how a requirement produced under it would be verified.**
+  Absence of the statement is a failed check on the definition itself, independent of anything any requirement
+  produced under it says. A definition whose requirements cannot be verified independently meets this
+  constraint by saying so, in that same attribute: the check reads whether the statement is there, never which
+  of the two things it says. This is ISO/IEC/IEEE 29148's verifiability characteristic held one level up,
+  where §7 places the method — 29148 requires verifiability of a requirement, and a requirement inherits its
+  definition's method — and it is the stated rule K29 rests on. An abstract definition is outside it (§7,
+  K110): when the constraint was written, `RequirementDefinition` was the only abstract definition, and it
+  never met the constraint either.
+- **Every definition that is not abstract states a well-formedness rule for the wording a requirement produced
+  under it must satisfy.** Absence of the statement is a failed check on the definition itself, independent of
+  anything any requirement produced under it says. This is ISO/IEC/IEEE 29148's *characteristics of a good
+  requirement* held one level up, on the same footing §7 already places *how it would be verified* — it is the
+  stated rule K66 rests on. An abstract definition is outside it, on the same terms (§7, K110).
 
 **Over the derivation, and over being no longer in force.**
 
 - A requirement in this model names exactly one `RequirementDefinition`: never none, and never two (§10, K8).
+  The definition it names is not abstract; a requirement naming an abstract definition is not a well-formed
+  element of this model (§7, §10, K109).
 - A requirement in this model carries exactly one of "in force" or "no longer in force" at any time — never
   both, and never neither (§10).
 - A `RequirementDecision`'s `retires` edge names only `Requirement`s that were in force at the moment the
