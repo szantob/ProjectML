@@ -329,7 +329,7 @@ was the only abstract definition and which it never met; no decision is revised.
 
 | # | Decision | Reason |
 |---|---|---|
-| K109 | A definition may be abstract: no requirement is produced under it, only under its specialisations. Every definition states whether it is abstract, and a requirement naming an abstract definition is not well-formed | A definition that exists to be specialised, so that its descendants share what it declares, is something real material produced and the model could not state. Adopted from SysML v2 and KerML's `isAbstract`. Stated rather than inferred from an empty template, so that a definition nobody may produce a requirement under is not confused with one whose template is unwritten |
+| K109 | A definition may be abstract: no requirement is produced under it, only under its specialisations. Every definition states whether it is abstract, a ninth attribute of the core, and a requirement naming an abstract definition is not well-formed | A definition that exists to be specialised, so that its descendants share what it declares, is something real material produced and the model could not state. Adopted from SysML v2 and KerML's `isAbstract`. Stated rather than inferred from an empty template, so that a definition nobody may produce a requirement under is not confused with one whose template is unwritten |
 | K110 | An abstract definition carries no template, and neither *how it would be verified* nor the *wording rule* applies to it | All three speak of a requirement produced under the definition, and none is. *When it applies* and each parameter's *what to ask* still apply |
 | K111 | Every parameter a definition that is not abstract has, its own and those it inherits, appears as a placeholder in its template, and every placeholder names one of them. This answers the part of OQ9 asking whether an inherited parameter must appear in a descendant's template | A template that could not name an inherited parameter would leave a filled value out of the wording; one that need not name it would let a requirement carry a value its wording never states. An abstract definition's parameters are met in its descendants' templates |
 | K112 | An inherited parameter is inherited whole, its *what to ask* included; a specialisation has no ask of its own for it | K108 already makes it the same parameter with the same domain on every descendant, and the ask belongs to the parameter. A narrower ask on a narrower definition was considered and declined: every descendant is after the same value |
@@ -378,7 +378,8 @@ Insert, after that entry:
 
 ```
 - Abstract definitions, and the placeholders a descendant inherits. A definition may be abstract — no
-  requirement is produced under it, only under its specialisations — and states that it is; it carries no
+  requirement is produced under it, only under its specialisations — and states that it is, a ninth attribute
+  of the core; it carries no
   template, and neither a method of verification nor a wording rule applies to it. A definition that is not
   abstract uses every parameter it has in its template, inherited ones included, and an inherited parameter
   brings its *what to ask*. K109–K112 record the decisions, and correct the scope of three constraints that the
@@ -395,5 +396,66 @@ Record abstract definitions and inherited placeholders in CHANGELOG
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 EOF
+)"
+```
+
+---
+
+### Task 7: `spec/02` §7 and §8 — whether a definition is abstract is a ninth attribute of the core (K109)
+
+**Added after Task 1 was reviewed, and executed directly after it, before Task 2.** Task 1 made every
+definition state whether it is abstract without placing that statement among the core's attributes, so §7's
+"two definitions carrying the same eight things are the same definition" became false. The owner decided on
+2026-10-05 that abstractness is a ninth attribute of the core: it passes both of §8's tests, and the core is
+what passes them.
+
+**Files:**
+- Modify: `spec/02-requirement-analysis-model.md` — §7's core table; the paragraph beginning `A definition
+  carries eight things, three of which`; the paragraph beginning `**An abstract definition carries no
+  template`; every sentence in §7 and §8 that counts the core as eight
+
+**Interfaces:**
+- Consumes: Task 1's two paragraphs.
+- Produces: the core as nine attributes, which Task 5 cites.
+
+- [ ] **Step 1: Add the row**
+
+In §7's attribute table, after the `| name | Human-readable |` row, insert:
+
+```
+| abstract | Whether the definition is abstract: no requirement is produced under it, only under its specialisations (K109). Always stated, never read off the absence of anything else |
+```
+
+- [ ] **Step 2: Count nine**
+
+Replace `A definition carries eight things, three of which do not apply to an abstract definition (below,
+K110).` with `A definition carries nine things, three of which do not apply to an abstract definition (below,
+K110).` In the paragraph beginning `**An abstract definition carries no template`, replace `The other five
+apply as they do to any definition` with `The other six apply as they do to any definition`.
+
+- [ ] **Step 3: Every other count**
+
+Search §7 and §8 for `eight`. Each occurrence that counts the core's attributes becomes `nine` — at the time
+of writing: `Two of the eight bottom out`, `any of the eight is how it is written down`, `carrying the same
+eight things`, `is none of the eight` (the OQ28 paragraph), `will not be one of the eight`, `costs one of the
+eight`, `Applied to the eight`. Rewrap each changed paragraph to 110 characters. Do not touch `spec/06`: its
+rows are kept as taken, OQ28's included.
+
+- [ ] **Step 4: Check §8 against the new attribute**
+
+Re-read §8, *How the two tests relate*. If it walks the attributes one by one and gives each a verdict, add
+abstractness's: it passes the seam test (it names nothing the metamodel does not define) and the record test
+(§12 states a rule that fails on it — a requirement naming an abstract definition). If it does not walk them,
+change nothing.
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add spec/02-requirement-analysis-model.md
+git commit -m "$(cat <<'EOF2'
+Make whether a definition is abstract a ninth attribute of the core (K109)
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+EOF2
 )"
 ```
