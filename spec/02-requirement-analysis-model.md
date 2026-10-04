@@ -520,11 +520,12 @@ a requirement carries an edge naming exactly one `RequirementDefinition` — the
 passage selected, whose rules turned the stater's free words into the requirement's bound wording. Exactly
 one, because the kind rides along with the definition (K8): a requirement's kind is read off what that one
 definition specialises (K30), and a requirement produced under two definitions would have two kinds or none.
-This edge is what makes K13's recoverability condition true of what K33 drops. K33 decides that the product
-`Requirement` names neither its definition nor its kind, and that decision is legitimate only because the
-binding is not thereby lost: it is recorded here, in the working model, recoverable rather than deleted,
-exactly as K13 asks of anything the projection drops. The projection drops this edge along with the
-definitions it points at.
+The definition it names is never abstract (§7, K109): an abstract definition exists to be specialised, and a
+requirement is produced under one of its specialisations instead. This edge is what makes K13's recoverability
+condition true of what K33 drops. K33 decides that the product `Requirement` names neither its definition nor
+its kind, and that decision is legitimate only because the binding is not thereby lost: it is recorded here,
+in the working model, recoverable rather than deleted, exactly as K13 asks of anything the projection drops.
+The projection drops this edge along with the definitions it points at.
 
 **The relation between a `SourceNeed`'s words and a requirement's wording is a semantic constraint** (K24).
 The metamodel states what the relation is — a requirement's text is the professional restatement of the
