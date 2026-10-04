@@ -471,11 +471,21 @@ metamodel does not do:** name any of them, say how many there are, or say on wha
 ancestors declare, in addition to its own (K107), and declares no parameter carrying the identity of one an
 ancestor declares (K108). Both are decided because a `Rule` stated on a definition reaches every
 specialisation of it (`03-project-lifecycle-model.md` §3, K69), and a guard naming a parameter must find the
-*same* parameter — the same domain, so the same comparability — on every descendant it reaches. Everything
-else is not defined here: whether an inherited parameter may ever be overridden or narrowed; what a subtype
-may add to, narrow or override among the other attributes of section 7's core; and whether an inherited
-parameter must appear as a placeholder in a descendant's template. That is OQ9, and it waits for something to
-exercise it. K30 chooses the mechanism; it does not define its semantics.
+*same* parameter — the same domain, so the same comparability — on every descendant it reaches. An inherited
+parameter is inherited whole, its *what to ask* included, and a specialisation has no ask of its own for it
+(K112): every descendant is after the same value, so one ask, written on the definition declaring the
+parameter, serves them all.
+
+**A definition that is not abstract uses every parameter it has in its template** (K111). Each of its
+parameters, its own and those it inherits, appears as a placeholder in its template, and each placeholder
+names one of them. A template that could not name an inherited parameter would leave a filled value nowhere in
+the requirement's wording; one that need not name it would let a requirement carry a value its wording never
+states. An abstract definition has no template (§7, K110), so the parameters it declares are met in the
+templates of the definitions beneath it.
+
+Everything else is not defined here: whether an inherited parameter may ever be overridden or narrowed, and
+what a subtype may add to, narrow or override among the other attributes of section 7's core. That is OQ9, and
+it waits for something to exercise it. K30 chooses the mechanism; it does not define its semantics.
 
 ## 10. The derivation, retirement, and the projection
 
