@@ -82,6 +82,11 @@ work, not releases.
   yet clean: K27 already lets a definition carry more than the core, but the editor that produced the package
   implements the core eight and nothing else, so a rule's prose was the only attribute wide enough to type
   into.
+- OQ30 and OQ31 opened, both high priority, from the first package to use parameter inheritance. OQ30: a
+  missing parameter value raises no question and reaches the project manager by no route, so the definition's
+  own *what to ask* is a silent failure rather than an answer. OQ31: the package used the specialisation tree
+  to make one requirement an aspect of another, a relation the tree does not express. Either may restructure
+  part of the metamodel.
 - The `Rule` specialisations given their own shape, and the axis that decides how many there are: a
   specialisation is fixed by what its firing test ranges over — `ConflictRule` a pair of requirements,
   `CompletenessRule` the set a kind would appear among — from which every other difference between them
