@@ -117,10 +117,10 @@ work, not releases.
   whether it does is a judgement. The derivation edge already ties an aspect to the requirement it is about.
   No new element, and no decision rested on OQ31. OQ30 stays open.
 - Abstract definitions, and the placeholders a descendant inherits. A definition may be abstract — no
-  requirement is produced under it, only under its specialisations — and states that it is, a ninth attribute
-  of the core; it carries no
-  template, and neither a method of verification nor a wording rule applies to it. A definition that is not
-  abstract uses every parameter it has in its template, inherited ones included, and an inherited parameter
-  brings its *what to ask*. K109–K112 record the decisions, and correct the scope of three constraints that the
-  only earlier abstract definition never met; OQ9 is narrowed again. Findings are in
+  requirement is produced under it, only under its specialisations — and is abstract only where it says so, a
+  ninth attribute of the core. An abstract definition carries no template, and neither a method of
+  verification nor a wording rule applies to it. A definition that is not abstract uses every parameter it has
+  in its template, inherited ones included, and an inherited parameter brings its *what to ask*. K109–K112
+  record the decisions, K110 correcting the scope of three constraints that the only earlier abstract
+  definition never met; OQ9 is narrowed again. Findings are in
   [`docs/superpowers/specs/2026-10-05-abstract-definitions-and-inherited-placeholders-design.md`](docs/superpowers/specs/2026-10-05-abstract-definitions-and-inherited-placeholders-design.md).

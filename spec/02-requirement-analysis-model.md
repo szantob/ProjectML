@@ -268,7 +268,7 @@ supplies (K27).
 |---|---|
 | identity | The definition's identifier |
 | name | Human-readable |
-| abstract | Whether the definition is abstract: no requirement is produced under it, only under its specialisations (K109). Always stated, never read off the absence of anything else |
+| abstract | Whether the definition is abstract: no requirement is produced under it, only under its specialisations (K109). A definition is abstract only where it says so, and otherwise is not; abstractness is never read off the absence of anything else |
 | text | The template the requirement's wording is produced from, with places for its parameters |
 | when it applies | One sentence stating when this definition comes into play. It is prose, not an evaluable expression (D20). Its absence means applicability has not been written down, which is a gap, not a claim that the definition applies unconditionally |
 | parameters | Each parameter declares a value domain, and carries an identity local to the definition declaring it (K106). Which domains exist is an implementation's business, exactly as the set of kinds is (K30, and `04-value-states.md` §5) |
@@ -282,19 +282,20 @@ obtained from somebody who holds it — which is why *what to ask* sits beside *
 parameter rather than per definition.
 
 **A definition may be abstract** (K109). No requirement is produced under an abstract definition, only under
-its specialisations: it exists so that the definitions beneath it share what it declares. Every definition
-states whether it is abstract, and that it is cannot be read off the absence of anything else — an empty
-template is a template nobody has written yet, not a declaration that nobody may produce a requirement under
-the definition. The term is adopted rather than coined: SysML v2 marks a definition abstract, and KerML's
-`isAbstract` says that whatever an abstract type classifies is also classified by one of its specialisations,
-which is this reading one level down. `RequirementDefinition` itself is abstract on the same terms (K30).
+its specialisations: it exists so that the definitions beneath it share what it declares. A definition is
+abstract only where it says so, and otherwise is not: abstractness is never read off the absence of anything
+else — an empty template is a template nobody has written yet, not a declaration that nobody may produce a
+requirement under the definition. The term is adopted rather than coined: SysML v2 marks a definition
+abstract, and KerML's `isAbstract` says that whatever an abstract type classifies is also classified by one of
+its specialisations, which is this reading one level down. `RequirementDefinition` itself is abstract on the
+same terms (K30).
 
 **An abstract definition carries no template, and neither *how it would be verified* nor the *wording rule*
 applies to it** (K110). All three speak of a requirement produced under the definition: the wording it is
-produced from, how it would be shown to hold, what its wording must satisfy. None is produced under an
-abstract definition. The other six apply as they do to any definition — *when it applies* still decides when
-the definition comes into play, and a parameter it declares is still filled, through its specialisations, so
-it still needs its *what to ask*.
+produced from, how it would be shown to hold, what its wording must satisfy. No requirement is produced under
+an abstract definition. The other six apply as they do to any definition — *when it applies* still decides
+when the definition comes into play, and a parameter it declares is still filled, through its specialisations,
+so it still needs its *what to ask*.
 
 **A parameter's identity is local to the definition declaring it** (K106). A `Rule`'s guard names a parameter
 (`03-project-lifecycle-model.md` §3), and *what to ask* is already written per parameter, so a parameter has
@@ -302,14 +303,14 @@ to be nameable. It exists only on the definition that declares it, so an identit
 definition is enough — the precedent K85 sets for a `Rule`'s identity. How the identity is written down is not
 fixed here.
 
-**Why *how it would be verified* sits on the definition rather than on the requirement.** A verification method is generic
-to a kind of requirement: how a thing of this kind would be shown to hold is a property of the kind, and the
-definition-and-usage split puts a generic property on the definition. ISO/IEC/IEEE 29148 makes verifiability
-a required characteristic of a *requirement* rather than of a definition, and the two statements do not
-conflict — a requirement inherits its definition's method, so a requirement produced under a definition that
-carries one is verifiable in 29148's sense without carrying the method itself. What is genuinely
-instance-side is not the method but what actually verified one particular requirement, and nothing in this
-model carries that today; OQ10 records the edge that would (K29).
+**Why *how it would be verified* sits on the definition rather than on the requirement.** A verification
+method is generic to a kind of requirement: how a thing of this kind would be shown to hold is a property of
+the kind, and the definition-and-usage split puts a generic property on the definition. ISO/IEC/IEEE 29148
+makes verifiability a required characteristic of a *requirement* rather than of a definition, and the two
+statements do not conflict — a requirement takes its definition's method, so a requirement produced under a
+definition that carries one is verifiable in 29148's sense without carrying the method itself. What is
+genuinely instance-side is not the method but what actually verified one particular requirement, and nothing
+in this model carries that today; OQ10 records the edge that would (K29).
 
 **Why a definition also states a wording rule, beside its template.** *text* gives the structural template a
 requirement's wording is produced from; it says nothing about the qualities that wording must have once
@@ -765,9 +766,9 @@ manager's act, since it commits the project (`03-project-lifecycle-model.md` §3
 question outside the procedure. This is the strongest available reading of the rule that every event record
 its cause: a `RequirementQuestion`'s cause is not merely guaranteed to exist, it is named.
 
-**A `RequirementDefinition`'s own *what to ask* (§7) is not a second origin.** It covers a single missing
-parameter through the definition's own machinery, which is why that case raises no `RequirementQuestion` at
-all.
+**A `RequirementDefinition`'s *what to ask* (§7) is not a second origin.** It covers a single missing
+parameter through the definition's own machinery — for an inherited parameter, the ask inherited with it (§9,
+K112) — which is why that case raises no `RequirementQuestion` at all.
 
 **Two mechanisms are worked out, and the rest are open.** A `Requirement` incompatible with one already in
 force, canonically on terms a project had to state because the two are of different kinds, is
@@ -970,7 +971,7 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
   produced under it says. A definition whose requirements cannot be verified independently meets this
   constraint by saying so, in that same attribute: the check reads whether the statement is there, never which
   of the two things it says. This is ISO/IEC/IEEE 29148's verifiability characteristic held one level up,
-  where §7 places the method — 29148 requires verifiability of a requirement, and a requirement inherits its
+  where §7 places the method — 29148 requires verifiability of a requirement, and a requirement takes its
   definition's method — and it is the stated rule K29 rests on. An abstract definition is outside it (§7,
   K110): when the constraint was written, `RequirementDefinition` was the only abstract definition, and it
   never met the constraint either.

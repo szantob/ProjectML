@@ -39,7 +39,7 @@ admits. Every specialisation of it has been assumed to be one a requirement can 
 
 | # | Decision | Reason |
 |---|---|---|
-| K109 | **A definition may be abstract: no requirement is produced under it, only under its specialisations.** Every definition states whether it is abstract — a ninth attribute of the core — and that it is cannot be read off the absence of anything else. A requirement naming an abstract definition is not a well-formed element of this model | A definition that exists to be specialised, so that its descendants share what it declares, is a thing real material produces and the model could not state. The term is adopted, not coined: SysML v2 marks a definition `abstract`, and KerML's `isAbstract` says that whatever a type classifies must also be classified by one of its specialisations — the same reading, one level down. Stating it rather than inferring it from an empty template keeps two things apart that an inference would merge: a definition nobody may produce a requirement under, and one whose template nobody has written yet |
+| K109 | **A definition may be abstract: no requirement is produced under it, only under its specialisations.** A definition is abstract only where it says so, and otherwise is not — a ninth attribute of the core; abstractness cannot be read off the absence of anything else. A requirement naming an abstract definition is not a well-formed element of this model | A definition that exists to be specialised, so that its descendants share what it declares, is a thing real material produces and the model could not state. The term is adopted, not coined: SysML v2 marks a definition `abstract`, and KerML's `isAbstract` says that whatever a type classifies must also be classified by one of its specialisations — the same reading, one level down. Stating it rather than inferring it from an empty template keeps two things apart that an inference would merge: a definition nobody may produce a requirement under, and one whose template nobody has written yet |
 | K110 | **An abstract definition carries no template, and neither *how it would be verified* nor the *wording rule* applies to it.** The other attributes of the core apply as they do to any definition | All three speak of a requirement produced under the definition — the wording it is produced from, how it would be shown to hold, what its wording must satisfy — and no requirement is produced under an abstract definition. *When it applies* still decides when the definition comes into play, and a parameter declared on it is still filled, through its descendants, so each still needs its *what to ask* |
 
 **What K110 does to `spec/02` §12, and why it is a correction rather than a revision.** Three constraints there
@@ -104,6 +104,8 @@ Nothing in K109–K112 depends on how either is answered.
   core table; the sentence that the core applies to every definition qualified accordingly.
   **Amended during integration, 2026-10-05:** the owner placed abstractness in the core as its ninth attribute,
   since it passes both of §8's tests; §7 and §8 count nine.
+  **Amended again, 2026-10-05:** the owner set the default — a definition is not abstract unless it says so —
+  so a missing statement is no failure and no constraint is added for it.
 - §9: K111 and K112 in the paragraph that narrows OQ9, and what OQ9 still holds.
 - §10: a requirement is never produced under an abstract definition (K109).
 - §12: the four constraints of section 4.
