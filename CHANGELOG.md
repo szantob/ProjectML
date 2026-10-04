@@ -111,3 +111,8 @@ work, not releases.
   over a guard. K101–K108 record the decisions; OQ9 is narrowed and OQ29 opened. Findings are
   in
   [`docs/superpowers/specs/2026-09-28-value-domain-comparability-and-guard-design.md`](docs/superpowers/specs/2026-09-28-value-domain-comparability-and-guard-design.md).
+- OQ31 closed as dissolved on a false premise, on feedback from the implementation that raised it. The
+  package's prose read as asking an aspect's value to follow the value of the requirement it is about; the
+  implementation did not mean that, and restated it. A shared parameter is shared, its value may narrow, and
+  whether it does is a judgement. The derivation edge already ties an aspect to the requirement it is about.
+  No new element, and no decision rested on OQ31. OQ30 stays open.

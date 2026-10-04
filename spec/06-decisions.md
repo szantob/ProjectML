@@ -546,6 +546,23 @@ now so that this is not lost, and are to be taken up as soon as possible.
 | OQ30 | How does a missing parameter value reach the project manager? `02-requirement-analysis-model.md` §11 routes a single missing parameter through the definition's own *what to ask*, and that route raises no `RequirementQuestion`; K87 made this deliberate by refusing to read *what to ask* as a second origin of a question. What the route produces is only a value in the unknown state (`04-value-states.md` §2), perhaps marked as one to ask about, a marking whose own origin is OQ25. Nothing records that the ask was put, to whom, or that an answer is awaited. The owner holds as a principle that only what rule-raised questions and conflicts carry reaches the project manager, whose answer then enters as a source (K11; `03-project-lifecycle-model.md` §3). A missing value outside that route is therefore a silent failure: the project manager never learns of it, and "nothing is produced" is not an answer but the defect. The question is whether *what to ask* must be channelled into the same route — for instance by a `Rule` that fires on an unknown value and raises a `RequirementQuestion`, which would leave K87 intact — or given a route of its own with the same reach. Either answer touches OQ18's first half, whose derived shape rests on the §11 route, and OQ25 | As soon as possible, ahead of other open work: the answer may restructure how questions arise |
 | OQ31 | Can one requirement be an aspect of another? The package that raised OQ30 placed, beneath a kind stating that something must be possible, kinds each stating one aspect of it — who may do it, where it is reached — and used the specialisation tree to do so, declaring the shared parameter once on their common ancestor. Its prose then asks that an aspect's value for that parameter be the value the requirement it qualifies carries, or a narrowing of it, and that one aspect not exceed another. K107 inherits a parameter, never a value: in the model, an aspect requirement's value has no relation to the value of the requirement it is about, and no edge names that requirement. Two readings are open. Either the specialisation tree, whose relation is *is a kind of* (K30), is carrying a relation it does not express — an aspect of a thing is not a kind of that thing — and the metamodel lacks an edge from one requirement to another it qualifies, together with a way to constrain one requirement's value by another's, which neither a guard (K102) nor a `ConflictRule`'s judgement supplies mechanically. Or the arrangement is a modelling choice an implementation could restate without either | As soon as possible, with OQ30: both came out of the same package, and both may restructure the model side |
 
+**OQ31 dissolved on a false premise, and is no longer open.** Closed on 2026-10-05, on feedback from the
+implementation whose package raised it. The premise was that the package asks an aspect's value to follow the
+value of the requirement it is about. Its prose did read that way, but the implementation did not mean it, and
+has since restated the prose: the parameter is shared, its value may narrow. The parameter is declared once on
+the common ancestor so that it means the same on every kind beneath it (K107), and each requirement takes its
+value from its own source. Two requirements derived from the same one may narrow its value in different ways
+and both be valid, which an equality constraint would forbid; and whether one value written in free words
+narrows another is a judgement (K24), which no guard (K102) or other mechanical constraint can decide. What
+ties an aspect to the requirement it is about is an edge the model already has, which OQ31's statement
+overlooked: the derivation edge, which sits on the consequence and names the requirement it came from
+(`01-requirement-model.md`; `02-requirement-analysis-model.md` §11). The specialisation tree keeps its
+relation, *is a kind of* (K30): the aspects are kinds of a common ancestor, of which the requirement they are
+about is also a kind, not kinds of that requirement. The prose's second request, that one aspect not exceed
+another, is a check the implementation makes against its own platform's configuration; it is the
+implementation's, and the metamodel neither states nor sanctions it. No decision rested on OQ31, so nothing
+else changes. OQ30 is not affected and stays open.
+
 ## Status of the founding record's open questions
 
 | # | Status |
