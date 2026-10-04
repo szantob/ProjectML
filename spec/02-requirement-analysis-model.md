@@ -260,14 +260,15 @@ The name is adopted rather than coined. SysML v2 splits an element into a defini
 `RequirementDefinition` is the definition half of that split on the same terms: the thing a requirement is
 produced under, not the requirement itself.
 
-A definition carries eight things, three of which do not apply to an abstract definition (below, K110). This
-is the **core** — what the metamodel can interpret, or can fail on, without reading anything an
-implementation supplies (K27).
+A definition carries nine things, three of which do not apply to an abstract definition (below, K110). This is
+the **core** — what the metamodel can interpret, or can fail on, without reading anything an implementation
+supplies (K27).
 
 | Attribute | What it is |
 |---|---|
 | identity | The definition's identifier |
 | name | Human-readable |
+| abstract | Whether the definition is abstract: no requirement is produced under it, only under its specialisations (K109). Always stated, never read off the absence of anything else |
 | text | The template the requirement's wording is produced from, with places for its parameters |
 | when it applies | One sentence stating when this definition comes into play. It is prose, not an evaluable expression (D20). Its absence means applicability has not been written down, which is a gap, not a claim that the definition applies unconditionally |
 | parameters | Each parameter declares a value domain, and carries an identity local to the definition declaring it (K106). Which domains exist is an implementation's business, exactly as the set of kinds is (K30, and `04-value-states.md` §5) |
@@ -275,7 +276,7 @@ implementation supplies (K27).
 | how it would be verified | The method by which a requirement produced under this definition would be shown to hold. Prose |
 | wording rule | A well-formedness rule for the wording a requirement produced under this definition must satisfy. Prose, on the same terms *how it would be verified* is prose (K66) |
 
-Two of the eight bottom out in the value-state model rather than in anything a design language supplies. A
+Two of the nine bottom out in the value-state model rather than in anything a design language supplies. A
 parameter with no value is a value in the unknown state like any other, and the ask is how that value is
 obtained from somebody who holds it — which is why *what to ask* sits beside *parameters* and is written per
 parameter rather than per definition.
@@ -291,7 +292,7 @@ which is this reading one level down. `RequirementDefinition` itself is abstract
 **An abstract definition carries no template, and neither *how it would be verified* nor the *wording rule*
 applies to it** (K110). All three speak of a requirement produced under the definition: the wording it is
 produced from, how it would be shown to hold, what its wording must satisfy. None is produced under an
-abstract definition. The other five apply as they do to any definition — *when it applies* still decides when
+abstract definition. The other six apply as they do to any definition — *when it applies* still decides when
 the definition comes into play, and a parameter it declares is still filled, through its specialisations, so
 it still needs its *what to ask*.
 
@@ -320,22 +321,22 @@ places it on the definition rather than the instance (K66). The seam test and th
 on exactly the argument that seated *how it would be verified* (K29): the rule can be stated without resolving
 a reference to an element the metamodel does not define, and a stated rule can fail on its absence.
 
-**What the metamodel does not say about any of the eight is how it is written down.** Two definitions
-carrying the same eight things are the same definition to this metamodel however differently they are set
-out. Beyond the core, a definition holds whatever an implementation's own notation and rule-set need: the
-core is a floor the metamodel can reason over, not a ceiling (K27).
+**What the metamodel does not say about any of the nine is how it is written down.** Two definitions carrying
+the same nine things are the same definition to this metamodel however differently they are set out. Beyond
+the core, a definition holds whatever an implementation's own notation and rule-set need: the core is a floor
+the metamodel can reason over, not a ceiling (K27).
 
 **Whether that opening is where a company's sizing knowledge belongs is open.** The derivation from a
-requirement's parameters to what its answer must be — how many pieces, which kit, what height — is none of
-the eight, and K83 (`03-project-lifecycle-model.md` §3) excludes it from a `Rule`. The first implementation to
-carry a real domain put it in a rule's prose anyway. `06-decisions.md` records the question as OQ28,
-including why that evidence does not yet settle it.
+requirement's parameters to what its answer must be — how many pieces, which kit, what height — is none of the
+nine, and K83 (`03-project-lifecycle-model.md` §3) excludes it from a `Rule`. The first implementation to
+carry a real domain put it in a rule's prose anyway. `06-decisions.md` records the question as OQ28, including
+why that evidence does not yet settle it.
 
 ## 8. What is not on a `RequirementDefinition`, and the two tests
 
 The list in section 7 needs a criterion that outlives it, because the next attribute somebody proposes will
-not be one of the eight. Two tests decide the question, and they are stated here in full, because they are
-the part of this section a later reader actually reuses.
+not be one of the nine. Two tests decide the question, and they are stated here in full, because they are the
+part of this section a later reader actually reuses.
 
 > **The seam test.** An attribute belongs to the metamodel if the metamodel can interpret it without
 > resolving a reference to an element it does not define. Prose that names a design language's things is
@@ -354,8 +355,8 @@ record test does not require: it is satisfied by a rule that fails on an attribu
 how *how it would be verified* passes without anything ever reading its prose. Section 12 states the rule
 that does it.
 
-The two tests are independent of each other. How they relate, and what that relation costs one of the eight,
-is stated at the end of this section, after the one candidate both of them reject.
+The two tests are independent of each other. How they relate, and what that relation costs one of the nine, is
+stated at the end of this section, after the one candidate both of them reject.
 
 **The one candidate that fails both.** A rule attached to a definition, stating what must hold of the design
 elements a requirement produced under it constrains, names a design language's element kinds. It fails the
@@ -378,11 +379,11 @@ settling it is the binding's job.
 
 **They are not a conjunction, and on the core they do not agree everywhere.** An earlier reading of this
 section said they did. It had one candidate to reason from, and that candidate fails both tests on a single
-structural fact, so it could not have separated them however they related. Applied to the eight, they
-separate. Section 12 states the syntactic constraints this model genuinely carries, and no rule among them
-fails on *when it applies*: its absence is deliberately a gap rather than a claim, so the rule that is
-available over it reports rather than fails, and the record test's word is *fail*. Nor does any of them fail
-on *name*, which the metamodel reads for no purpose of its own.
+structural fact, so it could not have separated them however they related. Applied to the nine, they separate.
+Section 12 states the syntactic constraints this model genuinely carries, and no rule among them fails on
+*when it applies*: its absence is deliberately a gap rather than a claim, so the rule that is available over
+it reports rather than fails, and the record test's word is *fail*. Nor does any of them fail on *name*, which
+the metamodel reads for no purpose of its own.
 
 **The seam test decides admissibility. The record test measures whether an admitted attribute is
 load-bearing, and is not a second gate.** The reason is that a presence rule can be written over any
