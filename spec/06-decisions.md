@@ -267,6 +267,22 @@ Together they close OQ21 and OQ27, narrow OQ9, and open OQ29. K102 adds to the s
 | K107 | A specialisation has every parameter its ancestors declare, in addition to its own. This answers the part of OQ9 concerning added parameters, and nothing else | Without it an inherited rule's guard would be undecided on every descendant. Decided directly by the owner rather than left as a side effect of the guard |
 | K108 | A specialisation declares no parameter carrying the identity of one an ancestor declares | K107 is safe only if a guard's parameter is the same parameter, with the same domain, on every descendant. Forbidding redeclaration is the reversible choice: lifting it later breaks nothing, withdrawing a permission breaks every package that used it |
 
+## Decisions K109–K112
+
+Taken in [the design record of 2026-10-05 on abstract definitions and inherited placeholders](../docs/superpowers/specs/2026-10-05-abstract-definitions-and-inherited-placeholders-design.md),
+which carries the full argument for each. Written into `spec/` by
+[the integration plan of 2026-10-05](../docs/superpowers/plans/2026-10-05-abstract-definitions-and-inherited-placeholders-integration-plan.md).
+Together they narrow OQ9 again. K110 corrects the scope of three constraints in `spec/02` §12 — over the
+template, the method of verification and the wording rule — which were written when `RequirementDefinition`
+was the only abstract definition and which it never met; no decision is revised.
+
+| # | Decision | Reason |
+|---|---|---|
+| K109 | A definition may be abstract: no requirement is produced under it, only under its specialisations. Every definition states whether it is abstract, a ninth attribute of the core, and a requirement naming an abstract definition is not well-formed | A definition that exists to be specialised, so that its descendants share what it declares, is something real material produced and the model could not state. Adopted from SysML v2 and KerML's `isAbstract`. Stated rather than inferred from an empty template, so that a definition nobody may produce a requirement under is not confused with one whose template is unwritten |
+| K110 | An abstract definition carries no template, and neither *how it would be verified* nor the *wording rule* applies to it | All three speak of a requirement produced under the definition, and none is. *When it applies* and each parameter's *what to ask* still apply |
+| K111 | Every parameter a definition that is not abstract has, its own and those it inherits, appears as a placeholder in its template, and every placeholder names one of them. This answers the part of OQ9 asking whether an inherited parameter must appear in a descendant's template | A template that could not name an inherited parameter would leave a filled value out of the wording; one that need not name it would let a requirement carry a value its wording never states. An abstract definition's parameters are met in its descendants' templates |
+| K112 | An inherited parameter is inherited whole, its *what to ask* included; a specialisation has no ask of its own for it | K108 already makes it the same parameter with the same domain on every descendant, and the ask belongs to the parameter. A narrower ask on a narrower definition was considered and declined: every descendant is after the same value |
+
 ## Decisions K51–K54
 
 Taken in [`05-binding-contract.md`](05-binding-contract.md), §2, which carries the full argument, and in
@@ -291,10 +307,10 @@ which carries the full argument for each.
 | OQ9 | What does specialisation mean? What a subtype of `RequirementDefinition` may add, narrow or override. K30 chooses the mechanism and does not define its semantics | When something exercises it — realistically phase 4, when the first kinds are declared |
 | OQ10 | Does `verifies` become a second edge kind on the one seam? SysML has a construct for it, `verify`, in the same direction as `satisfies` but not the same shape — it is carried by a whole verification case, not by an arbitrary element, so finding it asks a different question of a design language than finding `satisfy` does. Widening K4's first declaration by one word does not carry it; it would need a declaration of its own, and only once the kernel decides it wants a check over verification the way it already has one over satisfaction. Nothing exercises it: no verification elements exist anywhere yet | Phase 2, where the SysML binding meets it, or later |
 
-**OQ9 is narrowed by K107 and K108.** A specialisation has its ancestors' parameters and may not redeclare
-one. What stays open is whether an inherited parameter may ever be overridden or narrowed, what
-specialisation means for the rest of the core, and whether an inherited parameter must appear in a
-descendant's template.
+**OQ9 is narrowed by K107, K108, K111 and K112.** A specialisation has its ancestors' parameters, asks included,
+and may not redeclare one; a definition that is not abstract uses every parameter it has in its template. What
+stays open is whether an inherited parameter may ever be overridden or narrowed, and what specialisation means
+for the rest of the core.
 
 ## Decision K56
 
