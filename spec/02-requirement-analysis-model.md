@@ -260,8 +260,9 @@ The name is adopted rather than coined. SysML v2 splits an element into a defini
 `RequirementDefinition` is the definition half of that split on the same terms: the thing a requirement is
 produced under, not the requirement itself.
 
-A definition carries eight things. This is the **core** — what the metamodel can interpret, or can fail on,
-without reading anything an implementation supplies (K27).
+A definition carries eight things, three of which do not apply to an abstract definition (below, K110). This
+is the **core** — what the metamodel can interpret, or can fail on, without reading anything an
+implementation supplies (K27).
 
 | Attribute | What it is |
 |---|---|
@@ -278,6 +279,21 @@ Two of the eight bottom out in the value-state model rather than in anything a d
 parameter with no value is a value in the unknown state like any other, and the ask is how that value is
 obtained from somebody who holds it — which is why *what to ask* sits beside *parameters* and is written per
 parameter rather than per definition.
+
+**A definition may be abstract** (K109). No requirement is produced under an abstract definition, only under
+its specialisations: it exists so that the definitions beneath it share what it declares. Every definition
+states whether it is abstract, and that it is cannot be read off the absence of anything else — an empty
+template is a template nobody has written yet, not a declaration that nobody may produce a requirement under
+the definition. The term is adopted rather than coined: SysML v2 marks a definition abstract, and KerML's
+`isAbstract` says that whatever an abstract type classifies is also classified by one of its specialisations,
+which is this reading one level down. `RequirementDefinition` itself is abstract on the same terms (K30).
+
+**An abstract definition carries no template, and neither *how it would be verified* nor the *wording rule*
+applies to it** (K110). All three speak of a requirement produced under the definition: the wording it is
+produced from, how it would be shown to hold, what its wording must satisfy. None is produced under an
+abstract definition. The other five apply as they do to any definition — *when it applies* still decides when
+the definition comes into play, and a parameter it declares is still filled, through its specialisations, so
+it still needs its *what to ask*.
 
 **A parameter's identity is local to the definition declaring it** (K106). A `Rule`'s guard names a parameter
 (`03-project-lifecycle-model.md` §3), and *what to ask* is already written per parameter, so a parameter has
