@@ -2,15 +2,15 @@
 
 ## 1. Who this document is for
 
-This is the document a design language's owner reads, and it is written so that nothing else is required —
-not the founding record, not the other members of the collection beyond the two this document draws on,
-`01-requirement-model.md` for the requirement and the baseline, and `04-value-states.md` for the value-state
-model — and no acquaintance with any design language that has already attached. It states what attaching
-underneath ProjectML requires, and nothing more. What it does not ask for is an implementation. K18 draws that line
-precisely: a binding carries K4's four declarations and none of an implementation's three burdens — no
-notation, no filled set of `RequirementDefinition`s, and no rule-set a project may vary as it runs. Writing a
-binding against this document is one undertaking; building an implementation on top of it is a separate,
-later one, and this document does not ask for it.
+This is the document a design language's owner reads, and it is written so that nothing else is required — not
+the founding record, not the other members of the collection beyond the one this document draws on,
+`01-requirement-model.md` for the requirement and the baseline — and no acquaintance with any design language
+that has already attached. It states what attaching underneath ProjectML requires, and nothing more. What it
+does not ask for is an implementation. K18 draws that line precisely: a binding carries K4's declarations,
+three since K130, and none of an implementation's three burdens — no notation, no filled set of
+`RequirementDefinition`s, and no rule-set a project may vary as it runs. Writing a binding against this
+document is one undertaking; building an implementation on top of it is a separate, later one, and this
+document does not ask for it.
 
 ## 2. The seam
 
@@ -34,7 +34,7 @@ graph LR
 **The far end of the edge is described rather than named, and the diagram says so too.** The metamodel does
 not define what lies below the seam (K3), and giving that end a type in a diagram would half-define it. This
 is not caution on our part: SysML does not name that side either, referring to whatever element carries the
-edge rather than to a kind of its own. Naming it would also make the first of the four declarations below
+edge rather than to a kind of its own. Naming it would also make the first of the three declarations below
 partly redundant, since that declaration exists precisely so a design language can say which of *its* kinds
 may carry the edge (K54).
 
@@ -116,10 +116,10 @@ that caused it can be read.
 
 ## 3. Symmetry
 
-One rule governs every design language that attaches: the terms are the same for all of them. SysML v2,
-UML, EventML, and a design language not yet written each declare the same four things, through the same one
-seam, and none of them is owed a shortcut past any of the four or a second point of attachment the others do
-not get (K2).
+One rule governs every design language that attaches: the terms are the same for all of them. SysML v2, UML,
+EventML, and a design language not yet written each declare the same three things, through the same one seam,
+and none of them is owed a shortcut past any of the three or a second point of attachment the others do not
+get (K2).
 
 This is not an incidental property of the seam; it is the claim this whole metamodel exists to make good on.
 A kernel of concepts that in fact only a subset of design languages could attach to would not be neutral in
@@ -127,14 +127,14 @@ the sense K2 states, whatever its own documents claimed. Phase 2 — writing a b
 this document alone — is the first place that claim is tested rather than merely asserted, and it is
 deliberately early in this project's life for exactly that reason.
 
-## 4. The four declarations
+## 4. The three declarations
 
-A binding states four things about the design language it attaches. Each is stated here for the reason it
-exists, not only for what it says, and the four reasons are not all the same reason. Three of the four exist
+A binding states three things about the design language it attaches. Each is stated here for the reason it
+exists, not only for what it says, and the three reasons are not all the same reason. Two of the three exist
 so that a check the metamodel could not otherwise run becomes one it can. The second exists for a different
 reason: the metamodel has no view of that structure at all, and by K3 must not define it even if it could. A
 design language's owner reading this once should be able to tell, section by section, why leaving any one of
-the four out costs something the metamodel cannot supply for itself (K4).
+the three out costs something the metamodel cannot supply for itself (K4).
 
 ### 4.1 Which of its elements may carry the seam edge
 
@@ -167,16 +167,12 @@ resolve to anything, or may resolve to the wrong thing, because nothing recorded
 corresponds to which name in the other. This is the founding record's own finding behind K4: a round trip
 through two unmapped identifier spaces loses the stable identifiers everything else here depends on.
 
-### 4.4 How far it takes the value model
+### A fourth declaration, withdrawn
 
-A binding states how far it carries the value-state model — whether a value belonging to the design language's
-own elements beyond the seam can carry one of the five states at all, and, if so, whether it can carry all
-five. `04-value-states.md` states that a value's state applies to a value wherever it occurs, without
-exception for one member of the collection over another; it does not, and cannot, guarantee that every
-notation a design language brings is able to represent five states next to a value rather than the value alone
-(K4). A binding that cannot carry the value model at all must say so as plainly as one that carries it in
-full: this declaration, read beside how far down the collection's adoption order a binding reaches, is what
-answered OQ1 (`00-overview.md`; `06-decisions.md`).
+K4 asked a binding a fourth thing: how far it carries the value model. It is withdrawn (K130). Nothing of a
+requirement's values crosses the seam — a baseline carries each requirement's finished text and the derivation
+edges between them — and a value's source stays in the working model, so there is no value model for a binding
+to carry.
 
 ## 5. What is open
 

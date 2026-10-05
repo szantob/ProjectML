@@ -61,8 +61,8 @@ with reasoning, is in the founding document — these are the ones that constrai
 | 1 | **Nothing executable ships, and no notation ships.** Prose and diagrams only. See §1 |
 | 2 | **English is the only language in this repository**, in every file and every commit message |
 | 3 | **The metamodel holds no filled definitions.** It defines the `RequirementDefinition` type; it declares no requirement kinds and no templates (K15) |
-| 4 | **The kernel is the evidence-and-intent chain:** `Source`, `Need`, `Requirement`, `Decision`, the value-state model, the traceability relations, and the checks over them (K1) |
-| 5 | **A design language attaches through exactly one seam** — an element outside the kernel carrying `satisfies`, naming a requirement (K3) — declared in a **binding** that states four things: which of its elements may carry `satisfies`, its internal refinement chain, its identifier space, and how far it takes the value model (K4) |
+| 4 | **The kernel is the evidence-and-intent chain:** `Source`, `Need`, `Requirement`, `Decision`, the rule that every value names the source that states it (K125), the traceability relations, and the checks over them (K1) |
+| 5 | **A design language attaches through exactly one seam** — an element outside the kernel carrying `satisfies`, naming a requirement (K3) — declared in a **binding** that states three things: which of its elements may carry `satisfies`, its internal refinement chain, and its identifier space (K4, narrowed by K130) |
 | 6 | **Attachment is symmetric.** SysML v2, UML, EventML and a design language not yet written attach on the same terms. No design language gets a privileged path (K2) |
 | 7 | **An implementation is itself a metamodel**, for the project models built with it. Three levels: metamodel, implementation, project model (K16) |
 | 8 | **A requirement is never deleted**, only marked no longer in force (K5). **A need carries no lifecycle state** — it belongs to its source, and a quotation cannot cease to be true (K6) |
@@ -75,8 +75,12 @@ with reasoning, is in the founding document — these are the ones that constrai
 | Path | Responsibility |
 |---|---|
 | `spec/` | The metamodel: concepts, types, edges, states, rules, the binding contract. Normative. Prose and diagrams |
-| `bindings/` | One document per design language, each stating K4's four declarations. The SysML v2 binding lives here (K17) |
+| `bindings/` | One document per design language, each stating K4's three declarations. The SysML v2 binding lives here (K17) |
 | `docs/` | The founding record sits at the top level here, because it is the repository's constitution rather than one release's paperwork. [`eventml-decisions.md`](docs/eventml-decisions.md) sits beside it for the same reason — it is a standing reference, not one release's paperwork. Per-release design records go in `docs/superpowers/specs/` and their plans in `docs/superpowers/plans/`, matching EventML |
+
+**The number 04 in `spec/` is retired** (K131). It belonged to the value-state model, withdrawn when what
+remained of it moved into `spec/02`. Do not give a new document the number 04: the decision record and the
+dated design records cite `04-value-states.md`, and must go on meaning that document.
 
 **A historical record keeps the terminology current when it was written.** The founding record,
 `eventml-decisions.md`, and every document under `docs/superpowers/specs/` and `docs/superpowers/plans/` are
