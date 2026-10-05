@@ -169,14 +169,14 @@ through two unmapped identifier spaces loses the stable identifiers everything e
 
 ### 4.4 How far it takes the value model
 
-A binding states how far it carries the value-state model — whether a value belonging to the design
-language's own elements beyond the seam can carry one of the five states at all, and, if so, whether it can
-carry all five. `04-value-states.md` states that a value's state applies to a value wherever it occurs,
-without exception for one member of the collection over another; it does not, and cannot, guarantee that
-every notation a design language brings is able to represent five states next to a value rather than the
-value alone (K4). A binding that cannot carry the value model at all must say so as plainly as one that
-carries it in full: this is the declaration OQ1 grows from, because what a binding says here is exactly the
-information a future resolution of OQ1 would need to work from.
+A binding states how far it carries the value-state model — whether a value belonging to the design language's
+own elements beyond the seam can carry one of the five states at all, and, if so, whether it can carry all
+five. `04-value-states.md` states that a value's state applies to a value wherever it occurs, without
+exception for one member of the collection over another; it does not, and cannot, guarantee that every
+notation a design language brings is able to represent five states next to a value rather than the value alone
+(K4). A binding that cannot carry the value model at all must say so as plainly as one that carries it in
+full: this declaration, read beside how far down the collection's adoption order a binding reaches, is what
+answered OQ1 (`00-overview.md`; `06-decisions.md`).
 
 ## 5. What is open
 

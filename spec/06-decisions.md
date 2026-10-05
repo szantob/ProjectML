@@ -406,6 +406,13 @@ answered its own two-part question.
 | OQ14 | Is there a model-side abstract type, as `SourceElement` is for the source side? The owner's judgement is that one will probably be needed and that the side is not yet fully seen | When the model side is understood as well as the source side is |
 | OQ16 | How does `SourceQuestion` subdivide, and does it name the party expected to reply? | With OQ13, realistically |
 
+**OQ14 waits for OQ30.** Recorded on 2026-10-05 by the owner. The evidence is now on the table: the model side
+mirrors the source side — a `Requirement` refines a `SourceNeed` and a `RequirementDecision` a
+`SourceDecision` (K58), and a `RequirementQuestion` poses a `SourceQuestion` (K59) — and three near-identical
+constraints give each of the three a mandatory origin (K9, K61, K87), which a common abstract type would state
+once, as `SourceElement` does for the source side. But OQ30 may add a model-side question element or reshape
+the ones there are, so the type is not declared until OQ30 is answered.
+
 ## Open question OQ17 — narrowed
 
 **Its own two-part question is answered, and is not what stays open.** What the Project Lifecycle Model's
@@ -613,11 +620,11 @@ Raised in [the design record of 2026-10-05 on the rest of the core under special
 
 | # | Status |
 |---|---|
-| OQ1 | Not answered, but shaped: the collection's dependency order is now the adoption order |
+| OQ1 | **Answered, 2026-10-05** — one specification: the collection K19 describes. What an adopter or a binding takes from it is named by how far down the adoption order it reads (`00-overview.md`), together with the binding's fourth declaration, how far it takes the value model (`05-binding-contract.md` §4, K4); the SysML v2 binding takes none of it. The value-state model is no step on that scale, being carried from the first, so the premise of two specifications is gone, and no separate scale of named levels is needed |
 | OQ2 | **Answered** — K27, K28, K29, K30 |
 | OQ3 | **Dissolved** — K37, K38, K39. Its premise did not hold: it assumed a need might oblige nothing, and a passage obliging nothing is not a need, so there is no disposition left to record |
 | OQ4 | **Answered** — K22, K23 |
-| OQ5 | **Deliberately deferred, in the founding record itself** — its own §7 says the name "waits for the rest on purpose"; not open by accident |
+| OQ5 | **Answered, 2026-10-05** — the owner kept **ProjectML**. The founding record's reservation, that *project* claims the whole of project management, has weakened since: the collection now carries a Project Lifecycle Model and the project manager as an actor. It still claims no schedule, budget or resources |
 | OQ6 | **Settled enough to act on, in the founding record itself** — its own §7 says what remains of it "is settled enough by K15 and K16 to act on: the slot is metamodel, the list is implementation" |
 | OQ7 | **Answered, in the founding record itself** — its own §4 names the winning option (one implementation, plus the SysML binding on paper) and the decision that settled its placement (K17) |
 | OQ8 | **Answered, in the founding record itself** — its own §4 says the circularity is resolved by the four phases in §7, which order the work rather than qualify the freeze |

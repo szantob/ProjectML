@@ -131,3 +131,8 @@ work, not releases.
   seam but beyond it, a design decision in the requirement model a design language builds after the project
   model. OQ32 is opened: whether a definition needs *how it would be verified* at all. Findings are in
   [`docs/superpowers/specs/2026-10-05-specialisation-of-the-remaining-core-design.md`](docs/superpowers/specs/2026-10-05-specialisation-of-the-remaining-core-design.md).
+- OQ1 and OQ5 answered, and OQ14 tied to OQ30. OQ1: one specification, the collection; what an adopter or a
+  binding takes is named by how far down the adoption order it reads and by the binding's declaration of how
+  far it takes the value model, so no separate scale of levels is needed. OQ5: the name stays ProjectML. OQ14,
+  a model-side abstract type, waits for OQ30, which may reshape the model-side question elements it would sit
+  above.

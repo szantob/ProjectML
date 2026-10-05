@@ -88,17 +88,16 @@ its own terms, once the members that lean on it have been written; the number do
 order in which the collection is taken up.
 
 The order therefore runs over the other three. A reader who wants a requirements register with traceability,
-and nothing else, reads `01-requirement-model.md` and stops there — with the value-state model that
-document's values already depend on. Reading `02-requirement-analysis-model.md` next adds the working model
-behind it — the source a requirement was refined from, the definition it was produced under, and the
-decisions and findings that justify it. `03-project-lifecycle-model.md` after that adds the slot an
-organisation's own way of working fills. This ordering is what gives OQ1's conformance levels their shape
-once phase 2 reaches them: what a binding can take from this collection without the rest, and what it cannot,
-is answered by naming how far down this order it reaches, rather than by inventing a separate scale to
-measure it against. The value-state model is not a step on that scale, being carried at the first step
-whatever the answer turns out to be. How far a design language takes it past the seam is a separate question
-from how far down this order a binding reaches, and `05-binding-contract.md` §4.4 is where a binding answers
-that one.
+and nothing else, reads `01-requirement-model.md` and stops there — with the value-state model that document's
+values already depend on. Reading `02-requirement-analysis-model.md` next adds the working model behind it —
+the source a requirement was refined from, the definition it was produced under, and the decisions and
+findings that justify it. `03-project-lifecycle-model.md` after that adds the slot an organisation's own way
+of working fills. This ordering is what answers OQ1: what a binding can take from this collection without the
+rest, and what it cannot, is answered by naming how far down this order it reaches, rather than by inventing a
+separate scale to measure it against. The value-state model is not a step on that scale, being carried at the
+first step whatever the answer turns out to be. How far a design language takes it past the seam is a separate
+question from how far down this order a binding reaches, and `05-binding-contract.md` §4.4 is where a binding
+answers that one.
 
 Two further documents round out `spec/`, beyond the collection itself: `05-binding-contract.md`, which states
 what attaching underneath the collection requires, and `06-decisions.md`, the normative record of every
