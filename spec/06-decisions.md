@@ -283,6 +283,17 @@ was the only abstract definition and which it never met; no decision is revised.
 | K111 | Every parameter a definition that is not abstract has, its own and those it inherits, appears as a placeholder in its template, and every placeholder names one of them. This answers the part of OQ9 asking whether an inherited parameter must appear in a descendant's template | A template that could not name an inherited parameter would leave a filled value out of the wording; one that need not name it would let a requirement carry a value its wording never states. An abstract definition's parameters are met in its descendants' templates |
 | K112 | An inherited parameter is inherited whole, its *what to ask* included; a specialisation has no ask of its own for it | K108 already makes it the same parameter with the same domain on every descendant, and the ask belongs to the parameter. A narrower ask on a narrower definition was considered and declined: every descendant is after the same value |
 
+## Decisions K113–K114
+
+Taken in [the design record of 2026-10-05 on the rest of the core under specialisation](../docs/superpowers/specs/2026-10-05-specialisation-of-the-remaining-core-design.md),
+which carries the full argument for each, and written into `spec/` in the same pass. Together they narrow OQ9
+again; the same record closes OQ10 and opens OQ32.
+
+| # | Decision | Reason |
+|---|---|---|
+| K113 | A definition's template is not inherited. A specialisation that is not abstract states its own | A template is the sentence a requirement of exactly this definition is produced from; a specialisation handed its ancestor's would lose what makes it one. It inherits the parameters, never the sentence (K111) |
+| K114 | A definition's *when it applies* is not inherited | It guides the modeller, a person or an agent, while a new requirement is being classified, by saying which branch is worth following. An inherited statement would point every branch the same way |
+
 ## Decisions K51–K54
 
 Taken in [`05-binding-contract.md`](05-binding-contract.md), §2, which carries the full argument, and in
@@ -307,10 +318,21 @@ which carries the full argument for each.
 | OQ9 | What does specialisation mean? What a subtype of `RequirementDefinition` may add, narrow or override. K30 chooses the mechanism and does not define its semantics | When something exercises it — realistically phase 4, when the first kinds are declared |
 | OQ10 | Does `verifies` become a second edge kind on the one seam? SysML has a construct for it, `verify`, in the same direction as `satisfies` but not the same shape — it is carried by a whole verification case, not by an arbitrary element, so finding it asks a different question of a design language than finding `satisfy` does. Widening K4's first declaration by one word does not carry it; it would need a declaration of its own, and only once the kernel decides it wants a check over verification the way it already has one over satisfaction. Nothing exercises it: no verification elements exist anywhere yet | Phase 2, where the SysML binding meets it, or later |
 
-**OQ9 is narrowed by K107, K108, K111 and K112.** A specialisation has its ancestors' parameters, asks
-included, and may not redeclare one; a definition that is not abstract uses every parameter it has in its
-template. What stays open is whether an inherited parameter may ever be overridden or narrowed, and what
-specialisation means for the rest of the core.
+**OQ9 is narrowed by K107, K108, K111, K112, K113 and K114.** A specialisation has its ancestors' parameters,
+asks included, and may not redeclare one; a definition that is not abstract uses every parameter it has in its
+template; neither the template nor *when it applies* is inherited. What stays open is whether an inherited
+parameter may ever be overridden or narrowed, whether the wording rule is inherited — and whether a rule about
+how one parameter's value is written belongs to that parameter — and whether *how it would be verified* is
+inherited.
+
+**OQ10 is closed: no second edge kind joins the seam.** Closed on 2026-10-05 by the owner, in the design
+record that took K113 and K114. Verification is not on the seam but beyond it. A baseline holds the client's
+requirements and the derivations between them; what satisfies a requirement, and what verifies it, are design
+decisions, taken in the requirement model a design language builds after the project model, on its own terms —
+the answer K56 gave for a requirement's subject. `05-binding-contract.md` §2 already says that whether a
+requirement is met is verification, which this metamodel does not undertake (K7, K40). The question said a
+binding would settle it; the owner settled it instead, because the answer is the same for every design
+language. What it leaves is whether a definition still needs *how it would be verified*, which is OQ32.
 
 ## Decision K56
 
@@ -578,6 +600,14 @@ about is also a kind, not kinds of that requirement. The prose's second request,
 another, is a check the implementation makes against its own platform's configuration; it is the
 implementation's, and the metamodel neither states nor sanctions it. No decision rested on OQ31, so nothing
 else changes. OQ30 is not affected and stays open.
+
+## Open question OQ32
+
+Raised in [the design record of 2026-10-05 on the rest of the core under specialisation](../docs/superpowers/specs/2026-10-05-specialisation-of-the-remaining-core-design.md).
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ32 | Does a definition need *how it would be verified* at all? K29 made it required, and `02-requirement-analysis-model.md` §12 makes its absence on a definition that is not abstract a failed check, on the reason that a verification method is generic to a kind. But verification is a design decision taken beyond the seam (OQ10, closed), so the method a definition states is at most guidance to whoever designs — and for a definition far up the tree it would be the most complicated of all, since the more abstract a definition, the harder it is to show that a requirement under it holds. Three answers are open: required as now; kept but optional, its absence a gap rather than a failed check; or removed from the core | When a baseline is carried into a design language's requirement model, and it shows whether anything there reads the method a definition stated |
 
 ## Status of the founding record's open questions
 

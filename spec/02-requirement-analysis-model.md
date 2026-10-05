@@ -310,7 +310,8 @@ makes verifiability a required characteristic of a *requirement* rather than of 
 statements do not conflict — a requirement takes its definition's method, so a requirement produced under a
 definition that carries one is verifiable in 29148's sense without carrying the method itself. What is
 genuinely instance-side is not the method but what actually verified one particular requirement, and nothing
-in this model carries that today; OQ10 records the edge that would (K29).
+in this model carries it: what verifies a requirement is a design decision, taken beyond the seam (K29; OQ10,
+closed). Whether a definition needs the method at all is OQ32.
 
 **Why a definition also states a wording rule, beside its template.** *text* gives the structural template a
 requirement's wording is produced from; it says nothing about the qualities that wording must have once
@@ -484,9 +485,18 @@ the requirement's wording; one that need not name it would let a requirement car
 states. An abstract definition has no template (§7, K110), so the parameters it declares are met in the
 templates of the definitions beneath it.
 
-Everything else is not defined here: whether an inherited parameter may ever be overridden or narrowed, and
-what a subtype may add to, narrow or override among the other attributes of section 7's core. That is OQ9, and
-it waits for something to exercise it. K30 chooses the mechanism; it does not define its semantics.
+**A definition's template and its *when it applies* are not inherited** (K113, K114). A template is the
+sentence a requirement of exactly this definition is produced from, so a specialisation handed its ancestor's
+would lose what makes it one; what it inherits is the parameters, never the sentence (K111). *When it applies*
+guides the modeller, a person or an agent, while a new requirement is being classified, by saying which branch
+of the tree is worth following, so each definition states its own. Abstractness is not inherited either: a
+definition is abstract only where it says so (§7, K109).
+
+Everything else is not defined here: whether an inherited parameter may ever be overridden or narrowed;
+whether a definition's wording rule is inherited, and whether a rule constraining how one parameter's value is
+written belongs to that parameter rather than to the definition; and whether its *how it would be verified* is
+inherited. That is OQ9, and it waits for something to exercise it. K30 chooses the mechanism; it does not
+define its semantics.
 
 ## 10. The derivation, retirement, and the projection
 

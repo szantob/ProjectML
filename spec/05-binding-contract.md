@@ -180,18 +180,16 @@ information a future resolution of OQ1 would need to work from.
 
 ## 5. What is open
 
-One question bears directly on this seam and remains open here.
+One question bore directly on this seam, and it is closed.
 
-- **OQ10 — does a second edge kind join the seam, for verification?** A requirement's origin is one thing an
-  element outside the kernel can name; whether the requirement was shown to hold is another. SysML v2 has a
-  construct for this, `verify`, in the same direction as `satisfies` but not the same shape: it is carried by
-  a whole verification case rather than by an arbitrary element, so finding it asks a different question of a
-  design language than finding `satisfy` does. Adding it would not widen the first declaration by a word; it
-  would ask for a declaration of its own, on the terms the first declaration already sets, and only once the
-  kernel decides it wants a check over verification the way it already has one, above, over satisfaction.
-  Nothing exercises the question today, and this document does not answer it. It is recorded, in
-  `spec/06-decisions.md`, as phase 2's to settle — a binding is where it first has to be answered concretely,
-  if it is answered at all.
+- **OQ10 — does a second edge kind join the seam, for verification?** No. Verification is not on the seam but
+  beyond it. A baseline holds the client's requirements and the derivations between them; what satisfies a
+  requirement, and what verifies it, are design decisions, taken in the requirement model a design language
+  builds after the project model, on that language's own terms. §2 already says as much: whether a requirement
+  is actually met is verification, which this metamodel does not undertake (K7, K40). The owner answered the
+  question rather than a binding, because the answer holds for every design language alike, and
+  `spec/06-decisions.md` records the closing. Whether a definition still needs to state how its requirements
+  would be verified is OQ32.
 
 Two further questions were raised alongside OQ10 and are both closed. **OQ11** asked whether the metamodel
 needs a subject of its own, since a design language may require every requirement to name the element it is

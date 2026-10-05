@@ -124,3 +124,10 @@ work, not releases.
   record the decisions, K110 correcting the scope of three constraints that the only earlier abstract
   definition never met; OQ9 is narrowed again. Findings are in
   [`docs/superpowers/specs/2026-10-05-abstract-definitions-and-inherited-placeholders-design.md`](docs/superpowers/specs/2026-10-05-abstract-definitions-and-inherited-placeholders-design.md).
+- The rest of the core under specialisation, and where verification lies. A definition's template and its
+  *when it applies* are not inherited (K113, K114), and abstractness is not either. OQ9 now holds only whether
+  an inherited parameter may be overridden or narrowed, whether the wording rule is inherited and where it
+  belongs, and whether *how it would be verified* is inherited. OQ10 is closed: verification is not on the
+  seam but beyond it, a design decision in the requirement model a design language builds after the project
+  model. OQ32 is opened: whether a definition needs *how it would be verified* at all. Findings are in
+  [`docs/superpowers/specs/2026-10-05-specialisation-of-the-remaining-core-design.md`](docs/superpowers/specs/2026-10-05-specialisation-of-the-remaining-core-design.md).
