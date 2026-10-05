@@ -31,24 +31,24 @@ language's business, reached through exactly one seam (§2) — not something th
 
 ## 2. The collection
 
-ProjectML metamodels a collection of connected models, not a single model (K19). Four members make it up.
+ProjectML metamodels a collection of connected models, not a single model (K19). Three members make it up
+(K131).
 
 | Member | Covers | Stands alone? |
 |---|---|---|
 | The requirement model | The product: a requirement, the edge by which one requirement is derived from another, and the baseline that names a dated cut of the requirements in force | Yes — a reader who wants a requirements register with traceability between requirements, and nothing else, reads it and stops |
-| The requirement analysis model | The working model: where a requirement is actually built and justified, from a stated source, through a `SourceNeed` and the definition chosen for it, to the decisions and findings that stand behind it | No — it projects to the requirement model (K20), and is read for what produced the product, not instead of it |
+| The requirement analysis model | The working model: where a requirement is actually built and justified, from a stated source, through a `SourceNeed` and the definition chosen for it, to the decisions and findings that stand behind it — and where a requirement's values are, each naming the source that states it | No — it projects to the requirement model (K20), and is read for what produced the product, not instead of it |
 | The Project Lifecycle Model | What a rule-set — an organisation's own way of resolving a gap, ending a wait, settling a conflict, or stating what kinds a kind implies — may state about the requirement analysis model's own elements, and what it may not | No — a rule-set written under it states rules over elements the requirement analysis model already defines in full |
-| The value-state model | What is known about a value, wherever a value occurs in any of the other three: stated, derived, assumed, unknown, or conflicting | No, by nature — it crosscuts the other three rather than standing beside them, and it is not a step in the adoption order below: every member carries it |
 
-The four connect three ways, and the value-state model crosscuts all three connections rather than joining
-them as a fourth.
+A fourth member, the value-state model, was withdrawn once every value had to name its source: what remained
+of it is one rule and a value domain's comparability, both stated where values are, in
+`02-requirement-analysis-model.md` (K125, K131). The three connect as follows.
 
 ```mermaid
 graph LR
     RAM["The requirement analysis model<br/>(the working model)"]
     RM["The requirement model<br/>(the product)"]
     PLM["The Project Lifecycle Model"]
-    VS["The value-state model"]
     BL(["a baseline: a named, dated instance of the requirement model"])
     DL(["a design language's own element"])
 
@@ -56,52 +56,43 @@ graph LR
     PLM -. "says what a rule-set may state over" .-> RAM
     RM -- "cut as" --> BL
     DL -- "satisfies" --> BL
-    VS -.- RAM
-    VS -.- RM
-    VS -.- PLM
 ```
 
 The requirement analysis model projects to the requirement model (K20): the product is reached by dropping
-everything the working model adds beyond a requirement's identity, its text, its values, and the edge by
-which it derives from another requirement — and by dropping the requirements no longer in force with it,
-retirement being a property of the working model rather than of the product (K35). The Project Lifecycle
-Model provides the means to model a rule-set, and a rule-set — never the metamodel itself — is what states
-rules over the requirement analysis model's own elements: how a gap in one of them is resolved, when waiting
-on it ends, how a conflict among them is settled, or what kinds a kind implies should also exist, without
-adding to what those elements already define in full (K22, K23). A design language attaches
-to the requirement model, and only there, through exactly one edge: an element the metamodel does not
-define, carrying `satisfies`, and naming a requirement in a baseline — a named, dated instance of the
-requirement model a design language can depend on, where the live projection itself cannot be depended on
-(K3, K21). The value-state model has no box of its own on the same footing as the other three because it
-does not connect to them the way they connect to each other: a value state applies to any value in any
-member of the collection, on the same terms in every case, rather than attaching at one point where two of
-the boxes above happen to meet. That reach does not stop at the collection's edge: it holds just as fully
-past the seam, in a design language's own elements beyond it.
+everything the working model adds beyond a requirement's identity, its finished text, and the edge by which it
+derives from another requirement — a requirement's values and the sources they name are dropped with the rest,
+the finished text already stating every value (K130) — and by dropping the requirements no longer in force
+with it, retirement being a property of the working model rather than of the product (K35). The Project
+Lifecycle Model provides the means to model a rule-set, and a rule-set — never the metamodel itself — is what
+states rules over the requirement analysis model's own elements: how a gap in one of them is resolved, when
+waiting on it ends, how a conflict among them is settled, or what kinds a kind implies should also exist,
+without adding to what those elements already define in full (K22, K23). A design language attaches to the
+requirement model, and only there, through exactly one edge: an element the metamodel does not define,
+carrying `satisfies`, and naming a requirement in a baseline — a named, dated instance of the requirement
+model a design language can depend on, where the live projection itself cannot be depended on (K3, K21).
 
-The numbered order of the documents after this one is not incidental: it is adoption order. One member is not
-in that order, and a reader should learn so before meeting the order rather than after. **The value-state
-model is a prerequisite every member of the collection carries, not a member adopted in sequence after the
-others.** That is what K19 already means by saying it crosscuts: a value state applies to any value in any
-member, so whoever adopts one of the other three has adopted the value-state model along with it, having met
-that member's values on the way. `04-value-states.md` carries the last number because it is stated last, on
-its own terms, once the members that lean on it have been written; the number does not place it fourth in the
-order in which the collection is taken up.
-
-The order therefore runs over the other three. A reader who wants a requirements register with traceability,
-and nothing else, reads `01-requirement-model.md` and stops there — with the value-state model that document's
-values already depend on. Reading `02-requirement-analysis-model.md` next adds the working model behind it —
-the source a requirement was refined from, the definition it was produced under, and the decisions and
-findings that justify it. `03-project-lifecycle-model.md` after that adds the slot an organisation's own way
-of working fills. This ordering is what answers OQ1: what a binding can take from this collection without the
-rest, and what it cannot, is answered by naming how far down this order it reaches, rather than by inventing a
-separate scale to measure it against. The value-state model is not a step on that scale, being carried at the
-first step whatever the answer turns out to be. How far a design language takes it past the seam is a separate
-question from how far down this order a binding reaches, and `05-binding-contract.md` §4.4 is where a binding
-answers that one.
+The numbered order of the documents after this one is not incidental: it is adoption order. A reader who wants
+a requirements register with traceability, and nothing else, reads `01-requirement-model.md` and stops there.
+Reading `02-requirement-analysis-model.md` next adds the working model behind it — the source a requirement
+was refined from, the definition it was produced under, the values and the sources they name, and the
+decisions and findings that justify it. `03-project-lifecycle-model.md` after that adds the slot an
+organisation's own way of working fills. This ordering is what answers OQ1: what a binding can take from this
+collection without the rest, and what it cannot, is answered by naming how far down this order it reaches,
+rather than by inventing a separate scale to measure it against. Nothing of a requirement's values crosses the
+seam (K130), so there is no second scale beside it.
 
 Two further documents round out `spec/`, beyond the collection itself: `05-binding-contract.md`, which states
 what attaching underneath the collection requires, and `06-decisions.md`, the normative record of every
 decision the collection rests on (K31).
+
+**The number 04 is retired.** It belonged to the value-state model; no later document of `spec/` takes it, so
+that every citation of `04-value-states.md` in the decision record and in the dated design records keeps
+meaning the document it meant (K131).
+
+**Every edge in the collection is an association with two ends** (K135). A document names the ends it needs to
+say something about, and naming an end makes the edge navigable from that side; how either end is written
+down, or whether it is stored at all, is notation (K15). Which second ends are named, and which were left
+unnamed on principle, is recorded with each edge, and what remains to examine is OQ36.
 
 ## 3. The three levels
 

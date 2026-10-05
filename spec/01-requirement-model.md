@@ -18,28 +18,30 @@ is assembled and justified, and the requirement model is what survives being han
 in the room for that. A design language attaches to the product, not to the process that produced it — K21
 says the same thing again, one step later, of the baseline specifically.
 
-One thing this document does lean on, and whoever adopts it takes up along with it: the value-state model. A
-requirement's values carry value states, and `04-value-states.md` is where those are stated. That is not a
-forward dependency of the kind §2's decision rules out. The value-state model is a prerequisite every member
-of the collection carries rather than a member reached later in the numbered order — which is what K19
-already means by saying it crosscuts, and what `00-overview.md` §2 says where the order is described. The
-requirement analysis model is not like that: it is a member in the order, adopted after this one or not at
-all, and §2 turns on the difference.
+This document leans on nothing outside itself. A requirement here carries no values: its finished text states
+every value it was produced with, and the values, with the sources they name, stay in
+`02-requirement-analysis-model.md`, where they were settled (K130). The value-state model this document once
+leaned on is withdrawn (K125, K131). The requirement analysis model is a member in the order, adopted after
+this one or not at all, and §2 turns on that.
 
 ## 2. `Requirement`
 
-A requirement carries four things: the three attributes below, and the derivation edge that follows them.
+A requirement carries three things: the two attributes below, and the derivation edge that follows them.
 
 | Attribute | Carries |
 |---|---|
 | identity | A stable identifier, distinct from every other requirement's, that persists for the requirement's whole life in the model, and across every baseline that carries it |
-| text | The requirement's bound wording: the statement itself, in the form it holds in the register |
-| values | Any values the text parametrises. Each value carries a value state, on the same terms as a value anywhere else in the collection — see `04-value-states.md` |
+| text | The requirement's bound wording: the statement itself, in the form it holds in the register, with every value it was produced with written into it (K111, K130) |
 
 A requirement may also be derived from one or more earlier requirements. This derivation is an edge between
 requirements, and, like the refinement edge it stands beside, it is list-valued rather than singular: a
 requirement synthesising two earlier ones has two origins, not one, and an edge that could only name a single
 predecessor would force an arbitrary choice among equally contributing ones.
+
+**The derivation edge is named at both ends** (K135), as SysML v2's derivation connection names them: an
+*original requirement* end and a *derived requirement* end. A requirement derived from several earlier ones
+stands at the derived end of several derivations, and one from which several derive stands at the original end
+of each. Either end can be navigated; how either is written down is notation (K15).
 
 **Every requirement names its origin.** This is the invariant K9 rests on: a requirement's origin is its
 refinement, its derivation, or both, and a requirement carrying neither is an incomplete record rather than
@@ -112,6 +114,10 @@ analysis model is itself modelled rather than recomputed each time.
 A baseline's condition is losslessness and recoverability: everything in force at the moment it is cut is
 present in it, nothing in force is dropped, and anything dropped stays in the working model rather than
 being lost (K13).
+
+**A baseline carries each requirement in force with its finished text, and the derivation edges between them,
+and nothing else** (K130). A requirement in force that is not yet complete has no finished text to carry;
+whether a baseline may be cut while one exists is OQ35.
 
 A baseline is not, itself, a model that must pass the requirement analysis model's checks. It has no
 `SourceNeed` layer — `SourceNeed`s, and the rules written over them, belong to the requirement analysis
