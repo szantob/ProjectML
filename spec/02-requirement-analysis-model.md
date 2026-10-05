@@ -1079,10 +1079,11 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 - In the template of a definition that is not abstract, every placeholder names a parameter the definition
   has, declared or inherited, and every parameter it has appears as a placeholder (§9, K107, K111).
 - Every parameter a definition declares names the value domain it draws from. Which domains exist is an
-  implementation's business; that a parameter names one is not (§7, `04-value-states.md` §5).
+  implementation's business; that a parameter names one is not (§7).
 - Every parameter a definition declares carries its own ask. A parameter with no ask is a failed check on the
-  definition: *what to ask* exists so that a value in the unknown state has a stated route out of it, and a
-  parameter missing its ask is exactly the case where that route is absent (§7).
+  definition: *what to ask* exists so that a missing value has a stated route out of it, and it is the
+  `ValueRule` that raises the question; a parameter missing its ask is exactly the case where that route is
+  absent (§7, K116).
 - A parameter's identity is unique among the parameters its definition declares (§7, K106).
 - A definition declares no parameter carrying the identity of a parameter one of its ancestors declares. Every
   parameter a definition has, its own and those it inherits, is therefore one parameter on every descendant,
@@ -1104,6 +1105,14 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 
 **Over the derivation, and over being no longer in force.**
 
+- Every value a `Requirement` carries names the source that states it. A value naming none is not a
+  well-formed element of this model (§7, K125).
+- A `Requirement` is complete exactly when every parameter it has has a value and no `RequirementChoice`
+  raised on its values is open (§10, K128).
+- A `Requirement` refining a `SourceUpdate` names at least one requirement by `supersedes` (§5, §10, K132,
+  K133).
+- A `Requirement` is no longer in force exactly when it is `retiredBy` one `RequirementDecision` or
+  `supersededBy` one or more `Requirement`s in force, and never both (§10, K62, K133, K134).
 - A requirement in this model names exactly one `RequirementDefinition`: never none, and never two (§10, K8).
   The definition it names is not abstract; a requirement naming an abstract definition is not a well-formed
   element of this model (§7, §10, K109).
@@ -1127,11 +1136,11 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
   `RequirementDecision`. Whether the alternatives recorded were genuine ones is a judgement and therefore a
   semantic matter under K24, outside this check.
 
-**Over `RequirementQuestion`, `RequirementInquiry`, and `RequirementChoice`.**
+**Over `RequirementQuestion` and its three specialisations.**
 
 - A `RequirementQuestion`'s identity is unique among every `RequirementQuestion` in the model (§11).
 - No element is a `RequirementQuestion` and nothing more: every `RequirementQuestion` in a model is an
-  instance of `RequirementInquiry` or `RequirementChoice` (§11, K79).
+  instance of `RequirementInquiry`, `RequirementChoice` or `RequirementClarification` (§11, K79, K119).
 - A `RequirementQuestion` names exactly one `Rule` as the origin that produced it. One naming none is not a
   well-formed element of this model, on the same footing as a `RequirementDecision` naming no `SourceDecision`
   (§11, `03-project-lifecycle-model.md` §3, K61, K87).
@@ -1139,6 +1148,10 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
   the posed state names, by its `poses` edge, exactly the `SourceQuestion` that made it so (§11, K60).
 - A `RequirementInquiry`'s `discharges` edge, where present, names a `Requirement`. A `RequirementChoice`'s
   `discharges` edge, where present, names a `RequirementDecision`. Both are optional (§11, K79).
+- A `RequirementClarification` is one per `Requirement` and parameter, and is open exactly while that
+  requirement is in force and has no value for the parameter. It carries no `discharges` (§11, K119, K121).
+- A `RequirementChoice` raised by a disagreement is one per `Requirement` and parameter, and its alternatives
+  are every statement of a value for that parameter (§11, K118, K126).
 - At most one `RequirementInquiry` per `Rule` is open at a time; a `Requirement` that triggers a
   `CompletenessRule` while one is already open extends its triggering-`Requirement`s list rather than raising
   a second `RequirementInquiry` (§11, `03-project-lifecycle-model.md` §3, K75).
