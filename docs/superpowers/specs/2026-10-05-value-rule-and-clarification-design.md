@@ -6,6 +6,10 @@ material before the integration plan is written, so this record may be extended 
 has changed. The change will touch `spec/02-requirement-analysis-model.md` §7, §11 and §12,
 `spec/03-project-lifecycle-model.md` §3 and §6, `spec/04-value-states.md` §2, and `spec/06-decisions.md`.
 
+**Amended by [the record on values from sources](2026-10-05-values-from-sources-and-the-complete-requirement-design.md),**
+written the same day before either went into `spec/`: the value states this record reads are withdrawn,
+K117 and K124 go, and the rest stands as that record's §6 restates it.
+
 **Date:** 2026-10-05
 **Follows:** OQ30, opened at high priority on the same day, and the OQ clean-up that took it up first among
 the open questions about how questions arise.
