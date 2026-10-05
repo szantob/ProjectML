@@ -136,3 +136,16 @@ work, not releases.
   far it takes the value model, so no separate scale of levels is needed. OQ5: the name stays ProjectML. OQ14,
   a model-side abstract type, waits for OQ30, which may reshape the model-side question elements it would sit
   above.
+- Values only from sources, the complete requirement walked once, and a rule over one value. Every value names
+  the source that states it; *assumed*, *derived* and *conflicting* are withdrawn, and with them the
+  value-state model, whose remainder moves into `spec/02` — the number 04 is retired. A requirement is
+  complete when every parameter has a value and no choice about its values is open; the rule-set is walked
+  once, then, and a complete requirement is never changed in place: a correction arrives as a `SourceUpdate`,
+  and the requirement refining it supersedes the old one. Every parameter's ask is a `ValueRule`, raising a
+  `RequirementClarification` for a missing value and a `RequirementChoice` for a disagreement. A baseline
+  carries finished text only, and a binding declares three things, not four. K115–K135 record the decisions;
+  OQ22, OQ24, OQ29 and OQ30 are closed, OQ25 dissolves, OQ17 and OQ18 narrow, and OQ33–OQ36 open.
+  Findings are in
+  [`docs/superpowers/specs/2026-10-05-value-rule-and-clarification-design.md`](docs/superpowers/specs/2026-10-05-value-rule-and-clarification-design.md)
+  and
+  [`docs/superpowers/specs/2026-10-05-values-from-sources-and-the-complete-requirement-design.md`](docs/superpowers/specs/2026-10-05-values-from-sources-and-the-complete-requirement-design.md).
