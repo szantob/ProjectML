@@ -1,4 +1,4 @@
-# Integrate values from sources, the complete requirement and the value rule (K115–K131) into `spec/` — Implementation Plan
+# Integrate values from sources, the complete requirement and the value rule (K115–K133) into `spec/` — Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or
 > superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for
@@ -6,7 +6,8 @@
 
 **Goal:** Write two settled design records into `spec/`: every value names its source and the value-state
 model is withdrawn; a requirement is walked once, when complete, and never changed in place; a baseline
-carries finished text only; every parameter's ask is a `ValueRule` raising a `RequirementClarification` for a
+carries finished text only; a correction arrives as a `SourceUpdate` and the requirement refining it
+supersedes the old one; every parameter's ask is a `ValueRule` raising a `RequirementClarification` for a
 missing value and a `RequirementChoice` for a disagreement; `spec/04` folds into `spec/02` and the number 04 is
 retired. This is prose, not code: a "test" for each task is a re-read for internal consistency, cross-reference
 correctness and conformance to `CLAUDE.md`, plus the grep checks the task names.
@@ -27,7 +28,7 @@ their K-numbers rather than re-arguing them. Read both before Task 1.
 
 1. `2026-10-05-value-rule-and-clarification-design.md` — K115–K124 (a rule over one value, the clarification,
    one requirement over disagreeing sources, the wording of a question). It is **amended** by record 2.
-2. `2026-10-05-values-from-sources-and-the-complete-requirement-design.md` — K125–K131. **Its §6 says which of
+2. `2026-10-05-values-from-sources-and-the-complete-requirement-design.md` — K125–K133. **Its §6 says which of
    record 1's decisions stand and how they are restated**: K117 is withdrawn, K124 is superseded by K128, and
    record 1's "unknown / assumed / conflicting state" become "a missing value" and "a disagreement". Where the
    two records differ, record 2 wins.
@@ -80,6 +81,29 @@ names the source that states it (§7, K125).
 
 Rewrap the paragraph.
 
+- [ ] **Step 1b: §4–§5, the `SourceUpdate` (K132)**
+
+In §4's class diagram, add `    SourceNeed <|-- SourceUpdate` after `    SourceStatement <|-- SourceDecision`.
+At the end of §5, directly before `## 6. `SourceDecision``, insert:
+
+```
+### `SourceUpdate`
+
+A `SourceUpdate` is a `SourceNeed` whose passage, besides obliging something, **replaces what an earlier
+statement said** (K132) — a client's *we now want 800, not 300*. It is a `SourceNeed`, so everything this
+section says of one holds of it: it obliges something, it is refined into a `Requirement`, and one nothing
+refines is a failed check (K38). Like every `SourceElement` it carries nothing beyond identity, anchor and being
+material of record (K57): what it replaces is not read off the passage on this side but on the model's own,
+where the requirement refining it names, by `supersedes`, the requirements it replaces (§10, K133).
+
+**A correction is neither a disagreement nor a decision.** A passage that states a different value without
+replacing anything — *800 are coming* — is a disagreement, and raises a choice (§11, K126). A passage that drops
+something with nothing in its place — *we no longer need this* — is a `SourceDecision` (§6). A correction is
+neither: read as a decision it would owe alternatives and a rationale it rarely states, which the modeller
+would then have to supply. Which of the three a passage is, is read when it is extracted, and is the modeller's
+responsibility (K40); whether its speaker has standing to replace what was said is OQ16's.
+```
+
 - [ ] **Step 2: §7, two rows of the core table**
 
 Replace the *parameters* row's closing `(K30, and `04-value-states.md` §5)` with `(K30). What a domain
@@ -131,7 +155,7 @@ Re-read §5 and §7. Run `grep -n "04-value-states\|value-state\|unknown state" 
 — hits may remain only in §10–§12, which later tasks change.
 
 - [ ] **Step 5: Commit** — `git add spec/02-requirement-analysis-model.md`; message
-`Make every value name its source, and move value domains into the definition (K101, K116, K125, K127)`.
+`Make every value name its source, add the SourceUpdate, and move value domains in (K101, K116, K125, K127, K132)`.
 
 ---
 
@@ -170,15 +194,29 @@ between them (§11, K126). Whether two statements are about the same thing is th
 Two `Requirement`s in force, of one kind, carrying incompatible values for the same thing are a refinement
 error, which review finds; no syntactic constraint can, because sameness is a judgement.
 
-**A complete requirement is never changed in place** (K129). A change of value is a decision stated in a
-source: a `SourceDecision`, refined into a `RequirementDecision` that retires the requirement (K62), and a new
-requirement refining the same `SourceNeed`s, whose value names the deciding source and which is walked once
-when it is complete. A source that states a different value without deciding anything raises a
-`RequirementChoice` on the complete requirement between its value and the new one. *We now want 800, not 300*
-decides; *800 are coming* says something else. Which a passage does is read when it is extracted, and is the
-modeller's responsibility (K40); whether its speaker has standing to decide is OQ16's. Nothing resolves
-itself: every change of a value has a decision behind it, and the decision has an owner.
+**A complete requirement is never changed in place** (K129). Information that replaces what an earlier
+statement said arrives as a `SourceUpdate` (§5, K132), and the requirement refining it — together with the
+`SourceNeed`s of the old one that still supply its subject — carries `supersedes`, a list-valued edge naming the
+requirements it replaces (K133); its values name the update, and it is walked once when it is complete. A source
+that states a different value without replacing anything raises a `RequirementChoice` on the requirement
+between its value and the new one (§11, K126). A decision to drop a requirement with nothing in its place is a
+`SourceDecision`, whose `RequirementDecision` retires it (K62). Nothing resolves itself: every change has a
+source behind it, and the source a speaker.
 ```
+
+- [ ] **Step 2b: *No longer in force* (K133)**
+
+In the paragraph beginning `Retirement arrives the way everything else here arrives`, after `...(K61), names it.`
+add:
+
+```
+A requirement also leaves force when a requirement in force supersedes it (K133): one refining a
+`SourceUpdate` names, by `supersedes`, the requirements it replaces, and they are no longer in force. The cause
+is still a source (K11) — the update the superseding requirement refines — and nothing is deleted (K5). The
+`supersedes` edge stays in this model and is dropped at the projection, as retirement is (K35).
+```
+
+Rewrap.
 
 - [ ] **Step 3: The projection**
 
@@ -200,7 +238,7 @@ In the paragraph beginning `**What it drops**`, after `` `RequirementDecision`s;
 - [ ] **Step 4: Check and commit**
 
 Re-read §10 whole. `git add spec/02-requirement-analysis-model.md`; message
-`Walk a requirement once, when complete; change one only by decision; carry finished text (K123, K128-K130)`.
+`Walk a requirement once, when complete; replace one by supersedes; carry finished text (K123, K128-K130, K133)`.
 
 ---
 
@@ -232,8 +270,8 @@ each is resolved.**` (it ends `...assumed and derived, for the same reason.`) wi
 choice made in the presence of alternatives, by somebody with standing, recorded with the alternatives and
 the rationale; what changes it is deciding again, which under K11 means a new source and a new
 `RequirementDecision` beside the old one rather than an edit to it. Where a decision settles a value — a choice
-between disagreeing sources (K126), or a change to a complete requirement (§10, K129) — the value names the
-source the decision came from, as every value names its source (§7, K125).
+between disagreeing sources (K126) — the value names the source the decision came from, as every value names
+its source (§7, K125). A correction is not a decision: it arrives as a `SourceUpdate` (§5, K132).
 ```
 
 - [ ] **Step 3: The class diagram and the opening**
@@ -372,6 +410,10 @@ Under **Over the derivation, and over being no longer in force.**, add as the fi
   well-formed element of this model (§7, K125).
 - A `Requirement` is complete exactly when every parameter it has has a value and no `RequirementChoice` raised
   on its values is open (§10, K128).
+- A `Requirement` refining a `SourceUpdate` names at least one requirement by `supersedes` (§5, §10, K132,
+  K133).
+- A `Requirement` is no longer in force only where a `RequirementDecision`'s `retires` names it or a
+  `Requirement` in force names it by `supersedes` (§10, K62, K133).
 ```
 
 - [ ] **Step 3: Over the questions**
@@ -394,7 +436,7 @@ and nothing more: every `RequirementQuestion` in a model is an instance of `Requ
 `grep -n "04-value-states\|value-state\|unknown state\|conflicting\|assumed" spec/02-requirement-analysis-model.md`
 must print nothing except `primary specification rather than assumed` (§9, a different sense).
 `git add spec/02-requirement-analysis-model.md`; message
-`State the constraints over values and the three questions (K116-K128)`.
+`State the constraints over values, the three questions and supersession (K116-K133)`.
 
 ---
 
@@ -760,16 +802,17 @@ message `Withdraw the fourth declaration, and record the retired number 04 (K130
 After the `## Decisions K113–K114` section's table, insert:
 
 ```
-## Decisions K115–K131
+## Decisions K115–K133
 
 Taken in [the design record of 2026-10-05 on a rule over one value](../docs/superpowers/specs/2026-10-05-value-rule-and-clarification-design.md)
 (K115–K124) and [the design record of the same day on values from sources](../docs/superpowers/specs/2026-10-05-values-from-sources-and-the-complete-requirement-design.md)
-(K125–K131), which amends the first before either reached `spec/`; written in by
+(K125–K133), which amends the first before either reached `spec/`; written in by
 [the integration plan of 2026-10-05](../docs/superpowers/plans/2026-10-05-values-and-questions-integration-plan.md).
 K117 and K124 were withdrawn and superseded before integration and keep their rows, so that their numbers are not
 reused. Two founding decisions are revised by the owner's explicit instruction: K1's value-state model, by
 K125, and K4's four declarations, narrowed to three by K130. K19 is revised by K131; K79 by K120; K86 by K128;
-K89 is narrowed; K98's first destination becomes K126's choice; K103 is narrowed by K125 and K128; K72's list
+K89 is narrowed; K62's `retires` gains a second way out of force in K133's `supersedes`; K44's open list of
+source elements gains `SourceUpdate`; K98's first destination becomes K126's choice; K103 is narrowed by K125 and K128; K72's list
 of worked mechanisms gains `ValueRule`.
 
 | # | Decision | Reason |
@@ -788,9 +831,11 @@ of worked mechanisms gains `ValueRule`.
 | K126 | A disagreement between sources is not a value: the value is missing, and the disagreement is an open `RequirementChoice`. *Conflicting* is withdrawn as a state | The competing statements already stand in the choice. Nobody is answerable for a contested value until the project manager chooses, and the choice enters as a source |
 | K127 | A value supplied to keep moving is stated by somebody with standing; a computed quantity is design or is stated by whoever computed it; an implementation's default is a suggestion carried by an ask, never a value | What *assumed* and *derived* were for is kept, each with the actor it always had |
 | K128 | A requirement is complete when every parameter it has has a value and no choice about its values is open. The walk of the `RuleSet`s that reach it runs once, when it becomes complete, and never on one that is not. This revises K86's "when a requirement arises" | A rule always judges settled values; no criterion is undecided; no second walk arises. The incomplete requirement is not hidden: its missing values and open choices are questions |
-| K129 | A complete requirement is never changed in place. A change is a decision in a source, refined into a `RequirementDecision` that retires it, and a new requirement refining the same needs. A source stating a different value without deciding raises a `RequirementChoice` | Every walk is over a requirement that will not move under it, and the history stays whole. Whether a passage decides is read at extraction (K40) |
+| K129 | A complete requirement is never changed in place. A correction arrives as a `SourceUpdate`, and the requirement refining it supersedes the old one; a different value stated without replacing raises a `RequirementChoice`; dropping with nothing in its place is a `SourceDecision` that retires | Every walk is over a requirement that will not move under it, and the history stays whole. Which of the three a passage is, is read at extraction (K40) |
 | K130 | A baseline carries only the requirements in force, each complete, with its finished text and the derivation edges between them; nothing of their values, sources or questions crosses. K35 is confirmed, and K4's fourth declaration is withdrawn | The finished text states every value, so carrying the values carries nothing a design language needs and something it cannot hold. With no value states, a binding has no value model to declare |
 | K131 | The collection has three members; what remained of the value-state model is stated in `spec/02`, `04-value-states.md` is withdrawn, and the number 04 is retired. This revises K19 | Values now occur only in the working model and its rules, so nothing is left to crosscut. The number is not reused so that every citation of `04-value-states.md` keeps its meaning |
+| K132 | A `SourceUpdate` is a `SourceNeed` whose passage, besides obliging something, replaces what an earlier statement said. It carries nothing beyond a `SourceElement`'s three attributes | A correction obliges something new and takes back something old at once; read as a decision it would owe alternatives and a rationale it rarely states. K44 left the list of source elements open |
+| K133 | A `Requirement` may carry `supersedes`, a list-valued edge to the requirements it replaces; one refining a `SourceUpdate` names at least one; a requirement superseded by one in force is no longer in force. The edge does not cross into a baseline. This answers what OQ17 asked `supersedes` to mean | Something has to name what a correction takes out of force, and the edge sits on the later element, as `refine`, the derivation edge and `replies` do. One edge on `Requirement` reaches every kind. The cause is still a source (K11), and nothing is deleted (K5) |
 ```
 
 - [ ] **Step 2: The open questions**
@@ -802,6 +847,9 @@ OQ31 paragraphs already follow):
   again** (2026-10-05). OQ30 is answered and the model side's three question specialisations are settled; the
   owner has deferred the abstract type all the same. If it is taken up, the owner's name for it is
   `RequirementModelElement`.`
+- after the OQ17 table: `**OQ17 is narrowed again** (2026-10-05). What `supersedes` means is answered by K133:
+  a requirement refining a `SourceUpdate` names the requirements it replaces, and they leave force. What finding
+  a `RequirementDecision` closes, and what closes a `RequirementDecision`, stay open.`
 - after the OQ18/OQ19 table: `**OQ18 is narrowed to its second half.** Its first half, the silent-vs-owned
   default, dissolves: no value is a default, since every value names its source (K125, K127). The gap-timeout
   rule stays open, and OQ34 meets it at the level of a requirement.`
@@ -840,8 +888,8 @@ values crosses the seam (K130).`
 
 - [ ] **Step 5: Check and commit**
 
-Every new K row is one line; K-numbers run K115–K131 without a gap. `git add spec/06-decisions.md`; message
-`Add K115-K131 to spec/06-decisions.md; close OQ22, OQ24, OQ29, OQ30; dissolve OQ25; open OQ33-OQ35`.
+Every new K row is one line; K-numbers run K115–K133 without a gap. `git add spec/06-decisions.md`; message
+`Add K115-K133 to spec/06-decisions.md; close OQ22, OQ24, OQ29, OQ30; dissolve OQ25; narrow OQ17; open OQ33-OQ35`.
 
 ---
 
@@ -856,10 +904,11 @@ Every new K row is one line; K-numbers run K115–K131 without a gap. `git add s
   names the source that states it; *assumed*, *derived* and *conflicting* are withdrawn, and with them the
   value-state model, whose remainder moves into `spec/02` — the number 04 is retired. A requirement is
   complete when every parameter has a value and no choice about its values is open; the rule-set is walked
-  once, then, and a complete requirement is changed only by a decision that retires it. Every parameter's ask
+  once, then, and a complete requirement is never changed in place: a correction arrives as a `SourceUpdate`,
+  and the requirement refining it supersedes the old one. Every parameter's ask
   is a `ValueRule`, raising a `RequirementClarification` for a missing value and a `RequirementChoice` for a
   disagreement. A baseline carries finished text only, and a binding declares three things, not four.
-  K115–K131 record the decisions; OQ22, OQ24, OQ29 and OQ30 are closed, OQ25 dissolves, OQ18 narrows, and
+  K115–K133 record the decisions; OQ22, OQ24, OQ29 and OQ30 are closed, OQ25 dissolves, OQ17 and OQ18 narrow, and
   OQ33–OQ35 open. Findings are in
   [`docs/superpowers/specs/2026-10-05-value-rule-and-clarification-design.md`](docs/superpowers/specs/2026-10-05-value-rule-and-clarification-design.md)
   and

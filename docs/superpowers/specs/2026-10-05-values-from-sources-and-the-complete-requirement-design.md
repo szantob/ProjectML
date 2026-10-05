@@ -1,6 +1,6 @@
 # Values only from sources, the complete requirement, and what a baseline carries — Design record
 
-**Status: settled, and not yet written into `spec/`.** This record carries decisions K125–K131. It revises a
+**Status: settled, and not yet written into `spec/`.** This record carries decisions K125–K133. It revises a
 locked foundation by the owner's explicit instruction — the value-state model, part of the kernel under
 `CLAUDE.md` §3, rule 4 — and it amends the record of the same day on a rule over one value
 ([`2026-10-05-value-rule-and-clarification-design.md`](2026-10-05-value-rule-and-clarification-design.md)),
@@ -50,11 +50,17 @@ around that rule, and the K-decisions that read the five states are restated (§
 | # | Decision | Reason |
 |---|---|---|
 | K128 | **A requirement is complete when every parameter it has has a value and no choice about its values is open. The walk of the `RuleSet`s that reach it runs once, when it becomes complete, and never on a requirement that is not.** This revises K86's "when a requirement arises" | A rule then always judges settled values. K103's undecided criterion cannot occur, OQ29's second walk does not arise, and no rule has to be written to decide what may run on a half-finished requirement. The half-finished requirement is not hidden meanwhile: its missing values and its open choices are questions the project manager sees |
-| K129 | **A complete requirement is never changed in place.** A change of value is a decision stated in a source — a `SourceDecision`, refined into a `RequirementDecision` that retires the requirement (K62) — and a new requirement, refining the same need with the new value, which is walked once when it is complete. A source that states a different value without deciding anything raises a `RequirementChoice` on the complete requirement, whose alternatives are its value and the new one | Every walk is then over a requirement that will not move under it, and the history stays whole: what the requirement was, what replaced it, and who decided. Whether a later passage decides a change or merely says something different is read when it is extracted — the modeller's judgement, the modeller's responsibility (K40) — and whether its speaker has standing to decide is OQ16's |
+| K129 | **A complete requirement is never changed in place.** Information that replaces what an earlier statement said arrives as a `SourceUpdate`, and the requirement refining it supersedes the old one (K132, K133). A source that states a different value without replacing anything raises a `RequirementChoice` on the requirement, whose alternatives are its value and the new one. A decision to drop a requirement with nothing in its place is a `SourceDecision`, whose `RequirementDecision` retires it (K62) | Every walk is then over a requirement that will not move under it, and the history stays whole: what the requirement was, what replaced it, and on whose word. Whether a later passage replaces, merely says something different, or decides to drop is read when it is extracted — the modeller's judgement, the modeller's responsibility (K40) — and whether its speaker has standing to do so is OQ16's |
 
-**A correction is not a disagreement.** "We now want 800, not 300" decides, and goes the way of K129's first
-sentence; "800 are coming" says something else, and raises a choice. Neither path lets anything resolve itself:
-every change of a value has a decision behind it, and the decision has an owner.
+**A correction is not a disagreement, and not a decision either.** "We now want 800, not 300" replaces, and is
+a `SourceUpdate`; "800 are coming" says something else, and raises a choice; "we no longer need this" drops,
+and is a `SourceDecision`. None of the three lets anything resolve itself: every change has a source behind it,
+and the source a speaker.
+
+| # | Decision | Reason |
+|---|---|---|
+| K132 | **A `SourceUpdate` is a `SourceNeed` whose passage, besides obliging something, replaces what an earlier statement said.** Like every `SourceElement` it carries nothing beyond identity, anchor and being material of record (K57): what it replaces is read on the model's own side, where the requirement refining it names what it supersedes | A correction obliges something new and takes back something old in one breath. Read as a decision it would owe a choice among alternatives and a rationale, which a correction rarely states, so the modeller would have to supply them; read as two elements on one passage, extraction would stop classifying a passage once. K44 left the list of source elements open for exactly this |
+| K133 | **A `Requirement` may carry `supersedes`, a list-valued edge to the requirements it replaces. A requirement refining a `SourceUpdate` names at least one. A requirement superseded by one in force is no longer in force** — a second way out of force beside a `RequirementDecision`'s `retires` (K62). The edge stays in the working model and does not cross into a baseline. This answers the part of OQ17 that asked what `supersedes` means | Something has to name what a correction takes out of force, and the edge sits on the later element, as `refine`, the derivation edge and `replies` do. One edge on `Requirement`, which is one type whatever its definition (K67), reaches every kind. The cause of leaving force is still a source (K11): the `SourceUpdate` the superseding requirement refines. K5 is untouched — nothing is deleted |
 
 ## 4. What a baseline carries
 
@@ -106,6 +112,10 @@ answered by K128 in full, including the case K124 left open, since nothing is ev
 - **K103** narrows to nothing to decide: a guard always reads a value a source stated.
 - **K86** — when the walk runs — by K128.
 - **K98's first destination,** the conflicting state, becomes K126's choice.
+- **K62**: a `RequirementDecision`'s `retires` is no longer the only way out of force; `supersedes` is the
+  second (K133). **K44**'s open list of source elements gains `SourceUpdate` under `SourceNeed` (K132).
+  **OQ17** is narrowed: what `supersedes` means is answered by K133; what finding a `RequirementDecision` closes,
+  and what closes one, stay open.
 - **K35** is confirmed and **K4's fourth declaration** withdrawn, by K130; `spec/05` §4 and
   `bindings/sysml-v2.md` §4 follow. `spec/01` §2's *values* attribute of a `Requirement` goes, and `spec/00`
   §2's account of the projection drops a requirement's values.
@@ -120,13 +130,15 @@ answered by K128 in full, including the case K124 left open, since nothing is ev
   `spec/02`, and every live link to it is redirected; the dated design records and the founding record are
   snapshots and keep theirs. The retired number is stated in `spec/00` and in `CLAUDE.md` §4 so that it is not
   reused.
-- `spec/02`: §10 (the derivation; the complete requirement, K128; the correction, K129), §11 (questions,
+- `spec/02` §4–§5: the source-element diagram and a `SourceUpdate` subsection (K132). §10's *No longer in
+  force*: the second way out of force (K133).
+- `spec/02`: §10 (the derivation; the complete requirement, K128; the correction, K129, K133), §11 (questions,
   together with the other record's K115–K123 as restated in §6), §12.
 - `spec/03` §3: the walk runs once on a complete requirement; K103's guard text; the flowchart.
 - `spec/01` §4: the baseline, K130. `spec/05` §4 and §5; `bindings/sysml-v2.md` §4.
 - `spec/00`: the reading order and the place of the value model in it.
-- `spec/06`: K115–K131 (the other record's, as restated here, and these); OQ22, OQ24, OQ25, OQ29, OQ30
-  closed or dissolved; OQ18 narrowed to its second half; OQ33–OQ35 opened; K117 revoked; K19 revised; the founding
+- `spec/06`: K115–K133 (the other record's, as restated here, and these); OQ22, OQ24, OQ25, OQ29, OQ30
+  closed or dissolved; OQ18 narrowed to its second half; OQ33–OQ35 opened; OQ17 narrowed; K117 revoked; K19 revised; the founding
   value-state model noted as revised.
 - The editor and the contract carry no values today, so nothing there changes; a `ValueRule` an organisation
   would state for assumed values, which the other record expected the editor to need, is no longer needed.
