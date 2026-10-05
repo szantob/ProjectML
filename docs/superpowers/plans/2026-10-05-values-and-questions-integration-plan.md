@@ -1,4 +1,4 @@
-# Integrate values from sources, the complete requirement and the value rule (K115–K134) into `spec/` — Implementation Plan
+# Integrate values from sources, the complete requirement and the value rule (K115–K135) into `spec/` — Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or
 > superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for
@@ -28,7 +28,7 @@ their K-numbers rather than re-arguing them. Read both before Task 1.
 
 1. `2026-10-05-value-rule-and-clarification-design.md` — K115–K124 (a rule over one value, the clarification,
    one requirement over disagreeing sources, the wording of a question). It is **amended** by record 2.
-2. `2026-10-05-values-from-sources-and-the-complete-requirement-design.md` — K125–K134. **Its §6 says which of
+2. `2026-10-05-values-from-sources-and-the-complete-requirement-design.md` — K125–K135. **Its §6 says which of
    record 1's decisions stand and how they are restated**: K117 is withdrawn, K124 is superseded by K128, and
    record 1's "unknown / assumed / conflicting state" become "a missing value" and "a disagreement". Where the
    two records differ, record 2 wins.
@@ -653,6 +653,17 @@ them.` Delete the table's *values* row. Replace the *text* row with:
 | text | The requirement's bound wording: the statement itself, in the form it holds in the register, with every value it was produced with written into it (K111, K130) |
 ```
 
+- [ ] **Step 2b: `spec/01` §2, the derivation's two ends (K135)**
+
+After the paragraph beginning `A requirement may also be derived from one or more earlier requirements.`, add:
+
+```
+**The derivation edge is named at both ends** (K135), as SysML v2's derivation connection names them: an
+*original requirement* end and a *derived requirement* end. A requirement derived from several earlier ones
+stands at the derived end of several derivations, and one from which several derive stands at the original end
+of each. Either end can be navigated; how either is written down is notation (K15).
+```
+
 - [ ] **Step 3: `spec/01` §4**
 
 After the paragraph beginning `A baseline's condition is losslessness and recoverability`, insert:
@@ -709,6 +720,11 @@ After the paragraph beginning `Two further documents round out `spec/``, add:
 **The number 04 is retired.** It belonged to the value-state model; no later document of `spec/` takes it, so
 that every citation of `04-value-states.md` in the decision record and in the dated design records keeps
 meaning the document it meant (K131).
+
+**Every edge in the collection is an association with two ends** (K135). A document names the ends it needs
+to say something about, and naming an end makes the edge navigable from that side; how either end is written
+down, or whether it is stored at all, is notation (K15). Which second ends are named, and which were left
+unnamed on principle, is recorded with each edge, and what remains to examine is OQ36.
 ```
 
 - [ ] **Step 5: Delete `spec/04`**
@@ -809,11 +825,11 @@ message `Withdraw the fourth declaration, and record the retired number 04 (K130
 After the `## Decisions K113–K114` section's table, insert:
 
 ```
-## Decisions K115–K134
+## Decisions K115–K135
 
 Taken in [the design record of 2026-10-05 on a rule over one value](../docs/superpowers/specs/2026-10-05-value-rule-and-clarification-design.md)
 (K115–K124) and [the design record of the same day on values from sources](../docs/superpowers/specs/2026-10-05-values-from-sources-and-the-complete-requirement-design.md)
-(K125–K134), which amends the first before either reached `spec/`; written in by
+(K125–K135), which amends the first before either reached `spec/`; written in by
 [the integration plan of 2026-10-05](../docs/superpowers/plans/2026-10-05-values-and-questions-integration-plan.md).
 K117 and K124 were withdrawn and superseded before integration and keep their rows, so that their numbers are not
 reused. Two founding decisions are revised by the owner's explicit instruction: K1's value-state model, by
@@ -845,6 +861,7 @@ of worked mechanisms gains `ValueRule`.
 | K132 | A `SourceUpdate` is a `SourceNeed` whose passage, besides obliging something, replaces what an earlier statement said. It carries nothing beyond a `SourceElement`'s three attributes | A correction obliges something new and takes back something old at once; read as a decision it would owe alternatives and a rationale it rarely states. K44 left the list of source elements open |
 | K133 | A `Requirement` may carry `supersedes`, a list-valued edge to the requirements it replaces; one refining a `SourceUpdate` names at least one; a requirement superseded by one in force is no longer in force. The edge does not cross into a baseline. This answers what OQ17 asked `supersedes` to mean | Something has to name what a correction takes out of force, and the edge sits on the later element, as `refine`, the derivation edge and `replies` do. One edge on `Requirement` reaches every kind. The cause is still a source (K11), and nothing is deleted (K5) |
 | K134 | Each way out of force is one association with two named ends: `retires`/`retiredBy` between a `RequirementDecision` and a `Requirement` (at most one decision), `supersedes`/`supersededBy` between two `Requirement`s (any number). A requirement no longer in force names its cause through exactly one of them. How it is written down is notation | The cause of leaving force is named where the event happens, on the earlier requirement; one association with two named ends has nothing to keep in agreement |
+| K135 | Every edge is an association with two ends; naming an end makes it navigable from that side, and how ends are written down is notation. The derivation edge is named at both ends, adopting SysML v2's derivation connection: original requirement and derived requirement | It is the one edge a baseline carries into a design language (K130), so it is built as SysML v2 builds it; and retiring a requirement asks which requirements derive from it. Leaving force was named at both ends for provenance (K134); this one is not forced, and other edges wait for OQ36 |
 ```
 
 - [ ] **Step 2: The open questions**
@@ -878,12 +895,12 @@ OQ31 paragraphs already follow):
   missing value reaches the project manager as a `RequirementClarification` and a disagreement as a
   `RequirementChoice`, each raised by the parameter's own ask.`
 
-- [ ] **Step 3: OQ33–OQ35**
+- [ ] **Step 3: OQ33–OQ36**
 
-Before `## Status of the founding record's open questions`, insert a section `## Open questions OQ33–OQ35`,
+Before `## Status of the founding record's open questions`, insert a section `## Open questions OQ33–OQ36`,
 with the line `Raised in [the design record of 2026-10-05 on values from sources](../docs/superpowers/specs/2026-10-05-values-from-sources-and-the-complete-requirement-design.md).`
-and a three-row `| # | Question | When answerable |` table copying OQ33, OQ34 and OQ35 from that record's §5
-verbatim.
+and a four-row `| # | Question | When answerable |` table copying OQ33, OQ34, OQ35 and OQ36 from that record's
+§5 verbatim.
 
 - [ ] **Step 4: OQ1's status row**
 
@@ -897,8 +914,8 @@ values crosses the seam (K130).`
 
 - [ ] **Step 5: Check and commit**
 
-Every new K row is one line; K-numbers run K115–K134 without a gap. `git add spec/06-decisions.md`; message
-`Add K115-K134 to spec/06-decisions.md; close OQ22, OQ24, OQ29, OQ30; dissolve OQ25; narrow OQ17; open OQ33-OQ35`.
+Every new K row is one line; K-numbers run K115–K135 without a gap. `git add spec/06-decisions.md`; message
+`Add K115-K135 to spec/06-decisions.md; close OQ22, OQ24, OQ29, OQ30; dissolve OQ25; narrow OQ17; open OQ33-OQ36`.
 
 ---
 
@@ -917,8 +934,8 @@ Every new K row is one line; K-numbers run K115–K134 without a gap. `git add s
   and the requirement refining it supersedes the old one. Every parameter's ask
   is a `ValueRule`, raising a `RequirementClarification` for a missing value and a `RequirementChoice` for a
   disagreement. A baseline carries finished text only, and a binding declares three things, not four.
-  K115–K134 record the decisions; OQ22, OQ24, OQ29 and OQ30 are closed, OQ25 dissolves, OQ17 and OQ18 narrow, and
-  OQ33–OQ35 open. Findings are in
+  K115–K135 record the decisions; OQ22, OQ24, OQ29 and OQ30 are closed, OQ25 dissolves, OQ17 and OQ18 narrow, and
+  OQ33–OQ36 open. Findings are in
   [`docs/superpowers/specs/2026-10-05-value-rule-and-clarification-design.md`](docs/superpowers/specs/2026-10-05-value-rule-and-clarification-design.md)
   and
   [`docs/superpowers/specs/2026-10-05-values-from-sources-and-the-complete-requirement-design.md`](docs/superpowers/specs/2026-10-05-values-from-sources-and-the-complete-requirement-design.md).

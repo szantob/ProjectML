@@ -1,6 +1,6 @@
 # Values only from sources, the complete requirement, and what a baseline carries — Design record
 
-**Status: settled, and not yet written into `spec/`.** This record carries decisions K125–K134. It revises a
+**Status: settled, and not yet written into `spec/`.** This record carries decisions K125–K135. It revises a
 locked foundation by the owner's explicit instruction — the value-state model, part of the kernel under
 `CLAUDE.md` §3, rule 4 — and it amends the record of the same day on a rule over one value
 ([`2026-10-05-value-rule-and-clarification-design.md`](2026-10-05-value-rule-and-clarification-design.md)),
@@ -62,6 +62,7 @@ and the source a speaker.
 | K132 | **A `SourceUpdate` is a `SourceNeed` whose passage, besides obliging something, replaces what an earlier statement said.** Like every `SourceElement` it carries nothing beyond identity, anchor and being material of record (K57): what it replaces is read on the model's own side, where the requirement refining it names what it supersedes | A correction obliges something new and takes back something old in one breath. Read as a decision it would owe a choice among alternatives and a rationale, which a correction rarely states, so the modeller would have to supply them; read as two elements on one passage, extraction would stop classifying a passage once. K44 left the list of source elements open for exactly this |
 | K133 | **A `Requirement` may carry `supersedes`, a list-valued edge to the requirements it replaces. A requirement refining a `SourceUpdate` names at least one. A requirement superseded by one in force is no longer in force** — a second way out of force beside a `RequirementDecision`'s `retires` (K62). The edge stays in the working model and does not cross into a baseline. This answers the part of OQ17 that asked what `supersedes` means | Something has to name what a correction takes out of force, and the edge sits on the later element, as `refine`, the derivation edge and `replies` do. One edge on `Requirement`, which is one type whatever its definition (K67), reaches every kind. The cause of leaving force is still a source (K11): the `SourceUpdate` the superseding requirement refines. K5 is untouched — nothing is deleted |
 | K134 | **Leaving force is an association with two named ends, not an edge read from one side.** Between a `RequirementDecision` and the `Requirement` it takes out of force, the ends are `retires` and `retiredBy` (at most one decision per requirement); between a superseding and a superseded `Requirement`, `supersedes` and `supersededBy` (any number on either end). A requirement no longer in force names its cause through exactly one of the two: one decision, or one or more superseding requirements, never both. How an association is written down — one reference, two, or none stored at all — is notation (K15) | Leaving force is an event in the earlier requirement's own life, and the house rule that every event record its cause asks that the cause be named where the event happens, not merely found by searching from the other side. Drawn as UML draws it, this is one association whose two ends are both named, so there is nothing to keep in agreement: one edge cannot disagree with itself |
+| K135 | **Every edge between two elements of the collection is an association with two ends. Naming an end makes the edge navigable from that side; how either end is written down, or whether it is stored at all, is notation (K15).** The derivation edge between requirements is named at both ends, adopting SysML v2's derivation connection: an *original requirement* end and a *derived requirement* end, any number on each across the edges a requirement takes part in | K134 named both ends of leaving force because provenance required it; the derivation edge has no such need, since nothing changes in the original requirement's life when another derives from it. It is named at both ends because it is the one edge a baseline carries into a design language (K130), so it is built as SysML v2 builds it, and because retiring a requirement asks which requirements derive from it. SysML v2 binds one original to one or more derived requirements per connection; a requirement derived from several originals is several such connections |
 
 ## 4. What a baseline carries
 
@@ -81,6 +82,7 @@ cannot be filled. Whether a baseline may be cut while one exists is OQ35.
 | OQ33 | Does a rule whose test reads no value — a `CompletenessRule`, which asks only whether a requirement of some kind exists — wait for its requirement to be complete? Waiting keeps the walk single; it also delays the discovery of a structural gap until the last value of a requirement arrives | When a project shows whether a completeness gap found late costs anything |
 | OQ34 | What happens to a requirement that never becomes complete, because a value never arrives? Its rules never run. This is OQ18's second half, the gap-timeout rule, met at the level of a requirement rather than a question | With OQ13 and OQ18, which already hold the interval and the elapsed time |
 | OQ35 | May a baseline be cut while a requirement in force is incomplete? K13 asks that everything in force be present, and an incomplete requirement cannot be present with finished wording | Before the first baseline is cut from a project model |
+| OQ36 | Which other edges have their second end named? Every edge is an association (K135), and some second ends were excluded on principle when their edge was introduced: a `Rule` names none of the questions it raised, because a rule-set is a model of its own (`03-project-lifecycle-model.md` §3; K22, K88); a `SourceElement` carries nothing beyond identity, anchor and being material of record (K43, K57), so the source-side ends of `refine` and `poses` are not attributes of it; and a source is material of record (K45), which bears on the earlier end of `replies`. Under K135 an end can be named without being an attribute of the element at it, which may lift some of these exclusions without touching the principles behind them — or may not. To be examined edge by edge: `refine`, `replies`, `poses`, *triggered by*, `discharges` | When an implementation or a review needs to navigate one of these edges from its other end |
 
 ## 6. What stands of the record on a rule over one value
 
@@ -121,6 +123,8 @@ answered by K128 in full, including the case K124 left open, since nothing is ev
 - **K35** is confirmed and **K4's fourth declaration** withdrawn, by K130; `spec/05` §4 and
   `bindings/sysml-v2.md` §4 follow. `spec/01` §2's *values* attribute of a `Requirement` goes, and `spec/00`
   §2's account of the projection drops a requirement's values.
+- **The derivation edge** gains its two named ends (K135), and the
+  collection a general statement about edges.
 - **K19** is revised by K131: three members, and the number 04 retired.
 - **OQ1's answer** keeps its verdict and loses one reason: the value-state model is no longer a step that is
   carried from the first, because it is no longer a model.
@@ -139,8 +143,8 @@ answered by K128 in full, including the case K124 left open, since nothing is ev
 - `spec/03` §3: the walk runs once on a complete requirement; K103's guard text; the flowchart.
 - `spec/01` §4: the baseline, K130. `spec/05` §4 and §5; `bindings/sysml-v2.md` §4.
 - `spec/00`: the reading order and the place of the value model in it.
-- `spec/06`: K115–K134 (the other record's, as restated here, and these); OQ22, OQ24, OQ25, OQ29, OQ30
-  closed or dissolved; OQ18 narrowed to its second half; OQ33–OQ35 opened; OQ17 narrowed; K117 revoked; K19 revised; the founding
+- `spec/06`: K115–K135 (the other record's, as restated here, and these); OQ22, OQ24, OQ25, OQ29, OQ30
+  closed or dissolved; OQ18 narrowed to its second half; OQ33–OQ36 opened; OQ17 narrowed; K117 revoked; K19 revised; the founding
   value-state model noted as revised.
 - The editor and the contract carry no values today, so nothing there changes; a `ValueRule` an organisation
   would state for assumed values, which the other record expected the editor to need, is no longer needed.
