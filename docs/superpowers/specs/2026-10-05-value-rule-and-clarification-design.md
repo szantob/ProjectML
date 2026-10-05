@@ -99,7 +99,10 @@ where the answer came from.
 
 **Revised.** K79's "one per mechanism", by K120. `spec/02` §11's two sentences — that *what to ask* raises no
 question, and that two sources disagreeing involves no rule — are replaced. K72's list of worked mechanisms
-gains `ValueRule`. K87, K75, K80 and K97 are not revised.
+gains `ValueRule`. K89's account of where a question comes from is narrowed: it names walking a `RuleSet`, a
+mode that needs judgement, as what produces a `RequirementQuestion`; a `ValueRule` produces one without
+judgement, so questions now come from two modes, and K89's verdict — a question is not a review finding —
+holds for both. K87, K75, K80 and K97 are not revised.
 
 **Bears on OQ29.** A `ValueRule` reads the value's current state, so for it the walk is not the question: a
 clarification opens and closes as the state changes. Whether the walk over the other rules runs again is
@@ -117,7 +120,8 @@ unchanged.
 - `spec/03` §3: `ValueRule` beside the two specialisations, the range axis with three points, and K116's
   standing ask-rule; §6's constraints over rules.
 - `spec/04` §2: the marking paragraph says what produces the marking (OQ25).
-- `spec/06`: K115–K121; OQ30 closed; OQ25 answered; OQ18 and OQ22 narrowed; K72 and K79 noted as revised.
+- `spec/02` §11 and `spec/06`: K89's account of the checking mode that produces a question names both modes.
+- `spec/06`: K115–K121; OQ30 closed; OQ25 answered; OQ18 and OQ22 narrowed; K72, K79 and K89 noted as revised.
 - **Check K119's citation of ISO/IEC/IEEE 29148's TBD and TBR against the standard before it is written in.**
 - **Out of this record, for the implementation:** the editor and the contract carry rule types; a `ValueRule`
   an organisation states for assumed values is a new rule type there, and a schema change. It gets its own
