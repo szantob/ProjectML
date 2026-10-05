@@ -149,11 +149,11 @@ operate what it describes states that once, high in the tree, and every technica
 
 ### `Rule`
 
-**A `Rule` directs attention; it does not prescribe an outcome** (K83). It states which subjects must be
-dealt with when a requirement arises under the `RequirementDefinition` it hangs on — never what the
-resulting requirement should say. This is what keeps a rule-set from quietly becoming a second definition
-layer: a `RequirementDefinition` says what a requirement of some kind looks like, and section 1 already
-places what a requirement's wording should be outside a rule-set's territory entirely.
+**A `Rule` directs attention; it does not prescribe an outcome** (K83). It states which subjects must be dealt
+with when a requirement under the `RequirementDefinition` it hangs on is walked — never what the resulting
+requirement should say. This is what keeps a rule-set from quietly becoming a second definition layer: a
+`RequirementDefinition` says what a requirement of some kind looks like, and section 1 already places what a
+requirement's wording should be outside a rule-set's territory entirely.
 
 **A negative answer to a subject a rule raises is a full answer.** Where a project decides it needs nothing in
 the subject raised, that decision appears as a `Requirement` like any other, and the `RequirementInquiry` raised
@@ -218,10 +218,11 @@ of UML and SysML v2 state machines and activities, where it gates a transition w
 A guard is a list of criteria, empty when the rule has none. Each criterion names a parameter of the
 `RequirementDefinition` that owns the rule — declared there or inherited (`02-requirement-analysis-model.md`
 §9, K107) — an operation, and a constant. The operations are *equals*, *is one of*, and the four orderings —
-*less than*, *at most*, *greater than*, *at least* — and the constant is a value of that parameter's domain, or for
-*is one of* a set of them. How a constant is written down is notation, and not fixed here (K15). The guard
-belongs to the shape every `Rule` has, so both specialisations may carry one, and it decides only whether the
-arising requirement brings the rule into play — never what the firing test then ranges over (K92).
+*less than*, *at most*, *greater than*, *at least* — and the constant is a value of that parameter's domain,
+or for *is one of* a set of them. How a constant is written down is notation, and not fixed here (K15). The
+guard belongs to the shape every `Rule` has, so a `ConflictRule` and a `CompletenessRule` may carry one, and a
+`ValueRule` carries none (below). It decides only whether the requirement being walked brings the rule into
+play — never what the firing test then ranges over (K92).
 
 **A guard excludes exactly what can be decided without judgement, and nothing else.** A criterion is decided
 on the value a source states for its parameter: there it either holds or is decided false. A walk runs only on
@@ -426,9 +427,9 @@ a definition are.
 **A `RuleSet` is a written procedure, and matching is a relevance judgement made while walking it** (K86).
 When a requirement becomes complete (`02-requirement-analysis-model.md` §10, K128), the `RuleSet`s that reach
 it are walked, once. A rule no longer in force is passed over without anything being read (K97); a rule whose
-guard the arising requirement decidably fails is set aside next, again without judgement (K105); of the rest,
-a reader — human or AI — judges which are relevant by reading each rule's *when it applies*. This is not the
-evaluation of a condition for its truth value against a requirement, which is how K76 first described it; that
+guard the requirement decidably fails is set aside next, again without judgement (K105); of the rest, a reader
+— human or AI — judges which are relevant by reading each rule's *when it applies*. This is not the evaluation
+of a condition for its truth value against a requirement, which is how K76 first described it; that
 description is corrected here, its verdict is not.
 
 **The verdict stands: this is a semantic constraint (K24), not a syntactic one.** The meaning of free text is
@@ -508,10 +509,9 @@ why
 ## 4. What the metamodel does not do
 
 **The metamodel states no rules.** It names this model and says what a rule-set may state; the rule itself —
-which defaults are silent, how long a given kind waits, how a given conflict resolves — belongs to whoever
-adopts the metamodel and writes a rule-set to run under it. This is the same move K15 makes for requirement
-kinds: the metamodel provides the slot and the shape of what may go into it, and something below fills it
-(K23).
+how long a given kind waits, how a given conflict resolves — belongs to whoever adopts the metamodel and
+writes a rule-set to run under it. This is the same move K15 makes for requirement kinds: the metamodel
+provides the slot and the shape of what may go into it, and something below fills it (K23).
 
 One further thing is deliberately left out, not merely unfilled. EventML's own record does not stop at the
 three gaps above: it groups its 22 definitions by where each one came from, and finds that what resolves a

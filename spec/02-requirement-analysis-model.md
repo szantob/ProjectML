@@ -195,10 +195,10 @@ Both readings treat such a passage as bearing a requirement. Neither treats it a
 A `SourceNeed` carries nothing beyond `SourceElement`'s three shared attributes — identity, its anchor, and
 being material of record (§4, K57). It does not carry a value: what a `SourceNeed`'s passage expresses, once
 interpreted, is a reading of the passage rather than a fact about it, and a reading belongs on the model's own
-side, in the `values` a `Requirement` carries once `refine` (§10) has run (`01-requirement-model.md` §2, K57).
-This revises how D27 was previously read as applying directly to this element: a `SourceNeed` is not a place a
-value occurs, because nothing on the source side is a value at all. A value occurs on a `Requirement`, and
-names the source that states it (§7, K125).
+side, in the values a `Requirement` carries in this model once `refine` (§10) has run, each naming the source
+that states it (§7, K57, K125). This revises how D27 was previously read as applying directly to this element:
+a `SourceNeed` is not a place a value occurs, because nothing on the source side is a value at all. A value
+occurs on a `Requirement`, and names the source that states it (§7, K125).
 
 The name is adopted rather than coined: *stakeholder need* is ISO/IEC/IEEE 29148's term (D23), carried by
 `SourceNeed` on the same terms K47 states for every prefixed element — the prefix marks which side of the
@@ -241,12 +241,12 @@ the modeller's responsibility (K40); whether its speaker has standing to replace
 ## 6. `SourceDecision`
 
 A `SourceDecision` is a `SourceStatement` (§4) whose passage records a decision as somebody stated it — a
-project manager's note that the client decided X, a client's own email settling a choice, a meeting record
-of an agreed outcome. Like `SourceNeed`, it carries nothing beyond `SourceElement`'s three shared attributes:
-identity, its anchor, and being material of record. What the decision means for the requirement model —
-what it retires, and, once the Project Lifecycle Model states the criterion, what it supersedes and what
-finding it closes — is not read off the `SourceDecision` itself; it is produced on the model's own side, by
-`refine`, as `RequirementDecision` (§10, §11).
+project manager's note that the client decided X, a client's own email settling a choice, a meeting record of
+an agreed outcome. Like `SourceNeed`, it carries nothing beyond `SourceElement`'s three shared attributes:
+identity, its anchor, and being material of record. What the decision means for the requirement model — what
+it retires, and, once the Project Lifecycle Model states the criterion, what finding it closes — is not read
+off the `SourceDecision` itself; it is produced on the model's own side, by `refine`, as `RequirementDecision`
+(§10, §11).
 
 The name and its shape are adopted from the same source `SourceNeed`'s is: ISO/IEC/IEEE 42010's *Architecture
 Decision*, carried here as the record of a decision **as stated**, prefixed on K47's terms to mark it as
@@ -717,10 +717,11 @@ product, is where a project is worked.
 
 ### `RequirementDecision`
 
-A `RequirementDecision` is what a decision **does** to the requirement model: what it retires, and — once
-the Project Lifecycle Model states the criterion for each — what it supersedes and what finding it closes
-(K49). It is produced from a `SourceDecision` (§6) by `refine` (K58), on the same terms a `Requirement` is
-produced from a `SourceNeed`.
+A `RequirementDecision` is what a decision **does** to the requirement model: what it retires, and — once the
+Project Lifecycle Model states the criterion — what finding it closes (K49). It does not supersede: a
+requirement is replaced by the requirement refining a `SourceUpdate`, not by a decision (§10, K129, K133). It
+is produced from a `SourceDecision` (§6) by `refine` (K58), on the same terms a `Requirement` is produced from
+a `SourceNeed`.
 
 **A `RequirementDecision` never exists without at least one `SourceDecision` origin.** This is not a
 question and not a failed check in the sense an unrefined `SourceStatement` is one (§4, K45); a
@@ -754,10 +755,11 @@ named nothing it resolved, which is the defect this whole restructuring exists t
 `retires` now carries the weight `01-requirement-model.md` §3's *"no longer in force"* property depends on.
 
 **`RequirementDecision` carries one of two states, open or closed — but this document does not state what
-closes one.** Working out the criterion depends on the same territory as `supersedes` and what finding a
-`RequirementDecision` closes: none of the three is settled without the Project Lifecycle Model being worked
-out further than it is today (K63). This is an admitted gap, on the same terms `RequirementDefinition`'s *"when it
-applies"* is one (§7): a slot this document states without a claim about what fills it.
+closes one.** Working out the criterion depends on the same territory as what finding a `RequirementDecision`
+closes: neither is settled without the Project Lifecycle Model being worked out further than it is today
+(K63). `supersedes`, once a third item in the same territory, is settled, and is not a decision's edge (§10,
+K133). This is an admitted gap, on the same terms `RequirementDefinition`'s *"when it applies"* is one (§7): a
+slot this document states without a claim about what fills it.
 
 **A `RequirementDecision` is not a value, and nothing about deciding sets one silently.** A decision is a
 choice made in the presence of alternatives, by somebody with standing, recorded with the alternatives and the
@@ -913,11 +915,13 @@ opened by a source"*, where a `RequirementQuestion` is raised by a `Rule` firing
 
 **Three checking modes exist, and only two had names before this.** Static model checking decides without
 judgement and produces a failed check or a question, recomputed rather than modelled. Walking a `RuleSet`
-takes judgement and produces a `RequirementQuestion` (`03-project-lifecycle-model.md` §3, K86). A review
-takes judgement and produces a review finding. K77 saw only the first distinction — judgement or none — and
-so placed `RequirementQuestion` with review findings on the strength of the three shared properties. What a
-review *is*, as an act, this document still does not state; that gap is recorded as OQ23 in
-`06-decisions.md`.
+takes judgement and produces a `RequirementQuestion` (`03-project-lifecycle-model.md` §3, K86). A `ValueRule`
+produces one without judgement, since it reads no text, only whether a value is present and whether its
+sources agree; its question is modelled all the same, so a `RequirementQuestion` comes from two of these
+modes, and from review from neither (K89, narrowed). A review takes judgement and produces a review finding.
+K77 saw only the first distinction — judgement or none — and so placed `RequirementQuestion` with review
+findings on the strength of the three shared properties. What a review *is*, as an act, this document still
+does not state; that gap is recorded as OQ23 in `06-decisions.md`.
 
 This metamodel introduces no `Task`, or any output shaped like one, for a `RequirementQuestion` in the raised
 state. The state itself is already the complete signal: querying for raised `RequirementQuestion`s is finding

@@ -630,7 +630,7 @@ all — and whether the evidence yet shows a gap.
 **OQ28 gains a reading** (K127): sizing knowledge, a computation from a requirement's values to its answer, is
 not held in the requirement model — it is design, or is stated by whoever computed it.
 
-## Open question OQ29
+## Open question OQ29 — answered
 
 Raised in [the design record of 2026-09-28 on value domain comparability and the guard](../docs/superpowers/specs/2026-09-28-value-domain-comparability-and-guard-design.md).
 
@@ -641,7 +641,7 @@ Raised in [the design record of 2026-09-28 on value domain comparability and the
 **OQ29 is answered by K128.** The walk runs once, on a complete requirement, which is never changed in place;
 no change of a value calls for a second walk.
 
-## Open questions OQ30 and OQ31 — high priority
+## Open questions OQ30 and OQ31 — closed
 
 Raised on 2026-10-05 by the owner, while settling what an inherited parameter carries with it, from the first
 implementation package to use parameter inheritance (K107). **Both are high priority.** Either may restructure

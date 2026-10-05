@@ -116,8 +116,8 @@ present in it, nothing in force is dropped, and anything dropped stays in the wo
 being lost (K13).
 
 **A baseline carries each requirement in force with its finished text, and the derivation edges between them,
-and nothing else** (K130). A requirement in force that is not yet complete has no finished text to carry;
-whether a baseline may be cut while one exists is OQ35.
+and nothing else of the working model** (K130). A requirement in force that is not yet complete has no
+finished text to carry; whether a baseline may be cut while one exists is OQ35.
 
 A baseline is not, itself, a model that must pass the requirement analysis model's checks. It has no
 `SourceNeed` layer — `SourceNeed`s, and the rules written over them, belong to the requirement analysis

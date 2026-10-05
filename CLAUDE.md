@@ -7,7 +7,7 @@ written here.
 ## 1. What this repo is, and the one mistake to avoid
 
 ProjectML is a **metamodel**. It defines concepts and types: what a `Source` is, what a `Need` is, what a
-`Requirement` is, what a `RequirementDefinition` is, which edges connect them, what states a value can be in,
+`Requirement` is, what a `RequirementDefinition` is, which edges connect them, what source a value must name,
 and what a design language must declare to attach underneath. It says all of that in **prose and diagrams**.
 
 **It is not a language implementation, and the most common failure in this project is drifting into one.**

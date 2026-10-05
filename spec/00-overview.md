@@ -14,10 +14,10 @@ own reasoning, in the document it points at.
 ProjectML is a metamodel for the chain from what somebody said to the requirements it obliges: the decisions
 taken while assembling that chain, and what is still open at any point along it. It says what a `Source` is,
 what a `SourceNeed` anchored into one is, what a `Requirement` drawn from one is, what a `RequirementDecision`
-resolving a `SourceDecision` is, what a `RequirementQuestion` still to be found out is, what state an
-incomplete value can be in wherever a value occurs, and what a design language attaching underneath all of it
-must declare in order to do so. It says all of this in prose,
-in tables, and in diagrams — §6 states what a diagram here is, and is not.
+resolving a `SourceDecision` is, what a `RequirementQuestion` still to be found out is, that every value names
+the source that states it, and what a design language attaching underneath all of it must declare in order to
+do so. It says all of this in prose, in tables, and in diagrams — §6 states what a diagram here is, and is
+not.
 
 ### What it is not
 
@@ -122,10 +122,10 @@ the metamodel from an implementation, where §5 separates what the model guarant
 must do.
 
 From the metamodel's side: ProjectML says what a stated piece of material is, what a requirement drawn from
-one is, what edges connect these things to each other, what state an incomplete value can be in, and what a
-design language attaching underneath must declare in order to do so (§2, §3). It says all of that in prose,
-in tables, and in diagrams that are themselves a form of prose (§6). Nothing in it says how any of these
-things is written down.
+one is, what edges connect these things to each other, what source a value must name, and what a design
+language attaching underneath must declare in order to do so (§2, §3). It says all of that in prose, in
+tables, and in diagrams that are themselves a form of prose (§6). Nothing in it says how any of these things
+is written down.
 
 From an implementation's side: an implementation is a self-contained package that supplies exactly the three
 things the metamodel deliberately withholds — a notation, a filled set of definitions, and a rule-set a
