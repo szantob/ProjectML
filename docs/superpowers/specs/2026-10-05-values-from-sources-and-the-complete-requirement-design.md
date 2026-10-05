@@ -1,6 +1,6 @@
 # Values only from sources, the complete requirement, and what a baseline carries — Design record
 
-**Status: settled, and not yet written into `spec/`.** This record carries decisions K125–K130. It revises a
+**Status: settled, and not yet written into `spec/`.** This record carries decisions K125–K131. It revises a
 locked foundation by the owner's explicit instruction — the value-state model, part of the kernel under
 `CLAUDE.md` §3, rule 4 — and it amends the record of the same day on a rule over one value
 ([`2026-10-05-value-rule-and-clarification-design.md`](2026-10-05-value-rule-and-clarification-design.md)),
@@ -60,7 +60,9 @@ every change of a value has a decision behind it, and the decision has an owner.
 
 | # | Decision | Reason |
 |---|---|---|
-| K130 | **A baseline carries only the requirements in force, each complete, with its finished wording and the derivation edges between them. Nothing of a requirement's values, sources or questions crosses the seam.** K34 is revoked, and the binding contract's fourth declaration — how far a binding carries the value model — is withdrawn | K34 read K12 narrowly and carried retired requirements into the projection, but a design language has to be able to take a baseline on its own terms (K2), and SysML v2 has no way to hold a requirement no longer in force: carried across, it could only be dropped or represented by something invented. K12 said what a baseline is — a cut of the requirements in force — and K13's condition still holds, since what the baseline leaves out stays in the working model. With values no longer carrying states, a binding has no value model to declare |
+| K130 | **A baseline carries only the requirements in force, each complete, with its finished wording and the derivation edges between them. Nothing of a requirement's values, sources or questions crosses the seam: the requirement model's `Requirement` no longer carries values.** K35 is confirmed, and the binding contract's fourth declaration — how far a binding carries the value model — is withdrawn | K35 already projects only the requirements in force, having superseded K34, which carried retired ones across: a design language has to be able to take a baseline on its own terms (K2), and SysML v2 has no way to hold a requirement no longer in force. What is new is the values. The finished wording already states every value a requirement has (K111), so carrying the values beside it carries nothing a design language needs and something it cannot hold — a value's source. K13's condition still holds, since what the baseline leaves out stays in the working model, and with values no longer carrying states a binding has no value model to declare |
+
+| K131 | **The collection has three members: the requirement model, the requirement analysis model and the Project Lifecycle Model.** What remains of the value-state model — a value names its source or is missing, and a value domain with its comparability — is stated in `02-requirement-analysis-model.md`, where parameters and a requirement's values are. `04-value-states.md` is withdrawn, and **the number 04 is retired: no later document of `spec/` takes it**. This revises K19 | Values now occur only in the requirement analysis model and in a rule's guard over it, not in the product and not beyond the seam (K130), so nothing is left for the value model to crosscut; what was a member is two paragraphs of the document where values live. The number is retired rather than reused because every citation of `04-…` in the decision record and in the dated design records must keep meaning the value-state model, and a later document numbered 04 on another subject would make each of them ambiguous. K31's rule — one document per member — still holds |
 
 **A baseline over an incomplete requirement** in force cannot carry its finished wording, since its template
 cannot be filled. Whether a baseline may be cut while one exists is OQ35.
@@ -104,24 +106,27 @@ answered by K128 in full, including the case K124 left open, since nothing is ev
 - **K103** narrows to nothing to decide: a guard always reads a value a source stated.
 - **K86** — when the walk runs — by K128.
 - **K98's first destination,** the conflicting state, becomes K126's choice.
-- **K34** is revoked, and **K4's fourth declaration** withdrawn, by K130; `spec/05` §4 and
-  `bindings/sysml-v2.md` §4 follow.
+- **K35** is confirmed and **K4's fourth declaration** withdrawn, by K130; `spec/05` §4 and
+  `bindings/sysml-v2.md` §4 follow. `spec/01` §2's *values* attribute of a `Requirement` goes, and `spec/00`
+  §2's account of the projection drops a requirement's values.
+- **K19** is revised by K131: three members, and the number 04 retired.
 - **OQ1's answer** keeps its verdict and loses one reason: the value-state model is no longer a step that is
   carried from the first, because it is no longer a model.
 - **OQ28** gains K127's reading.
 
 ## 8. Notes for the plan
 
-- `spec/04-value-states.md`: rewritten around K125–K127; it may no longer earn a document of its own, and the
-  plan decides whether it folds into `spec/02`. K19 lists it as a member of the collection, so folding it is a
-  revision of K19 the plan must name.
+- `spec/04-value-states.md`: withdrawn by K131. What remains of it (K125–K127, value domains, K101) moves into
+  `spec/02`, and every live link to it is redirected; the dated design records and the founding record are
+  snapshots and keep theirs. The retired number is stated in `spec/00` and in `CLAUDE.md` §4 so that it is not
+  reused.
 - `spec/02`: §10 (the derivation; the complete requirement, K128; the correction, K129), §11 (questions,
   together with the other record's K115–K123 as restated in §6), §12.
 - `spec/03` §3: the walk runs once on a complete requirement; K103's guard text; the flowchart.
 - `spec/01` §4: the baseline, K130. `spec/05` §4 and §5; `bindings/sysml-v2.md` §4.
 - `spec/00`: the reading order and the place of the value model in it.
-- `spec/06`: K115–K130 (the other record's, as restated here, and these); OQ22, OQ24, OQ25, OQ29, OQ30
-  closed or dissolved; OQ18 narrowed to its second half; OQ33–OQ35 opened; K34 and K117 revoked; the founding
+- `spec/06`: K115–K131 (the other record's, as restated here, and these); OQ22, OQ24, OQ25, OQ29, OQ30
+  closed or dissolved; OQ18 narrowed to its second half; OQ33–OQ35 opened; K117 revoked; K19 revised; the founding
   value-state model noted as revised.
 - The editor and the contract carry no values today, so nothing there changes; a `ValueRule` an organisation
   would state for assumed values, which the other record expected the editor to need, is no longer needed.
