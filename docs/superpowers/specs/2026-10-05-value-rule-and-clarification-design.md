@@ -1,7 +1,7 @@
 # A rule over one value, and the clarification it raises — Design record
 
-**Status: settled, and not yet written into `spec/`.** This record carries decisions K115–K121. It closes
-OQ30, answers OQ25 and the first half of OQ18, narrows OQ22, and bears on OQ29. The owner means to add further
+**Status: settled, and not yet written into `spec/`.** This record carries decisions K115–K124. It closes
+OQ30, OQ22 and OQ24, answers OQ25 and the first half of OQ18, and narrows OQ29. The owner means to add further
 material before the integration plan is written, so this record may be extended first; nothing in `spec/`
 has changed. The change will touch `spec/02-requirement-analysis-model.md` §7, §11 and §12,
 `spec/03-project-lifecycle-model.md` §3 and §6, `spec/04-value-states.md` §2, and `spec/06-decisions.md`.
@@ -59,7 +59,7 @@ sees, and on what each would revise. The mix won.
 
 | # | Decision | Reason |
 |---|---|---|
-| K118 | **A conflicting value raises a `RequirementChoice`, whose candidate alternatives are the competing values, each with its source (`spec/04` §2).** It is discharged by a `RequirementDecision` as any choice is | Two values present is something to choose between. The project manager decides, and the decision enters as a source (K11, K61): exactly the machinery a `RequirementChoice` already has |
+| K118 | **A conflicting value raises a `RequirementChoice`, one per `Requirement` and parameter, whose candidate alternatives are every competing value, each with its source (`spec/04` §2).** A further source disagreeing adds its value to the alternatives rather than opening another choice. It is discharged by a `RequirementDecision` as any choice is | Two or more values present is something to choose between. The project manager decides, and the decision enters as a source (K11, K61): exactly the machinery a `RequirementChoice` already has. One choice over all the values, not one per pair, because three or more sources may disagree, and pairwise choices would multiply with every one of them |
 | K119 | **An unknown value, and an assumed value a `ValueRule` names, raise a `RequirementClarification`: a third specialisation of `RequirementQuestion`.** It carries the shared shape, and its statement is drawn from the parameter's *what to ask* when the ask raised it | Nothing is present to choose between, so it is no choice; and the gap is one value of a requirement that exists, not a missing kind, so it is no inquiry. Reusing `RequirementInquiry` would break K75's limit of one open inquiry per rule, since one ask fires on many requirements at once, and would give its `discharges` two meanings. ISO/IEC/IEEE 29148's TBD and TBR are the adopted vocabulary for the two cases: a value to be determined, and one to be resolved |
 | K120 | **Which specialisation a question takes follows from what is present when its rule fires: two things to choose between raise a `RequirementChoice`, a missing companion kind a `RequirementInquiry`, a missing or unconfirmed value a `RequirementClarification`.** This revises K79's "one per mechanism" | `ValueRule` raises two specialisations, so the rule's specialisation no longer fixes the question's. What K90 actually derived the question from was what is present when the test fires, and stated that way it holds for all three ranges |
 
@@ -86,7 +86,24 @@ where the answer came from.
 
 **A clarification is not a review finding,** for the reason K89 gives for every `RequirementQuestion`.
 
-## 5. What this answers, revises and leaves
+## 5. Three questions answered on the same machinery
+
+Taken in the same session, once the machinery above was settled.
+
+| # | Decision | Reason |
+|---|---|---|
+| K122 | **A `RequirementClarification` raised by an ask starts from the ask's wording, which the modeller may fit to the requirement in hand. A `RequirementChoice`'s and a `RequirementInquiry`'s statement the modeller writes freely, informed by the rule's *what to look for*, from no template.** This answers what OQ22 still held | *What to look for* says what to notice, not how to ask. A choice's question is about its own alternatives and an inquiry's about its own gap, which differ every time, so no template written in advance fits them, and what prose means is not an algorithm's to decide (K24). An ask can serve as a start because it is always about one parameter |
+| K123 | **Where two or more sources state values for the same thing, they are refined into one `Requirement`, whose value is conflicting and carries every value with its source.** Whether two statements are about the same thing is the modeller's judgement (K24). Two `Requirement`s in force, of one kind, carrying incompatible values for the same thing are a refinement error, which review finds, not a failed check. This answers OQ24 | It is the reading K98's first destination already assumed, and with K118 it is the reading under which the disagreement reaches the project manager, as one choice. Two requirements would raise nothing by themselves, or pairwise choices if a rule compared them. OQ24 itself observed that sameness cannot be a syntactic constraint; what was missing was a statement of where the error is caught. A later source correcting an earlier one is not a disagreement but a replacement, which is OQ17's |
+| K124 | **The walk does not run again when a value's state changes.** A question once raised stands until it is answered; that a firmer value has made it moot is itself an answer, which the project manager gives and which enters as a source (K11). How such an answer closes a `RequirementInquiry`, whose discharge names a `Requirement`, is OQ26's. A `ValueRule` needs no second walk, since it reads the value's current state (K121). This answers OQ29 except for one case | K103 already keeps a guard from excluding on a value that is not firm, so a rule that should have fired never fails to; the most a firmer value can do is leave a question raised that no longer needed to be, and saying so is an answer like any other. Running the walk again would put every change of a value through a fresh relevance judgement (K86) |
+
+**What OQ29 still holds.** A rule that the first walk judged not relevant may become relevant once a value is
+firmer. That is a judgement, not a guard, and a change of value starts no judgement; whether anything should is
+left open.
+
+**OQ14 is deferred again,** by the owner, though the model side's question specialisations are now settled. If
+it is taken up, the owner's choice of name for the abstract type is `RequirementModelElement`.
+
+## 6. What this answers, revises and leaves
 
 **Answered.**
 - **OQ30** is closed: a missing value reaches the project manager as a `RequirementClarification`, and a
@@ -94,8 +111,10 @@ where the answer came from.
 - **OQ25** is answered: the marking of a value as one to ask about is what a `ValueRule` firing on it
   produces. It is no longer a marking with no stated cause — it is the open question, and its cause is named.
 - **OQ18's first half** is answered by K117. Its second half, the gap-timeout rule, stays open with OQ13.
-- **OQ22 is narrowed:** a clarification raised by an ask takes its wording from the ask. Whether *what to look
-  for* supplies a template for other questions stays open.
+- **OQ22** is closed by K119 and K122.
+- **OQ24** is closed by K123.
+- **OQ29** is answered by K124, except for re-judging a rule the first walk dismissed. K124 leans on OQ26
+  for how a moot inquiry closes.
 
 **Revised.** K79's "one per mechanism", by K120. `spec/02` §11's two sentences — that *what to ask* raises no
 question, and that two sources disagreeing involves no rule — are replaced. K72's list of worked mechanisms
@@ -104,13 +123,9 @@ mode that needs judgement, as what produces a `RequirementQuestion`; a `ValueRul
 judgement, so questions now come from two modes, and K89's verdict — a question is not a review finding —
 holds for both. K87, K75, K80 and K97 are not revised.
 
-**Bears on OQ29.** A `ValueRule` reads the value's current state, so for it the walk is not the question: a
-clarification opens and closes as the state changes. Whether the walk over the other rules runs again is
-unchanged.
+**Bears on OQ14,** which waited for this record and is deferred again (§5).
 
-**Bears on OQ14,** which waits for this record: the model side now has three question specialisations.
-
-## 6. Notes for the plan
+## 7. Notes for the plan
 
 - `spec/02` §7: *what to ask*'s row says it is a `ValueRule` (K116).
 - `spec/02` §11: `RequirementClarification` beside the two; the class diagram gains it; K120 replaces the
@@ -121,7 +136,11 @@ unchanged.
   standing ask-rule; §6's constraints over rules.
 - `spec/04` §2: the marking paragraph says what produces the marking (OQ25).
 - `spec/02` §11 and `spec/06`: K89's account of the checking mode that produces a question names both modes.
-- `spec/06`: K115–K121; OQ30 closed; OQ25 answered; OQ18 and OQ22 narrowed; K72, K79 and K89 noted as revised.
+- `spec/02` §10 and §11: K123's single requirement over disagreeing sources, and the review finding for two;
+  K122's wording of a question.
+- `spec/03` §3: K124 in the walk.
+- `spec/06`: K115–K124; OQ22, OQ24 and OQ30 closed; OQ25 answered; OQ18 and OQ29 narrowed; OQ14's deferral
+  noted with its name; K72, K79 and K89 noted as revised.
 - **Check K119's citation of ISO/IEC/IEEE 29148's TBD and TBR against the standard before it is written in.**
 - **Out of this record, for the implementation:** the editor and the contract carry rule types; a `ValueRule`
   an organisation states for assumed values is a new rule type there, and a schema change. It gets its own
