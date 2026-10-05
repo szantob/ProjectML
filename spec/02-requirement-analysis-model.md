@@ -97,6 +97,7 @@ classDiagram
     SourceElement <|-- SourceStatement
     SourceStatement <|-- SourceNeed
     SourceStatement <|-- SourceDecision
+    SourceNeed <|-- SourceUpdate
 ```
 
 The diagram draws what this section and the next state; where the two disagree, the prose wins. The
@@ -192,12 +193,12 @@ the *system's* physical properties where this class describes the *environment* 
 Both readings treat such a passage as bearing a requirement. Neither treats it as inert.
 
 A `SourceNeed` carries nothing beyond `SourceElement`'s three shared attributes — identity, its anchor, and
-being material of record (§4, K57). It does not carry a value: what a `SourceNeed`'s passage expresses,
-once interpreted, is a reading of the passage rather than a fact about it, and a reading belongs on the
-model's own side, in the `values` a `Requirement` carries once `refine` (§10) has run
-(`01-requirement-model.md` §2, K57). This revises how D27 was previously read as applying directly to this
-element: the value-state model still governs every value wherever one occurs (`04-value-states.md` §4), but
-a `SourceNeed` is not a place a value occurs, because nothing on the source side is a value at all.
+being material of record (§4, K57). It does not carry a value: what a `SourceNeed`'s passage expresses, once
+interpreted, is a reading of the passage rather than a fact about it, and a reading belongs on the model's own
+side, in the `values` a `Requirement` carries once `refine` (§10) has run (`01-requirement-model.md` §2, K57).
+This revises how D27 was previously read as applying directly to this element: a `SourceNeed` is not a place a
+value occurs, because nothing on the source side is a value at all. A value occurs on a `Requirement`, and
+names the source that states it (§7, K125).
 
 The name is adopted rather than coined: *stakeholder need* is ISO/IEC/IEEE 29148's term (D23), carried by
 `SourceNeed` on the same terms K47 states for every prefixed element — the prefix marks which side of the
@@ -220,6 +221,22 @@ Passage anchoring adopts the W3C Web Annotation Data Model (D26), stated once fo
 §4 rather than repeated per specialisation. No requirements standard was adopted for it instead, because
 none serves here: a `SourceNeed` anchors into a source before any requirement exists, at a stage SysML v2
 places outside itself and has nothing to say about.
+
+### `SourceUpdate`
+
+A `SourceUpdate` is a `SourceNeed` whose passage, besides obliging something, **replaces what an earlier
+statement said** (K132) — a client's *we now want 800, not 300*. It is a `SourceNeed`, so everything this
+section says of one holds of it: it obliges something, it is refined into a `Requirement`, and one nothing
+refines is a failed check (K38). Like every `SourceElement` it carries nothing beyond identity, anchor and
+being material of record (K57): what it replaces is not read off the passage on this side but on the model's
+own, where the requirement refining it names, by `supersedes`, the requirements it replaces (§10, K133).
+
+**A correction is neither a disagreement nor a decision.** A passage that states a different value without
+replacing anything — *800 are coming* — is a disagreement, and raises a choice (§11, K126). A passage that
+drops something with nothing in its place — *we no longer need this* — is a `SourceDecision` (§6). A
+correction is neither: read as a decision it would owe alternatives and a rationale it rarely states, which
+the modeller would then have to supply. Which of the three a passage is, is read when it is extracted, and is
+the modeller's responsibility (K40); whether its speaker has standing to replace what was said is OQ16's.
 
 ## 6. `SourceDecision`
 
@@ -271,15 +288,37 @@ supplies (K27).
 | abstract | Whether the definition is abstract: no requirement is produced under it, only under its specialisations (K109). A definition is abstract only where it says so, and otherwise is not; abstractness is never read off the absence of anything else |
 | text | The template the requirement's wording is produced from, with places for its parameters |
 | when it applies | One sentence stating when this definition comes into play. It is prose, not an evaluable expression (D20). Its absence means applicability has not been written down, which is a gap, not a claim that the definition applies unconditionally |
-| parameters | Each parameter declares a value domain, and carries an identity local to the definition declaring it (K106). Which domains exist is an implementation's business, exactly as the set of kinds is (K30, and `04-value-states.md` §5) |
-| what to ask | For each parameter, how a non-expert is asked for what is missing |
+| parameters | Each parameter declares a value domain, and carries an identity local to the definition declaring it (K106). Which domains exist is an implementation's business, exactly as the set of kinds is (K30). What a domain declares about its values is stated below (K101) |
+| what to ask | For each parameter, how a non-expert is asked for what is missing. It is a rule: where the parameter has no value on a requirement, or the sources stating one disagree, it raises the question (K116) |
 | how it would be verified | The method by which a requirement produced under this definition would be shown to hold. Prose |
 | wording rule | A well-formedness rule for the wording a requirement produced under this definition must satisfy. Prose, on the same terms *how it would be verified* is prose (K66) |
 
-Two of the nine bottom out in the value-state model rather than in anything a design language supplies. A
-parameter with no value is a value in the unknown state like any other, and the ask is how that value is
-obtained from somebody who holds it — which is why *what to ask* sits beside *parameters* and is written per
-parameter rather than per definition.
+**A value exists only where a source states it** (K125). A parameter's value on a requirement names the source
+that states it, and where no source states one the value is missing; nothing else puts a value into the model.
+A value is never supplied by the modeller, who administers and decides nothing for the project. A value
+supplied to keep work moving is stated by somebody with standing, in a source like any other; a quantity
+computed from other values is design, beyond the seam, or is stated by whoever computed it, as a source; and
+an implementation's default is a suggestion a parameter's ask may carry, which becomes a value only when
+somebody states it (K127). How a value and the source it names are written down is notation, and an
+implementation's (K15). The ask is how a missing value is obtained from somebody who holds it — which is why
+*what to ask* sits beside *parameters* and is written per parameter rather than per definition.
+
+**The metamodel enumerates no value domains.** A value has a domain — the range of things it could be — but
+which domains exist, and what they are called, is declared by an implementation rather than fixed here. This
+is the same move K30 makes for requirement kinds: the metamodel provides the slot a domain fills without
+naming what goes into it.
+
+**A domain fixes no unit; it declares how its values compare** (K101). Leaving the *set* of domains to an
+implementation left open whether a domain also fixes a unit, and what makes two values comparable. A
+`ConflictRule` does not need an algorithm to answer that: its test reads both requirements' texts and is a
+judgement (`03-project-lifecycle-model.md` §3, K90). The first construct that compares values without
+judgement is a `Rule`'s guard, and a guard compares one parameter's value with a constant written against that
+same parameter — never values of two domains. What a domain declares is therefore what a guard needs: exactly
+one of three levels of comparability, **not comparable**, **comparable for equality**, or **ordered**, the
+last including the second. How an implementation achieves the level it declares — a fixed unit, a dimension
+with its conversions, an enumeration, anything else — is its own business, exactly as the set of domains is.
+Two domains for one measure in different units are, under this, two ordered domains, each in its own unit, and
+no guard ever converts between them.
 
 **A definition may be abstract** (K109). No requirement is produced under an abstract definition, only under
 its specialisations: it exists so that the definitions beneath it share what it declares. A definition is
