@@ -1,4 +1,4 @@
-# Integrate values from sources, the complete requirement and the value rule (K115–K133) into `spec/` — Implementation Plan
+# Integrate values from sources, the complete requirement and the value rule (K115–K134) into `spec/` — Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or
 > superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for
@@ -28,7 +28,7 @@ their K-numbers rather than re-arguing them. Read both before Task 1.
 
 1. `2026-10-05-value-rule-and-clarification-design.md` — K115–K124 (a rule over one value, the clarification,
    one requirement over disagreeing sources, the wording of a question). It is **amended** by record 2.
-2. `2026-10-05-values-from-sources-and-the-complete-requirement-design.md` — K125–K133. **Its §6 says which of
+2. `2026-10-05-values-from-sources-and-the-complete-requirement-design.md` — K125–K134. **Its §6 says which of
    record 1's decisions stand and how they are restated**: K117 is withdrawn, K124 is superseded by K128, and
    record 1's "unknown / assumed / conflicting state" become "a missing value" and "a disagreement". Where the
    two records differ, record 2 wins.
@@ -212,8 +212,15 @@ add:
 ```
 A requirement also leaves force when a requirement in force supersedes it (K133): one refining a
 `SourceUpdate` names, by `supersedes`, the requirements it replaces, and they are no longer in force. The cause
-is still a source (K11) — the update the superseding requirement refines — and nothing is deleted (K5). The
-`supersedes` edge stays in this model and is dropped at the projection, as retirement is (K35).
+is still a source (K11) — the update the superseding requirement refines — and nothing is deleted (K5).
+
+**Leaving force is named from both ends** (K134). Each way out of force is one association with two named ends:
+a `RequirementDecision` `retires` a requirement, which is `retiredBy` it, at most one decision per requirement;
+a `Requirement` `supersedes` another, which is `supersededBy` it, in any number. A requirement no longer in force
+therefore names, on its own side, what took it out — one decision, or one or more superseding requirements,
+never both — because the event happens in its life, and its cause is named where it happens. How an association
+is written down is notation (K15). Both associations stay in this model and are dropped at the projection, as
+retirement is (K35).
 ```
 
 Rewrap.
@@ -412,8 +419,8 @@ Under **Over the derivation, and over being no longer in force.**, add as the fi
   on its values is open (§10, K128).
 - A `Requirement` refining a `SourceUpdate` names at least one requirement by `supersedes` (§5, §10, K132,
   K133).
-- A `Requirement` is no longer in force only where a `RequirementDecision`'s `retires` names it or a
-  `Requirement` in force names it by `supersedes` (§10, K62, K133).
+- A `Requirement` is no longer in force exactly when it is `retiredBy` one `RequirementDecision` or
+  `supersededBy` one or more `Requirement`s in force, and never both (§10, K62, K133, K134).
 ```
 
 - [ ] **Step 3: Over the questions**
@@ -436,7 +443,7 @@ and nothing more: every `RequirementQuestion` in a model is an instance of `Requ
 `grep -n "04-value-states\|value-state\|unknown state\|conflicting\|assumed" spec/02-requirement-analysis-model.md`
 must print nothing except `primary specification rather than assumed` (§9, a different sense).
 `git add spec/02-requirement-analysis-model.md`; message
-`State the constraints over values, the three questions and supersession (K116-K133)`.
+`State the constraints over values, the three questions and leaving force (K116-K134)`.
 
 ---
 
@@ -802,16 +809,17 @@ message `Withdraw the fourth declaration, and record the retired number 04 (K130
 After the `## Decisions K113–K114` section's table, insert:
 
 ```
-## Decisions K115–K133
+## Decisions K115–K134
 
 Taken in [the design record of 2026-10-05 on a rule over one value](../docs/superpowers/specs/2026-10-05-value-rule-and-clarification-design.md)
 (K115–K124) and [the design record of the same day on values from sources](../docs/superpowers/specs/2026-10-05-values-from-sources-and-the-complete-requirement-design.md)
-(K125–K133), which amends the first before either reached `spec/`; written in by
+(K125–K134), which amends the first before either reached `spec/`; written in by
 [the integration plan of 2026-10-05](../docs/superpowers/plans/2026-10-05-values-and-questions-integration-plan.md).
 K117 and K124 were withdrawn and superseded before integration and keep their rows, so that their numbers are not
 reused. Two founding decisions are revised by the owner's explicit instruction: K1's value-state model, by
 K125, and K4's four declarations, narrowed to three by K130. K19 is revised by K131; K79 by K120; K86 by K128;
-K89 is narrowed; K62's `retires` gains a second way out of force in K133's `supersedes`; K44's open list of
+K89 is narrowed; K62's `retires` gains a second way out of force in K133's `supersedes`, and both gain a named earlier
+end in K134; K44's open list of
 source elements gains `SourceUpdate`; K98's first destination becomes K126's choice; K103 is narrowed by K125 and K128; K72's list
 of worked mechanisms gains `ValueRule`.
 
@@ -836,6 +844,7 @@ of worked mechanisms gains `ValueRule`.
 | K131 | The collection has three members; what remained of the value-state model is stated in `spec/02`, `04-value-states.md` is withdrawn, and the number 04 is retired. This revises K19 | Values now occur only in the working model and its rules, so nothing is left to crosscut. The number is not reused so that every citation of `04-value-states.md` keeps its meaning |
 | K132 | A `SourceUpdate` is a `SourceNeed` whose passage, besides obliging something, replaces what an earlier statement said. It carries nothing beyond a `SourceElement`'s three attributes | A correction obliges something new and takes back something old at once; read as a decision it would owe alternatives and a rationale it rarely states. K44 left the list of source elements open |
 | K133 | A `Requirement` may carry `supersedes`, a list-valued edge to the requirements it replaces; one refining a `SourceUpdate` names at least one; a requirement superseded by one in force is no longer in force. The edge does not cross into a baseline. This answers what OQ17 asked `supersedes` to mean | Something has to name what a correction takes out of force, and the edge sits on the later element, as `refine`, the derivation edge and `replies` do. One edge on `Requirement` reaches every kind. The cause is still a source (K11), and nothing is deleted (K5) |
+| K134 | Each way out of force is one association with two named ends: `retires`/`retiredBy` between a `RequirementDecision` and a `Requirement` (at most one decision), `supersedes`/`supersededBy` between two `Requirement`s (any number). A requirement no longer in force names its cause through exactly one of them. How it is written down is notation | The cause of leaving force is named where the event happens, on the earlier requirement; one association with two named ends has nothing to keep in agreement |
 ```
 
 - [ ] **Step 2: The open questions**
@@ -888,8 +897,8 @@ values crosses the seam (K130).`
 
 - [ ] **Step 5: Check and commit**
 
-Every new K row is one line; K-numbers run K115–K133 without a gap. `git add spec/06-decisions.md`; message
-`Add K115-K133 to spec/06-decisions.md; close OQ22, OQ24, OQ29, OQ30; dissolve OQ25; narrow OQ17; open OQ33-OQ35`.
+Every new K row is one line; K-numbers run K115–K134 without a gap. `git add spec/06-decisions.md`; message
+`Add K115-K134 to spec/06-decisions.md; close OQ22, OQ24, OQ29, OQ30; dissolve OQ25; narrow OQ17; open OQ33-OQ35`.
 
 ---
 
@@ -908,7 +917,7 @@ Every new K row is one line; K-numbers run K115–K133 without a gap. `git add s
   and the requirement refining it supersedes the old one. Every parameter's ask
   is a `ValueRule`, raising a `RequirementClarification` for a missing value and a `RequirementChoice` for a
   disagreement. A baseline carries finished text only, and a binding declares three things, not four.
-  K115–K133 record the decisions; OQ22, OQ24, OQ29 and OQ30 are closed, OQ25 dissolves, OQ17 and OQ18 narrow, and
+  K115–K134 record the decisions; OQ22, OQ24, OQ29 and OQ30 are closed, OQ25 dissolves, OQ17 and OQ18 narrow, and
   OQ33–OQ35 open. Findings are in
   [`docs/superpowers/specs/2026-10-05-value-rule-and-clarification-design.md`](docs/superpowers/specs/2026-10-05-value-rule-and-clarification-design.md)
   and

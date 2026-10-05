@@ -1,6 +1,6 @@
 # Values only from sources, the complete requirement, and what a baseline carries — Design record
 
-**Status: settled, and not yet written into `spec/`.** This record carries decisions K125–K133. It revises a
+**Status: settled, and not yet written into `spec/`.** This record carries decisions K125–K134. It revises a
 locked foundation by the owner's explicit instruction — the value-state model, part of the kernel under
 `CLAUDE.md` §3, rule 4 — and it amends the record of the same day on a rule over one value
 ([`2026-10-05-value-rule-and-clarification-design.md`](2026-10-05-value-rule-and-clarification-design.md)),
@@ -61,6 +61,7 @@ and the source a speaker.
 |---|---|---|
 | K132 | **A `SourceUpdate` is a `SourceNeed` whose passage, besides obliging something, replaces what an earlier statement said.** Like every `SourceElement` it carries nothing beyond identity, anchor and being material of record (K57): what it replaces is read on the model's own side, where the requirement refining it names what it supersedes | A correction obliges something new and takes back something old in one breath. Read as a decision it would owe a choice among alternatives and a rationale, which a correction rarely states, so the modeller would have to supply them; read as two elements on one passage, extraction would stop classifying a passage once. K44 left the list of source elements open for exactly this |
 | K133 | **A `Requirement` may carry `supersedes`, a list-valued edge to the requirements it replaces. A requirement refining a `SourceUpdate` names at least one. A requirement superseded by one in force is no longer in force** — a second way out of force beside a `RequirementDecision`'s `retires` (K62). The edge stays in the working model and does not cross into a baseline. This answers the part of OQ17 that asked what `supersedes` means | Something has to name what a correction takes out of force, and the edge sits on the later element, as `refine`, the derivation edge and `replies` do. One edge on `Requirement`, which is one type whatever its definition (K67), reaches every kind. The cause of leaving force is still a source (K11): the `SourceUpdate` the superseding requirement refines. K5 is untouched — nothing is deleted |
+| K134 | **Leaving force is an association with two named ends, not an edge read from one side.** Between a `RequirementDecision` and the `Requirement` it takes out of force, the ends are `retires` and `retiredBy` (at most one decision per requirement); between a superseding and a superseded `Requirement`, `supersedes` and `supersededBy` (any number on either end). A requirement no longer in force names its cause through exactly one of the two: one decision, or one or more superseding requirements, never both. How an association is written down — one reference, two, or none stored at all — is notation (K15) | Leaving force is an event in the earlier requirement's own life, and the house rule that every event record its cause asks that the cause be named where the event happens, not merely found by searching from the other side. Drawn as UML draws it, this is one association whose two ends are both named, so there is nothing to keep in agreement: one edge cannot disagree with itself |
 
 ## 4. What a baseline carries
 
@@ -113,7 +114,8 @@ answered by K128 in full, including the case K124 left open, since nothing is ev
 - **K86** — when the walk runs — by K128.
 - **K98's first destination,** the conflicting state, becomes K126's choice.
 - **K62**: a `RequirementDecision`'s `retires` is no longer the only way out of force; `supersedes` is the
-  second (K133). **K44**'s open list of source elements gains `SourceUpdate` under `SourceNeed` (K132).
+  second (K133), and both are associations whose earlier end is named too, `retiredBy` and
+  `supersededBy` (K134). **K44**'s open list of source elements gains `SourceUpdate` under `SourceNeed` (K132).
   **OQ17** is narrowed: what `supersedes` means is answered by K133; what finding a `RequirementDecision` closes,
   and what closes one, stay open.
 - **K35** is confirmed and **K4's fourth declaration** withdrawn, by K130; `spec/05` §4 and
@@ -137,7 +139,7 @@ answered by K128 in full, including the case K124 left open, since nothing is ev
 - `spec/03` §3: the walk runs once on a complete requirement; K103's guard text; the flowchart.
 - `spec/01` §4: the baseline, K130. `spec/05` §4 and §5; `bindings/sysml-v2.md` §4.
 - `spec/00`: the reading order and the place of the value model in it.
-- `spec/06`: K115–K133 (the other record's, as restated here, and these); OQ22, OQ24, OQ25, OQ29, OQ30
+- `spec/06`: K115–K134 (the other record's, as restated here, and these); OQ22, OQ24, OQ25, OQ29, OQ30
   closed or dissolved; OQ18 narrowed to its second half; OQ33–OQ35 opened; OQ17 narrowed; K117 revoked; K19 revised; the founding
   value-state model noted as revised.
 - The editor and the contract carry no values today, so nothing there changes; a `ValueRule` an organisation
