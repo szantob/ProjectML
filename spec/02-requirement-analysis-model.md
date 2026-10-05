@@ -544,11 +544,11 @@ define its semantics.
 A requirement is not written; it is **derived**. The founding record's procedure states the step: a
 `SourceNeed`'s passage selects the definition, and the rules on that definition turn the stater's free words
 into the requirement's bound professional wording. The parameters the definition has, its own and those it
-inherits (§9, K107), are filled from the `SourceNeed`'s passage and from whatever else the model already
-holds, and each filled value carries a value state on the same terms as any other value in the collection. The
-same crossing — a passage anchored on the source side, restated on the model's own, under a definition's
-rules — is `refine`, and it is not particular to `SourceNeed`: a `SourceDecision` crosses the same way, into a
-`RequirementDecision`, on the terms K58 states and this document's §11 uses (K43, K58).
+inherits (§9, K107), are filled from the `SourceNeed`'s passage and from other sources that state them, and
+each value names the source that states it (§7, K125). The same crossing — a passage anchored on the source
+side, restated on the model's own, under a definition's rules — is `refine`, and it is not particular to
+`SourceNeed`: a `SourceDecision` crosses the same way, into a `RequirementDecision`, on the terms K58 states
+and this document's §11 uses (K43, K58).
 
 **The kind rides along with the definition, and `SourceNeed`s are not classified** (K8). This is what keeps
 the two axes from colliding: a `SourceNeed` is selected against by its passage, and the classification of the
@@ -587,6 +587,30 @@ somebody anticipated by writing a rule, which is the case that least needs catch
 produce a restatement for a given kind belong to an implementation, and who reviews it and when belongs to a
 rule-set.
 
+### The complete requirement
+
+**A requirement is complete when every parameter it has has a value and no choice about its values is open**
+(K128). Until then it is incomplete, and it is not hidden: each missing value is an open
+`RequirementClarification`, and each disagreement an open `RequirementChoice` (§11), so the project manager
+sees what it still lacks. **The walk of the `RuleSet`s that reach a requirement runs once, when the
+requirement becomes complete, and never on one that is not** (`03-project-lifecycle-model.md` §3). A rule
+therefore always judges values that sources state and that nobody disputes.
+
+**Where sources disagree about the same thing, there is one requirement, not two** (K123). Their statements
+are refined into one `Requirement`; while they disagree its value is missing, and the disagreement is a choice
+between them (§11, K126). Whether two statements are about the same thing is the modeller's judgement (K24).
+Two `Requirement`s in force, of one kind, carrying incompatible values for the same thing are a refinement
+error, which review finds; no syntactic constraint can, because sameness is a judgement.
+
+**A complete requirement is never changed in place** (K129). Information that replaces what an earlier
+statement said arrives as a `SourceUpdate` (§5, K132), and the requirement refining it — together with the
+`SourceNeed`s of the old one that still supply its subject — carries `supersedes`, a list-valued edge naming
+the requirements it replaces (K133); its values name the update, and it is walked once when it is complete. A
+source that states a different value without replacing anything raises a `RequirementChoice` on the
+requirement between its value and the new one (§11, K126). A decision to drop a requirement with nothing in
+its place is a `SourceDecision`, whose `RequirementDecision` retires it (K62). Nothing resolves itself: every
+change has a source behind it, and the source a speaker.
+
 ### No longer in force
 
 **A requirement is never deleted.** When it is retired, superseded, or found wrong, it carries the property
@@ -606,7 +630,18 @@ reader can tell "this was resolved" apart from "this was made to disappear."
 Retirement arrives the way everything else here arrives: through a source (K11), and now with a traceable
 element behind it rather than a bare phrase. A `RequirementDecision` carries `retires`, an edge to zero or
 more `Requirement`s (K62), and a `Requirement`'s becoming no longer in force is that edge taking effect: a
-`RequirementDecision`, which never exists without a `SourceDecision` origin (K61), names it.
+`RequirementDecision`, which never exists without a `SourceDecision` origin (K61), names it. A requirement
+also leaves force when a requirement in force supersedes it (K133): one refining a `SourceUpdate` names, by
+`supersedes`, the requirements it replaces, and they are no longer in force. The cause is still a source (K11)
+— the update the superseding requirement refines — and nothing is deleted (K5).
+
+**Leaving force is named from both ends** (K134). Each way out of force is one association with two named
+ends: a `RequirementDecision` `retires` a requirement, which is `retiredBy` it, at most one decision per
+requirement; a `Requirement` `supersedes` another, which is `supersededBy` it, in any number. A requirement no
+longer in force therefore names, on its own side, what took it out — one decision, or one or more superseding
+requirements, never both — because the event happens in its life, and its cause is named where it happens. How
+an association is written down is notation (K15). Both associations stay in this model and are dropped at the
+projection, as retirement is (K35).
 
 **One syntactic constraint follows** (K24), and it is argued here, beside the property it refers to: a
 requirement in this model carries exactly one of "in force" or "no longer in force" at any time — never
@@ -620,17 +655,21 @@ whenever it is read, and a design language never binds to it. What a design lang
 which does have identity (K21).
 
 **What the projection carries** is the requirement model as `01-requirement-model.md` defines it: the
-requirements in force, with their identity, text and values, and the derivation edges between them.
+requirements in force, each complete, with their identity and finished text, and the derivation edges between
+them (K130). A requirement's values do not cross: its finished text states every one of them (§9, K111), and
+the source each value names belongs to this model. A requirement in force that is not yet complete has no
+finished text to carry; whether a baseline may be cut while one exists is OQ35.
 
 **What it drops** is everything this model adds, and every requirement no longer in force. Sources and the
 `replies` edge between them; `SourceNeed`s, `SourceDecision`s and the `refine` edge that names them;
 `SourceQuestion`s and `RequirementQuestion`s — new elements of this model, and no more able to cross into the
 product than anything else this list names; definitions, the edge by which a requirement names the one it was
 produced under, their specialisation hierarchy and therefore the kind of any requirement (K33);
-`RequirementDecision`s; and findings. A requirement no longer in force is dropped with them, and so is
-the property that says it is: being no longer in force is a property of this model, not of the product (K35).
-A reader of the requirement model alone sees a register of what is in force, with traceability between its
-requirements and nothing else, which is exactly what makes that document independently adoptable (K19).
+`RequirementDecision`s; and findings. A requirement's values, and the sources they name, are dropped with them
+(K130). A requirement no longer in force is dropped with them, and so is the property that says it is: being
+no longer in force is a property of this model, not of the product (K35). A reader of the requirement model
+alone sees a register of what is in force, with traceability between its requirements and nothing else, which
+is exactly what makes that document independently adoptable (K19).
 
 **Why retirement does not cross.** One argument says it should, and it does not hold. That argument is a
 seam argument: a design language binds to the product, so a requirement retiring between baselines would not
