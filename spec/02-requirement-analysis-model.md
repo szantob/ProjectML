@@ -195,10 +195,10 @@ Both readings treat such a passage as bearing a requirement. Neither treats it a
 A `SourceNeed` carries nothing beyond `SourceElement`'s three shared attributes — identity, its anchor, and
 being material of record (§4, K57). It does not carry a value: what a `SourceNeed`'s passage expresses, once
 interpreted, is a reading of the passage rather than a fact about it, and a reading belongs on the model's own
-side, in the values a `Requirement` carries in this model once `refine` (§10) has run, each naming the source
-that states it (§7, K57, K125). This revises how D27 was previously read as applying directly to this element:
-a `SourceNeed` is not a place a value occurs, because nothing on the source side is a value at all. A value
-occurs on a `Requirement`, and names the source that states it (§7, K125).
+side, in the values a `Requirement` carries in this model once `refine` (§10) has run (§7, K57, K136). This
+revises how D27 was previously read as applying directly to this element: a `SourceNeed` is not a place a
+value occurs, because nothing on the source side is a value at all. A value occurs on a `Requirement`, and is
+stated by a `SourceNeed` the requirement refines (§7, K136).
 
 The name is adopted rather than coined: *stakeholder need* is ISO/IEC/IEEE 29148's term (D23), carried by
 `SourceNeed` on the same terms K47 states for every prefixed element — the prefix marks which side of the
@@ -231,12 +231,14 @@ refines is a failed check (K38). Like every `SourceElement` it carries nothing b
 being material of record (K57): what it replaces is not read off the passage on this side but on the model's
 own, where the requirement refining it names, by `supersedes`, the requirements it replaces (§10, K133).
 
-**A correction is neither a disagreement nor a decision.** A passage that states a different value without
-replacing anything — *800 are coming* — is a disagreement, and raises a choice (§11, K126). A passage that
-drops something with nothing in its place — *we no longer need this* — is a `SourceDecision` (§6). A
-correction is neither: read as a decision it would owe alternatives and a rationale it rarely states, which
-the modeller would then have to supply. Which of the three a passage is, is read when it is extracted, and is
-the modeller's responsibility (K40); whether its speaker has standing to replace what was said is OQ16's.
+**A correction is neither a contradiction nor a decision.** A passage that states a different value without
+replacing anything — *800 are coming* — contradicts what was said: the `SourceNeed` anchored in it is refined
+into a requirement of its own, and the parameter's ask raises a choice over the requirements that contradict
+(§10, §11, K139, K141). A passage that drops something with nothing in its place — *we no longer need this* —
+is a `SourceDecision` (§6). A correction is neither: read as a decision it would owe alternatives and a
+rationale it rarely states, which the modeller would then have to supply. Which of the three a passage is, is
+read when it is extracted, and is the modeller's responsibility (K40); whether its speaker has standing to
+replace what was said is OQ16's.
 
 ## 6. `SourceDecision`
 
@@ -289,19 +291,21 @@ supplies (K27).
 | text | The template the requirement's wording is produced from, with places for its parameters |
 | when it applies | One sentence stating when this definition comes into play. It is prose, not an evaluable expression (D20). Its absence means applicability has not been written down, which is a gap, not a claim that the definition applies unconditionally |
 | parameters | Each parameter declares a value domain, and carries an identity local to the definition declaring it (K106). Which domains exist is an implementation's business, exactly as the set of kinds is (K30). What a domain declares about its values is stated below (K101) |
-| what to ask | For each parameter, how a non-expert is asked for what is missing. It is a rule: where the parameter has no value on a requirement, or the sources stating one disagree, it raises the question (K116) |
+| what to ask | For each parameter, how a non-expert is asked for what is missing. It is a rule: where the parameter has no value on a requirement it raises a clarification, and where the modeller has judged, at extraction, that requirements of one kind state values of it for the same thing, and the values contradict, it raises a choice between them (K116, K141) |
 | how it would be verified | The method by which a requirement produced under this definition would be shown to hold. Prose |
 | wording rule | A well-formedness rule for the wording a requirement produced under this definition must satisfy. Prose, on the same terms *how it would be verified* is prose (K66) |
 
-**A value exists only where a source states it** (K125). A parameter's value on a requirement names the source
-that states it, and where no source states one the value is missing; nothing else puts a value into the model.
-A value is never supplied by the modeller, who administers and decides nothing for the project. A value
-supplied to keep work moving is stated by somebody with standing, in a source like any other; a quantity
-computed from other values is design, beyond the seam, or is stated by whoever computed it, as a source; and
-an implementation's default is a suggestion a parameter's ask may carry, which becomes a value only when
-somebody states it (K127). How a value and the source it names are written down is notation, and an
-implementation's (K15). The ask is how a missing value is obtained from somebody who holds it — which is why
-*what to ask* sits beside *parameters* and is written per parameter rather than per definition.
+**A value exists only where a `SourceNeed` states it** (K125, K136). A parameter's value on a requirement is
+stated by a `SourceNeed` the requirement refines, and where none states one the value is missing; nothing else
+puts a value into the model, and a requirement reaches a source only through the `SourceNeed`s it refines. A
+value is never supplied by the modeller, who administers and decides nothing for the project. A value supplied
+to keep work moving is stated by somebody with standing, in a source like any other, and reaches the
+requirement through a `SourceNeed` anchored there; a quantity computed from other values is design, beyond the
+seam, or is stated by whoever computed it, as a source; and an implementation's default is a suggestion a
+parameter's ask may carry, which becomes a value only when somebody states it (K127). How a value and the
+`SourceNeed` stating it are written down is notation, and an implementation's (K15). The ask is how a missing
+value is obtained from somebody who holds it — which is why *what to ask* sits beside *parameters* and is
+written per parameter rather than per definition.
 
 **The metamodel enumerates no value domains.** A value has a domain — the range of things it could be — but
 which domains exist, and what they are called, is declared by an implementation rather than fixed here. This
