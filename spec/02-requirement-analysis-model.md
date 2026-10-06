@@ -548,11 +548,11 @@ define its semantics.
 A requirement is not written; it is **derived**. The founding record's procedure states the step: a
 `SourceNeed`'s passage selects the definition, and the rules on that definition turn the stater's free words
 into the requirement's bound professional wording. The parameters the definition has, its own and those it
-inherits (§9, K107), are filled from the `SourceNeed`'s passage and from other sources that state them, and
-each value names the source that states it (§7, K125). The same crossing — a passage anchored on the source
-side, restated on the model's own, under a definition's rules — is `refine`, and it is not particular to
-`SourceNeed`: a `SourceDecision` crosses the same way, into a `RequirementDecision`, on the terms K58 states
-and this document's §11 uses (K43, K58).
+inherits (§9, K107), are filled from the passages of the `SourceNeed`s the requirement refines, and each value
+is stated by one of them (§7, K136). The same crossing — a passage anchored on the source side, restated on
+the model's own, under a definition's rules — is `refine`, and it is not particular to `SourceNeed`: a
+`SourceDecision` crosses the same way, into a `RequirementDecision`, on the terms K58 states and this
+document's §11 uses (K43, K58).
 
 **The kind rides along with the definition, and `SourceNeed`s are not classified** (K8). This is what keeps
 the two axes from colliding: a `SourceNeed` is selected against by its passage, and the classification of the
@@ -564,10 +564,15 @@ modeller's to classify.
 The edge that records the derivation is the **refinement** edge. It sits on the requirement and names the
 `SourceNeed`s the requirement was assembled from, by their identifiers (D28). It is list-valued rather than
 singular, because a requirement is routinely assembled from more than one statement, and an edge that could
-name only a single `SourceNeed` would force an arbitrary choice among equally contributing ones (D48). This is the
-half of a requirement's origin that `01-requirement-model.md` describes as projected away: it is defined
+name only a single `SourceNeed` would force an arbitrary choice among equally contributing ones (D48). This is
+a requirement's origin, which `01-requirement-model.md` §2 describes as projected away (K145): it is defined
 here, where `SourceNeed` is defined, and the invariant that every requirement names its origin is only
-decidable with this edge in view.
+decidable with this edge in view. **Every requirement refines at least one `SourceNeed`** (K145). The
+derivation edge between requirements (`01-requirement-model.md` §2) is never an origin: a requirement derived
+from others and refining no need would carry content the modeller produced, and the modeller is answerable for
+nothing in the project. A requirement derived from another refines a `SourceNeed` of its own, the client's
+answer stating the elaboration, and derives from the requirement it elaborates (`01-requirement-model.md` §2,
+K146).
 
 **A requirement also names the definition it was produced under.** Beside the refinement edge, and unlike it,
 a requirement carries an edge naming exactly one `RequirementDefinition` — the definition a `SourceNeed`'s
@@ -591,29 +596,47 @@ somebody anticipated by writing a rule, which is the case that least needs catch
 produce a restatement for a given kind belong to an implementation, and who reviews it and when belongs to a
 rule-set.
 
+### What a requirement carries in this model
+
+A `Requirement` in this model carries what `01-requirement-model.md` §2 gives it — its identity, the
+derivation edge, and its finished text once it is complete — and what this model adds (K137).
+
+| Attribute or edge | Carries |
+|---|---|
+| values | At most one value per parameter the requirement has, each stated by a `SourceNeed` the requirement refines (§7, K136). A parameter with none has no value |
+| text | Its finished text, produced from its definition's template once every parameter has a value (§9, K111); none before |
+| `refine` | The `SourceNeed`s it is assembled from: at least one, list-valued (D48, K145) |
+| produced under | The `RequirementDefinition` it was produced under: exactly one, and not abstract (K8, K67, K109) |
+| `supersedes`, `supersededBy` | The requirements it replaces, and those replacing it (K133, K134) |
+| `retiredBy` | The `RequirementDecision` that took it out of force, where one did: at most one (K134, K144) |
+
 ### The complete requirement
 
-**A requirement is complete when every parameter it has has a value and no choice about its values is open**
-(K128). Until then it is incomplete, and it is not hidden: each missing value is an open
-`RequirementClarification`, and each disagreement an open `RequirementChoice` (§11), so the project manager
-sees what it still lacks. **The walk of the `RuleSet`s that reach a requirement runs once, when the
-requirement becomes complete, and never on one that is not** (`03-project-lifecycle-model.md` §3). A rule
-therefore always judges values that sources state and that nobody disputes.
+**A requirement is incomplete exactly when a parameter it has has no value, so that its finished text cannot
+be produced from its template; otherwise it is complete** (K140). An incomplete requirement is not hidden:
+each missing value is an open `RequirementClarification` (§11), so the project manager sees what it still
+lacks. An open choice over a requirement does not make it incomplete, since a choice is between requirements,
+not about one requirement's values (K139). **The walk of the `RuleSet`s that reach a requirement runs once,
+when the requirement becomes complete, and never on one that is not** (`03-project-lifecycle-model.md` §3,
+K128). A rule therefore always judges values that `SourceNeed`s state.
 
-**Where sources disagree about the same thing, there is one requirement, not two** (K123). Their statements
-are refined into one `Requirement`; while they disagree its value is missing, and the disagreement is a choice
-between them (§11, K126). Whether two statements are about the same thing is the modeller's judgement (K24).
-Two `Requirement`s in force, of one kind, carrying incompatible values for the same thing are a refinement
-error, which review finds; no syntactic constraint can, because sameness is a judgement.
+**Where `SourceNeed`s contradict one another, there are two requirements, not one** (K139). Each contradicting
+`SourceNeed` is refined into a requirement of its own, carrying its own value, and a `RequirementChoice` is
+raised over the requirements that contradict (§11, K141). Whether two statements are about the same thing is
+the modeller's judgement, made when they are extracted (K24, K40). A contradiction never makes a value
+missing, and a requirement never holds two values for one parameter. The model records the state the project
+is in, contradictions included, and raises them; it does not resolve them on the project's behalf.
 
 **A complete requirement is never changed in place** (K129). Information that replaces what an earlier
-statement said arrives as a `SourceUpdate` (§5, K132), and the requirement refining it — together with the
-`SourceNeed`s of the old one that still supply its subject — carries `supersedes`, a list-valued edge naming
-the requirements it replaces (K133); its values name the update, and it is walked once when it is complete. A
-source that states a different value without replacing anything raises a `RequirementChoice` on the
-requirement between its value and the new one (§11, K126). A decision to drop a requirement with nothing in
-its place is a `SourceDecision`, whose `RequirementDecision` retires it (K62). Nothing resolves itself: every
-change has a source behind it, and the source a speaker.
+statement said arrives as a `SourceUpdate` (§5, K132). The requirement refining it carries `supersedes`, a
+list-valued edge naming the requirements it replaces (K133), and also refines those `SourceNeed`s of the old
+requirement that still state what it keeps: its values are stated by the update for what that replaces, and by
+those needs for the rest (K136, K138). It is walked once, when it is complete. Adding a derivation to a
+requirement that exists does not change it in place either (K147). A `SourceNeed` that states a different
+value without replacing anything contradicts what was said, and is refined into a requirement of its own
+(K139). A decision to drop a requirement with nothing in its place is a `SourceDecision`, whose
+`RequirementDecision` retires it (K62). Nothing resolves itself: every change has a source behind it, and the
+source a speaker.
 
 ### No longer in force
 
@@ -635,9 +658,12 @@ Retirement arrives the way everything else here arrives: through a source (K11),
 element behind it rather than a bare phrase. A `RequirementDecision` carries `retires`, an edge to zero or
 more `Requirement`s (K62), and a `Requirement`'s becoming no longer in force is that edge taking effect: a
 `RequirementDecision`, which never exists without a `SourceDecision` origin (K61), names it. A requirement
-also leaves force when a requirement in force supersedes it (K133): one refining a `SourceUpdate` names, by
+also leaves force when another requirement supersedes it (K133, K144): one refining a `SourceUpdate` names, by
 `supersedes`, the requirements it replaces, and they are no longer in force. The cause is still a source (K11)
-— the update the superseding requirement refines — and nothing is deleted (K5).
+— the update the superseding requirement refines — and nothing is deleted (K5). A requirement is no longer in
+force once it has a `retiredBy` or a `supersededBy`, whatever the state of the element at the other end
+(K144): a superseding requirement that later leaves force does not return the one it replaced to force,
+because leaving force is an event in a requirement's life and is final.
 
 **Leaving force is named from both ends** (K134). Each way out of force is one association with two named
 ends: a `RequirementDecision` `retires` a requirement, which is `retiredBy` it, at most one decision per
@@ -661,19 +687,21 @@ which does have identity (K21).
 **What the projection carries** is the requirement model as `01-requirement-model.md` defines it: the
 requirements in force, each complete, with their identity and finished text, and the derivation edges between
 them (K130). A requirement's values do not cross: its finished text states every one of them (§9, K111), and
-the source each value names belongs to this model. A requirement in force that is not yet complete has no
-finished text to carry; whether a baseline may be cut while one exists is OQ35.
+the `SourceNeed` stating each value belongs to this model. A requirement in force that is not yet complete has
+no finished text to carry; whether a baseline may be cut while one exists is OQ35. A baseline is cut only once
+every `RequirementChoice` raised over contradicting requirements is decided (§11, K142). A decision that the
+contradiction is not real keeps every one of them in force, and every one crosses.
 
 **What it drops** is everything this model adds, and every requirement no longer in force. Sources and the
 `replies` edge between them; `SourceNeed`s, `SourceDecision`s and the `refine` edge that names them;
 `SourceQuestion`s and `RequirementQuestion`s — new elements of this model, and no more able to cross into the
 product than anything else this list names; definitions, the edge by which a requirement names the one it was
 produced under, their specialisation hierarchy and therefore the kind of any requirement (K33);
-`RequirementDecision`s; and findings. A requirement's values, and the sources they name, are dropped with them
-(K130). A requirement no longer in force is dropped with them, and so is the property that says it is: being
-no longer in force is a property of this model, not of the product (K35). A reader of the requirement model
-alone sees a register of what is in force, with traceability between its requirements and nothing else, which
-is exactly what makes that document independently adoptable (K19).
+`RequirementDecision`s; and findings. A requirement's values are dropped with them (K130). A requirement no
+longer in force is dropped with them, and so is the property that says it is: being no longer in force is a
+property of this model, not of the product (K35). A reader of the requirement model alone sees a register of
+what is in force, with traceability between its requirements and nothing else, which is exactly what makes
+that document independently adoptable (K19).
 
 **Why retirement does not cross.** One argument says it should, and it does not hold. That argument is a
 seam argument: a design language binds to the product, so a requirement retiring between baselines would not
@@ -707,12 +735,11 @@ recoverable. Nothing the projection drops is deleted by dropping it.
 
 The second is stated here because the argument above rests on it: **every element the projection carries
 resolves back to its origin in this model.** A requirement in the product is the same requirement here, under
-the same identity, and everything this model holds about it — its source, its `SourceNeed`, its definition,
-the `RequirementDecision`s and the findings around it — is reachable from that identity. This is the leg
-that lets a baseline carry only what is in force without losing anything: the product is a narrower view of
-this model, never a separate register that could drift from it, so no element of the product is a dead end
-and nothing about one
-has to be reconstructed.
+the same identity, and everything this model holds about it — the `SourceNeed`s it refines and the sources
+they anchor into, its definition, the `RequirementDecision`s and the findings around it — is reachable from
+that identity. This is the leg that lets a baseline carry only what is in force without losing anything: the
+product is a narrower view of this model, never a separate register that could drift from it, so no element of
+the product is a dead end and nothing about one has to be reconstructed.
 
 Together the two conditions are what makes the drop legitimate, and they are why this model, and not the
 product, is where a project is worked.
