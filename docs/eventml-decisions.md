@@ -7,10 +7,10 @@ ProjectML resolves those numbers. This file does, so that a reader here can foll
 leaving the repository, and so that house rule 10 — record the source — is met for material inherited
 rather than coined.
 
-**What this is not.** It is not a copy of EventML's design records, and it carries no rationale: the
-reasoning stays where it was written, and a reader who needs it follows the link. It is not normative, and
-it decides nothing. Where a statement below and a ProjectML decision disagree, the ProjectML decision
-governs here — see *Overturned*, which currently holds two entries.
+**What this is not.** It is not a copy of EventML's design records, and it carries no rationale: the reasoning
+stays where it was written, and a reader who needs it follows the link. It is not normative, and it decides
+nothing. Where a statement below and a ProjectML decision disagree, the ProjectML decision governs here — see
+*Overturned*, which currently holds three entries.
 
 **Two numbering series, and they do not collide.** EventML numbers its decisions `D1`–`D55`. ProjectML
 numbers its own `K1`–`K18` and continues that series. A `D` number always means EventML; a `K` number
@@ -59,7 +59,6 @@ header says so, and the founding record's OQ6 treats it as such: the starting po
 | D40 | `Source` becomes an entity | K1 — `Source` is a kernel entity |
 | D45 | `Source` is material of record, and its kind and origin attributes extend to admit riders, plans and regulations | K6, and the founding record's §5 finding that those two enumerations carry domain leaks |
 | D48 | The refinement edge holds a list of need identifiers, not one | K1 — a requirement is assembled from more than one statement |
-| D49 | Every requirement names its origin — refinement, derivation, or both; carrying neither is an incomplete record rather than a root | K9, which rests on this invariant |
 | D50 | Checks are organised in two columns: what a script decides, and what a person or an agent decides | The syntactic/semantic distinction, and K7's posture that the kernel defines what a finding is without detecting it |
 
 ## Imported — the subject moves to ProjectML
@@ -96,18 +95,19 @@ the repository that took it, about a report that repository has and this metamod
 
 ## Overturned
 
-Two EventML decisions are contradicted by ProjectML decisions. They are recorded rather than quietly
-dropped, because both shipped in `v0.4.0`.
+Three EventML decisions are contradicted by ProjectML decisions. They are recorded rather than quietly
+dropped, because all three shipped in `v0.4.0`.
 
 | # | EventML | ProjectML |
 |---|---|---|
 | D31 | A need that no requirement refines is reported by question rule 8, and **stays a question** — the rule having two readings, context or a requirement nobody wrote, which only a person can choose between | **K38** — rule 8 is a failed check, not a question. The second reading does not exist: a need obliges something (**K37**), so a passage obliging nothing is not a need to be adjudicated but one that should not have been extracted. The check has two resolutions — write the requirement, or delete the need — decided by whether a declared definition covers the statement |
 | D46 | Question rule 9 reports a requirement whose origin was never recorded, and **stays a question** | **K9** — rule 9 is a failed check, not a question. The rule's own text calls it an invariant, and the parallel case one layer down is already routed to a failed check |
+| D49 | Every requirement names its origin — refinement, derivation, or both; carrying neither is an incomplete record rather than a root | **K145** — every requirement refines at least one need, and a derivation is never an origin. EventML did not yet have the two-step analysis — from a source, through a need, to a requirement, and from the requirement model on to the next model beyond the seam — so a requirement derived from others alone could stand there; here its content would have nobody answerable for it |
 
-The two overturns are one move made twice. Rules 8 and 9 are a single break in the evidence chain read from
-opposite ends — a need with no requirement beneath it, and a requirement with nothing above it — and EventML
-routed both of them to a question. K9 reclassified one and K38 the other, so both are now failed checks and
-the asymmetry that ran between them for the interval separating the two decisions is gone.
+The overturns of D31 and D46 are one move made twice. Rules 8 and 9 are a single break in the evidence chain
+read from opposite ends — a need with no requirement beneath it, and a requirement with nothing above it — and
+EventML routed both of them to a question. K9 reclassified one and K38 the other, so both are now failed
+checks and the asymmetry that ran between them for the interval separating the two decisions is gone.
 
 The founding record's §6 treats D46 as a change to released work, available independently of everything
 else in ProjectML, and names the consequence that goes with it: the claim that rule 9 is another rule "one
