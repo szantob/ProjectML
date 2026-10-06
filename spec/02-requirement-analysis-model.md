@@ -780,10 +780,11 @@ The vocabulary of the *by* attribute is open, on exactly the terms §2 sets out 
 list fixed here would carry one domain's parties into every project that adopted the metamodel.
 
 **`RequirementDecision` carries `retires`: an edge to zero or more `Requirement`s.** List-valued, and may be
-empty, on the same terms `refine` and the derivation edge are elsewhere in this collection (K62). This is the
-edge this model previously lacked entirely — `Decision`, as this document defined it before this revision,
-named nothing it resolved, which is the defect this whole restructuring exists to fix. §10 states how
-`retires` now carries the weight `01-requirement-model.md` §3's *"no longer in force"* property depends on.
+empty, as the derivation edge is elsewhere in this collection; `refine`, list-valued too, never is (K62,
+K145). This is the edge this model previously lacked entirely — `Decision`, as this document defined it before
+this revision, named nothing it resolved, which is the defect this whole restructuring exists to fix. §10
+states how `retires` now carries the weight `01-requirement-model.md` §3's *"no longer in force"* property
+depends on.
 
 **`RequirementDecision` carries one of two states, open or closed — but this document does not state what
 closes one.** Working out the criterion depends on the same territory as what finding a `RequirementDecision`
@@ -795,9 +796,10 @@ slot this document states without a claim about what fills it.
 **A `RequirementDecision` is not a value, and nothing about deciding sets one silently.** A decision is a
 choice made in the presence of alternatives, by somebody with standing, recorded with the alternatives and the
 rationale; what changes it is deciding again, which under K11 means a new source and a new
-`RequirementDecision` beside the old one rather than an edit to it. Where a decision settles a value — a
-choice between disagreeing sources (K126) — the value names the source the decision came from, as every value
-names its source (§7, K125). A correction is not a decision: it arrives as a `SourceUpdate` (§5, K132).
+`RequirementDecision` beside the old one rather than an edit to it. A decision settling a contradiction sets
+no value: it keeps one of the contradicting requirements and retires the others, or decides that the
+contradiction is not real and keeps them all (K142). A correction is not a decision: it arrives as a
+`SourceUpdate` (§5, K132).
 
 ### `RequirementQuestion`
 
@@ -817,6 +819,7 @@ classDiagram
     }
     class RequirementChoice {
         candidate alternatives
+        modeller's flag
     }
     RequirementQuestion <|-- RequirementInquiry
     RequirementQuestion <|-- RequirementChoice
@@ -831,7 +834,7 @@ A `RequirementQuestion` carries, beyond its identity, three things shared by eve
 |---|---|
 | statement | A free, professional-register text statement of the question |
 | triggered by | A reference to the `Rule` (`03-project-lifecycle-model.md` §3) that fired and produced it |
-| triggering `Requirement`s | Every `Requirement` that triggered it. List-valued, and may grow while the question stays open (`03-project-lifecycle-model.md` §3, K75) |
+| triggering `Requirement`s | Every `Requirement` that triggered it. List-valued: a choice over contradicting requirements names each of them, and grows, while it is open, when a further one contradicts (`03-project-lifecycle-model.md` §3, K141) |
 
 It also carries one of two states (K60).
 
@@ -868,31 +871,42 @@ discharge.
 **`RequirementChoice` additionally carries the candidate alternatives being decided among** (K80). A conflict
 needs the options named before anyone can decide among them, and these alternatives deliberately prefigure
 what `RequirementDecision`'s own *the choice* attribute (above) will record once discharged — the same
-alternatives, read once as open and once as settled.
+alternatives, read once as open and once as settled. **A `RequirementChoice` raised over contradicting
+requirements also carries the modeller's flag**: whether the modeller judges the contradiction real (K142).
+The flag is advice, not a decision. The project manager decides, at the latest when a baseline is cut, to keep
+one requirement and retire the others, or that the contradiction is not real and every one stays in force.
+Nothing is merged, in this model or in a baseline; one design element satisfying several of them is design,
+beyond the seam.
 
 **`RequirementClarification` carries nothing beyond the shared shape, and no `discharges`** (K119, K121). A
 parameter's ask raises it where the parameter has no value on a requirement, one per `Requirement` and
-parameter. It is open while the value stays missing, and closes when a source states the value, or when its
-requirement is no longer in force. What closed it needs no edge of its own: the value names the source that
-states it (§7, K125), and the chain from the question runs through `poses`, `replies` and `refine` to that
-source. One posed `SourceQuestion` may carry several clarifications, each naming it by `poses`.
+parameter. It is open while no `SourceNeed` the requirement refines states the parameter's value and the
+requirement is in force, and closes when one does, or when the requirement leaves force (K143). What closed it
+needs no edge of its own: the value is stated by a `SourceNeed` the requirement refines (§7, K136), and the
+chain from the question runs through `poses`, `replies` and `refine` to it. One posed `SourceQuestion` may
+carry several clarifications, each naming it by `poses`.
 
 **The process, end to end.** A `SourceNeed`'s passage is refined into a `Requirement`, and the passage does
 not state a parameter's value, so the value is missing. The parameter's ask raises a
 `RequirementClarification`, naming the ask as its *triggered by* and the requirement as its triggering
 `Requirement`; the project manager can see it from here. The modeller puts the question to somebody, in a
-source, and the clarification poses that `SourceQuestion`. A later source replies; its passage is refined into
-the same requirement, whose refinement edge is list-valued (§10); the value names that source, and the
-clarification closes. If the answer is that nobody knows yet, the value stays missing and the clarification
-posed; how long it may wait is OQ13's interval and OQ34's question. If the answer disagrees with another
-source, the clarification closes and the same ask raises a `RequirementChoice`. If the answer arrives unasked,
-the clarification closes all the same, and the chain lacks only its `poses` and `replies` links.
+source, and the clarification poses that `SourceQuestion`. A later source replies; a `SourceNeed` anchored in
+it is refined into the same requirement, whose refinement edge is list-valued (§10); that `SourceNeed` states
+the value, and the clarification closes. If the answer is that nobody knows yet, the value stays missing and
+the clarification posed; how long it may wait is OQ13's interval and OQ34's question. If the value the answer
+states contradicts the value another requirement of the same kind carries for the same thing, the
+clarification closes all the same, and the same ask raises a `RequirementChoice` over the two requirements, or
+extends the one already open over the other (K139, K141). If the answer arrives unasked, the clarification
+closes all the same, and the chain lacks only its `poses` and `replies` links.
 
-**A disagreement between sources raises a `RequirementChoice`, not a state of the value** (K118, K126). The
-parameter's ask raises it, one per `Requirement` and parameter; its candidate alternatives are every competing
-statement, each with its source, and a further disagreeing source adds to them rather than opening another
-choice. One choice over all of them, not one per pair, because three or more sources may disagree. The project
-manager decides, and the decision enters as a source (K11, K61), which the value then names.
+**A contradiction raises a `RequirementChoice` between requirements, not a state of a value** (K139, K141).
+Where the modeller has judged, at extraction, that requirements of one kind state values of a parameter for
+the same thing, and the values contradict, the parameter's ask raises a choice naming every one of them as its
+triggering requirements; a further contradicting requirement extends it while it is open, rather than opening
+another. Its candidate alternatives are the requirements, each with the `SourceNeed`s it refines. One choice
+over all of them, not one per pair, because three or more may contradict. Two requirements of one kind are
+produced from one template, so where they contradict they differ in a parameter's value, and no contradiction
+of one kind goes unraised. The project manager decides, and the decision enters as a source (K11, K61).
 
 **How a question is worded** (K122). A clarification's *statement* starts from its parameter's ask, which the
 modeller may fit to the requirement in hand. A `RequirementChoice`'s and a `RequirementInquiry`'s statement
@@ -919,26 +933,29 @@ its cause: a `RequirementQuestion`'s cause is not merely guaranteed to exist, it
 **A `RequirementDefinition`'s *what to ask* (§7) is not a second origin either: it is a `Rule`.** Every
 parameter's ask is a `ValueRule` belonging to the rule-set of the definition that declares the parameter,
 inherited with it (§9, K112), in force for as long as the parameter is declared and never taken out of force
-on its own (K115, K116; `03-project-lifecycle-model.md` §3). A missing or disputed value therefore reaches the
-project manager by the same route as every other question, and no value can be missing or disputed in silence.
+on its own (K115, K116; `03-project-lifecycle-model.md` §3). A missing value, and a contradiction between
+requirements of one kind, therefore reach the project manager by the same route as every other question, and
+neither can stand in silence. Whether the ask needs to be a `Rule` at all is OQ38.
 
 **Three mechanisms are worked out, and one is open.** A `Requirement` incompatible with one already in force,
 canonically on terms a project had to state because the two are of different kinds, is
 `03-project-lifecycle-model.md` §3's `ConflictRule`, raising a `RequirementChoice`. A `Requirement` whose kind
-implies that another kind should also exist is that section's `CompletenessRule`, raising a
-`RequirementInquiry` — this was OQ17's own original case, now answered. A parameter with no value, or with
-sources that disagree about it, is that section's `ValueRule`, raising a `RequirementClarification` or a
-`RequirementChoice` (K115–K118). When a wait for an answer becomes a decision has no worked mechanism; it is
-held by a prerequisite named in `06-decisions.md` under OQ18. Whether a default may stay silent needs none: no
-value is a default, since every value names its source (K127).
+implies a requirement of another kind deriving from it is that section's `CompletenessRule`, raising a
+`RequirementInquiry` — this was OQ17's own original case, now answered. A parameter with no value is that
+section's `ValueRule`, raising a `RequirementClarification`; requirements of one kind contradicting in a
+parameter's value are the same rule, raising a `RequirementChoice` between them (K115, K116, K139, K141). When
+a wait for an answer becomes a decision has no worked mechanism; it is held by a prerequisite named in
+`06-decisions.md` under OQ18. Whether a default may stay silent needs none: no value is a default, since every
+value is stated by a `SourceNeed` (K127, K136).
 
 **`RequirementQuestion` is not a *review finding*, and belongs to no row of the findings table below** (K89,
 narrowing K77). It does share the three properties that table uses to seat a review finding apart from the
 other two — it is judged, it is modelled, and it carries state (K60) — but the table classifies what a
 **review** produces over this model (K10), and walking a rule-set is ordinary modelling work performed when a
-requirement becomes complete (§10, K128), not a separate act of review. A question a `ValueRule` raises is not
-even judged: whether a value is present, and whether its sources agree, is decided without judgement — so
-questions now come from two modes of checking, and neither is review (K89, narrowed).
+requirement becomes complete (§10, K128), not a separate act of review. A clarification a `ValueRule` raises
+is not even judged: whether a value is present is decided without judgement. The choice it raises rests on the
+modeller's judgement, made at extraction, that requirements state values for the same thing (K141). Questions
+therefore come from two modes of checking, and neither is review (K89, narrowed).
 
 The table's own rules confirm the separation rather than merely failing to fit it. A review finding *"is
 opened by a source"*, where a `RequirementQuestion` is raised by a `Rule` firing over the model; and
@@ -947,12 +964,13 @@ opened by a source"*, where a `RequirementQuestion` is raised by a `Rule` firing
 **Three checking modes exist, and only two had names before this.** Static model checking decides without
 judgement and produces a failed check or a question, recomputed rather than modelled. Walking a `RuleSet`
 takes judgement and produces a `RequirementQuestion` (`03-project-lifecycle-model.md` §3, K86). A `ValueRule`
-produces one without judgement, since it reads no text, only whether a value is present and whether its
-sources agree; its question is modelled all the same, so a `RequirementQuestion` comes from two of these
-modes, and from review from neither (K89, narrowed). A review takes judgement and produces a review finding.
-K77 saw only the first distinction — judgement or none — and so placed `RequirementQuestion` with review
-findings on the strength of the three shared properties. What a review *is*, as an act, this document still
-does not state; that gap is recorded as OQ23 in `06-decisions.md`.
+produces its questions without a judgement of its own, since it reads no text: a clarification on whether a
+value is present, and a choice on the judgement the modeller made at extraction, that requirements state
+values for the same thing (K141); its questions are modelled all the same, so a `RequirementQuestion` comes
+from two of these modes, and from review from neither (K89, narrowed). A review takes judgement and produces a
+review finding. K77 saw only the first distinction — judgement or none — and so placed `RequirementQuestion`
+with review findings on the strength of the three shared properties. What a review *is*, as an act, this
+document still does not state; that gap is recorded as OQ23 in `06-decisions.md`.
 
 This metamodel introduces no `Task`, or any output shaped like one, for a `RequirementQuestion` in the raised
 state. The state itself is already the complete signal: querying for raised `RequirementQuestion`s is finding
@@ -995,15 +1013,15 @@ failed checks; neither is a question.
    `SourceNeed` obliges something (§5, K37), so a `SourceNeed` nothing refines is a record in which something
    obliged is unaccounted for. EventML shipped this as a question rule (D31); K38 overturns that, and
    [`docs/eventml-decisions.md`](../docs/eventml-decisions.md) records the overturn.
-2. **A requirement carrying no origin edge at all — neither refinement nor derivation — is a failed check, not
-   a question** (K9, D32). The invariant behind it is that every requirement names its origin (D49), and a
-   requirement naming none is an incomplete record rather than a root. EventML shipped this as a question
-   (D46); K9 overturns that, and [`docs/eventml-decisions.md`](../docs/eventml-decisions.md) records the
-   overturn and the consequence that goes with it.
+2. **A requirement that refines no `SourceNeed` is a failed check, not a question** (K9, K145, D32). The
+   invariant behind it is that every requirement names its origin, and its origin is a `SourceNeed` it
+   refines: a derivation from other requirements is never one (`01-requirement-model.md` §2). EventML allowed
+   an origin of derivation alone (D49), which ProjectML does not adopt; it also shipped the rule as a question
+   (D46), which K9 overturns. [`docs/eventml-decisions.md`](../docs/eventml-decisions.md) records both.
 
 The two are one break in the chain, read from opposite ends: a `SourceNeed` with no `Requirement` beneath it,
-and a `Requirement` with nothing above it. They were treated asymmetrically — one a question, one a failed
-check — and nothing about either justified the difference.
+and a `Requirement` with no `SourceNeed` above it (K145). They were treated asymmetrically — one a question,
+one a failed check — and nothing about either justified the difference.
 
 **A `SourceNeed` that no `Requirement` refines has exactly two honest resolutions.** Write the requirement
 the `SourceNeed` obliges, or delete the `SourceNeed`, because extracting it was a mistake. There is no third,
@@ -1037,15 +1055,14 @@ invent, and the second removes a pointer while leaving the source it pointed int
 
 **What is genuinely open in such a case is not whether the `SourceNeed` is a `SourceNeed`, but what follows
 from it.** That is a **dilemma**, and it needs no new element, because it already has a home. It is a review
-finding — the
-one of the three kinds above decided by judgement, and the only one carrying a state. It is opened by a
-source and closed by a later source that `replies` to it, on the terms this section has already set out, and
-its answer therefore arrives as a source like every other change (K11). The requirement that finally issues
-may carry both origins at once, refining a stater's own words and derived from another requirement in the
-same breath, which is the case D49's invariant is written to admit. One consequence of the edge's direction
-is worth stating where it will be read: the derivation edge sits on the consequence and names the
-requirement it came from, so a chain of justification read forward — this holds, therefore that does — runs
-against the edge rather than along it.
+finding — the one of the three kinds above decided by judgement, and the only one carrying a state. It is
+opened by a source and closed by a later source that `replies` to it, on the terms this section has already
+set out, and its answer therefore arrives as a source like every other change (K11). The requirement that
+finally issues refines a stater's own words, and may also derive from another requirement where the client
+stated it as elaboration of what that one asks (`01-requirement-model.md` §2, K146); only what it refines is
+its origin (K145). The derivation is named at both ends, original and derived requirement, and a chain of
+justification read forward — this holds, therefore that does — runs from the original to the derived (K146,
+K149).
 
 **This rule checks the extraction from the only side a model can check it, and that is why it belongs with
 extraction rather than only with refinement.** What it catches is over-extraction: something was extracted
