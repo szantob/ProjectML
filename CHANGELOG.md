@@ -150,9 +150,9 @@ work, not releases.
   and
   [`docs/superpowers/specs/2026-10-05-values-from-sources-and-the-complete-requirement-design.md`](docs/superpowers/specs/2026-10-05-values-from-sources-and-the-complete-requirement-design.md).
 - Contradictions as requirements, derivation as elaboration, from the owner's review of K115–K135. Every value
-  of a requirement is stated by a `SourceNeed` the requirement refines. Contradicting needs are separate
-  requirements under one choice, which the modeller flags and the project manager settles by the time a
-  baseline is cut — keeping one, or every one where the contradiction is not real; nothing is merged. A
+  of a requirement is stated by a `SourceNeed` the requirement refines. Contradicting needs are refined into
+  separate requirements under one choice, which the modeller flags and the project manager settles by the time
+  a baseline is cut — keeping one, or every one where the contradiction is not real; nothing is merged. A
   requirement is incomplete only where a parameter has no value, whatever choice is open over it, correcting
   the entry above. Leaving force is final. Every requirement refines a need; derivation is elaboration agreed
   with the client and never an origin, and a completeness rule looks for its implied kind beneath the

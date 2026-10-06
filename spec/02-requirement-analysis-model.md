@@ -1209,10 +1209,10 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 - A `RequirementChoice` raised by a parameter's ask names as its triggering requirements exactly the
   requirements among its candidate alternatives, and carries the modeller's flag. A `Requirement` is a
   triggering requirement of at most one open choice raised by one parameter's ask (§11, K141, K142).
-- At most one `RequirementInquiry` per `Rule` and triggering `Requirement` is open at a time. One a
-  `CompletenessRule` raised is discharged only by a `Requirement` of the implied kind, or a specialisation of
-  it, deriving from the triggering requirement; whether only directly is OQ40 (§11,
-  `03-project-lifecycle-model.md` §3, K148).
+- A `RequirementInquiry` a `CompletenessRule` raises names exactly one triggering `Requirement`, and at most
+  one per `Rule` and triggering `Requirement` is open at a time. One a `CompletenessRule` raised is discharged
+  only by a `Requirement` of the implied kind, or a specialisation of it, deriving from the triggering
+  requirement; whether only directly is OQ40 (§11, `03-project-lifecycle-model.md` §3, K148).
 
 **Over findings.**
 

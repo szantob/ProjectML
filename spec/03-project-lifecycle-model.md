@@ -322,14 +322,14 @@ of something that is not one, because a rule-set states how **this project** wor
 project and carries no content.
 
 **What such a rule would have covered is already covered, three ways.** Where requirements of one kind
-contradict about the same thing, the parameter's own ask carries it: the contradicting statements are separate
-requirements, and the ask raises a `RequirementChoice` between them (`02-requirement-analysis-model.md` §10,
-§11, K139, K141). Two requirements of one kind are produced from one template, so where they contradict they
-differ in a parameter's value, and that parameter's ask is always present. Where two different kinds are
-incompatible on terms somebody had to state, that is a `ConflictRule` — the case above. Whatever neither
-covers requires judgement and follows no procedure, which makes it a review, the third of the checking modes
-`02-requirement-analysis-model.md` §11 names. **No fourth checking mode is needed**, and introducing one here
-would add a construct nothing exercises.
+contradict about the same thing, the parameter's own ask carries it: the contradicting `SourceNeed`s are
+refined into separate requirements, and the ask raises a `RequirementChoice` between them
+(`02-requirement-analysis-model.md` §10, §11, K139, K141). Two requirements of one kind are produced from one
+template, so where they contradict they differ in a parameter's value, and that parameter's ask is always
+present. Where two different kinds are incompatible on terms somebody had to state, that is a `ConflictRule` —
+the case above. Whatever neither covers requires judgement and follows no procedure, which makes it a review,
+the third of the checking modes `02-requirement-analysis-model.md` §11 names. **No fourth checking mode is
+needed**, and introducing one here would add a construct nothing exercises.
 
 ### `CompletenessRule`
 
@@ -404,7 +404,8 @@ is present, which is decided without judgement; its second rests on the modeller
 extraction, that requirements state values for the same thing (K141). Neither is a relevance judgement (K86).
 Its first test fires on incomplete requirements, which no walk reaches (K128, K140); its second may fire on
 complete ones, and the rule is kept out of the walk all the same until OQ38 is settled. A contradiction
-changes no requirement in place: the contradicting statement is a requirement of its own (K139).
+changes no requirement in place: the contradicting `SourceNeed` is refined into a requirement of its own
+(K139).
 
 **K98's test does not bite here.** K98 recognised the universal contradiction rule as no rule because every
 attribute of the shape degenerated on it and it carried no content. An ask carries content no other
