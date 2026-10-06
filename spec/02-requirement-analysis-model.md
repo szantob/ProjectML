@@ -145,7 +145,8 @@ unfulfilled the way an unrefined statement can. It opens something instead, and 
 `replies` edge (§3): a later source `replies` to the source the question's passage sits in.
 
 **How `SourceQuestion` subdivides, and whether it names the party expected to reply to it, is not settled
-here.** Nothing today reads such a subdivision. This is recorded as OQ16 in `06-decisions.md`.
+here.** Nothing today reads such a subdivision. This is recorded as OQ16 in `06-decisions.md`. What brings a
+question somebody puts to the project before whoever must answer it is OQ47.
 
 ### `SourceStatement`
 
@@ -631,7 +632,8 @@ requirement that still state what it keeps: its values are stated by the update 
 those needs for the rest (K136, K138). It is walked once, when it is complete. A derivation edge from another
 requirement, added to one that exists, does not change it in place either (K147); what states such an edge is
 OQ42. A `SourceNeed` that states a different value without replacing anything contradicts what was said, and
-is refined into a requirement of its own (K139). A decision to drop a requirement with nothing in its place is
+is refined into a requirement of its own (K139). What a later change to its definition, or to a rule reaching
+it, does to a complete requirement is OQ46. A decision to drop a requirement with nothing in its place is
 a `SourceDecision`, whose `RequirementDecision` retires it (K62). Nothing resolves itself: every change has a
 source behind it, and the source a speaker.
 
@@ -656,7 +658,8 @@ element behind it rather than a bare phrase. A `RequirementDecision` carries `re
 more `Requirement`s (K62), and a `Requirement`'s becoming no longer in force is that edge taking effect: a
 `RequirementDecision`, which never exists without a `SourceDecision` origin (K61), names it. A requirement
 also leaves force when another requirement supersedes it (K133, K144): one refining a `SourceUpdate` names, by
-`supersedes`, the requirements it replaces, and they are no longer in force. The cause is still a source (K11)
+`supersedes`, the requirements it replaces, and they are no longer in force; whether it may name one already
+out of force, as `retires` may not, is OQ44. The cause is still a source (K11)
 — the update the superseding requirement refines — and nothing is deleted (K5). A requirement is no longer in
 force once it has a `retiredBy` or a `supersededBy`, whatever the state of the element at the other end
 (K144): a superseding requirement that later leaves force does not return the one it replaced to force,
@@ -1161,7 +1164,7 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 - A `Requirement` is incomplete exactly when a parameter it has has no value, and complete otherwise (§10,
   K140).
 - A `Requirement` refining a `SourceUpdate` names at least one requirement by `supersedes` (§5, §10, K132,
-  K133).
+  K133). Whether each must be in force is OQ44.
 - A `Requirement` is no longer in force exactly when it has a `retiredBy` or a `supersededBy`, whatever the
   state of the element at the other end, and never both. It has at most one `retiredBy` (§10, K62, K133, K134,
   K144).

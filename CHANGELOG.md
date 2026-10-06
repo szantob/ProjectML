@@ -160,3 +160,8 @@ work, not releases.
   gains a condition, OQ37's row on derivation is answered, and OQ38–OQ40 open, with OQ41–OQ43 from the final
   review. Findings are in
   [`docs/superpowers/specs/2026-10-06-contradictions-derivation-and-the-review-of-k115-k135-design.md`](docs/superpowers/specs/2026-10-06-contradictions-derivation-and-the-review-of-k115-k135-design.md).
+- OQ44–OQ47, from an analysis of where the work of building a project model can run side by side: a
+  supersession of a requirement already out of force, which `retires` excludes and `supersedes` does not;
+  what a `ConflictRule` reaches when the walk runs once; what a change to a definition or a rule-set does to
+  the requirements already complete beneath it; and what brings a question put to the project before the
+  project manager. How the work itself is run stays outside the metamodel.

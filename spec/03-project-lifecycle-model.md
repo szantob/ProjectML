@@ -305,7 +305,7 @@ third row — *how a conflict of a given kind is resolved* — which describes o
 is the other half a `Rule` must also carry, and resolution is exactly what a `RequirementChoice`, discharged
 by a `RequirementDecision`, records. Whether that choice is one raised over contradicting requirements,
 carrying the modeller's flag and holding back a baseline (`02-requirement-analysis-model.md` §11, K142), is
-OQ41.
+OQ41. Which requirements its test reaches, when the walk runs once, is OQ45.
 
 **A `ConflictRule` carries nothing beyond the shape every `Rule` has** (K96). This asks to be justified rather
 than merely stated, because both specialisations relate two requirement kinds and only the other one names its
@@ -470,7 +470,8 @@ decided without judgement, so it narrows what reaches judgement and adds no cate
 (`02-requirement-analysis-model.md` §10, K129), so nothing the walk read moves beneath it, and no change of a
 value calls for a second walk (K128). A `ValueRule` is no relevance test (K141); its first test fires on
 incomplete requirements the walk never reaches (K140), and the rule is kept out of the walk until OQ38 is
-settled.
+settled. A rule adopted after a requirement became complete is therefore never walked over it; what such a
+change does to the requirements already complete is OQ46.
 
 ```mermaid
 flowchart TD
