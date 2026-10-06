@@ -694,6 +694,60 @@ Raised in [the design record of 2026-10-05 on values from sources](../docs/super
 | OQ35 | May a baseline be cut while a requirement in force is incomplete? K13 asks that everything in force be present, and an incomplete requirement cannot be present with finished wording | Before the first baseline is cut from a project model |
 | OQ36 | Which other edges have their second end named? Every edge is an association (K135), and some second ends were excluded on principle when their edge was introduced: a `Rule` names none of the questions it raised, because a rule-set is a model of its own (`03-project-lifecycle-model.md` §3; K22, K88); a `SourceElement` carries nothing beyond identity, anchor and being material of record (K43, K57), so the source-side ends of `refine` and `poses` are not attributes of it; and a source is material of record (K45), which bears on the earlier end of `replies`. Under K135 an end can be named without being an attribute of the element at it, which may lift some of these exclusions without touching the principles behind them — or may not. To be examined edge by edge: `refine`, `replies`, `poses`, *triggered by*, `discharges` | When an implementation or a review needs to navigate one of these edges from its other end |
 
+## Open question OQ37
+
+Raised on 2026-10-06 by the owner, in review of the integration of K115–K135, by comparing what a baseline
+carries with what SysML v2's requirement model holds. SysML v2 is both a body of practice this collection
+takes its terms from (`CLAUDE.md` §3, rule 10) and a design language the collection is built to attach to
+(K2, K17). Whether the two meet at the baseline is one of the tests the founding record set for the kernel,
+which it fails if the SysML v2 binding cannot be written without changing the kernel's entities.
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ37 | Can SysML v2 read the requirement model a baseline carries without substantive transformation? Compared element by element below, a requirement and its finished text correspond. Two things do not yet: a requirement's kind, which K33 keeps out of the requirement model, so that a requirement read into SysML v2 is typed by no requirement definition but SysML's most general one; and a requirement's identity, which `bindings/sysml-v2.md` §3 maps to SysML's requirement identifier while an implementation may use it as an internal key nobody writes. The remaining differences are deferred | Before the SysML v2 binding is taken as meeting OQ7's test |
+
+**What is compared.** SysML v2 as `bindings/sysml-v2.md` cites it — the language specification
+formal/2026-03-02 and its Systems Model Library — against the requirement model as `01-requirement-model.md`
+states it after K130. The library's declarations were read from the currently published library; section
+numbers are to be checked against the cited specification before any of this enters a binding.
+
+| Requirement model | SysML v2 | Status |
+|---|---|---|
+| A baseline: a named, dated instance of the requirement model (`01-requirement-model.md` §4) | No element of the language; a versioned snapshot is a service of the modelling tool or repository | Not compared, see below |
+| Only requirements in force (K35) | No status of being in force | Corresponds: nothing to carry |
+| `Requirement` | `RequirementUsage` | Corresponds (`bindings/sysml-v2.md` §3) |
+| identity: stable, unique within a baseline | `reqId`, the declared short name, beside a qualified name of SysML's own. SysML does not require a short name to be unique | Open, see below |
+| text: the finished wording (K130) | `text`, derived from the bodies of the usage's documentation comments | Corresponds, on the owner's reading; not yet stated in the binding |
+| No kind (K33) | `requirementDefinition`: the requirement definition the usage is typed by. A usage typed by none is implicitly a `RequirementCheck` | Gap, see below |
+| A `RequirementDefinition`'s identity, abstractness and specialisation (`02-requirement-analysis-model.md` §7, §9; K30, K109): not carried (K33) | `RequirementDefinition`: a name and a `reqId`, abstract or not, specialising other requirement definitions | Gap, with the kind |
+| A definition's template, parameters, *when it applies*, *what to ask*, *how it would be verified* and *wording rule* | Documentation and attributes; verification is a separate verification definition; the rest has no counterpart | Not carried, and need not be |
+| No values and no parameters (K130) | Attributes, optional | Corresponds: neither requires them |
+| No subject (K56) | `subject`, inherited from `RequirementCheck`, typed `Anything` | Corresponds |
+| No actors and no stakeholders | Optional | Corresponds |
+| No contained requirements | Subrequirements, optional | Corresponds |
+| Content in prose only | Assumed and required constraints, a requirement check's formal content; with none, the check holds trivially | Deferred: verification is beyond the seam (OQ10) |
+| A kind hierarchy with no common root | Every requirement definition specialises `RequirementCheck`; the library's own kinds narrow the subject — functional to `Action`, interface to `Interface`, performance to `AttributeValue`, physical and design constraint to `Part` | Deferred. `bindings/sysml-v2.md` §1 gives the interface kind's subject as `BinaryInterface`, where the published library reads `Interface` |
+| Derivation: list-valued, its ends named *original requirement* and *derived requirement* (K135), with no cycle | `Derivation` connection: exactly one original and one or more derived requirements per connection; the original is not among the derived | Corresponds: a requirement derived from several is several connections (K135) |
+| What derivation means: nothing beyond "derived from" | Whenever the original requirement is satisfied, every derived requirement is satisfied too | Deferred. A requirement synthesising two (`01-requirement-model.md` §2) becomes two connections, each stating that one original alone implies it, which is more than the synthesis states |
+| `satisfies`, carried by the design element (K3) | `satisfy`, in the same direction; any feature may carry it, narrowed by a requirement kind's subject | Corresponds (`bindings/sysml-v2.md` §1) |
+
+**The baseline is not compared** (the owner, 2026-10-06). It is not a concept carried across but the product
+that packages what is carried across. What SysML v2 has to read is the requirement model inside it.
+
+**Identity.** `bindings/sysml-v2.md` §3 maps a requirement's identity to the `reqId` of the `RequirementUsage`
+standing for it. The metamodel states of an identity only that it is stable and unique
+(`01-requirement-model.md` §2, §5), so an implementation may use it as an internal key that no modeller writes
+or reads, which is not what SysML v2's short name is for. The owner's reading is that this is resolved in an
+implementation rather than here; if it is, the binding need not secure the uniqueness of a short name either,
+which SysML v2 does not require.
+
+**Kind.** In SysML v2 a requirement usage is typed by a requirement definition, which declares what every
+usage of it has — its subject, attributes and constraints — and may be abstract and specialise other
+definitions. That typing is what this collection calls *produced under*, which K67 already reads after SysML's
+own `def`/`usage` split. `02-requirement-analysis-model.md` builds the kind hierarchy as SysML v2 builds one,
+but K33 drops it at the projection, so what would let SysML v2 read a requirement's kind never reaches a
+baseline. An answer that carries it revises K33.
+
 ## Status of the founding record's open questions
 
 | # | Status |
