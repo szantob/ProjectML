@@ -1133,9 +1133,9 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 - Every parameter a definition declares names the value domain it draws from. Which domains exist is an
   implementation's business; that a parameter names one is not (§7).
 - Every parameter a definition declares carries its own ask. A parameter with no ask is a failed check on the
-  definition: *what to ask* exists so that a missing value has a stated route out of it, and it is the
-  `ValueRule` that raises the question; a parameter missing its ask is exactly the case where that route is
-  absent (§7, K116).
+  definition: *what to ask* exists so that a missing value, and a contradiction between requirements of one
+  kind, each have a stated route out, and it is the `ValueRule` that raises the question; a parameter missing
+  its ask is exactly the case where that route is absent (§7, K116, K141).
 - A parameter's identity is unique among the parameters its definition declares (§7, K106).
 - A definition declares no parameter carrying the identity of a parameter one of its ancestors declares. Every
   parameter a definition has, its own and those it inherits, is therefore one parameter on every descendant,
@@ -1157,14 +1157,15 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 
 **Over the derivation, and over being no longer in force.**
 
-- Every value a `Requirement` carries names the source that states it. A value naming none is not a
-  well-formed element of this model (§7, K125).
-- A `Requirement` is complete exactly when every parameter it has has a value and no `RequirementChoice`
-  raised on its values is open (§10, K128).
+- Every value a `Requirement` carries is stated by a `SourceNeed` the requirement refines, and it carries at
+  most one value per parameter (§7, §10, K136, K137).
+- A `Requirement` is incomplete exactly when a parameter it has has no value, and complete otherwise (§10,
+  K140).
 - A `Requirement` refining a `SourceUpdate` names at least one requirement by `supersedes` (§5, §10, K132,
   K133).
-- A `Requirement` is no longer in force exactly when it is `retiredBy` one `RequirementDecision` or
-  `supersededBy` one or more `Requirement`s in force, and never both (§10, K62, K133, K134).
+- A `Requirement` is no longer in force exactly when it has a `retiredBy` or a `supersededBy`, whatever the
+  state of the element at the other end, and never both. It has at most one `retiredBy` (§10, K62, K133, K134,
+  K144).
 - A requirement in this model names exactly one `RequirementDefinition`: never none, and never two (§10, K8).
   The definition it names is not abstract; a requirement naming an abstract definition is not a well-formed
   element of this model (§7, §10, K109).
@@ -1173,9 +1174,8 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 - A `RequirementDecision`'s `retires` edge names only `Requirement`s that were in force at the moment the
   `RequirementDecision` was produced. `retires` may be empty (§10, §11, K62).
 - A `SourceNeed` that no `Requirement` refines is a failed check (§11, K38, D31).
-- A requirement carrying no origin edge at all — neither refinement nor derivation — is a failed check (§11,
-  K9, D49, D32). This constraint and the one above it are the same break read from opposite ends, which is
-  why they are stated together.
+- A requirement that refines no `SourceNeed` is a failed check (§11, K9, K145, D32). This constraint and the
+  one above it are the same break read from opposite ends, which is why they are stated together.
 
 **Over `RequirementDecision`.**
 
@@ -1201,12 +1201,15 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 - A `RequirementInquiry`'s `discharges` edge, where present, names a `Requirement`. A `RequirementChoice`'s
   `discharges` edge, where present, names a `RequirementDecision`. Both are optional (§11, K79).
 - A `RequirementClarification` is one per `Requirement` and parameter, and is open exactly while that
-  requirement is in force and has no value for the parameter. It carries no `discharges` (§11, K119, K121).
-- A `RequirementChoice` raised by a disagreement is one per `Requirement` and parameter, and its alternatives
-  are every statement of a value for that parameter (§11, K118, K126).
-- At most one `RequirementInquiry` per `Rule` is open at a time; a `Requirement` that triggers a
-  `CompletenessRule` while one is already open extends its triggering-`Requirement`s list rather than raising
-  a second `RequirementInquiry` (§11, `03-project-lifecycle-model.md` §3, K75).
+  requirement is in force and no `SourceNeed` it refines states a value for the parameter. It carries no
+  `discharges` (§11, K119, K143).
+- A `RequirementChoice` raised by a parameter's ask names as its triggering requirements exactly the
+  requirements among its candidate alternatives, and carries the modeller's flag. A `Requirement` is a
+  triggering requirement of at most one open choice raised by one parameter's ask (§11, K141, K142).
+- At most one `RequirementInquiry` per `Rule` and triggering `Requirement` is open at a time. One a
+  `CompletenessRule` raised is discharged only by a `Requirement` of the implied kind, or a specialisation of
+  it, deriving from the triggering requirement; whether only directly is OQ40 (§11,
+  `03-project-lifecycle-model.md` §3, K148).
 
 **Over findings.**
 
