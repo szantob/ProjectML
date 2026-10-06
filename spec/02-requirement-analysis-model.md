@@ -111,11 +111,8 @@ three things, shared by every specialisation and nothing beyond them.
 | Attribute | Carries |
 |---|---|
 | identity | A stable identifier, distinct from every other `SourceElement`'s |
-| anchor | A passage of exactly one source, on the same terms `01-requirement-model.md`'s predecessor
-  attribute did — adopting the W3C Web Annotation Data Model |
-| material of record | Never edited, and carrying no lifecycle state. Inherited from the source it anchors
-  into: a source is quoted whole and never decomposed (§2), so nothing anchored into one can cease to be
-  true while the source behind it stays what it was |
+| anchor | A passage of exactly one source, on the same terms `01-requirement-model.md`'s predecessor attribute did — adopting the W3C Web Annotation Data Model |
+| material of record | Never edited, and carrying no lifecycle state. Inherited from the source it anchors into: a source is quoted whole and never decomposed (§2), so nothing anchored into one can cease to be true while the source behind it stays what it was |
 
 **A `SourceElement` segments; it does not interpret.** Nothing a `SourceElement` carries is a reading of
 what its passage says — no extracted value, no restated content, nothing beyond the fact that this passage
@@ -842,8 +839,7 @@ It also carries one of two states (K60).
 | State | Meaning |
 |---|---|
 | raised | Identified; no `SourceQuestion` yet names it |
-| posed | A `poses` edge names an actual `SourceQuestion` — the edge's presence is the transition itself, not
-  a marker recorded beside it |
+| posed | A `poses` edge names an actual `SourceQuestion` — the edge's presence is the transition itself, not a marker recorded beside it |
 
 It is not itself a `SourceQuestion`: it crosses outward, by `poses` (K59), into one once the modeller actually
 puts the question to somebody. **What happens after posing — whether and how the question is answered —

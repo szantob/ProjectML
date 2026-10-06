@@ -134,9 +134,9 @@ kinds.
 
 ## Deliberately absent
 
-The remaining 30 decisions are not indexed. Most concern notation, file layout, versioning, release
-mechanics or the migration of worked examples — manifests and references, where definitions are stored,
-what a layer is called, how offsets are measured, which examples migrate. CLAUDE.md §7 forbids carrying
-notation, vocabulary or filled definitions across, and most of EventML's decisions are one of the three.
+The remaining 29 decisions are not indexed. Most concern notation, file layout, versioning, release mechanics
+or the migration of worked examples — manifests and references, where definitions are stored, what a layer is
+called, how offsets are measured, which examples migrate. CLAUDE.md §7 forbids carrying notation, vocabulary
+or filled definitions across, and most of EventML's decisions are one of the three.
 
 An absent decision is not a rejected one. If later work here turns out to depend on one, it is added.
