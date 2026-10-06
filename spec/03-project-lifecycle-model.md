@@ -301,9 +301,11 @@ among (K73). Its canonical case is a conflict **between two kinds**, on terms so
 nothing in the model could find them: a requirement for catering whose headcount falls short of a requirement
 stating how many people are expected. Neither requirement is wrong on its own, no parameter they share is in
 dispute, and the relation between the two kinds is exactly what the rule carries. This sharpens section 2's
-third row — *how a conflict of a given kind is resolved* — which describes only the resolution half;
-detection is the other half a `Rule` must also carry, and resolution is exactly what a `RequirementChoice`,
-discharged by a `RequirementDecision`, records.
+third row — *how a conflict of a given kind is resolved* — which describes only the resolution half; detection
+is the other half a `Rule` must also carry, and resolution is exactly what a `RequirementChoice`, discharged
+by a `RequirementDecision`, records. Whether that choice is one raised over contradicting requirements,
+carrying the modeller's flag and holding back a baseline (`02-requirement-analysis-model.md` §11, K142), is
+OQ41.
 
 **A `ConflictRule` carries nothing beyond the shape every `Rule` has** (K96). This asks to be justified rather
 than merely stated, because both specialisations relate two requirement kinds and only the other one names its
@@ -375,7 +377,7 @@ project actually has, and the model records it.
 **Several originals may share what they imply** (K147). Where requirements on several branches each imply the
 same thing, one requirement deriving from each of them closes each one's inquiry, and what only one of them
 asks for derives from that one alone. Adding a derivation to a requirement that exists does not change that
-requirement in place.
+requirement in place; what states the added derivation is OQ42.
 
 **There is a limit on what a rule may imply at all.** A rule may imply a more specific kind wherever an
 implementation declares one; it may never state what a requirement of the implied kind should say. **An
