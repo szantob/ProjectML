@@ -19,7 +19,7 @@ in the room for that. A design language attaches to the product, not to the proc
 says the same thing again, one step later, of the baseline specifically.
 
 This document leans on nothing outside itself. A requirement here carries no values: its finished text states
-every value it was produced with, and the values, with the sources they name, stay in
+every value it was produced with, and the values, with the `SourceNeed`s stating them, stay in
 `02-requirement-analysis-model.md`, where they were settled (K130). The value-state model this document once
 leaned on is withdrawn (K125, K131). The requirement analysis model is a member in the order, adopted after
 this one or not at all, and §2 turns on that.
@@ -33,23 +33,25 @@ A requirement carries three things: the two attributes below, and the derivation
 | identity | A stable identifier, distinct from every other requirement's, that persists for the requirement's whole life in the model, and across every baseline that carries it |
 | text | The requirement's bound wording: the statement itself, in the form it holds in the register, with every value it was produced with written into it (K111, K130) |
 
-A requirement may also be derived from one or more earlier requirements. This derivation is an edge between
-requirements, and, like the refinement edge it stands beside, it is list-valued rather than singular: a
-requirement synthesising two earlier ones has two origins, not one, and an edge that could only name a single
-predecessor would force an arbitrary choice among equally contributing ones.
+A requirement may also be derived from one or more other requirements, its originals. A derivation records
+elaboration agreed with the client: the derived requirement states something the original asks for, worked out
+with the client, and the original implies it, as SysML v2's derivation states (K146). No requirement is
+refined or decomposed into others here; that belongs to a design language, beyond the seam. The derivation is
+an edge between requirements, list-valued, because several originals may each, on its own, imply the same one;
+a requirement that only several together imply is not derived from them (K147). Derivation admits no cycle;
+adding a derivation to a requirement that exists does not change that requirement; and a derivation is never a
+requirement's origin (below).
 
 **The derivation edge is named at both ends** (K135), as SysML v2's derivation connection names them: an
-*original requirement* end and a *derived requirement* end. A requirement derived from several earlier ones
-stands at the derived end of several derivations, and one from which several derive stands at the original end
-of each. Either end can be navigated; how either is written down is notation (K15).
+*original requirement* end and a *derived requirement* end. A requirement derived from several others stands
+at the derived end of several derivations, and one from which several derive stands at the original end of
+each. Either end can be navigated; how either is written down is notation (K15).
 
-**Every requirement names its origin.** This is the invariant K9 rests on: a requirement's origin is its
-refinement, its derivation, or both, and a requirement carrying neither is an incomplete record rather than
-a root (D49). In this model, only the derivation half of that origin is directly visible — the edge just
-described, between one requirement and another. The refinement half, which names the `SourceNeed`s a
-requirement was assembled from, has been projected away; it lives in `02-requirement-analysis-model.md`,
-where `SourceNeed` is defined. A requirement with no derivation edge here is therefore not yet known to be a root: it may still
-name its origin through refinement, recorded one document over.
+**Every requirement names its origin, and its origin is what it refines** (K9, K145): the `SourceNeed`s it was
+assembled from, by the refinement edge. A derivation from other requirements is never an origin, since a
+requirement derived from others and refining nothing would carry content nobody answerable stated. The
+refinement edge has been projected away; it lives in `02-requirement-analysis-model.md`, where `SourceNeed` is
+defined, and that is where the invariant is checked.
 
 ### K33 — does a requirement name the definition it came from, and its kind?
 

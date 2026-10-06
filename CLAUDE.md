@@ -7,8 +7,8 @@ written here.
 ## 1. What this repo is, and the one mistake to avoid
 
 ProjectML is a **metamodel**. It defines concepts and types: what a `Source` is, what a `Need` is, what a
-`Requirement` is, what a `RequirementDefinition` is, which edges connect them, what source a value must name,
-and what a design language must declare to attach underneath. It says all of that in **prose and diagrams**.
+`Requirement` is, what a `RequirementDefinition` is, which edges connect them, what must state each value, and
+what a design language must declare to attach underneath. It says all of that in **prose and diagrams**.
 
 **It is not a language implementation, and the most common failure in this project is drifting into one.**
 
@@ -61,7 +61,7 @@ with reasoning, is in the founding document — these are the ones that constrai
 | 1 | **Nothing executable ships, and no notation ships.** Prose and diagrams only. See §1 |
 | 2 | **English is the only language in this repository**, in every file and every commit message |
 | 3 | **The metamodel holds no filled definitions.** It defines the `RequirementDefinition` type; it declares no requirement kinds and no templates (K15) |
-| 4 | **The kernel is the evidence-and-intent chain:** `Source`, `Need`, `Requirement`, `Decision`, the rule that every value names the source that states it (K125), the traceability relations, and the checks over them (K1) |
+| 4 | **The kernel is the evidence-and-intent chain:** `Source`, `Need`, `Requirement`, `Decision`, the rule that everything entering the model names the `SourceElement` that states it — a requirement its `SourceNeed`s, a decision its `SourceDecision` (K125, K136) — the traceability relations, and the checks over them (K1) |
 | 5 | **A design language attaches through exactly one seam** — an element outside the kernel carrying `satisfies`, naming a requirement (K3) — declared in a **binding** that states three things: which of its elements may carry `satisfies`, its internal refinement chain, and its identifier space (K4, narrowed by K130) |
 | 6 | **Attachment is symmetric.** SysML v2, UML, EventML and a design language not yet written attach on the same terms. No design language gets a privileged path (K2) |
 | 7 | **An implementation is itself a metamodel**, for the project models built with it. Three levels: metamodel, implementation, project model (K16) |

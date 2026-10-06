@@ -14,10 +14,10 @@ own reasoning, in the document it points at.
 ProjectML is a metamodel for the chain from what somebody said to the requirements it obliges: the decisions
 taken while assembling that chain, and what is still open at any point along it. It says what a `Source` is,
 what a `SourceNeed` anchored into one is, what a `Requirement` drawn from one is, what a `RequirementDecision`
-resolving a `SourceDecision` is, what a `RequirementQuestion` still to be found out is, that every value names
-the source that states it, and what a design language attaching underneath all of it must declare in order to
-do so. It says all of this in prose, in tables, and in diagrams — §6 states what a diagram here is, and is
-not.
+resolving a `SourceDecision` is, what a `RequirementQuestion` still to be found out is, that everything
+entering the model names the `SourceElement` that states it — a requirement its `SourceNeed`s, a decision its
+`SourceDecision` — and what a design language attaching underneath all of it must declare in order to do so.
+It says all of this in prose, in tables, and in diagrams — §6 states what a diagram here is, and is not.
 
 ### What it is not
 
@@ -37,12 +37,12 @@ ProjectML metamodels a collection of connected models, not a single model (K19).
 | Member | Covers | Stands alone? |
 |---|---|---|
 | The requirement model | The product: a requirement, the edge by which one requirement is derived from another, and the baseline that names a dated cut of the requirements in force | Yes — a reader who wants a requirements register with traceability between requirements, and nothing else, reads it and stops |
-| The requirement analysis model | The working model: where a requirement is actually built and justified, from a stated source, through a `SourceNeed` and the definition chosen for it, to the decisions and findings that stand behind it — and where a requirement's values are, each naming the source that states it | No — it projects to the requirement model (K20), and is read for what produced the product, not instead of it |
+| The requirement analysis model | The working model: where a requirement is actually built and justified, from a stated source, through a `SourceNeed` and the definition chosen for it, to the decisions and findings that stand behind it — and where a requirement's values are, each stated by a `SourceNeed` the requirement refines (K136) | No — it projects to the requirement model (K20), and is read for what produced the product, not instead of it |
 | The Project Lifecycle Model | What a rule-set — an organisation's own way of resolving a gap, ending a wait, settling a conflict, or stating what kinds a kind implies — may state about the requirement analysis model's own elements, and what it may not | No — a rule-set written under it states rules over elements the requirement analysis model already defines in full |
 
-A fourth member, the value-state model, was withdrawn once every value had to name its source: what remained
-of it is one rule and a value domain's comparability, both stated where values are, in
-`02-requirement-analysis-model.md` (K125, K131). The three connect as follows.
+A fourth member, the value-state model, was withdrawn once every value had to have somebody answerable for it
+(K125, K136): what remained of it is one rule and a value domain's comparability, both stated where values
+are, in `02-requirement-analysis-model.md` (K125, K131). The three connect as follows.
 
 ```mermaid
 graph LR
@@ -60,26 +60,26 @@ graph LR
 
 The requirement analysis model projects to the requirement model (K20): the product is reached by dropping
 everything the working model adds beyond a requirement's identity, its finished text, and the edge by which it
-derives from another requirement — a requirement's values and the sources they name are dropped with the rest,
-the finished text already stating every value (K130) — and by dropping the requirements no longer in force
-with it, retirement being a property of the working model rather than of the product (K35). The Project
-Lifecycle Model provides the means to model a rule-set, and a rule-set — never the metamodel itself — is what
-states rules over the requirement analysis model's own elements: how a gap in one of them is resolved, when
-waiting on it ends, how a conflict among them is settled, or what kinds a kind implies should also exist,
-without adding to what those elements already define in full (K22, K23). A design language attaches to the
-requirement model, and only there, through exactly one edge: an element the metamodel does not define,
-carrying `satisfies`, and naming a requirement in a baseline — a named, dated instance of the requirement
-model a design language can depend on, where the live projection itself cannot be depended on (K3, K21).
+derives from another requirement — a requirement's values are dropped with the rest, the finished text already
+stating every value (K130) — and by dropping the requirements no longer in force with it, retirement being a
+property of the working model rather than of the product (K35). The Project Lifecycle Model provides the means
+to model a rule-set, and a rule-set — never the metamodel itself — is what states rules over the requirement
+analysis model's own elements: how a gap in one of them is resolved, when waiting on it ends, how a conflict
+among them is settled, or what kinds a kind implies should also exist, without adding to what those elements
+already define in full (K22, K23). A design language attaches to the requirement model, and only there,
+through exactly one edge: an element the metamodel does not define, carrying `satisfies`, and naming a
+requirement in a baseline — a named, dated instance of the requirement model a design language can depend on,
+where the live projection itself cannot be depended on (K3, K21).
 
 The numbered order of the documents after this one is not incidental: it is adoption order. A reader who wants
 a requirements register with traceability, and nothing else, reads `01-requirement-model.md` and stops there.
-Reading `02-requirement-analysis-model.md` next adds the working model behind it — the source a requirement
-was refined from, the definition it was produced under, the values and the sources they name, and the
-decisions and findings that justify it. `03-project-lifecycle-model.md` after that adds the slot an
-organisation's own way of working fills. This ordering is what answers OQ1: what a binding can take from this
-collection without the rest, and what it cannot, is answered by naming how far down this order it reaches,
-rather than by inventing a separate scale to measure it against. Nothing of a requirement's values crosses the
-seam (K130), so there is no second scale beside it.
+Reading `02-requirement-analysis-model.md` next adds the working model behind it — the `SourceNeed`s a
+requirement was refined from, the definition it was produced under, its values and the `SourceNeed`s stating
+them, and the decisions and findings that justify it. `03-project-lifecycle-model.md` after that adds the slot
+an organisation's own way of working fills. This ordering is what answers OQ1: what a binding can take from
+this collection without the rest, and what it cannot, is answered by naming how far down this order it
+reaches, rather than by inventing a separate scale to measure it against. Nothing of a requirement's values
+crosses the seam (K130), so there is no second scale beside it.
 
 Two further documents round out `spec/`, beyond the collection itself: `05-binding-contract.md`, which states
 what attaching underneath the collection requires, and `06-decisions.md`, the normative record of every
@@ -89,10 +89,11 @@ decision the collection rests on (K31).
 that every citation of `04-value-states.md` in the decision record and in the dated design records keeps
 meaning the document it meant (K131).
 
-**Every edge in the collection is an association with two ends** (K135). A document names the ends it needs to
-say something about, and naming an end makes the edge navigable from that side; how either end is written
-down, or whether it is stored at all, is notation (K15). Which second ends are named, and which were left
-unnamed on principle, is recorded with each edge, and what remains to examine is OQ36.
+**Every edge between two requirements is an association with two ends** (K135, narrowed by K149): the
+derivation, named *original requirement* and *derived requirement* as SysML v2 names them, and
+`supersedes`/`supersededBy`. Leaving force by a decision is an association too, `retires`/`retiredBy` (K134).
+How an end is written down, or whether it is stored at all, is notation (K15). Nothing is said here of other
+edges.
 
 ## 3. The three levels
 
@@ -122,10 +123,9 @@ the metamodel from an implementation, where §5 separates what the model guarant
 must do.
 
 From the metamodel's side: ProjectML says what a stated piece of material is, what a requirement drawn from
-one is, what edges connect these things to each other, what source a value must name, and what a design
-language attaching underneath must declare in order to do so (§2, §3). It says all of that in prose, in
-tables, and in diagrams that are themselves a form of prose (§6). Nothing in it says how any of these things
-is written down.
+one is, what edges connect these things to each other, what must state each value, and what a design language
+attaching underneath must declare in order to do so (§2, §3). It says all of that in prose, in tables, and in
+diagrams that are themselves a form of prose (§6). Nothing in it says how any of these things is written down.
 
 From an implementation's side: an implementation is a self-contained package that supplies exactly the three
 things the metamodel deliberately withholds — a notation, a filled set of definitions, and a rule-set a

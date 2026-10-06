@@ -88,14 +88,14 @@ both need at least one. Only the stronger question — *is the requirement actua
 that is verification, which this metamodel does not undertake (K7, K40).
 
 This has a consequence for traceability that a design language's owner should expect rather than go looking
-for a workaround to. A baseline is an instance of the requirement model, the product member of the
-collection: it carries a requirement's identity, its bound wording, its values, and the edge by which one
-requirement derives from another — and nothing else. It does not carry the `SourceNeed` a requirement was
-assembled from, because that edge belongs to the requirement analysis model, the working member of the
-collection the product is projected from. Getting from a requirement a satisfying element names back to the
-`SourceNeed` behind it is therefore not a step within the baseline; it runs through the requirement analysis model, one document
-over. That model is where the step is possible at all, because its recoverability condition keeps everything
-the projection drops available rather than discarded (K13).
+for a workaround to. A baseline is an instance of the requirement model, the product member of the collection:
+it carries a requirement's identity, its finished text, and the edge by which one requirement derives from
+another — and nothing else. It does not carry the `SourceNeed` a requirement was assembled from, because that
+edge belongs to the requirement analysis model, the working member of the collection the product is projected
+from. Getting from a requirement a satisfying element names back to the `SourceNeed` behind it is therefore
+not a step within the baseline; it runs through the requirement analysis model, one document over. That model
+is where the step is possible at all, because its recoverability condition keeps everything the projection
+drops available rather than discarded (K13).
 
 Nor does a baseline carry retirement. Every requirement it contains is one in force at the moment the cut
 was taken, and being no longer in force is a property of the requirement analysis model rather than of the
@@ -105,14 +105,12 @@ come to point at nothing. A requirement retired after that cut is absent from th
 that absence is the notice — when the design rebases onto the later baseline and the requirement it was
 built against is not there, what was built on it needs rework.
 
-**What that notice does not yet say is which kind of rework.** A requirement can be absent because it was
+**What that notice does not say is which kind of rework.** A requirement can be absent because it was
 replaced, in which case there is a successor to read and follow, or because it was dropped, in which case
-there is nothing to design for and the work comes out. The two demand different responses, and the metamodel
-cannot presently tell them apart: it records that a requirement is no longer in force without recording what
-took its place. That gap is named here rather than left for a binding's owner to discover, and it belongs to
-the Project Lifecycle Model, where what produces a decision is still being worked out. Until it closes, the
-answer is reachable but not by the model: every retirement arrives through a source (K11), so the source
-that caused it can be read.
+there is nothing to design for and the work comes out. The two demand different responses. The working model
+tells them apart — a requirement leaves force by a `supersededBy`, naming its successor, or by a `retiredBy`
+(`02-requirement-analysis-model.md` §10, K133, K134, K144) — but a baseline carries neither (K130), so a
+binding's owner reads the answer in the working model, not in the baseline.
 
 ## 3. Symmetry
 
@@ -171,8 +169,8 @@ through two unmapped identifier spaces loses the stable identifiers everything e
 
 K4 asked a binding a fourth thing: how far it carries the value model. It is withdrawn (K130). Nothing of a
 requirement's values crosses the seam — a baseline carries each requirement's finished text and the derivation
-edges between them — and a value's source stays in the working model, so there is no value model for a binding
-to carry.
+edges between them — and what states each value stays in the working model, so there is no value model for a
+binding to carry.
 
 ## 5. What is open
 
