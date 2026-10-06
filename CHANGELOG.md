@@ -158,7 +158,7 @@ work, not releases.
   with the client and never an origin, and a completeness rule looks for its implied kind beneath the
   requirement that triggered it. K136–K149 record the decisions; OQ36 dissolves, OQ24 is answered again, OQ35
   gains a condition, OQ37's row on derivation is answered, and OQ38–OQ40 open, with OQ41–OQ43 from the final
-  review. Findings are in
+  review and OQ48 from the review of the branch. Findings are in
   [`docs/superpowers/specs/2026-10-06-contradictions-derivation-and-the-review-of-k115-k135-design.md`](docs/superpowers/specs/2026-10-06-contradictions-derivation-and-the-review-of-k115-k135-design.md).
 - OQ44–OQ47, from an analysis of where the work of building a project model can run side by side: a
   supersession of a requirement already out of force, which `retires` excludes and `supersedes` does not;

@@ -876,8 +876,8 @@ requirements also carries the modeller's flag**: whether the modeller judges the
 The flag is advice, not a decision. The project manager decides, at the latest when a baseline is cut, to keep
 one requirement and retire the others, or that the contradiction is not real and every one stays in force.
 Nothing is merged, in this model or in a baseline; one design element satisfying several of them is design,
-beyond the seam. For a choice over contradicting requirements, a decision that the contradiction is not real
-settles it on an alternative the candidates do not list (K142). Whether a choice a `ConflictRule` raises is
+beyond the seam. Whether a decision that the contradiction is not real is among the candidate alternatives,
+which K80 makes the same as those the decision records, is OQ48. Whether a choice a `ConflictRule` raises is
 one over contradicting requirements, and so carries the flag and holds back a baseline, is OQ41.
 
 **`RequirementClarification` carries nothing beyond the shared shape, and no `discharges`** (K119, K121). A
