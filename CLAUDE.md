@@ -138,9 +138,9 @@ everything under `examples/` are implementation, not metamodel.
 
 **EventML numbers its decisions `D1`–`D55` and keeps no consolidated list of them.**
 [`docs/eventml-decisions.md`](docs/eventml-decisions.md) indexes the ones this repository depends on, says
-where each lives, and marks which are inherited, which are imported because K15 moves their subject here,
-and which one K9 overturns. Cite a `D` number through that index rather than from memory. A `D` number
-always means EventML; a `K` number always means ProjectML.
+where each lives, and marks which are inherited, which are imported because K15 moves their subject here, and
+which ones ProjectML decisions overturn. Cite a `D` number through that index rather than from memory. A `D`
+number always means EventML; a `K` number always means ProjectML.
 
 **EventML is read-only from here.** It is frozen for the duration of phases 1 and 2 (K14), and the changes
 it eventually needs are phases 3 and 4, which are not this project's work. Read it, quote it, cite it — do
