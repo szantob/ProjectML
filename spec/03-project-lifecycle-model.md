@@ -335,8 +335,8 @@ would add a construct nothing exercises.
 
 A `CompletenessRule` fires when a requirement has no requirement of an implied companion kind deriving from
 it, and raises a `RequirementInquiry` (`02-requirement-analysis-model.md` §11) (K74). This is the case section
-2's fourth row now states directly: *"which other requirement kinds a given kind implies should also be
-present."*
+2's fourth row describes — *"which other requirement kinds a given kind implies should also be present"* —
+looked for beneath the requirement that triggered it (K148).
 
 **A `CompletenessRule` names the kind it implies, by a reference to a `RequirementDefinition`, beside the
 prose of *what to look for*** (K93). This is the one place a `Rule` carries a typed reference, and it is

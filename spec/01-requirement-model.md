@@ -31,7 +31,7 @@ A requirement carries three things: the two attributes below, and the derivation
 | Attribute | Carries |
 |---|---|
 | identity | A stable identifier, distinct from every other requirement's, that persists for the requirement's whole life in the model, and across every baseline that carries it |
-| text | The requirement's bound wording: the statement itself, in the form it holds in the register, with every value it was produced with written into it (K111, K130) |
+| text | Its finished text: the statement itself, in the form it holds in the register, with every value it was produced with written into it, once the requirement is complete; none before (K111, K130, K140) |
 
 A requirement may also be derived from one or more other requirements, its originals. A derivation records
 elaboration agreed with the client: the derived requirement states something the original asks for, worked out

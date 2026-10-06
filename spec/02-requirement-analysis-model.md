@@ -886,18 +886,18 @@ needs no edge of its own: the value is stated by a `SourceNeed` the requirement 
 chain from the question runs through `poses`, `replies` and `refine` to it. One posed `SourceQuestion` may
 carry several clarifications, each naming it by `poses`.
 
-**The process, end to end.** A `SourceNeed`'s passage is refined into a `Requirement`, and the passage does
-not state a parameter's value, so the value is missing. The parameter's ask raises a
-`RequirementClarification`, naming the ask as its *triggered by* and the requirement as its triggering
-`Requirement`; the project manager can see it from here. The modeller puts the question to somebody, in a
-source, and the clarification poses that `SourceQuestion`. A later source replies; a `SourceNeed` anchored in
-it is refined into the same requirement, whose refinement edge is list-valued (§10); that `SourceNeed` states
-the value, and the clarification closes. If the answer is that nobody knows yet, the value stays missing and
-the clarification posed; how long it may wait is OQ13's interval and OQ34's question. If the value the answer
-states contradicts the value another requirement of the same kind carries for the same thing, the
-clarification closes all the same, and the same ask raises a `RequirementChoice` over the two requirements, or
-extends the one already open over the other (K139, K141). If the answer arrives unasked, the clarification
-closes all the same, and the chain lacks only its `poses` and `replies` links.
+**The process, end to end.** A `SourceNeed` is refined into a `Requirement`, and does not state a parameter's
+value, so the value is missing (K136). The parameter's ask raises a `RequirementClarification`, naming the ask
+as its *triggered by* and the requirement as its triggering `Requirement`; the project manager can see it from
+here. The modeller puts the question to somebody, in a source, and the clarification poses that
+`SourceQuestion`. A later source replies; a `SourceNeed` anchored in it is refined into the same requirement,
+whose refinement edge is list-valued (§10); that `SourceNeed` states the value, and the clarification closes.
+If the answer is that nobody knows yet, the value stays missing and the clarification posed; how long it may
+wait is OQ13's interval and OQ34's question. If the value the answer states contradicts the value another
+requirement of the same kind carries for the same thing, the clarification closes all the same, and the same
+ask raises a `RequirementChoice` over the two requirements, or extends the one already open over the other
+(K139, K141). If the answer arrives unasked, the clarification closes all the same, and the chain lacks only
+its `poses` and `replies` links.
 
 **A contradiction raises a `RequirementChoice` between requirements, not a state of a value** (K139, K141).
 Where the modeller has judged, at extraction, that requirements of one kind state values of a parameter for
