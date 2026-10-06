@@ -631,12 +631,12 @@ is in, contradictions included, and raises them; it does not resolve them on the
 statement said arrives as a `SourceUpdate` (§5, K132). The requirement refining it carries `supersedes`, a
 list-valued edge naming the requirements it replaces (K133), and also refines those `SourceNeed`s of the old
 requirement that still state what it keeps: its values are stated by the update for what that replaces, and by
-those needs for the rest (K136, K138). It is walked once, when it is complete. Adding a derivation to a
-requirement that exists does not change it in place either (K147). A `SourceNeed` that states a different
-value without replacing anything contradicts what was said, and is refined into a requirement of its own
-(K139). A decision to drop a requirement with nothing in its place is a `SourceDecision`, whose
-`RequirementDecision` retires it (K62). Nothing resolves itself: every change has a source behind it, and the
-source a speaker.
+those needs for the rest (K136, K138). It is walked once, when it is complete. A derivation edge from another
+requirement, added to one that exists, does not change it in place either (K147); what states such an edge is
+OQ42. A `SourceNeed` that states a different value without replacing anything contradicts what was said, and
+is refined into a requirement of its own (K139). A decision to drop a requirement with nothing in its place is
+a `SourceDecision`, whose `RequirementDecision` retires it (K62). Nothing resolves itself: every change has a
+source behind it, and the source a speaker.
 
 ### No longer in force
 
@@ -663,7 +663,8 @@ also leaves force when another requirement supersedes it (K133, K144): one refin
 — the update the superseding requirement refines — and nothing is deleted (K5). A requirement is no longer in
 force once it has a `retiredBy` or a `supersededBy`, whatever the state of the element at the other end
 (K144): a superseding requirement that later leaves force does not return the one it replaced to force,
-because leaving force is an event in a requirement's life and is final.
+because leaving force is an event in a requirement's life and is final. What follows for the requirements
+deriving from one that leaves force is OQ39, and for the questions it triggered, OQ43.
 
 **Leaving force is named from both ends** (K134). Each way out of force is one association with two named
 ends: a `RequirementDecision` `retires` a requirement, which is `retiredBy` it, at most one decision per
@@ -876,7 +877,9 @@ requirements also carries the modeller's flag**: whether the modeller judges the
 The flag is advice, not a decision. The project manager decides, at the latest when a baseline is cut, to keep
 one requirement and retire the others, or that the contradiction is not real and every one stays in force.
 Nothing is merged, in this model or in a baseline; one design element satisfying several of them is design,
-beyond the seam.
+beyond the seam. For a choice over contradicting requirements, a decision that the contradiction is not real
+settles it on an alternative the candidates do not list (K142). Whether a choice a `ConflictRule` raises is
+one over contradicting requirements, and so carries the flag and holds back a baseline, is OQ41.
 
 **`RequirementClarification` carries nothing beyond the shared shape, and no `discharges`** (K119, K121). A
 parameter's ask raises it where the parameter has no value on a requirement, one per `Requirement` and

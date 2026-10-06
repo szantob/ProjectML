@@ -367,9 +367,10 @@ elaborated beneath itself, with the client (`01-requirement-model.md` §2, K146)
 kind beneath one original says nothing about another, and looked for anywhere in the model it would silence
 the question for every other. Consequently **at most one `RequirementInquiry` per `Rule` and triggering
 `Requirement` is open at a time**, and a requirement deriving from the triggering one discharges it. Whether
-only a requirement deriving directly counts, or one deriving through others too, is OQ40. K75 read the check
-as set-level to keep a growing model from re-triggering one rule combinatorially; a question per triggering
-requirement is work the project actually has, and the model records it.
+only a requirement deriving directly counts, or one deriving through others too, is OQ40. What closes the
+inquiry once the triggering requirement has left force is OQ43. K75 read the check as set-level to keep a
+growing model from re-triggering one rule combinatorially; a question per triggering requirement is work the
+project actually has, and the model records it.
 
 **Several originals may share what they imply** (K147). Where requirements on several branches each imply the
 same thing, one requirement deriving from each of them closes each one's inquiry, and what only one of them
