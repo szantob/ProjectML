@@ -46,9 +46,9 @@ up — it would bake one way of thinking about how a rule-set governs behaviour 
 which is exactly what K22 and K23 exist to refuse: a rule-set is a model of its own, built with its own
 metamodel, precisely so that an adopting organisation's way of working is not fixed into this one.
 
-Each of the four found so far closes a gap `02-requirement-analysis-model.md` leaves open on purpose,
-because closing it there would fix an organisation's way of working into the metamodel itself. Recorded as
-K42 in [`06-decisions.md`](06-decisions.md).
+Each of the four found so far named a gap `02-requirement-analysis-model.md` left open on purpose, because
+closing it there would fix an organisation's way of working into the metamodel itself; the first has since
+closed (below, K127). Recorded as K42 in [`06-decisions.md`](06-decisions.md).
 
 | A rule-set states | The gap it fills |
 |---|---|
@@ -56,6 +56,11 @@ K42 in [`06-decisions.md`](06-decisions.md).
 | When a gap stops being waited on and becomes a decision | Nothing today says at what point waiting ends |
 | How a conflict of a given kind is resolved | Nothing today says who resolves what, or how |
 | Which other requirement kinds a given kind implies should also be present | Nothing today says whether one requirement's kind, on its own, calls for other kinds to co-exist |
+
+**The first row no longer has a gap to fill** (K127). No value is ever a default, because every value is
+stated by a `SourceNeed` (K136); what an implementation offers as a default is a suggestion a parameter's ask
+carries, and becomes a value only when somebody states it. The row is kept, as what the evidence measured, and
+states nothing a rule-set still needs to say.
 
 The first three are not proposed here; they are measured. EventML's v0.5 record counted what its 22 written
 requirement definitions already carried — when a definition applies, what it needs, how a missing value is
@@ -71,11 +76,11 @@ It passes the same test the other three do — nothing about which requirement k
 specific to any one domain — which is what earns it a place in this table on K42's own terms rather than as an
 exception to them.
 
-**They are stated per kind, not per definition.** A rule-set says how a default belonging to a kind of
-requirement is treated, how long a gap of that kind is waited on, how a conflict between requirements of that
-kind is resolved — not how one particular definition's default is treated. This is why K30's kinds have to
-exist before a rule-set is useful at all: a rule-set speaks about a classification the metamodel provides the
-mechanism for and an implementation fills, and it has nothing to attach a statement to until that
+**They are stated per kind, not per definition.** A rule-set says how long a gap belonging to a kind of
+requirement is waited on, how a conflict between requirements of that kind is resolved, and which other kinds
+that kind implies — not how one particular definition's gap or conflict is treated. This is why K30's kinds
+have to exist before a rule-set is useful at all: a rule-set speaks about a classification the metamodel
+provides the mechanism for and an implementation fills, and it has nothing to attach a statement to until that
 specialisation hierarchy exists.
 
 ## 3. `RuleSet` and `Rule`
@@ -98,18 +103,19 @@ classDiagram
     }
     Rule <|-- ConflictRule
     Rule <|-- CompletenessRule
+    Rule <|-- ValueRule
+    ValueRule --> Parameter : ranges over
     Rule "1" *-- "0..*" Criterion : guard
     Criterion --> Parameter : names
     CompletenessRule --> RequirementDefinition : implies
 ```
 
-The diagram draws what this section states; where the two disagree, the prose wins.
-A guard is drawn as the criteria a `Rule` owns rather than as an attribute, because each criterion names a
-parameter, an element `02-requirement-analysis-model.md` §7 defines. `ConflictRule` carries
-nothing of its own, which is a decision rather than an omission and is argued in its own subsection below.
-Two further `Rule` specialisations are named but not shaped — see the `Rule` subsection — and are left off the
-diagram for the same reason a design record leaves an open question out of a decision table: nothing here
-defines them yet.
+The diagram draws what this section states; where the two disagree, the prose wins. A guard is drawn as the
+criteria a `Rule` owns rather than as an attribute, because each criterion names a parameter, an element
+`02-requirement-analysis-model.md` §7 defines. `ConflictRule` carries nothing of its own, which is a decision
+rather than an omission and is argued in its own subsection below. One further `Rule` specialisation, the
+gap-timeout rule, is named but not shaped — see the `Rule` subsection — and is left off the diagram for the
+same reason a design record leaves an open question out of a decision table: nothing here defines it yet.
 
 ### `RuleSet`
 
@@ -143,11 +149,11 @@ operate what it describes states that once, high in the tree, and every technica
 
 ### `Rule`
 
-**A `Rule` directs attention; it does not prescribe an outcome** (K83). It states which subjects must be
-dealt with when a requirement arises under the `RequirementDefinition` it hangs on — never what the
-resulting requirement should say. This is what keeps a rule-set from quietly becoming a second definition
-layer: a `RequirementDefinition` says what a requirement of some kind looks like, and section 1 already
-places what a requirement's wording should be outside a rule-set's territory entirely.
+**A `Rule` directs attention; it does not prescribe an outcome** (K83). It states which subjects must be dealt
+with when a requirement under the `RequirementDefinition` it hangs on is walked — never what the resulting
+requirement should say. This is what keeps a rule-set from quietly becoming a second definition layer: a
+`RequirementDefinition` says what a requirement of some kind looks like, and section 1 already places what a
+requirement's wording should be outside a rule-set's territory entirely.
 
 **A negative answer to a subject a rule raises is a full answer.** Where a project decides it needs nothing in
 the subject raised, that decision appears as a `Requirement` like any other, and the `RequirementInquiry` raised
@@ -212,33 +218,31 @@ of UML and SysML v2 state machines and activities, where it gates a transition w
 A guard is a list of criteria, empty when the rule has none. Each criterion names a parameter of the
 `RequirementDefinition` that owns the rule — declared there or inherited (`02-requirement-analysis-model.md`
 §9, K107) — an operation, and a constant. The operations are *equals*, *is one of*, and the four orderings —
-*less than*, *at most*, *greater than*, *at least* — and the constant is a value of that parameter's domain, or for
-*is one of* a set of them. How a constant is written down is notation, and not fixed here (K15). The guard
-belongs to the shape every `Rule` has, so both specialisations may carry one, and it decides only whether the
-arising requirement brings the rule into play — never what the firing test then ranges over (K92).
+*less than*, *at most*, *greater than*, *at least* — and the constant is a value of that parameter's domain,
+or for *is one of* a set of them. How a constant is written down is notation, and not fixed here (K15). The
+guard belongs to the shape every `Rule` has, so a `ConflictRule` and a `CompletenessRule` may carry one, and a
+`ValueRule` carries none (below). It decides only whether the requirement being walked brings the rule into
+play — never what the firing test then ranges over (K92).
 
-**A guard excludes exactly what can be decided without judgement, and nothing else.** That one sentence fixes
-how a criterion is evaluated (K103). A criterion is decided only on a value in the stated or derived state
-(`04-value-states.md` §2): there it either holds or is decided false. On a value that is assumed, unknown or
-conflicting, or on a parameter the requirement carries no value for, it is undecided. An unknown value has nothing to
-compare, and a conflicting one has several. An assumed value is a single value, and the comparison itself
-could be computed; but what a guard concludes is that the rule does not concern this requirement, and that
-conclusion is only as firm as the value — an assumption is exactly the value `04-value-states.md` §3 says
-somebody with standing may need to correct. A guard excluding on one would let a wrong assumption silence a
-rule nobody then reads.
+**A guard excludes exactly what can be decided without judgement, and nothing else.** A criterion is decided
+on the value a `SourceNeed` states for its parameter: there it either holds or is decided false. A walk runs
+only on a complete requirement (`02-requirement-analysis-model.md` §10, K128, K140), every parameter of which
+has a value, so every criterion the walk reads is decided (K103, narrowed by K125 and K128). A guard therefore
+never excludes on a guess: no value is one, since every value is stated by a `SourceNeed` (K136).
 
 **The criteria of one guard are conjunctive** (K104). A rule is excluded when at least one of its criteria is
 decided false, and kept otherwise: a single criterion decided false settles the guard whatever the others are,
 so exclusion stays decidable where some criteria are not. *Is one of* expresses a disjunction over one
 parameter; a disjunction across parameters is written as two rules. An operation must be one the parameter's
 domain declares — *equals* and *is one of* need a domain **comparable for equality** or **ordered**, the four
-orderings an **ordered** one (`04-value-states.md` §5, K101) — which section 6 states as a constraint.
+orderings an **ordered** one (`02-requirement-analysis-model.md` §7, K101) — which section 6 states as a
+constraint.
 
 **An exclusion creates nothing, so it leaves nothing to trace.** It raises no question and closes none. It is
 reproducible from the guard and the values it read, and each already carries its own provenance: the guard as
-part of a rule-set, which is a model in its own right (K22), and each value in its state and, when stated,
-its source. Writing a guard is the act of whoever writes the rule-set; applying it is the walk's, and decides
-nothing about the project.
+part of a rule-set, which is a model in its own right (K22), and each value in the `SourceNeed` stating it.
+Writing a guard is the act of whoever writes the rule-set; applying it is the walk's, and decides nothing
+about the project.
 
 **A rule leaving force does not close the questions it raised.** Retraction is not an answer, and an open
 question stands until something closes it the ordinary way. Where the answer is that the project needs
@@ -248,37 +252,46 @@ resting on premises `06-decisions.md` records as OQ26.
 **A `Rule` specialisation is fixed by what its firing test ranges over, and every other difference between
 specialisations follows from it** (K90). `ConflictRule` tests a **pair** — the requirement that arose against
 one already in force. `CompletenessRule` tests a **set** — the requirements the implied kind would have to
-appear among. Section 2's four descriptive rows are not this axis and never were: they remain a description
-of *subject matter*, closer to an open, `Source.kind`-shaped label than to a type boundary (K71), and they
+appear among, which derive from the requirement that triggered it (K148). `ValueRule` tests **one parameter**
+— its value on one requirement, and the values of it that requirements of one kind state for the same thing
+(K115, K141). Section 2's four descriptive rows are not this axis and never were: they remain a description of
+*subject matter*, closer to an open, `Source.kind`-shaped label than to a type boundary (K71), and they
 predict a mechanism in neither direction.
 
 Each consequence below is derived rather than stipulated. A pairwise test has both elements present when it
-fires, so there is something to choose between: it yields alternatives, hence a `RequirementChoice`; each
-pair is its own case, hence as many open questions as there are pairs; and deciding whether one requirement
-contradicts another reads both texts, hence a judgement. A set-level test finds something **absent**, so
+fires, so there is something to choose between: it yields alternatives, hence a `RequirementChoice`; each pair
+is its own case, hence as many open questions as there are pairs; and deciding whether one requirement
+contradicts another reads both texts, hence a judgement. A test over a set finds something **absent**, so
 there is nothing to choose between: it yields a gap, hence a `RequirementInquiry` carrying nothing beyond the
-shared shape; the gap is one property of the whole set, hence at most one open at a time; and deciding
-whether any requirement of a kind exists reads no text at all, hence no judgement.
+shared shape; the gap is one property of what derives from the triggering requirement, hence at most one open
+per rule and triggering requirement; and deciding whether a requirement of a kind derives from the triggering
+one reads no text at all, hence no judgement. A test over one parameter finds either no value on a
+requirement, or requirements of one kind that contradict in it. The first is a gap in one requirement, hence a
+`RequirementClarification`, one open per requirement and parameter, and whether a value is present reads no
+text, hence no judgement. The second is alternatives, hence a `RequirementChoice` over the contradicting
+requirements, and whether they state values for the same thing is the modeller's judgement, made at extraction
+(K24, K40). Which question a firing raises therefore follows from what is present when it fires, not from the
+specialisation alone (K120).
 
 **One sentence accounts for what each specialisation carries, and for the inversion between the two sides.**
 On the question side, `RequirementChoice` carries something extra and `RequirementInquiry` carries nothing
-(`02-requirement-analysis-model.md` §11, K80); on the rule side this reverses. The reason is that **an
-absence must be named in advance, where a presence can be read at firing time**: a pairwise rule needs to
-carry nothing, because at firing both elements stand in the model, while a set-level rule must name its
-target in advance, because the target is not there to be read.
+(`02-requirement-analysis-model.md` §11, K80); on the rule side this reverses. The reason is that **an absence
+must be named in advance, where a presence can be read at firing time**: a pairwise rule needs to carry
+nothing, because at firing both elements stand in the model, while a rule testing a set must name its target
+in advance, because the target is not there to be read.
 
 **A `Rule`'s attachment determines what *triggers* it, not what its test ranges over** (K92). The inheritance
-above says which requirements bring a rule into play; the test then ranges over the project model. The two
-cannot be the same thing: a rule stated on one `RequirementDefinition` may look for requirements produced
-under another, anywhere in the specialisation tree, and searching only the owner's own subtree would find
-nothing in any project. This corrects the reach the `CompletenessRule` subsection below once stated for its
-own check (K75), not that check's set-level verdict.
+above says which requirements bring a rule into play; the test then ranges over what its specialisation names.
+A rule stated on one `RequirementDefinition` may look for requirements produced under another, anywhere in the
+specialisation tree of definitions, since searching only the owner's own subtree would find nothing in any
+project. Among requirements, a `CompletenessRule` looks only at those deriving from the one that triggered it,
+not anywhere in the project model (K148). This corrects the reach the `CompletenessRule` subsection below once
+stated for its own check (K75, K95).
 
-Two specialisations are worked out here: `ConflictRule` and `CompletenessRule`, below. Two more — a
-silent-vs-owned-default rule and a gap-timeout rule, section 2's first and second rows — are not. Placed on
-this axis, each ranges over something neither of the worked two does — a single value, and an open question
-together with elapsed time — and each is held by a prerequisite the collection does not yet meet; both are
-recorded as OQ18 in `06-decisions.md` (K72, K90).
+Three specialisations are worked out here: `ConflictRule`, `CompletenessRule` and `ValueRule`, below. A
+silent-vs-owned-default rule, section 2's first row, needs none: no value is ever a default (K127). A
+gap-timeout rule, the second row, is not worked out; it ranges over an open question together with elapsed
+time, which nothing in the collection yet records, and stays in OQ18 (K72, K90).
 
 ### `ConflictRule`
 
@@ -288,9 +301,11 @@ among (K73). Its canonical case is a conflict **between two kinds**, on terms so
 nothing in the model could find them: a requirement for catering whose headcount falls short of a requirement
 stating how many people are expected. Neither requirement is wrong on its own, no parameter they share is in
 dispute, and the relation between the two kinds is exactly what the rule carries. This sharpens section 2's
-third row — *how a conflict of a given kind is resolved* — which describes only the resolution half;
-detection is the other half a `Rule` must also carry, and resolution is exactly what a `RequirementChoice`,
-discharged by a `RequirementDecision`, records.
+third row — *how a conflict of a given kind is resolved* — which describes only the resolution half; detection
+is the other half a `Rule` must also carry, and resolution is exactly what a `RequirementChoice`, discharged
+by a `RequirementDecision`, records. Whether that choice is one raised over contradicting requirements,
+carrying the modeller's flag and holding back a baseline (`02-requirement-analysis-model.md` §11, K142), is
+OQ41. Which requirements its test reaches, when the walk runs once, is OQ45.
 
 **A `ConflictRule` carries nothing beyond the shape every `Rule` has** (K96). This asks to be justified rather
 than merely stated, because both specialisations relate two requirement kinds and only the other one names its
@@ -308,21 +323,22 @@ empty, there being nothing for it to exclude. Five vacuous attributes is not a b
 of something that is not one, because a rule-set states how **this project** works, and this is true of every
 project and carries no content.
 
-**What such a rule would have covered is already covered, three ways.** Where two sources disagree about the
-same thing, the value-state model carries it and needs no rule: `04-value-states.md` §2's **conflicting**
-state holds the competing values, each with its source. That this is one requirement carrying a contested
-value, rather than two requirements that disagree, is what `06-decisions.md` records as OQ24. Where two
-different kinds are incompatible on terms somebody had to state, that is a `ConflictRule` — the case above.
-Whatever neither covers requires judgement and follows no procedure, which makes it a review, the third of the
-checking modes `02-requirement-analysis-model.md` §11 names. **No fourth checking mode is needed**, and
-introducing one here would add a construct nothing exercises.
+**What such a rule would have covered is already covered, three ways.** Where requirements of one kind
+contradict about the same thing, the parameter's own ask carries it: the contradicting `SourceNeed`s are
+refined into separate requirements, and the ask raises a `RequirementChoice` between them
+(`02-requirement-analysis-model.md` §10, §11, K139, K141). Two requirements of one kind are produced from one
+template, so where they contradict they differ in a parameter's value, and that parameter's ask is always
+present. Where two different kinds are incompatible on terms somebody had to state, that is a `ConflictRule` —
+the case above. Whatever neither covers requires judgement and follows no procedure, which makes it a review,
+the third of the checking modes `02-requirement-analysis-model.md` §11 names. **No fourth checking mode is
+needed**, and introducing one here would add a construct nothing exercises.
 
 ### `CompletenessRule`
 
-A `CompletenessRule` fires when a `RequirementDefinition` kind is present without an implied companion kind, and
-raises a `RequirementInquiry` (`02-requirement-analysis-model.md` §11) (K74). This is the case section 2's
-fourth row now states directly: *"which other requirement kinds a given kind implies should also be
-present."*
+A `CompletenessRule` fires when a requirement has no requirement of an implied companion kind deriving from
+it, and raises a `RequirementInquiry` (`02-requirement-analysis-model.md` §11) (K74). This is the case section
+2's fourth row describes — *"which other requirement kinds a given kind implies should also be present"* —
+looked for beneath the requirement that triggered it (K148).
 
 **A `CompletenessRule` names the kind it implies, by a reference to a `RequirementDefinition`, beside the
 prose of *what to look for*** (K93). This is the one place a `Rule` carries a typed reference, and it is
@@ -336,38 +352,67 @@ everything else a rule-set holds.
 
 **Exactly one implied `RequirementDefinition` per `CompletenessRule`** (K94). A kind implying several
 companions is several rules, not one rule naming several kinds. The reason is machinery already in place
-rather than tidiness: at most one `RequirementInquiry` per rule is open at a time, and `discharges` names
-exactly one `Requirement` (`02-requirement-analysis-model.md` §11, §12). A rule naming five implied kinds,
-three of them missing, would open one inquiry covering three gaps, which no single `Requirement` could
-discharge and nothing could therefore close. Separate rules also give the behaviour anybody would want: where
-one implied kind is present and another is not, one question opens rather than several.
+rather than tidiness: at most one `RequirementInquiry` per rule and triggering requirement is open at a time
+(K148), and `discharges` names exactly one `Requirement` (`02-requirement-analysis-model.md` §11, §12). A rule
+naming five implied kinds, three of them missing, would open one inquiry covering three gaps, which no single
+`Requirement` could discharge and nothing could therefore close. Separate rules also give the behaviour
+anybody would want: where one implied kind is present and another is not, one question opens rather than
+several.
 
-**The check is set-level, not per-instance.** It asks whether at least one **in-force** `Requirement`
-produced under the implied `RequirementDefinition`, **or under any specialisation of it**, exists **in the
-project model** — never whether every triggering `Requirement` has its own (K75, K95). All three
-qualifications carry weight. *In force*, because a retired requirement stays in the model
-(`02-requirement-analysis-model.md` §10, K5) and does not fill a gap. *Or any specialisation*, because the
-definition tree is a kind hierarchy, so a more specific kind satisfies a more general implication. *In the
-project model*, which is the separation stated above: the owner's subtree is where a rule is triggered,
-never where its target is found. Consequently, while a given `CompletenessRule`'s gap stays open, a newly
-triggering `Requirement` extends the existing open `RequirementInquiry`'s list of triggering requirements
-rather than raising a second one: **at most one open `RequirementInquiry` per `Rule` at a time.** Reading
-the check as a query over current state, rather than a per-instance obligation, is what keeps a growing
-model from re-triggering the same rule combinatorially — once the implied kind exists once, the query
-returns no gap for every requirement thereafter, without anything needing to be closed by hand.
+**The check is made beneath the triggering requirement** (K148). It asks whether at least one **in-force**
+`Requirement` produced under the implied `RequirementDefinition`, **or under any specialisation of it**,
+**derives from the requirement that triggered the rule**. All three qualifications carry weight. *In force*,
+because a retired requirement stays in the model (`02-requirement-analysis-model.md` §10, K5) and does not
+fill a gap. *Or any specialisation*, because the definition tree is a kind hierarchy, so a more specific kind
+satisfies a more general implication. *Deriving from the triggering requirement*, because a requirement is
+elaborated beneath itself, with the client (`01-requirement-model.md` §2, K146): a requirement of the implied
+kind beneath one original says nothing about another, and looked for anywhere in the model it would silence
+the question for every other. Consequently **at most one `RequirementInquiry` per `Rule` and triggering
+`Requirement` is open at a time**, and a requirement deriving from the triggering one discharges it. Whether
+only a requirement deriving directly counts, or one deriving through others too, is OQ40. What closes the
+inquiry once the triggering requirement has left force is OQ43. K75 read the check as set-level to keep a
+growing model from re-triggering one rule combinatorially; a question per triggering requirement is work the
+project actually has, and the model records it.
 
-**What the set-level reading cannot express, said where a reader will need it.** One in-force requirement of
-the implied kind anywhere satisfies the rule for every triggering requirement, and this model has no way to
-say that each of them needs its own. That is deliberate, taken against a growing model re-triggering the same
-rule combinatorially. Where per-instance behaviour is actually wanted, it is obtained by refining the implied
-kind rather than by changing the check: a rule stated further down the tree implies a more specific companion
-kind, and the set-level question then asks the narrower thing.
+**Several originals may share what they imply** (K147). Where requirements on several branches each imply the
+same thing, one requirement deriving from each of them closes each one's inquiry, and what only one of them
+asks for derives from that one alone. Adding a derivation to a requirement that exists does not change that
+requirement in place; what states the added derivation is OQ42.
 
-**The same move marks the limit on what a rule may imply at all.** A rule may imply a more specific kind
-wherever an implementation declares one; it may never state what a requirement of the implied kind should
-say. **An implied kind, yes; an implied parameter value, never.** That line is what keeps a rule-set from
-becoming a second definition layer, and it is the same one the `Rule` subsection above draws in saying a rule
-never states what the resulting requirement should say (K83).
+**There is a limit on what a rule may imply at all.** A rule may imply a more specific kind wherever an
+implementation declares one; it may never state what a requirement of the implied kind should say. **An
+implied kind, yes; an implied parameter value, never.** That line is what keeps a rule-set from becoming a
+second definition layer, and it is the same one the `Rule` subsection above draws in saying a rule never
+states what the resulting requirement should say (K83).
+
+### `ValueRule`
+
+A `ValueRule` ranges over one parameter (K115, K141). It fires where the parameter has no value on a
+requirement, raising a `RequirementClarification` (`02-requirement-analysis-model.md` §11, K119, K143), and
+where requirements of one kind contradict in its value for the same thing, raising a `RequirementChoice` over
+them (K139, K141).
+
+**Every parameter's *what to ask* is a `ValueRule`** (K116). It belongs to the `RuleSet` of the
+`RequirementDefinition` that declares the parameter, reaches every specialisation of it as every rule there
+does (K69), and is inherited with the parameter (`02-requirement-analysis-model.md` §9, K112). Its identity is
+the parameter's (K106), and its *what to look for* is the ask itself. It is in force for as long as its
+parameter is declared, and cannot be taken out of force on its own: that would let a value go missing in
+silence, which is what it exists to prevent. Because every parameter carries an ask
+(`02-requirement-analysis-model.md` §12), every parameter is covered. Whether the ask needs to be a `Rule` at
+all is OQ38.
+
+**It carries no *when it applies* and no guard, and it is not walked.** Its first test reads whether a value
+is present, which is decided without judgement; its second rests on the modeller's judgement, made at
+extraction, that requirements state values for the same thing (K141). Neither is a relevance judgement (K86).
+Its first test fires on incomplete requirements, which no walk reaches (K128, K140); its second may fire on
+complete ones, and the rule is kept out of the walk all the same until OQ38 is settled. A contradiction
+changes no requirement in place: the contradicting `SourceNeed` is refined into a requirement of its own
+(K139).
+
+**K98's test does not bite here.** K98 recognised the universal contradiction rule as no rule because every
+attribute of the shape degenerated on it and it carried no content. An ask carries content no other
+parameter's ask carries — what to ask, of whom, about which parameter — and states something about this
+definition, not something true of every project. It is also where K98's first destination now lies (K141).
 
 ### What each firing produces
 
@@ -377,6 +422,8 @@ classDiagram
     RequirementInquiry --> CompletenessRule : triggered by
     RequirementChoice --> RequirementDecision : discharges
     RequirementInquiry --> Requirement : discharges
+    RequirementClarification --> ValueRule : triggered by
+    RequirementChoice --> ValueRule : triggered by
 ```
 
 The diagram draws what this section and `02-requirement-analysis-model.md` §11 state between them; where a
@@ -388,12 +435,12 @@ a definition are.
 ### Walking a `RuleSet`
 
 **A `RuleSet` is a written procedure, and matching is a relevance judgement made while walking it** (K86).
-When a new requirement arises in a subject, the `RuleSet`s that reach it are walked. A rule no longer in force
-is passed over without anything being read (K97); a rule whose guard the arising requirement decidably fails
-is set aside next, again without judgement (K105); of the rest, a reader — human or AI — judges which are
-relevant by reading each rule's *when it applies*. This is not the evaluation of a condition for its truth
-value against a requirement, which is how K76 first described it; that description is corrected here, its
-verdict is not.
+When a requirement becomes complete (`02-requirement-analysis-model.md` §10, K128), the `RuleSet`s that reach
+it are walked, once. A rule no longer in force is passed over without anything being read (K97); a rule whose
+guard the requirement decidably fails is set aside next, again without judgement (K105); of the rest, a reader
+— human or AI — judges which are relevant by reading each rule's *when it applies*. This is not the evaluation
+of a condition for its truth value against a requirement, which is how K76 first described it; that
+description is corrected here, its verdict is not.
 
 **The verdict stands: this is a semantic constraint (K24), not a syntactic one.** The meaning of free text is
 matched against the meaning of free text, which no conventional algorithm decides. The metamodel does not
@@ -411,31 +458,38 @@ specialisation tree already carries.
 rule.** Judging relevance reads *when it applies* and is the same act whatever the rule is. What follows when
 a rule is found relevant — the firing test — differs by specialisation, and is not uniformly a judgement: a
 `ConflictRule`'s test reads two requirements' texts and cannot be decided without doing so, where a
-`CompletenessRule`'s test asks whether a requirement of some kind exists and reads no text at all. The
-semantic classification above holds because of the first step, which every walk runs; it does not follow that
-everything after it is judged.
+`CompletenessRule`'s test asks whether a requirement of some kind derives from the triggering one (K148) and
+reads no text at all. The semantic classification above holds because of the first step, which every walk
+runs; it does not follow that everything after it is judged.
 
 A guard is not a third step beside these two. It removes rules before the first and removes only what is
 decided without judgement, so it narrows what reaches judgement and adds no category beside K24's two
 (K105).
 
+**The walk runs once, and a `ValueRule` is not part of it.** A complete requirement is never changed in place
+(`02-requirement-analysis-model.md` §10, K129), so nothing the walk read moves beneath it, and no change of a
+value calls for a second walk (K128). A `ValueRule` is no relevance test (K141); its first test fires on
+incomplete requirements the walk never reaches (K140), and the rule is kept out of the walk until OQ38 is
+settled. A rule adopted after a requirement became complete is therefore never walked over it; what such a
+change does to the requirements already complete is OQ46.
+
 ```mermaid
 flowchart TD
-    A["A Requirement arises under a RequirementDefinition"]
-    A --> B["Walk the RuleSets on that definition and on its ancestors"]
+    A["A Requirement becomes complete under a RequirementDefinition"]
+    A --> B["Walk the RuleSets on that definition and on its ancestors, except their ValueRules"]
     B --> S{"Is this Rule in force?"}
     S -->|"no — decided without judgement"| Z["Nothing follows"]
     S -->|"yes"| Q{"Does its guard exclude it?<br/>a criterion decided false"}
     Q -->|"yes — decided without judgement"| Z
-    Q -->|"no — or the guard is undecided"| C{"Is it relevant?<br/>read its 'when it applies'"}
+    Q -->|"no"| C{"Is it relevant?<br/>read its 'when it applies'"}
     C -->|"no"| Z
     C -->|"yes — a judgement, semantic"| D["The Rule's firing test runs"]
     D -->|"ConflictRule"| E{"tests a pair:<br/>does this contradict an in-force Requirement?"}
-    D -->|"CompletenessRule"| F{"tests a set:<br/>does any in-force Requirement of the implied kind exist?"}
+    D -->|"CompletenessRule"| F{"tests beneath the trigger:<br/>does an in-force Requirement of the implied kind derive from it?"}
     E -->|"no"| Z
     E -->|"yes — judged, reads both texts"| G["RequirementChoice, one per contradicting pair"]
     F -->|"at least one"| Z
-    F -->|"none — decided without judgement"| H["RequirementInquiry, at most one open per Rule"]
+    F -->|"none — decided without judgement"| H["RequirementInquiry, at most one open per Rule and triggering Requirement"]
 ```
 
 The diagram draws what this section states; where the two disagree, the prose wins. **It draws this model's
@@ -467,10 +521,9 @@ why
 ## 4. What the metamodel does not do
 
 **The metamodel states no rules.** It names this model and says what a rule-set may state; the rule itself —
-which defaults are silent, how long a given kind waits, how a given conflict resolves — belongs to whoever
-adopts the metamodel and writes a rule-set to run under it. This is the same move K15 makes for requirement
-kinds: the metamodel provides the slot and the shape of what may go into it, and something below fills it
-(K23).
+how long a given kind waits, how a given conflict resolves — belongs to whoever adopts the metamodel and
+writes a rule-set to run under it. This is the same move K15 makes for requirement kinds: the metamodel
+provides the slot and the shape of what may go into it, and something below fills it (K23).
 
 One further thing is deliberately left out, not merely unfilled. EventML's own record does not stop at the
 three gaps above: it groups its 22 definitions by where each one came from, and finds that what resolves a
@@ -520,8 +573,8 @@ None of them reads the content of anything.
 - A `Rule`'s identity is unique among the `Rule`s of the `RuleSet` that owns it. Its full identifier is the
   composition of that identity with its owner's, and how that composition is written down is an
   implementation's business (§3, K85).
-- No element is a `Rule` and nothing more: every `Rule` in a model is an instance of `ConflictRule` or
-  `CompletenessRule` (§3, K90).
+- No element is a `Rule` and nothing more: every `Rule` in a model is an instance of `ConflictRule`,
+  `CompletenessRule` or `ValueRule` (§3, K90, K115).
 - A `Rule` carries exactly one of "in force" or "no longer in force" at any time — never both, and never
   neither. This mirrors the constraint `02-requirement-analysis-model.md` §12 states over a requirement, and
   for the same reason: neither element is ever deleted (§3, K5, K97).
@@ -531,21 +584,30 @@ None of them reads the content of anything.
   declared there or inherited (§3, K102; `02-requirement-analysis-model.md` §9, K107).
 - Every criterion's operation is one its parameter's domain defines: *equals* and *is one of* need a domain
   comparable for equality or ordered, the four orderings an ordered one. No criterion names a parameter whose
-  domain is not comparable (§3, K101, K102; `04-value-states.md` §5).
+  domain is not comparable (§3, K101, K102; `02-requirement-analysis-model.md` §7).
 
 **Over `CompletenessRule`.**
 
 - A `CompletenessRule` names exactly one implied `RequirementDefinition`. Naming none, or naming more than
   one, is a failed check: with none the rule cannot run its own test, and with more than one the
   `RequirementInquiry` it raises could not be discharged (§3, K93, K94).
+- A `RequirementInquiry` a `CompletenessRule` raises is discharged only by a `Requirement` of the implied
+  kind, or a specialisation of it, that derives from the inquiry's triggering requirement (§3, K148).
+
+**Over `ValueRule`.**
+
+- Every parameter a `RequirementDefinition` declares has exactly one `ValueRule`, its ask, in the `RuleSet` of
+  that definition, in force for as long as the parameter is declared (§3, K116).
+- A `ValueRule` carries no *when it applies* and no guard (§3).
 
 **One rule over these elements reports rather than fails.** A `Rule` that does not say when it applies is
-reported as a question, not a failed check. This is exactly the position
-`02-requirement-analysis-model.md` §12 takes over a `RequirementDefinition`'s own *when it applies*, held for
-the same reason (K36): an unwritten applicability is a gap rather than a claim that the rule is always
-relevant, and the honest report is that nobody has written it down. It is the only rule in this document that
-reports rather than fails, and the contrast with the constraint over *what to look for* is the point — a rule
-seeking nothing is a defective record, where a rule whose relevance nobody stated is an incomplete one.
+reported as a question, not a failed check. A `ValueRule`, which carries none by definition, is outside it.
+This is exactly the position `02-requirement-analysis-model.md` §12 takes over a `RequirementDefinition`'s own
+*when it applies*, held for the same reason (K36): an unwritten applicability is a gap rather than a claim
+that the rule is always relevant, and the honest report is that nobody has written it down. It is the only
+rule in this document that reports rather than fails, and the contrast with the constraint over *what to look
+for* is the point — a rule seeking nothing is a defective record, where a rule whose relevance nobody stated
+is an incomplete one.
 
 **What is not stated here, and why the omission is deliberate.** No constraint requires a `ConflictRule` to
 carry anything of its own, because it carries nothing (§3, K96) — and no constraint is written over a `Rule`'s

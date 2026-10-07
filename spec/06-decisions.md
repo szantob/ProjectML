@@ -294,6 +294,72 @@ again; the same record closes OQ10 and opens OQ32.
 | K113 | A definition's template is not inherited. A specialisation that is not abstract states its own | A template is the sentence a requirement of exactly this definition is produced from; a specialisation handed its ancestor's would lose what makes it one. It inherits the parameters, never the sentence (K111) |
 | K114 | A definition's *when it applies* is not inherited | It guides the modeller, a person or an agent, while a new requirement is being classified, by saying which branch is worth following. An inherited statement would point every branch the same way |
 
+## Decisions K115–K135
+
+Taken in [the design record of 2026-10-05 on a rule over one value](../docs/superpowers/specs/2026-10-05-value-rule-and-clarification-design.md)
+(K115–K124) and [the design record of the same day on values from sources](../docs/superpowers/specs/2026-10-05-values-from-sources-and-the-complete-requirement-design.md)
+(K125–K135), which amends the first before either reached `spec/`; written in by
+[the integration plan of 2026-10-05](../docs/superpowers/plans/2026-10-05-values-and-questions-integration-plan.md).
+K117 and K124 were withdrawn and superseded before integration and keep their rows, so that their numbers are
+not reused. Two founding decisions are revised by the owner's explicit instruction: K1's value-state model, by
+K125, and K4's four declarations, narrowed to three by K130. K19 is revised by K131; K79 by K120; K86 by K128;
+K89 is narrowed; K62's `retires` gains a second way out of force in K133's `supersedes`, and both gain a named
+earlier end in K134; K44's open list of source elements gains `SourceUpdate`; K98's first destination becomes
+K126's choice; K103 is narrowed by K125 and K128; K72's list of worked mechanisms gains `ValueRule`.
+
+| # | Decision | Reason |
+|---|---|---|
+| K115 | A third `Rule` specialisation, `ValueRule`, ranges over a single value: one parameter's value on one `Requirement`. It fires where the value is missing and where the sources stating it disagree | The silent cases share one range, and K90 makes the range what fixes a specialisation. Its test reads presence and agreement, decided without judgement |
+| K116 | Every parameter's *what to ask* is a `ValueRule`, in the rule-set of the definition declaring the parameter and inherited with it. It is in force while the parameter is declared and cannot be taken out of force alone | K87 holds unchanged, and the route `spec/02` §11 gave a missing value joins the question route. Every parameter carries an ask, so every parameter is covered by construction |
+| K117 | **Withdrawn before integration.** An organisation's `ValueRule` was to decide whether an assumed value raises a question | K125 leaves no assumed value to name |
+| K118 | A disagreement raises a `RequirementChoice`, one per `Requirement` and parameter, whose alternatives are every competing statement with its source; a further one adds to them. It is discharged by a `RequirementDecision` | Several statements present is something to choose between, and the project manager chooses. One choice over all of them, not one per pair, since three or more sources may disagree |
+| K119 | A missing value raises a `RequirementClarification`, a third specialisation of `RequirementQuestion`, carrying the shared shape | Nothing is present to choose between, so it is no choice; and the gap is a value of a requirement that exists, not a missing kind, so it is no inquiry. Reusing `RequirementInquiry` would break K75 |
+| K120 | Which specialisation a question takes follows from what is present when its rule fires, not from the rule's specialisation alone. This revises K79's "one per mechanism" | `ValueRule` raises two specialisations; what K90 derived the question from was what is present at firing, and stated that way it holds for all three ranges |
+| K121 | A `RequirementClarification` is one per `Requirement` and parameter, open while the value is missing, closed when a source states it or the requirement leaves force, and carries no `discharges` | The value names its source, and the chain from the question through `poses`, `replies` and `refine` records what closed it; an edge would name nothing the chain does not |
+| K122 | A clarification's statement starts from its ask, which the modeller may fit to the requirement. A choice's or an inquiry's the modeller writes freely, informed by *what to look for*, from no template | *What to look for* says what to notice, not how to ask; a choice's alternatives and an inquiry's gap differ every time; what prose means is not an algorithm's to decide (K24) |
+| K123 | Where sources state values for the same thing, they are refined into one `Requirement`, whose value is missing while the choice between them is open. Whether two statements are about the same thing is a judgement; two such requirements in force are a refinement error, found by review | It is the reading under which the disagreement reaches the project manager as one choice. Sameness cannot be a syntactic constraint. A later source correcting an earlier one is not a disagreement but a change (K129) |
+| K124 | **Superseded before integration by K128.** The walk was not to run again when a value's state changed | K128 makes the walk run once, on a complete requirement |
+| K125 | Every value names the source that states it, and a value no source states does not exist. The value-state model's five states are withdrawn: a value exists or is missing. This revises the founding K1 | A value enters the model only with somebody answerable for it. *Assumed* and *derived* let the modeller put in a value with nobody answerable, and the modeller decides nothing for the project |
+| K126 | A disagreement between sources is not a value: the value is missing, and the disagreement is an open `RequirementChoice`. *Conflicting* is withdrawn as a state | The competing statements already stand in the choice. Nobody is answerable for a contested value until the project manager chooses, and the choice enters as a source |
+| K127 | A value supplied to keep moving is stated by somebody with standing; a computed quantity is design or is stated by whoever computed it; an implementation's default is a suggestion carried by an ask, never a value | What *assumed* and *derived* were for is kept, each with the actor it always had |
+| K128 | A requirement is complete when every parameter it has has a value and no choice about its values is open. The walk of the `RuleSet`s that reach it runs once, when it becomes complete, and never on one that is not. This revises K86's "when a requirement arises" | A rule always judges settled values; no criterion is undecided; no second walk arises. The incomplete requirement is not hidden: its missing values and open choices are questions |
+| K129 | A complete requirement is never changed in place. A correction arrives as a `SourceUpdate`, and the requirement refining it supersedes the old one; a different value stated without replacing raises a `RequirementChoice`; dropping with nothing in its place is a `SourceDecision` that retires | Every walk is over a requirement that will not move under it, and the history stays whole. Which of the three a passage is, is read at extraction (K40) |
+| K130 | A baseline carries only the requirements in force, each complete, with its finished text and the derivation edges between them; nothing of their values, sources or questions crosses. K35 is confirmed, and K4's fourth declaration is withdrawn | The finished text states every value, so carrying the values carries nothing a design language needs and something it cannot hold. With no value states, a binding has no value model to declare |
+| K131 | The collection has three members; what remained of the value-state model is stated in `spec/02`, `04-value-states.md` is withdrawn, and the number 04 is retired. This revises K19 | Values now occur only in the working model and its rules, so nothing is left to crosscut. The number is not reused so that every citation of `04-value-states.md` keeps its meaning |
+| K132 | A `SourceUpdate` is a `SourceNeed` whose passage, besides obliging something, replaces what an earlier statement said. It carries nothing beyond a `SourceElement`'s three attributes | A correction obliges something new and takes back something old at once; read as a decision it would owe alternatives and a rationale it rarely states. K44 left the list of source elements open |
+| K133 | A `Requirement` may carry `supersedes`, a list-valued edge to the requirements it replaces; one refining a `SourceUpdate` names at least one; a requirement superseded by one in force is no longer in force. The edge does not cross into a baseline. This answers what OQ17 asked `supersedes` to mean | Something has to name what a correction takes out of force, and the edge sits on the later element, as `refine`, the derivation edge and `replies` do. One edge on `Requirement` reaches every kind. The cause is still a source (K11), and nothing is deleted (K5) |
+| K134 | Each way out of force is one association with two named ends: `retires`/`retiredBy` between a `RequirementDecision` and a `Requirement` (at most one decision), `supersedes`/`supersededBy` between two `Requirement`s (any number). A requirement no longer in force names its cause through exactly one of them. How it is written down is notation | The cause of leaving force is named where the event happens, on the earlier requirement; one association with two named ends has nothing to keep in agreement |
+| K135 | Every edge is an association with two ends; naming an end makes it navigable from that side, and how ends are written down is notation. The derivation edge is named at both ends, adopting SysML v2's derivation connection: original requirement and derived requirement | It is the one edge a baseline carries into a design language (K130), so it is built as SysML v2 builds it; and retiring a requirement asks which requirements derive from it. Leaving force was named at both ends for provenance (K134); this one is not forced, and other edges wait for OQ36 |
+
+## Decisions K136–K149
+
+Taken in [the design record of 2026-10-06 on contradictions and
+derivation](../docs/superpowers/specs/2026-10-06-contradictions-derivation-and-the-review-of-k115-k135-design.md),
+from the owner's review of the integration of K115–K135 before it reached `main`; written in by [the
+integration plan of
+2026-10-06](../docs/superpowers/plans/2026-10-06-contradictions-and-derivation-integration-plan.md). K9 is
+narrowed by K145; K75, K92 and K95 are revised by K148; K98's first destination becomes K141's; K115, K118 and
+K120 are revised by K141; K121 by K143; K123 is reversed and K126 replaced by K139; K125 is restated by K136;
+K128 is revised by K140; K129's choice by K139; K133's reading by K144; K135 is narrowed by K149. EventML's
+D49 is not adopted (K145).
+
+| # | Decision | Reason |
+|---|---|---|
+| K136 | **No element skips a layer to name its provenance.** On a `Requirement`, every value is stated by a `SourceNeed` the requirement refines. Across the whole model, everything that enters it names the `SourceElement` that states it: a `Requirement` its `SourceNeed`s, a `RequirementDecision` its `SourceDecision`. A requirement never names a `Source`. This restates K125 | A requirement is related to a source only through the passage a `SourceNeed` anchors into, and `refine` already crosses at exactly that point. K125's guarantee, that a value has somebody answerable for it, is kept unchanged |
+| K137 | **The working model's `Requirement` carries, beyond what `01-requirement-model.md` gives it:** its values, at most one per parameter, each stated by a `SourceNeed` it refines (K136); its finished text once it is complete, and none before; `refine`; the definition it is produced under (K67); `supersedes` and `supersededBy`; and `retiredBy` | K130 took the values out of `spec/01`, and nothing in `spec/02` took them in, so the requirement analysis model used an attribute it never defined. At most one value per parameter follows from K139 |
+| K138 | **A requirement superseding another also refines those `SourceNeed`s of the old one that still state what it keeps.** Its values are stated by the `SourceUpdate` for what that replaces, and by those needs for the rest | A correction replaces what it states and nothing else. A value the update does not state cannot be stated by it (K136) |
+| K139 | **Contradicting `SourceNeed`s are refined into separate `Requirement`s, and a `RequirementChoice` is raised over the requirements that contradict.** A disagreement never makes a value missing, and a requirement never holds two values for one parameter. This reverses K123 and replaces K126; K129's different value stated without replacing anything is the same case | The model records the state the project is in. Holding a disagreement inside one requirement was the value-state model's last trace, and it left a complete requirement changing in place (K129) and a clarification both open and closed. Two requirements change nothing in place, and the choice already has the machinery to settle them |
+| K140 | **A requirement is incomplete exactly when a parameter it has has no value, so that its finished text cannot be produced from its template; otherwise it is complete.** An open choice over it does not make it incomplete. This revises K128 | Completeness is a property of the requirement as an element: whether its finished text can be produced (K111). Under K139 a choice is between requirements, not about one requirement's values, and a requirement waiting on such a choice until a baseline is cut (K142) would otherwise never be walked |
+| K141 | **The parameter's ask raises the choice.** Its `ValueRule` fires where the modeller has judged, at extraction, that requirements of one kind state values of that parameter for the same thing (K24, K40); the choice names every one of them as triggering. This is K98's first destination now, and a universal contradiction rule stays rejected. It revises K115's range, K118 and K120's wording | Two requirements of one kind are produced from one template, so where they contradict they differ in a parameter's value, and the ask for that parameter is always present and carries content (K116). K98's degeneracy objection does not reach it, and no contradiction of one kind can go unraised |
+| K142 | **The modeller flags each contradiction as real or not; the project manager decides, at the latest when a baseline is cut.** Keep one, and the other is retired; or not real, and both stay in force and both enter the baseline. Nothing is merged, in the model or in a baseline. A baseline is cut only once every contradiction choice is decided | The flag is advice, the same judgement the modeller makes at extraction; deciding commits the project, which is the project manager's (K11). Leaving the contradictions standing until then means a branch that falls away meanwhile needs nothing unmerged. A merged requirement would have no `SourceNeed` behind it and no identity stable across baselines (K21), and the projection only filters. One design element satisfying both requirements is design, beyond the seam |
+| K143 | **A `RequirementClarification` is open while no `SourceNeed` the requirement refines states the parameter's value**, and while the requirement is in force. This restates K121 | Under K139 a stated value is never withdrawn by a disagreement, so the clarification closes once, when a value is first stated |
+| K144 | **A requirement is no longer in force when it has a `retiredBy` or a `supersededBy`, whatever the state of the element at the other end. It has at most one `retiredBy`.** This corrects the integration's reading of K133 as a biconditional over requirements in force | Read that way, a requirement whose superseding requirement later left force would return to force with no source behind it. Leaving force is an event in a requirement's life (K134) and is final (K5) |
+| K145 | **Every `Requirement` refines at least one `SourceNeed`. Derivation is never an origin.** EventML's D49 — an origin of refinement, derivation, or both — is not adopted, and K9 narrows to it | A requirement derived only from others has content the modeller produced, and the modeller is answerable for nothing in the project. A wrong one is a silent failure that runs through everything built on it |
+| K146 | **Derivation is elaboration agreed with the client.** A derived requirement refines its own `SourceNeed`, the client's answer, and derives from the requirement it elaborates. The original implies the derived, as SysML v2's derivation states, because the client stated the elaboration as part of what the original asks. No requirement is refined or decomposed into others in this model; that belongs to the design language beyond the seam | It is the reason derivation is kept at all: it lets a requirement system be worked out with the client inside the model, and it is the trace of that working-out that reaches the baseline, where the questions behind it do not |
+| K147 | **A requirement may derive from several originals where each alone implies it. One that only several together imply is not derived.** Derivation is acyclic. Adding a derivation to a requirement that exists does not change it in place | Several originals each asking for the same thing is the common case, and one shared requirement avoids stating it again under each. Each such derivation is true as SysML v2 reads it, where a synthesis would not be. K135 makes the edge an association, so adding one changes neither end. What only one original asks for goes beneath that original alone |
+| K148 | **A `CompletenessRule` looks for its implied kind among the requirements that derive from the requirement that triggered it.** One inquiry is open per rule and triggering requirement, and a requirement so derived discharges it. This revises K75, K92 and K95 | Elaboration happens beneath the requirement being elaborated. Looked for anywhere in the model, one requirement of the implied kind under one original silenced the question for every other. K75's concern was cost; a question per triggering requirement is work the project actually has |
+| K149 | **Every edge between two requirements is an association with two ends:** the derivation, named *original* and *derived requirement*, and `supersedes`/`supersededBy`. `retires`/`retiredBy` is one by K134. Nothing is said of other edges. This narrows K135 | K135 was meant over the edges between requirements and was written over every edge. OQ36 asked which other edges have their second end named on the premise of the wider reading, and dissolves |
+
 ## Decisions K51–K54
 
 Taken in [`05-binding-contract.md`](05-binding-contract.md), §2, which carries the full argument, and in
@@ -413,6 +479,10 @@ constraints give each of the three a mandatory origin (K9, K61, K87), which a co
 once, as `SourceElement` does for the source side. But OQ30 may add a model-side question element or reshape
 the ones there are, so the type is not declared until OQ30 is answered.
 
+**OQ14 is deferred again** (2026-10-05). OQ30 is answered and the model side's three question specialisations
+are settled; the owner has deferred the abstract type all the same. If it is taken up, the owner's name for it
+is `RequirementModelElement`.
+
 ## Open question OQ17 — narrowed
 
 **Its own two-part question is answered, and is not what stays open.** What the Project Lifecycle Model's
@@ -438,6 +508,10 @@ Raised in [the design record of 2026-09-03 on the source-element hierarchy](../d
 |---|---|---|
 | OQ17 | What does `supersedes` mean; what finding does a `RequirementDecision` close; and what closes a `RequirementDecision`? Originally gathered alongside the fourth rule-set item and the `RequirementQuestion` reference mechanism, both answered above, because none of the three was answerable without `spec/03-project-lifecycle-model.md` being worked out first | A further session on the Project Lifecycle Model, once `supersedes` itself is worked out |
 
+**OQ17 is narrowed again** (2026-10-05). What `supersedes` means is answered by K133: a requirement refining a
+`SourceUpdate` names the requirements it replaces, and they leave force. What finding a `RequirementDecision`
+closes, and what closes a `RequirementDecision`, stay open.
+
 ## Open questions OQ18–OQ19
 
 Raised in [the design record of 2026-09-04](../docs/superpowers/specs/2026-09-04-project-lifecycle-model-design.md),
@@ -447,6 +521,10 @@ which carries the full argument for each.
 |---|---|---|
 | OQ18 | What mechanism do a silent-vs-owned-default `Rule` and a gap-timeout `Rule` carry? Narrowed rather than answered: placed on K90's axis, neither ranges over a pair or a set, and neither shares the "detect, then raise a `RequirementQuestion`" shape. The first ranges over a single value, and its shape is derivable — fire on a value in the assumed state, mark it as one to ask about, raise no `RequirementQuestion`, since `02-requirement-analysis-model.md` §11 already routes a single parameter through the definition's own machinery — but it would rest on a construct with no stated cause, which is OQ25. The second ranges over an open question and elapsed time, and needs two things this collection lacks: a date on a `RequirementQuestion`, and an edge by which an escalation names what it escalated. Both are OQ13's | The first with OQ25, which is close and small. The second with OQ13, realistically phase 4 |
 | OQ19 | Does a baseline need to name which `RuleSet`(s), and which version of each, it was checked against — separately from the implementation package and version `01-requirement-model.md` §4 already names? K68 makes a `RuleSet` per-`RequirementDefinition` rather than a single project-wide version, which may mean this question is really *N* small questions — one per `RequirementDefinition` a baseline's requirements touch — rather than one | Needs `01-requirement-model.md` §4 read again with K68–K70 in view |
+
+**OQ18 is narrowed to its second half.** Its first half, the silent-vs-owned default, dissolves: no value is a
+default, since every value names its source (K125, K127). The gap-timeout rule stays open, and OQ34 meets it
+at the level of a requirement.
 
 ## Open question OQ15 — answered
 
@@ -518,6 +596,9 @@ join OQ21 found missing are K102's criterion and the parameter it names. It was 
 judging every rule was felt, because OQ27 needed it: the guard is the first construct that compares values
 without judgement, so what a value domain declares could not be settled without it.
 
+**OQ22 is closed by K119 and K122.** A clarification's wording starts from its ask; a choice's and an
+inquiry's the modeller writes freely, from no template.
+
 ## Open questions OQ24–OQ26
 
 All three were opened by the `Rule` specialisation work rather than by anything it settled. Each is recorded
@@ -529,6 +610,15 @@ where it was found rather than pursued, and the full argument for each is in
 | OQ24 | When do two disagreeing sources produce one `Requirement` carrying a conflicting value, and when two `Requirement`s? K98's first destination assumes the former — `04-value-states.md` §2's **conflicting** state holding both competing values with their sources — and the model permits it without requiring it: `refine` is list-valued precisely so one requirement may be assembled from several statements (`02-requirement-analysis-model.md` §10), but nothing forbids two in-force requirements of the same kind carrying incompatible values. That would be a refinement error, and no stated rule catches it. It cannot become a syntactic constraint, because deciding whether two requirements are about the same thing is a judgement | Raised deliberately rather than settled inside K98, being a question about the derivation rather than about rules. It is the residue K98's third destination — review — would otherwise absorb silently |
 | OQ25 | What produces `04-value-states.md` §2's marking of a value as one to ask about? The marking occurs once in the whole of `spec/` and nothing states its origin, which the rule that every event record its cause makes a defect however sensible it reads. Two origins are available — a modeller's judgement, and a `Rule` — and whether the marking is modelled or recomputed cannot be settled until it is known which applies when. That document permits stated, derived and conflicting values to be marked as well as assumed ones, so the question is not confined to defaults | Before OQ18's first half, which it blocks. Small, and close |
 | OQ26 | Does K83's negative-answer path hold? K83 says a subject a rule raises may be answered negatively, and that the answer appears as a `Requirement` like any other, which the `RequirementInquiry` then `discharges` to. This rests on two premises the corpus never states: that "this project needs nothing here" obliges something, as K37 requires of every `SourceNeed`; and that some declared `RequirementDefinition` covers a negative statement, as K8 requires of every requirement. The second has a plausible answer — the implied kind's own definition — and the first may be false in a way that matters: a decision to need nothing reads more naturally as a `SourceDecision` refining into a `RequirementDecision`, and K79 fixes `RequirementInquiry`'s `discharges` on a `Requirement`, which would not admit it | Used by K97's statement that a retracted rule leaves its open questions to close the ordinary way, but never worked, so it is recorded rather than settled |
+
+**OQ24 is closed by K123**: disagreeing sources about the same thing are one requirement, whose disagreement
+is a choice; two such requirements are a refinement error, found by review. **OQ25 dissolves**: the marking it
+asked about was a marking on a value's state, and the open question about the value is now the marking (K119,
+K125, K126).
+
+**OQ24 is answered again, the other way, by K139** (2026-10-06). Contradicting `SourceNeed`s are refined into
+separate requirements, with a `RequirementChoice` raised over them (K141); K123's single requirement is
+reversed.
 
 ## Open question OQ27 — answered
 
@@ -570,7 +660,10 @@ all — and whether the evidence yet shows a gap.
 |---|---|---|
 | OQ28 | Where does an implementation's sizing knowledge live — the derivation from a requirement's parameters to what the answer must be? It is not the wording (`text` is the template), not *how it would be verified*, not the *wording rule*, and K83 excludes a `Rule`. K27 appears to answer it already: beyond the core of eight, a definition holds whatever an implementation's own notation and rule-set need, the core being "a floor the metamodel can reason over, not a ceiling". **But the evidence cannot yet distinguish two readings.** Either the metamodel has no home for this and one is missing, or K27's opening is the home and a real implementation simply did not use it — because the editor that produced this package implements the core eight and nothing else, so a `Rule`'s prose was the only attribute wide enough to type into. The tool, not the metamodel, may be what displaced it | When an implementation carries beyond-core content on a `RequirementDefinition` and one can see whether sizing knowledge sits there naturally. A second reading becomes available once a walk runs: if a rule turns out to need a computation to *detect* at all — rather than to answer — then K83's line falls in a different place than it reads today |
 
-## Open question OQ29
+**OQ28 gains a reading** (K127): sizing knowledge, a computation from a requirement's values to its answer, is
+not held in the requirement model — it is design, or is stated by whoever computed it.
+
+## Open question OQ29 — answered
 
 Raised in [the design record of 2026-09-28 on value domain comparability and the guard](../docs/superpowers/specs/2026-09-28-value-domain-comparability-and-guard-design.md).
 
@@ -578,7 +671,13 @@ Raised in [the design record of 2026-09-28 on value domain comparability and the
 |---|---|---|
 | OQ29 | Does the walk run again when a value's state changes — an unknown value becoming stated, an assumed one confirmed or corrected? The walk begins when a requirement arises, so a rule a guard left undecided then was judged then, and a rule a guard would now exclude, or no longer exclude, is not revisited. K103 keeps the guard safe without an answer, since it never excludes on a value not yet firm; the question is whether the walk is complete without one | When an implementation runs the walk over a project whose values change after its requirements arise, which is every real project |
 
-## Open questions OQ30 and OQ31 — high priority
+**OQ29 is answered by K128.** The walk runs once, on a complete requirement, which is never changed in place;
+no change of a value calls for a second walk.
+
+## Open questions OQ30 and OQ31 — closed
+
+**Both are closed.** OQ31 dissolved on a false premise; OQ30 is closed by K115–K121, K125 and K126, as revised
+by K136–K143. What follows is kept as written when each part of it was taken.
 
 Raised on 2026-10-05 by the owner, while settling what an inherited parameter carries with it, from the first
 implementation package to use parameter inheritance (K107). **Both are high priority.** Either may restructure
@@ -608,6 +707,10 @@ another, is a check the implementation makes against its own platform's configur
 implementation's, and the metamodel neither states nor sanctions it. No decision rested on OQ31, so nothing
 else changes. OQ30 is not affected and stays open.
 
+**OQ30 is closed by K115–K121, K125 and K126.** A missing value reaches the project manager as a
+`RequirementClarification` and a disagreement as a `RequirementChoice`, each raised by the parameter's own
+ask.
+
 ## Open question OQ32
 
 Raised in [the design record of 2026-10-05 on the rest of the core under specialisation](../docs/superpowers/specs/2026-10-05-specialisation-of-the-remaining-core-design.md).
@@ -616,11 +719,128 @@ Raised in [the design record of 2026-10-05 on the rest of the core under special
 |---|---|---|
 | OQ32 | Does a definition need *how it would be verified* at all? K29 made it required, and `02-requirement-analysis-model.md` §12 makes its absence on a definition that is not abstract a failed check, on the reason that a verification method is generic to a kind. But verification is a design decision taken beyond the seam (OQ10, closed), so the method a definition states is at most guidance to whoever designs — and for a definition far up the tree it would be the most complicated of all, since the more abstract a definition, the harder it is to show that a requirement under it holds. Three answers are open: required as now; kept but optional, its absence a gap rather than a failed check; or removed from the core | When a baseline is carried into a design language's requirement model, and it shows whether anything there reads the method a definition stated |
 
+## Open questions OQ33–OQ36
+
+Raised in [the design record of 2026-10-05 on values from sources](../docs/superpowers/specs/2026-10-05-values-from-sources-and-the-complete-requirement-design.md).
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ33 | Does a rule whose test reads no value — a `CompletenessRule`, which asks only whether a requirement of some kind exists — wait for its requirement to be complete? Waiting keeps the walk single; it also delays the discovery of a structural gap until the last value of a requirement arrives | When a project shows whether a completeness gap found late costs anything |
+| OQ34 | What happens to a requirement that never becomes complete, because a value never arrives? Its rules never run. This is OQ18's second half, the gap-timeout rule, met at the level of a requirement rather than a question | With OQ13 and OQ18, which already hold the interval and the elapsed time |
+| OQ35 | May a baseline be cut while a requirement in force is incomplete? K13 asks that everything in force be present, and an incomplete requirement cannot be present with finished wording | Before the first baseline is cut from a project model |
+| OQ36 | Which other edges have their second end named? Every edge is an association (K135), and some second ends were excluded on principle when their edge was introduced: a `Rule` names none of the questions it raised, because a rule-set is a model of its own (`03-project-lifecycle-model.md` §3; K22, K88); a `SourceElement` carries nothing beyond identity, anchor and being material of record (K43, K57), so the source-side ends of `refine` and `poses` are not attributes of it; and a source is material of record (K45), which bears on the earlier end of `replies`. Under K135 an end can be named without being an attribute of the element at it, which may lift some of these exclusions without touching the principles behind them — or may not. To be examined edge by edge: `refine`, `replies`, `poses`, *triggered by*, `discharges` | When an implementation or a review needs to navigate one of these edges from its other end |
+
+**OQ35 gains a condition** (K142): a baseline is cut only once every choice raised over contradicting
+requirements is decided. Whether one may be cut over an incomplete requirement stays open.
+
+**OQ36 dissolves** (K149). Its premise was that every edge is an association; K135 was meant over the edges
+between requirements, and is narrowed to them.
+
+## Open question OQ37
+
+Raised on 2026-10-06 by the owner, in review of the integration of K115–K135, by comparing what a baseline
+carries with what SysML v2's requirement model holds. SysML v2 is both a body of practice this collection
+takes its terms from (`CLAUDE.md` §3, rule 10) and a design language the collection is built to attach to
+(K2, K17). Whether the two meet at the baseline is one of the tests the founding record set for the kernel,
+which it fails if the SysML v2 binding cannot be written without changing the kernel's entities.
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ37 | Can SysML v2 read the requirement model a baseline carries without substantive transformation? Compared element by element below, a requirement and its finished text correspond. Two things do not yet: a requirement's kind, which K33 keeps out of the requirement model, so that a requirement read into SysML v2 is typed by no requirement definition but SysML's most general one; and a requirement's identity, which `bindings/sysml-v2.md` §3 maps to SysML's requirement identifier while an implementation may use it as an internal key nobody writes. The remaining differences are deferred | Before the SysML v2 binding is taken as meeting OQ7's test |
+
+**What is compared.** SysML v2 as `bindings/sysml-v2.md` cites it — the language specification
+formal/2026-03-02 and its Systems Model Library — against the requirement model as `01-requirement-model.md`
+states it after K130. The library's declarations were read from the currently published library; section
+numbers are to be checked against the cited specification before any of this enters a binding.
+
+| Requirement model | SysML v2 | Status |
+|---|---|---|
+| A baseline: a named, dated instance of the requirement model (`01-requirement-model.md` §4) | No element of the language; a versioned snapshot is a service of the modelling tool or repository | Not compared, see below |
+| Only requirements in force (K35) | No status of being in force | Corresponds: nothing to carry |
+| `Requirement` | `RequirementUsage` | Corresponds (`bindings/sysml-v2.md` §3) |
+| identity: stable, unique within a baseline | `reqId`, the declared short name, beside a qualified name of SysML's own. SysML does not require a short name to be unique | Open, see below |
+| text: the finished wording (K130) | `text`, derived from the bodies of the usage's documentation comments | Corresponds, on the owner's reading; not yet stated in the binding |
+| No kind (K33) | `requirementDefinition`: the requirement definition the usage is typed by. A usage typed by none is implicitly a `RequirementCheck` | Gap, see below |
+| A `RequirementDefinition`'s identity, abstractness and specialisation (`02-requirement-analysis-model.md` §7, §9; K30, K109): not carried (K33) | `RequirementDefinition`: a name and a `reqId`, abstract or not, specialising other requirement definitions | Gap, with the kind |
+| A definition's template, parameters, *when it applies*, *what to ask*, *how it would be verified* and *wording rule* | Documentation and attributes; verification is a separate verification definition; the rest has no counterpart | Not carried, and need not be |
+| No values and no parameters (K130) | Attributes, optional | Corresponds: neither requires them |
+| No subject (K56) | `subject`, inherited from `RequirementCheck`, typed `Anything` | Corresponds |
+| No actors and no stakeholders | Optional | Corresponds |
+| No contained requirements | Subrequirements, optional | Corresponds |
+| Content in prose only | Assumed and required constraints, a requirement check's formal content; with none, the check holds trivially | Deferred: verification is beyond the seam (OQ10) |
+| A kind hierarchy with no common root | Every requirement definition specialises `RequirementCheck`; the library's own kinds narrow the subject — functional to `Action`, interface to `Interface`, performance to `AttributeValue`, physical and design constraint to `Part` | Deferred. `bindings/sysml-v2.md` §1 gives the interface kind's subject as `BinaryInterface`, where the published library reads `Interface` |
+| Derivation: list-valued, its ends named *original requirement* and *derived requirement* (K135), with no cycle | `Derivation` connection: exactly one original and one or more derived requirements per connection; the original is not among the derived | Corresponds: a requirement derived from several is several connections (K135) |
+| What derivation means: elaboration agreed with the client, which the original implies (K146) | Whenever the original requirement is satisfied, every derived requirement is satisfied too | Answered by K146 and K147: each original on its own implies the derived, and a requirement only several together imply is not derived |
+| `satisfies`, carried by the design element (K3) | `satisfy`, in the same direction; any feature may carry it, narrowed by a requirement kind's subject | Corresponds (`bindings/sysml-v2.md` §1) |
+
+**The baseline is not compared** (the owner, 2026-10-06). It is not a concept carried across but the product
+that packages what is carried across. What SysML v2 has to read is the requirement model inside it.
+
+**Identity.** `bindings/sysml-v2.md` §3 maps a requirement's identity to the `reqId` of the `RequirementUsage`
+standing for it. The metamodel states of an identity only that it is stable and unique
+(`01-requirement-model.md` §2, §5), so an implementation may use it as an internal key that no modeller writes
+or reads, which is not what SysML v2's short name is for. The owner's reading is that this is resolved in an
+implementation rather than here; if it is, the binding need not secure the uniqueness of a short name either,
+which SysML v2 does not require.
+
+**Kind.** In SysML v2 a requirement usage is typed by a requirement definition, which declares what every
+usage of it has — its subject, attributes and constraints — and may be abstract and specialise other
+definitions. That typing is what this collection calls *produced under*, which K67 already reads after SysML's
+own `def`/`usage` split. `02-requirement-analysis-model.md` builds the kind hierarchy as SysML v2 builds one,
+but K33 drops it at the projection, so what would let SysML v2 read a requirement's kind never reaches a
+baseline. An answer that carries it revises K33.
+
+## Open questions OQ38–OQ40
+
+Raised in [the design record of 2026-10-06 on contradictions and
+derivation](../docs/superpowers/specs/2026-10-06-contradictions-derivation-and-the-review-of-k115-k135-design.md).
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ38 | Does a parameter's ask need to be a `Rule` at all? K116 made it a `ValueRule` so that K87 holds for a missing value, but the `ValueRule` departs from a `Rule`'s shape almost everywhere: it carries no *when it applies* and no guard, is never taken out of force, is not walked (K140), and takes its identity and its *what to look for* from its parameter — which risks an identity colliding with another `Rule` of the set (K85, K106), and the ask living in two places. The alternative is an ask that is itself an origin of a question, which K87 refused | When the processes are worked out again after this record, or when an implementation shows whether the `ValueRule` earns its place |
+| OQ39 | What happens to the requirements deriving from one that leaves force? K11 forbids them following on their own; a question raised over them, for the project manager to answer, is the reading closest to K142 | When the processes are worked out again after this record |
+| OQ40 | Does a `CompletenessRule` look among the requirements deriving from its triggering requirement directly, or among every requirement deriving from it through others? The second keeps a requirement placed one level deeper from opening a false gap | When the processes are worked out again after this record |
+
+## Open questions OQ41–OQ43
+
+Raised on 2026-10-07 in the final review of [the integration of
+K136–K149](../docs/superpowers/plans/2026-10-06-contradictions-and-derivation-integration-plan.md), and opened
+by the owner. Each names a scope the record of 2026-10-06 left unstated, or an event the model does not yet
+record a cause for.
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ41 | Is a `RequirementChoice` that a `ConflictRule` raises one raised over contradicting requirements, in K142's sense? A `ConflictRule` fires when a requirement contradicts one already in force (`03-project-lifecycle-model.md` §3), so its choice reads as one. K139–K142 were taken for requirements of one kind, whose contradiction a parameter's ask raises (K141), and `02-requirement-analysis-model.md` §12 gives the modeller's flag only to a choice a parameter's ask raises. Read the wider way, a `ConflictRule`'s choice also carries the flag and must be decided before a baseline is cut (K142) | When the processes are worked out again after the record of 2026-10-06, with OQ38 |
+| OQ42 | What states a derivation added to a requirement that already exists? K146 grounds a derivation in the derived requirement's own `SourceNeed`, the client's answer stating the elaboration, and K147 lets a requirement that exists be derived from a further original, as when it discharges the inquiry a second triggering requirement raised (K148). The client's statement that the further original implies it has no place to land once that requirement is complete: a `SourceNeed` it refined then would change it in place, which K129 forbids, and with no `SourceNeed` the edge enters the model with nothing stating it (K11, K136) | When the processes are worked out again after the record of 2026-10-06 |
+| OQ43 | What closes a `RequirementQuestion` whose triggering requirements have left force? K143 closes a `RequirementClarification` when its requirement leaves force, but nothing closes a `RequirementInquiry`, or a `RequirementChoice`, in the same case. Under K148 an inquiry is open per triggering requirement, and under K140 and K142 a contradicting requirement is walked and may then be retired, so the case is routine: the only discharge left to such an inquiry would be a requirement deriving from one no longer in force. OQ39 asks the neighbouring question for the requirements deriving from a requirement that has left force | When the processes are worked out again after the record of 2026-10-06, with OQ39 |
+
+## Open questions OQ44–OQ47
+
+Raised on 2026-10-07 by the owner, in an analysis of where the work of building a project model can run side
+by side. How that work is ordered, and who runs which part of it, belongs to whoever runs it
+(`03-project-lifecycle-model.md` §5) and is not recorded here. These four are what the analysis found in the
+metamodel's own rules rather than in any way of running them.
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ44 | May a requirement refining a `SourceUpdate` supersede a requirement already no longer in force? `retires` names only requirements in force when its decision was produced (`02-requirement-analysis-model.md` §12, K62), but `supersedes` carries no such condition. A requirement a decision has retired can therefore be superseded afterwards, and then carries a `retiredBy` and a `supersededBy`, which K144 forbids. Work run side by side reaches the case without anybody erring: a decision and an update, extracted from two sources at once, each name the same requirement. The narrowest answer gives `supersedes` the condition `retires` already has; a passage that replaces only what is no longer in force then replaces nothing in force, and what it is instead is part of the question | Whenever it is taken up; the narrowest answer revises no decision |
+| OQ45 | Which requirements does a `ConflictRule`'s test reach, when the walk runs once (K128)? The rule fires when a requirement contradicts one already in force, so a contradicting pair is found by whichever of the two is walked second, provided that walk reads the first. Two requirements becoming complete at once may each be walked without the other, and with no second walk the contradiction is never raised. Nor is it stated whether a requirement in force but incomplete is one already in force for this test, having no finished text for the test to read. The metamodel prescribes no order of work; what is open is whether it states the order its single walk presupposes, or lets the test reach requirements that become complete after the walk | When an implementation walks requirements side by side, or when the processes are worked out again after the record of 2026-10-06 |
+| OQ46 | What does a change to a `RequirementDefinition` or a `RuleSet` do to the requirements already complete beneath it? A rule-set can be amended (`03-project-lifecycle-model.md` §3), an implementation's definitions change between the versions a baseline names (`01-requirement-model.md` §4), and the project manager may decide during a project that a case just met is to be a rule from then on. But the walk runs once (K128) and a complete requirement is never changed in place (K129), so a rule adopted after a requirement became complete never reaches it, and the outcome depends on which came first. The cases differ: a rule adopted, or taken out of force; a rule changed, which K97 reads as one taken out of force and another adopted; a definition added, which may cover a passage whose `SourceNeed` was deleted under K39 as covered by none; a parameter added to a definition with complete requirements beneath it, whose template then names a value they lack; a template or a wording rule changed; and the tree rearranged, which changes a requirement's kind and the rules that reach it. *From then on* is the one answer that depends on no order of events. A change reaching back would be the project manager's act, entering as a source (K11) | When a definition or a rule-set first changes during a project |
+| OQ47 | What brings a `SourceQuestion` that somebody puts to the project before whoever must answer it? An unanswered `SourceQuestion` is normal (`02-requirement-analysis-model.md` §4) and no check reports one, which is right for a question the modeller has put to somebody. A question put to the project — a client asking whether something can be done — is the other way round: it is the project manager's to answer, nothing in the model places it before them, and it can stand unanswered unnoticed. A question that is in substance a request is a `SourceNeed`, read as one at extraction (K40) | With OQ16, which asks whether a `SourceQuestion` names the party expected to reply |
+
+## Open question OQ48
+
+Raised on 2026-10-07 in the review of the branch carrying K115–K149 to `main`, and opened by the owner.
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ48 | Is a decision that a contradiction is not real among a `RequirementChoice`'s candidate alternatives? K80 makes the candidate alternatives prefigure what the discharging `RequirementDecision`'s *the choice* records — the same alternatives, read once as open and once as settled. K139 and K141 make the candidates of a choice over contradicting requirements the requirements themselves, each with the `SourceNeed`s it refines, but K142 lets the project manager decide that the contradiction is not real and keep every one in force, an outcome no one requirement stands for. Either that outcome is listed among the candidates, or K80's correspondence admits an outcome the candidates do not list | When the processes are worked out again after the record of 2026-10-06, with OQ41 |
+
 ## Status of the founding record's open questions
 
 | # | Status |
 |---|---|
-| OQ1 | **Answered, 2026-10-05** — one specification: the collection K19 describes. What an adopter or a binding takes from it is named by how far down the adoption order it reads (`00-overview.md`), together with the binding's fourth declaration, how far it takes the value model (`05-binding-contract.md` §4, K4); the SysML v2 binding takes none of it. The value-state model is no step on that scale, being carried from the first, so the premise of two specifications is gone, and no separate scale of named levels is needed |
+| OQ1 | **Answered, 2026-10-05** — one specification: the collection K19 describes. What an adopter or a binding takes from it is named by how far down the adoption order it reads (`00-overview.md`), and nothing of a requirement's values crosses the seam (K130). The value-state model, whose separability first raised the question, has since been withdrawn (K125, K131), so the premise of two specifications is gone, and no separate scale of named levels is needed |
 | OQ2 | **Answered** — K27, K28, K29, K30 |
 | OQ3 | **Dissolved** — K37, K38, K39. Its premise did not hold: it assumed a need might oblige nothing, and a passage obliging nothing is not a need, so there is no disposition left to record |
 | OQ4 | **Answered** — K22, K23 |

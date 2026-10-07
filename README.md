@@ -20,8 +20,8 @@ requirements it obliges, the decisions taken along the way, and what is still op
 finished requirement set can be walked back to the words it came from, and every stated request can be shown
 to have produced something or to have been deliberately left alone.
 
-The cycle ends in a **baseline**: a dated, identified cut of the requirement register, carrying everything
-in force and, marked as such rather than dropped, everything no longer in force. It is what the people
+The cycle ends in a **baseline**: a dated, identified cut of the requirement register, carrying everything in
+force; what is no longer in force stays in the working model rather than being lost. It is what the people
 building the thing design against.
 
 ## What it is not

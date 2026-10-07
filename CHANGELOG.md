@@ -136,3 +136,32 @@ work, not releases.
   far it takes the value model, so no separate scale of levels is needed. OQ5: the name stays ProjectML. OQ14,
   a model-side abstract type, waits for OQ30, which may reshape the model-side question elements it would sit
   above.
+- Values only from sources, the complete requirement walked once, and a rule over one value. Every value names
+  the source that states it; *assumed*, *derived* and *conflicting* are withdrawn, and with them the
+  value-state model, whose remainder moves into `spec/02` — the number 04 is retired. A requirement is
+  complete when every parameter has a value and no choice about its values is open; the rule-set is walked
+  once, then, and a complete requirement is never changed in place: a correction arrives as a `SourceUpdate`,
+  and the requirement refining it supersedes the old one. Every parameter's ask is a `ValueRule`, raising a
+  `RequirementClarification` for a missing value and a `RequirementChoice` for a disagreement. A baseline
+  carries finished text only, and a binding declares three things, not four. K115–K135 record the decisions;
+  OQ22, OQ24, OQ29 and OQ30 are closed, OQ25 dissolves, OQ17 and OQ18 narrow, and OQ33–OQ36 open.
+  Findings are in
+  [`docs/superpowers/specs/2026-10-05-value-rule-and-clarification-design.md`](docs/superpowers/specs/2026-10-05-value-rule-and-clarification-design.md)
+  and
+  [`docs/superpowers/specs/2026-10-05-values-from-sources-and-the-complete-requirement-design.md`](docs/superpowers/specs/2026-10-05-values-from-sources-and-the-complete-requirement-design.md).
+- Contradictions as requirements, derivation as elaboration, from the owner's review of K115–K135. Every value
+  of a requirement is stated by a `SourceNeed` the requirement refines. Contradicting needs are refined into
+  separate requirements under one choice, which the modeller flags and the project manager settles by the time
+  a baseline is cut — keeping one, or every one where the contradiction is not real; nothing is merged. A
+  requirement is incomplete only where a parameter has no value, whatever choice is open over it, correcting
+  the entry above. Leaving force is final. Every requirement refines a need; derivation is elaboration agreed
+  with the client and never an origin, and a completeness rule looks for its implied kind beneath the
+  requirement that triggered it. K136–K149 record the decisions; OQ36 dissolves, OQ24 is answered again, OQ35
+  gains a condition, OQ37's row on derivation is answered, and OQ38–OQ40 open, with OQ41–OQ43 from the final
+  review and OQ48 from the review of the branch. Findings are in
+  [`docs/superpowers/specs/2026-10-06-contradictions-derivation-and-the-review-of-k115-k135-design.md`](docs/superpowers/specs/2026-10-06-contradictions-derivation-and-the-review-of-k115-k135-design.md).
+- OQ44–OQ47, from an analysis of where the work of building a project model can run side by side: a
+  supersession of a requirement already out of force, which `retires` excludes and `supersedes` does not;
+  what a `ConflictRule` reaches when the walk runs once; what a change to a definition or a rule-set does to
+  the requirements already complete beneath it; and what brings a question put to the project before the
+  project manager. How the work itself is run stays outside the metamodel.

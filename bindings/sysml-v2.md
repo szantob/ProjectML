@@ -1,6 +1,6 @@
 # The SysML v2 binding
 
-This is a binding, in the sense `spec/05-binding-contract.md` defines the word: it states the four things
+This is a binding, in the sense `spec/05-binding-contract.md` defines the word: it states the three things
 that document's §4 asks of a design language attaching underneath ProjectML, for SysML v2, and nothing more
 (K18). It is written against that document alone.
 
@@ -93,11 +93,9 @@ narrow a boundary crossing; there is no crossing left to narrow by the time `sat
 above is what gives the requirement standing inside SysML at all; `satisfy` afterward relates two elements
 that are both already, and entirely, SysML's own.
 
-## 4. How far it takes the value model
+## 4. The value model, no longer declared
 
-Not at all. A SysML attribute either carries a value or it does not; nothing in the language distinguishes
-a value that was stated from one that was assumed, derived from other values, missing and known to be
-missing, or contested between two sources that disagree. `04-value-states.md`'s five states have no
-counterpart in SysML v2's own constructs: a value crossing the seam into a SysML element's attribute is
-written as a bare value, and the state that stood beside it in the requirement model does not cross with
-it.
+`spec/05-binding-contract.md` no longer asks a binding how far it carries the value model: nothing of a
+requirement's values crosses the seam (K130). This section answered, before that, that SysML v2 carries none
+of it, since a SysML attribute carries a value or does not and records nothing about where it came from. That
+answer stands as part of why the declaration could go.
