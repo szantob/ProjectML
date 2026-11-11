@@ -81,9 +81,10 @@ this collection without the rest, and what it cannot, is answered by naming how 
 reaches, rather than by inventing a separate scale to measure it against. Nothing of a requirement's values
 crosses the seam (K130), so there is no second scale beside it.
 
-Two further documents round out `spec/`, beyond the collection itself: `05-binding-contract.md`, which states
-what attaching underneath the collection requires, and `06-decisions.md`, the normative record of every
-decision the collection rests on (K31).
+Three further documents round out `spec/`, beyond the collection itself: `05-binding-contract.md`, which
+states what attaching underneath the collection requires, `06-decisions.md`, the normative record of every
+decision the collection rests on, and `07-acts.md`, which states the acts through which a project model
+changes, and that there are no others (K31, K150).
 
 **The number 04 is retired.** It belonged to the value-state model; no later document of `spec/` takes it, so
 that every citation of `04-value-states.md` in the decision record and in the dated design records keeps
@@ -202,6 +203,11 @@ Two decisions record it. K40 states the boundary. K41 refuses the instrument som
 for closing it — a coverage report over which passages of a source no `SourceNeed` cites, and any metric of
 extraction built on one — and `02-requirement-analysis-model.md` §11 carries that refusal beside the rule
 that checks extraction from the side a model can check.
+
+The guarantee is kept by a closure. A project model changes only through the acts `07-acts.md` lists, and
+whatever an act produces names, on itself, what it came from (K150, K154). That is the extent to which the
+model records its own history: accountability is derivable from it, back to the source that states each thing.
+Who performed an act, and when, the model does not record; an implementation may.
 
 ## 6. The diagram conventions
 
