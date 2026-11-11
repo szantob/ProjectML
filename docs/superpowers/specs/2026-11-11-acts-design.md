@@ -1,6 +1,6 @@
 # How the project model changes: the closed list of acts — Design record
 
-**Status: settled, and not yet written into `spec/`.** This record carries decisions K150–K159 and opens no
+**Status: settled, and not yet written into `spec/`.** This record carries decisions K150–K160 and opens no
 open question. It adds a new normative document, `spec/07`, which states the acts through which a project
 model changes, and it touches `spec/00`, `spec/01`, `spec/02`, `spec/03` and `spec/06` only to point at it and
 to record the decisions.
@@ -53,6 +53,7 @@ modeller's steps is not the system's task, at least at first.
 | K154 | **What an act produces carries its cause.** No act produces anything that does not name, on itself, what it came from: a requirement its `SourceNeed`s, a value the `SourceNeed` stating it, a decision its `SourceDecision`, a question its `Rule`, a posed question its `SourceQuestion`, a discharge the element discharging it. **The model records no act as an element of its own**: who performed an act, when, and in what order is an implementation's service if it wants one. The one act that leaves no trace is the deletion of an element extracted in error (K158) | The model carries the derivability of accountability, which K136 already states over everything that enters. A record of each act would state every cause twice, need a check to keep the two equal, and model the modeller rather than the project, on K88's reasoning. **If OQ44 or OQ45 is answered so that the model must know which of two changes came first, this decision is to be revisited**: nothing here prevents adding a record later, where one taken out again would sit badly beside K5 |
 | K155 | **Three acts are inseparable from part of their effect,** because each half alone leaves the model in a state no rule admits: producing a requirement opens a `RequirementClarification` for every parameter without a value (K119, K143); a requirement superseding others takes them out of force as it enters (K133, K144); a decision retiring requirements takes them out of force as it is recorded (K62, K144) | Each pairing follows from rules already stated. What the decision adds is that the two halves are one step, so that no tool can leave the first without the second |
 | K156 | **Reading is not an act.** Querying, checking, the projection, and **cutting a baseline** change nothing in the working model and stand outside the list. A baseline is the projection given identity — an export — and not a step to be audited or committed to: no source states it, and a new one is cut whenever later information calls for it. K142's condition, that every contradiction choice is decided before a baseline is cut, stays a condition on the export | A baseline need not be final: new information may arrive during the project and call for a new version. Requiring a source for each cut would introduce a source kind for an act that commits nothing the working model does not already hold. SysML v2 likewise has no element for a baseline and leaves a versioned snapshot to the modelling tool or repository, as OQ37's comparison records |
+| K160 | **Creating a project model is not an act on it.** It brings into being the model the acts change, and produces no element of it: no source, no `SourceElement`, no requirement | Found by measuring a sketch of the shared server's tools against the list: the first implementation's tool begins with an operation that creates an empty model, and K150 would otherwise forbid it, since no listed act has it as its effect. It is not reading either (K156), so it needs a line of its own |
 | K157 | **The term is *act*, already this collection's own** ("the project manager's act", `03-project-lifecycle-model.md` §3). W3C PROV's `Activity` is not adopted | In PROV an `Activity` is a recorded element of the provenance graph, which is exactly the record K154 declines. Adopting the term would import that reading |
 
 ## 4. The acts
@@ -119,9 +120,9 @@ source element is A3 as K158 now states it.
 
 - **`spec/07` is new.** It is not a member of the collection, as `05-binding-contract.md` and
   `06-decisions.md` are not, so K131's count of three members is untouched. Its number follows the last
-  document; 04 stays retired. It carries the principles (K150–K157), the fourteen acts, what no act does, and
+  document; 04 stays retired. It carries the principles (K150–K157, K160), the fourteen acts, what no act does, and
   K158–K159 where they bear on A3 and A8.
-- **`spec/06`** takes K150–K159 as a new block, in the shape of the existing ones.
+- **`spec/06`** takes K150–K160 as a new block, in the shape of the existing ones.
 - **`spec/00`** §2: the sentence naming the further documents beyond the collection grows from two to three.
   §5: one paragraph saying that the guarantee is kept by K150's closure, and that the derivability of
   accountability, not a record of the modeller's steps, is what the model carries (K154).
