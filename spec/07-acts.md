@@ -245,9 +245,10 @@ than an absence.
 - No act deletes a question, a decision or a finding (K10, K150).
 - No act adds an original to a requirement that exists; a derivation enters only with the derived requirement
   (A4, K163), and a later trigger's inquiry is discharged by a requirement produced beneath it (A11).
-- No act removes an edge once it has entered. A3 removes a `SourceElement` with its anchor, and only while no
-  requirement or decision refines it and no question is posed by it (K158); whether a review finding's
-  reference to it survives the deletion, or blocks it, is OQ49.
+- No act removes an edge once it has entered, except as A3 may when it deletes the element at one end of it.
+  A3 removes a `SourceElement` with its anchor, and only while no requirement or decision refines it and no
+  question is posed by it (K158). Whether a review finding naming the element keeps it from being deleted is
+  OQ49.
 - No act closes a finding directly (K11).
 
 ## 9. What is open
