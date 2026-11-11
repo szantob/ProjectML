@@ -4,11 +4,11 @@
 baseline.**
 
 > **Status: a complete draft, not a release.** `spec/` carries the metamodel — an overview
-> ([`spec/00-overview.md`](spec/00-overview.md)), the collection of models, a binding contract and a decision
-> record — and [`bindings/sysml-v2.md`](bindings/sysml-v2.md) carries the SysML v2 binding phase 2 exists to
-> write. Under [`CLAUDE.md`](CLAUDE.md) §6, it cannot reach 1.0 until an implementation has also been built
-> on the metamodel and has carried a project end to end. The decisions this repository
-> is built on are in
+> ([`spec/00-overview.md`](spec/00-overview.md)), the collection of models, a binding contract, a decision
+> record, and the acts through which a project model changes ([`spec/07-acts.md`](spec/07-acts.md)) — and
+> [`bindings/sysml-v2.md`](bindings/sysml-v2.md) carries the SysML v2 binding phase 2 exists to write. Under
+> [`CLAUDE.md`](CLAUDE.md) §6, it cannot reach 1.0 until an implementation has also been built on the
+> metamodel and has carried a project end to end. The decisions this repository is built on are in
 > [`docs/2026-08-26-kernel-brainstorm.md`](docs/2026-08-26-kernel-brainstorm.md), which is the founding
 > record rather than a specification.
 

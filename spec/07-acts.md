@@ -33,7 +33,7 @@ act can be reached through it. A list of prohibitions gives neither for certain;
 **An act is defined by its effect on the model** (K152): which elements, edges and states appear or cease. It
 states four things — who performs it, the cause it names, its condition, and its effect (K152). §3 states who
 performs every act, since it is the same for all of them, and §5 gives each act's cause, condition and effect in
-its columns. It names no operation, nothing an operation is given, and no order in which operations run. An act
+its columns. It names no operation, nothing supplied to one, and no order in which operations run. An act
 defined by an operation would be an interface, and an interface is implementation; defined by its effect, every
 entry is true of a project however that project is modelled, which is `00-overview.md` §4's test.
 
@@ -61,7 +61,7 @@ open question (`02-requirement-analysis-model.md` §11, §12).
 performs none of them** (K153). This is the normative form of the rule that asks which actor an act belongs
 to (`CLAUDE.md` §5): the modeller administers, and takes no decision about the project (K125).
 
-**An act that commits the project names the source in which the project manager committed it.** Recording a
+**An act that commits the project names the `SourceDecision` in which the project manager stated it.** Recording a
 decision (A10), and through it retiring requirements, names the `SourceDecision` in which the project manager
 stated the decision (K11, K61). The project manager decides; the modeller records what was decided, from the
 passage that states it. The modeller's own judgements — extraction (K40), the flag on a contradiction (K142),
@@ -75,15 +75,18 @@ Who performs a review is OQ23, and the acts over review findings (A12, A13) stay
 
 ## 4. What an act leaves behind
 
-**What an act produces carries its cause** (K154). No act produces anything that does not name, on itself, what
-it came from:
+**What an act produces carries its cause** (K154). A source carries no cause: provenance stops at it, and every
+chain of causes ends in one (K46, A1). No act produces anything else that does not name, on itself, what it
+came from:
 
 - a requirement, the `SourceNeed`s it refines (K145);
 - a value, the `SourceNeed` stating it (K136);
 - a decision, its `SourceDecision` (K61);
 - a question, its `Rule`, by *triggered by* (K87);
 - a posed question, its `SourceQuestion`, by `poses` (K60);
-- a discharge, the element discharging it (K79).
+- a discharge, the element discharging it (K79);
+- a review finding, the source opening it, and once closed the later source that replies to it (A12, A13,
+  K11).
 
 **A `SourceElement` carries its anchor, and one with no anchor is not a well-formed element of this model**
 (K161). The anchor is the cause A2 carries, so A2 cannot produce an element without one. An anchorless element
@@ -101,9 +104,9 @@ keep the two equal, and model the modeller rather than the project, on K88's rea
 first** (K154). Nothing here prevents a record of acts being added later, where one taken out again would sit
 badly beside K5.
 
-**One act leaves no trace: deleting a `SourceElement` extracted in error** (A3, K158). It names no cause,
-deliberately. A `SourceElement` is a pointer into a passage, and deleting the pointer loses nothing of record:
-the passage stays in its source as it was given (K39). That the wrong extraction was made is not recorded either:
+**One act removes what was there and names no cause: deleting a `SourceElement` extracted in error** (A3,
+K158). That it names none is deliberate. A `SourceElement` is a pointer into a passage, and deleting the
+pointer loses nothing of record: the passage stays in its source as it was given (K39). That the wrong extraction was made is not recorded either:
 noticing it is the modeller's, on K40's and K41's terms, and A3 removes it. The deletion is permitted only while
 no requirement or decision refines the element and no question is posed by it. Deleting one that a requirement or
 a decision refines would leave that element without its origin at once (K145, K61), and deleting one by which a
@@ -227,10 +230,18 @@ than an absence.
 
 - No act deletes a requirement (K5).
 - No act takes a requirement out of force other than by a decision or a supersession (K144).
-- No act changes a value of a complete requirement; that is a supersession (K129).
+- No act changes or removes a value once stated, whether or not the requirement is complete (K129, K137,
+  A6). A correction is a supersession (A5, K129, K133), and a different value stated without replacing
+  anything is a requirement of its own and a contradiction choice (A4, A8, K139).
+- No act returns a requirement to force; one wanted again is produced anew from the source that asks for it
+  (K144, A4).
 - No act raises a question with no rule (K87).
 - No act records a decision with no `SourceDecision` (K61).
 - No act edits a source (`02-requirement-analysis-model.md` §2, D45).
+- No act moves an anchor; a `SourceElement` anchored wrongly is deleted (A3), on A3's condition, and anchored
+  again (A2).
+- No act deletes a question, a decision or a finding (K10, K150).
+- No act removes an edge once it has entered, except as A3 removes the element that carried it.
 - No act closes a finding directly (K11).
 
 ## 9. What is open
@@ -247,7 +258,7 @@ leaves.
 | A8's cause | OQ38: whether the parameter's ask is a `ValueRule` |
 | A10's source | OQ50: which attributes a `Source` must carry, its party and its date among them |
 | A11's cause, for an inquiry | OQ40: whether only a requirement deriving directly from the trigger discharges it; OQ26: whether a negative answer is a requirement |
-| A12 | OQ23: what a review is, as an act, and who performs it |
+| A12 and A13 | OQ23: what a review is, as an act, and who performs it |
 | §7's baseline | OQ35: whether a baseline may be cut while a requirement in force is incomplete |
 | §1's scope | OQ46: what a change to a `RequirementDefinition` or a `RuleSet` does to the requirements already complete beneath it |
 | No act: closing a `RequirementDecision` | K63: a decision carries an open or closed state, and what closes one is unstated, so no act closes a decision until that criterion is |

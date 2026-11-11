@@ -233,10 +233,10 @@ own, where the requirement refining it names, by `supersedes`, the requirements 
 replacing anything — *800 are coming* — contradicts what was said: the `SourceNeed` anchored in it is refined
 into a requirement of its own, and the parameter's ask raises a choice over the requirements that contradict
 (§10, §11, K139, K141). A passage that drops something with nothing in its place — *we no longer need this* —
-is a `SourceDecision` (§6). A correction is neither: read as a decision it would owe alternatives and a
-rationale it rarely states, which the modeller would then have to supply. Which of the three a passage is, is
-read when it is extracted, and is the modeller's responsibility (K40); whether its speaker has standing to
-replace what was said is OQ16's.
+is a `SourceDecision` (§6). A correction is neither: it replaces what was said rather than choosing among
+alternatives, and a decision retires without putting anything in its place (K129, K133, K62). Which of the
+three a passage is, is read when it is extracted, and is the modeller's responsibility (K40); whether its
+speaker has standing to replace what was said is OQ16's.
 
 ## 6. `SourceDecision`
 
@@ -799,11 +799,11 @@ K133). This is an admitted gap, on the same terms `RequirementDefinition`'s *"wh
 slot this document states without a claim about what fills it.
 
 **A `RequirementDecision` is not a value, and nothing about deciding sets one silently.** A decision is a
-choice made in the presence of alternatives, by somebody with standing, recorded with the alternatives and the
-rationale; what changes it is deciding again, which under K11 means a new source and a new
-`RequirementDecision` beside the old one rather than an edit to it. A decision settling a contradiction sets
-no value: it keeps one of the contradicting requirements and retires the others, or decides that the
-contradiction is not real and keeps them all (K142). A correction is not a decision: it arrives as a
+choice made in the presence of alternatives, by somebody with standing, carrying the alternatives and the
+rationale where its source states them (K164); what changes it is deciding again, which under K11 means a
+new source and a new `RequirementDecision` beside the old one rather than an edit to it. A decision settling a
+contradiction sets no value: it keeps one of the contradicting requirements and retires the others, or decides
+that the contradiction is not real and keeps them all (K142). A correction is not a decision: it arrives as a
 `SourceUpdate` (§5, K132).
 
 ### `RequirementQuestion`
@@ -1193,8 +1193,8 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 - **A `RequirementDecision` names at least one `SourceDecision` it was produced from. A `RequirementDecision`
   with no such origin is not a well-formed element of this model — this is stronger than a failed check, on
   the same terms K9's rule over `Requirement`'s origin already is (§11, K9, K61).**
-- A `RequirementDecision` needs nothing beyond the `SourceDecision` it was produced from. Its other
-  attributes are what its source states, and the absence of any of them is no defect (K164).
+- A `RequirementDecision` needs nothing beyond its identity and the `SourceDecision` it was produced from.
+  Its other attributes are what its source states, and the absence of any of them is no defect (K164).
 
 **Over `RequirementQuestion` and its three specialisations.**
 
