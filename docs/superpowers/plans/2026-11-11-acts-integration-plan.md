@@ -102,7 +102,8 @@ wins; where the record and a decision already in `spec/06` disagree, stop and re
   absence.
 
   **§9 What is open.** A table *Act* / *Waits on*: A5 OQ44; A7 OQ42; A8 and A9 OQ41, OQ45, OQ48; A13 OQ23;
-  §7's baseline OQ35; §1's scope OQ46. One sentence: the list closes over what is decided, and each act marked
+  §7's baseline OQ35; §1's scope OQ46; and, as its own row, closing a `RequirementDecision`, which no act
+  does because K63 leaves the criterion unstated. One sentence: the list closes over what is decided, and each act marked
   here keeps the condition or cause the open question leaves.
 
 - [ ] **Step 2: Add `spec/06`'s block.** Heading `## Decisions K150–K160`. An opening paragraph in the shape

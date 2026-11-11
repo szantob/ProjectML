@@ -83,7 +83,7 @@ cite the rules they rest on rather than restating them, so that no rule is state
 | # | Act | Cause carried | Condition | Effect |
 |---|---|---|---|---|
 | A8 | Walking the `RuleSet`s that reach a requirement (a judgement, K86) | the `Rule`, by *triggered by*, and the triggering requirement | the requirement has just become complete, and is walked once (K128); the rule is in force and its guard does not exclude it (K97, K105) | a `RequirementChoice` (`ConflictRule`) or a `RequirementInquiry` (`CompletenessRule`, at most one open per rule and triggering requirement, K148); a rule judged not relevant leaves nothing (K159) |
-| A9 | Raising a contradiction choice | the parameter's `ValueRule` and the requirements of one kind that contradict (K141); the modeller's flag (K142) | a requirement is a triggering requirement of at most one open choice per parameter (`02` §12) | a `RequirementChoice`; with A4, or later |
+| A9 | Raising a contradiction choice | the parameter's `ValueRule` and the requirements of one kind that contradict (K141); the modeller's flag (K142) | a requirement is a triggering requirement of at most one open choice per parameter (`02` §12) | a `RequirementChoice`, or, where one is already open over a requirement the new one contradicts, that choice extended: its triggering requirements and candidate alternatives grow, and no second choice opens (K78, K141, `02` §11); with A4, or later |
 | A10 | Posing a question | the `SourceQuestion`, by `poses`, in the source carrying the question sent | the question is raised | the question is posed (K60) |
 | A11 | Recording a decision, which commits the project (K153) | at least one `SourceDecision` (K61) | all five attributes present; `retires` names only requirements in force (K62) | a `RequirementDecision`; inseparably, the requirements it retires leave force (K155) |
 | A12 | Discharging a question | the discharging element: for an inquiry, a requirement of the implied kind deriving from the trigger (K148); for a choice, a decision | — | a `discharges` edge. A clarification is not discharged; its value closes it (K143) |
@@ -115,6 +115,13 @@ source element is A3 as K158 now states it.
 - **Leaves** OQ23 (A13), OQ35 (whether a baseline may be cut while a requirement in force is incomplete),
   OQ41 and OQ48 (A8, A9), OQ42 (A7), OQ44 (A5), OQ45 and OQ46. `spec/07` marks each act whose condition or
   cause waits on one of them.
+- **Leaves K63's closed state without an act.** K63 gives a `RequirementDecision` an open/closed state and
+  leaves what closes one unstated, so no act closes a decision, and none can be listed until that criterion
+  is. `spec/07` names the gap among what is open, rather than leaving every decision silently open forever.
+- **Corrected after the plan's first run,** which stopped at Task 1 and reported both points: A9 first named
+  only raising a choice, so under K150 a further contradicting requirement could neither extend the open
+  choice — as K78, K141 and `02` §11 require — nor open a second one, since A9's condition forbids it. A9 now
+  covers both, because `02` §11 already describes them as one move of the parameter's ask.
 
 ## 7. Notes for the plan
 
