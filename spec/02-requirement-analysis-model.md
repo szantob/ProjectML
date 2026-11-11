@@ -206,8 +206,8 @@ from `RequirementDefinition`'s and `01-requirement-model.md`'s independent use o
 Two rules govern a `SourceNeed`, beyond what `SourceElement` already governs for every `SourceElement`.
 
 1. **A `SourceNeed` anchors into exactly one passage of exactly one source.** A `SourceNeed` with no anchor
-   fails a syntactic check: there is nothing in it to ask a stakeholder about, and nothing for a reviewer to
-   weigh — only an omission to fix (D34, D26). This is `SourceElement`'s own anchor requirement, restated
+   is not a well-formed element of this model: there is nothing in it to ask a stakeholder about, and nothing
+   for a reviewer to weigh (D34, D26, K161). This is `SourceElement`'s own anchor requirement, restated
    here because it is the constraint a `SourceNeed`'s own syntactic-constraints entry (§12) cites.
 2. **A `SourceNeed` that produces no `Requirement` is a failed check, not a question** (K38, D31, and §4's
    general statement of this rule for every `SourceStatement`). A `SourceNeed` obliges something by
@@ -629,21 +629,22 @@ is in, contradictions included, and raises them; it does not resolve them on the
 statement said arrives as a `SourceUpdate` (§5, K132). The requirement refining it carries `supersedes`, a
 list-valued edge naming the requirements it replaces (K133), and also refines those `SourceNeed`s of the old
 requirement that still state what it keeps: its values are stated by the update for what that replaces, and by
-those needs for the rest (K136, K138). It is walked once, when it is complete. A derivation edge from another
-requirement, added to one that exists, does not change it in place either (K147); what states such an edge is
-OQ42. A `SourceNeed` that states a different value without replacing anything contradicts what was said, and
-is refined into a requirement of its own (K139). What a later change to its definition, or to a rule reaching
-it, does to a complete requirement is OQ46. A decision to drop a requirement with nothing in its place is
+those needs for the rest (K136, K138). It is walked once, when it is complete. No derivation edge is added to
+a requirement that exists: a derivation enters only with the derived requirement (K163). A `SourceNeed` that
+states a different value without replacing anything contradicts what was said, and is refined into a
+requirement of its own (K139). What a later change to its definition, or to a rule reaching it, does to a
+complete requirement is OQ46. A decision to drop a requirement with nothing in its place is
 a `SourceDecision`, whose `RequirementDecision` retires it (K62). Nothing resolves itself: every change has a
 source behind it, and the source a speaker.
 
 ### No longer in force
 
 **A requirement is never deleted.** When it is retired, superseded, or found wrong, it carries the property
-of being no longer in force rather than being removed from the model (K5). This model is where that property
-lives, because this model is where the record of everything lives: `01-requirement-model.md` carries the
-requirements in force and nothing else, and what a requirement used to be has nowhere to sit in a model that
-holds only what stands now.
+of being no longer in force rather than being removed from the model (K5). One found wrong leaves force by a
+decision retiring it or a requirement superseding it; there is no third way (K144, `07-acts.md` §8). This
+model is where that property lives, because this model is where the record of everything lives:
+`01-requirement-model.md` carries the requirements in force and nothing else, and what a requirement used to be
+has nowhere to sit in a model that holds only what stands now.
 
 The reason is not traceability for its own sake. The checks over this model are pairwise: a finding fires
 between two requirements, or between a requirement and something naming it. Deleting a requirement silences
@@ -775,6 +776,9 @@ element — this pairing, and these five attributes, carry over unchanged from w
 | by | The party that took it |
 | date | When it was taken |
 | rationale | The reasoning that justifies the choice over the alternatives |
+
+None of these but its identity is required: a decision is accountable through the `SourceDecision` it is
+produced from, and carries the rest where its source states them (K164).
 
 The vocabulary of the *by* attribute is open, on exactly the terms §2 sets out for a source's *kind* and
 *from*: the metamodel names the attribute and leaves the list of parties to an implementation, because any
@@ -1039,7 +1043,11 @@ like that. It is this model's own construct, with no other home, so deleting one
 it and silences the check that fired on it, which is what K5 exists to prevent (§10). The asymmetry between K5
 and this is not an inconsistency; it is the difference between a construct and a pointer into material held
 elsewhere. Nor is a deletion here retirement, and nor does it give a `SourceNeed` a state: what is removed is
-a wrong pointer (§4, K6).
+a wrong pointer (§4, K6). The same holds of every `SourceElement`, since each is a pointer into a passage: any
+one extracted in error may be deleted, and only while no requirement or decision refines it and no question is
+posed by it, since deleting one that a requirement or a decision refines would leave that element without its
+origin at once (K158, K145, K61). Whether a review finding naming it blocks deletion is OQ49. Deletion is the
+one act that leaves no trace (`07-acts.md` §4).
 
 **The criterion that decides between the two resolutions is whether a declared definition covers the
 statement** (K38). A requirement is produced under a `RequirementDefinition`, and it names the definition it was
@@ -1105,9 +1113,9 @@ test (§8) means by *without reading its content*.
 **Over `SourceElement`, and every specialisation of it.**
 
 - A `SourceElement`'s identity is unique among every `SourceElement` in the model (§4).
-- A `SourceElement` anchors into exactly one passage of exactly one source. One with no anchor is a failed
-  check and not a question: there is nothing in it to ask a stakeholder about and nothing for a reviewer to
-  weigh, only an omission to fix (§4, D34, D26).
+- A `SourceElement` anchors into exactly one passage of exactly one source. One with no anchor is not a
+  well-formed element of this model, on the same footing as a `RequirementDecision` naming no `SourceDecision`:
+  there is nothing in it to ask a stakeholder about and nothing for a reviewer to weigh (§4, D34, D26, K161).
 - A `SourceElement` carries no attribute beyond identity, anchor, and being material of record. A candidate
   attribute reading the content of the passage fails this constraint regardless of which specialisation
   proposes it (§4, K57).
@@ -1185,10 +1193,8 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 - **A `RequirementDecision` names at least one `SourceDecision` it was produced from. A `RequirementDecision`
   with no such origin is not a well-formed element of this model — this is stronger than a failed check, on
   the same terms K9's rule over `Requirement`'s origin already is (§11, K9, K61).**
-- A `RequirementDecision` names the party that took it, the date it was taken, the choice, the alternatives
-  the choice was made among, and the rationale. Absence of any of the five is a failed check on the
-  `RequirementDecision`. Whether the alternatives recorded were genuine ones is a judgement and therefore a
-  semantic matter under K24, outside this check.
+- A `RequirementDecision` needs nothing beyond the `SourceDecision` it was produced from. Its other
+  attributes are what its source states, and the absence of any of them is no defect (K164).
 
 **Over `RequirementQuestion` and its three specialisations.**
 
