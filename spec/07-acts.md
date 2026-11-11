@@ -6,10 +6,11 @@ This document states the acts through which a project model changes, and that th
 **A project model changes only through the acts §5 lists.** Nothing enters the model that is not the effect of
 a listed act, and nothing happens to an element that no listed act does.
 
-It is normative, and it is not a member of the collection, as `05-binding-contract.md` and `06-decisions.md`
-are not (`00-overview.md` §2). It defines no element. Every element it names is defined in the member that
-carries it — most of them in `02-requirement-analysis-model.md` — and this document adds nothing to what any
-of them is. It states only what may happen to them, and on what condition.
+It is normative, and it is not a member of the collection, as `05-binding-contract.md` and `06-decisions.md` are
+not (`00-overview.md` §2). It defines no element. Every element it names is defined in the member that carries it
+— most of them in `02-requirement-analysis-model.md` — and this document adds nothing to what any of them is,
+beyond recording K161, under which a `SourceElement` with no anchor is not well-formed (§4). It states only what
+may happen to them, and on what condition.
 
 **Its scope is the project model** (K151): sources, `SourceElement`s, requirements, `RequirementQuestion`s,
 `RequirementDecision`s and review findings. Changing a `RequirementDefinition` or a `RuleSet` is outside it. A
@@ -30,11 +31,11 @@ act can be reached through it. A list of prohibitions gives neither for certain;
 ## 2. What an act is
 
 **An act is defined by its effect on the model** (K152): which elements, edges and states appear or cease. It
-states four things — who performs it (§3), the cause it names (§4), its condition, and its effect — and §5
-gives every act in those four columns. It names no operation, nothing an operation is given, and no order in
-which operations run. An act defined by an operation would be an interface, and an interface is
-implementation; defined by its effect, every entry is true of a project however that project is modelled,
-which is `00-overview.md` §4's test.
+states four things — who performs it, the cause it names, its condition, and its effect (K152). §3 states who
+performs every act, since it is the same for all of them, and §5 gives each act's cause, condition and effect in
+its columns. It names no operation, nothing an operation is given, and no order in which operations run. An act
+defined by an operation would be an interface, and an interface is implementation; defined by its effect, every
+entry is true of a project however that project is modelled, which is `00-overview.md` §4's test.
 
 **Several acts may be performed as one step**, provided the step happens whole or not at all and every act's
 condition is met (K152). Recording a question that has been sent is such a step: the source carrying it is
@@ -48,11 +49,11 @@ term wherever one exists (`CLAUDE.md` §3, rule 10), and a later reader would ot
 collection also calls the project manager's changes to a rule-set acts (`03-project-lifecycle-model.md` §3,
 K97); they lie outside this document's scope (§1, K151) and are not acts in K150's sense.
 
-**An act's condition may enforce any syntactic constraint** (K162, K24). A check that the acts make
-unreachable is not a defect. It stays stated, as the measure that whatever changes a model is held to: a model
-produced through the acts on which such a check fails shows that what produced it did not keep to them. A check
-works as a worklist only where the state it reports arises legitimately and awaits resolution — a `SourceNeed`
-no requirement refines yet, an open question (`02-requirement-analysis-model.md` §11, §12).
+**An act's condition may enforce any syntactic constraint** (K162, K24). A check that the acts make unreachable
+is not a defect. It stays stated, as the measure that whatever changes a model is held to: a model on which such
+a check fails shows that whatever produced it did not keep to the acts. A check works as a worklist only where
+the state it reports arises legitimately and awaits resolution — a `SourceNeed` no requirement refines yet, an
+open question (`02-requirement-analysis-model.md` §11, §12).
 
 ## 3. Who acts
 
@@ -66,9 +67,9 @@ stated the decision (K11, K61). The project manager decides; the modeller record
 passage that states it. The modeller's own judgements — extraction (K40), the flag on a contradiction (K142),
 relevance while walking (K86) — commit nothing.
 
-**With no source, nothing can be committed.** An agent working as the modeller, held to the acts, can commit
-nothing itself: the one act that commits the project needs a `SourceDecision`, anchored in the passage of a
-source in which the decision was stated (A2, K61).
+**With no source, nothing can be committed.** The modeller, held to the acts, can commit nothing itself: the one
+act that commits the project needs a `SourceDecision`, anchored in the passage of a source in which the decision
+was stated (A2, K61).
 
 Who performs a review is OQ23, and the acts over review findings (A12, A13) stay open on that point.
 
@@ -102,9 +103,9 @@ badly beside K5.
 
 **One act leaves no trace: deleting a `SourceElement` extracted in error** (A3, K158). It names no cause,
 deliberately. A `SourceElement` is a pointer into a passage, and deleting the pointer loses nothing of record:
-the passage stays in its source as it was given (K39). That the wrong extraction was made is not recorded
-either; it is noticed and fixed by the same act, on K41's terms. The deletion is permitted only while no
-requirement or decision refines the element and no question is posed by it. Deleting one that a requirement or
+the passage stays in its source as it was given (K39). That the wrong extraction was made is not recorded either:
+noticing it is the modeller's, on K40's and K41's terms, and A3 removes it. The deletion is permitted only while
+no requirement or decision refines the element and no question is posed by it. Deleting one that a requirement or
 a decision refines would leave that element without its origin at once (K145, K61), and deleting one by which a
 question is posed would return that question to raised with nothing having caused it (K60). Whether a review
 finding naming the element blocks its deletion is OQ49. K158 extends K39 from a `SourceNeed` to every
@@ -174,7 +175,7 @@ flowchart LR
     A7 --> A9["A9 Posing a question"]
     A9 -->|"a choice"| A10["A10 Recording a decision"]
     A10 --> A11["A11 Discharging a question"]
-    A9 -->|"an inquiry"| A11
+    A9 -->|"an inquiry: answered by A4 beneath the trigger"| A11
 ```
 
 The diagram draws what this section states; where the two disagree, the prose wins.
