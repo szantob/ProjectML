@@ -1,11 +1,11 @@
-# Integrate the closed list of acts (K150–K160) into `spec/` — Implementation Plan
+# Integrate the closed list of acts (K150–K161) into `spec/` — Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or
 > superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for
 > tracking.
 
 **Goal:** Add `spec/07-acts.md`, which states that a project model changes only through fourteen listed acts,
-each defined by who performs it, the cause it carries, its condition and its effect; record K150–K160 in
+each defined by who performs it, the cause it carries, its condition and its effect; record K150–K161 and OQ49 in
 `spec/06`; and point `spec/00`, `spec/01`, `spec/02` and `spec/03` at it where they meet it. This is prose,
 not code: a "test" for each task is a re-read for internal consistency, cross-reference correctness and
 conformance to `CLAUDE.md`, plus the grep checks the task names.
@@ -45,7 +45,7 @@ wins; where the record and a decision already in `spec/06` disagree, stop and re
 
 ---
 
-### Task 1: `spec/07-acts.md` and `spec/06`'s block K150–K160
+### Task 1: `spec/07-acts.md`, and `spec/06`'s block K150–K161 and OQ49
 
 **Files:**
 - Create: `spec/07-acts.md`
@@ -101,16 +101,25 @@ wins; where the record and a decision already in `spec/06` disagree, stop and re
   list. One sentence first: these are stated so that a reader proposing one finds the refusal rather than an
   absence.
 
-  **§9 What is open.** A table *Act* / *Waits on*: A5 OQ44; A7 OQ42; A8 and A9 OQ41, OQ45, OQ48; A13 OQ23;
-  §7's baseline OQ35; §1's scope OQ46; and, as its own row, closing a `RequirementDecision`, which no act
-  does because K63 leaves the criterion unstated. One sentence: the list closes over what is decided, and each act marked
+  **§9 What is open.** A table *Act* / *Waits on*: A3 OQ49; A4's clarification OQ38; A5 OQ44; A7 OQ42;
+  A8 and A9 OQ41, OQ45, OQ48, and A9's cause OQ38; A12's cause for an inquiry OQ40 and OQ26; A13 OQ23;
+  §7's baseline OQ35; §1's scope OQ46. Then, as rows of their own, the changes no act makes because a
+  criterion is unstated: closing a `RequirementDecision` (K63); closing a `RequirementInquiry` or
+  `RequirementChoice` whose triggering requirements have left force (OQ43); what happens to requirements
+  deriving from one that has left force (OQ39). One sentence: the list closes over what is decided, and each act marked
   here keeps the condition or cause the open question leaves.
 
-- [ ] **Step 2: Add `spec/06`'s block.** Heading `## Decisions K150–K160`. An opening paragraph in the shape
+- [ ] **Step 2: Add `spec/06`'s block.** Heading `## Decisions K150–K161`. An opening paragraph in the shape
   of `## Decisions K136–K149`'s: taken in the design record of 2026-11-11 (link it), written in by this plan
-  (link it); K39 is extended and narrowed by K158; no open question is answered or opened. Then one table,
-  columns `| # | Decision | Reason |`, rows K150–K160 copied verbatim from the record's §2, §3 and §5, in
-  numeric order (K160 last, although the record places it among §3's rows).
+  (link it); K39 is extended and narrowed by K158; `02-requirement-analysis-model.md` §5's first rule and §12's anchor
+  rule are revised by K161; OQ49 is opened. Then one table, columns `| # | Decision | Reason |`, rows
+  K150–K161 copied verbatim from the record's §2, §3 and §5, in numeric order (K160 after K159, although the
+  record places it among §3's rows).
+
+- [ ] **Step 2b: Add OQ49.** After `## Open question OQ48`'s section and before `## Status of the founding
+  record's open questions`, add `## Open question OQ49`, opened on 2026-11-11 in the design record of that
+  date (link it), with a table `| # | Question | When answerable |` whose one row carries the record's §6
+  wording of OQ49, answerable with OQ23.
 
 - [ ] **Step 3: Mark K39's row.** In `spec/06`, append to K39's *Reason* cell: " Extended to every
   `SourceElement`, and narrowed to one nothing refers to, by K158."
@@ -123,9 +132,9 @@ wins; where the record and a decision already in `spec/06` disagree, stop and re
   Expected: no output.
 
   ```bash
-  grep -c -E "^\| K1(5[0-9]|60) " spec/06-decisions.md
+  grep -c -E "^\| K1(5[0-9]|6[01]) " spec/06-decisions.md
   ```
-  Expected: `11`.
+  Expected: `12`.
 
   ```bash
   grep -o -E "\bA(1[0-4]|[1-9])\b" spec/07-acts.md | sort -u | wc -l
@@ -143,7 +152,7 @@ wins; where the record and a decision already in `spec/06` disagree, stop and re
 
   ```bash
   git add spec/07-acts.md spec/06-decisions.md
-  git commit -m "Add spec/07: the closed list of acts through which a project model changes (K150-K160)"
+  git commit -m "Add spec/07: the closed list of acts through which a project model changes (K150-K161)"
   ```
   End the message with the attribution line the session gives.
 
@@ -184,7 +193,8 @@ wins; where the record and a decision already in `spec/06` disagree, stop and re
 **Files:**
 - Modify: `spec/01-requirement-model.md` §4, after the paragraph beginning "A baseline's condition is
   losslessness"
-- Modify: `spec/02-requirement-analysis-model.md` §11, the paragraph beginning "**Deleting a `SourceNeed`
+- Modify: `spec/02-requirement-analysis-model.md` §5's first rule over a `SourceNeed`, §10's *No longer in
+  force*, §12's anchor rule, and §11, the paragraph beginning "**Deleting a `SourceNeed`
   loses nothing of record"
 - Modify: `spec/03-project-lifecycle-model.md` §3, *Walking a `RuleSet`*, at the end of the paragraph
   beginning "**The walk runs once, and a `ValueRule` is not part of it.**"
@@ -205,6 +215,21 @@ wins; where the record and a decision already in `spec/06` disagree, stop and re
   > decision names would leave that element without its origin at once (K158, K145, K61). Deletion is the
   > one act that leaves no trace (`07-acts.md` §4).
 
+- [ ] **Step 2b: `spec/02` §5 and §12, the anchor (K161).** In §5's first rule over a `SourceNeed`, replace
+  "A `SourceNeed` with no anchor fails a syntactic check: there is nothing in it to ask a stakeholder about,
+  and nothing for a reviewer to weigh — only an omission to fix (D34, D26)." with "A `SourceNeed` with no
+  anchor is not a well-formed element of this model: there is nothing in it to ask a stakeholder about, and
+  nothing for a reviewer to weigh (D34, D26, K161)." In §12, replace "One with no anchor is a failed check and
+  not a question: there is nothing in it to ask a stakeholder about and nothing for a reviewer to weigh, only
+  an omission to fix (§4, D34, D26)." with "One with no anchor is not a well-formed element of this model, on
+  the same footing as a `RequirementDecision` naming no `SourceDecision`: there is nothing in it to ask a
+  stakeholder about and nothing for a reviewer to weigh (§4, D34, D26, K161)." Search `spec/02` for any
+  other sentence calling an anchorless element a failed check, and report rather than edit any you find.
+
+- [ ] **Step 2c: `spec/02` §10, *No longer in force*.** Where the text says a requirement leaves force when
+  it is "retired, superseded, or found wrong", add that one found wrong leaves force by a decision retiring
+  it or a requirement superseding it, there being no third way (K144, `07-acts.md` §8).
+
 - [ ] **Step 3: `spec/03` §3.** At the end of the named paragraph, add:
 
   > A walk leaves no trace beyond the questions it raises. Whether it ran is not recorded: it is the reaction
@@ -216,7 +241,7 @@ wins; where the record and a decision already in `spec/06` disagree, stop and re
   ```bash
   grep -n "07-acts" spec/01-requirement-model.md spec/02-requirement-analysis-model.md spec/03-project-lifecycle-model.md
   ```
-  Expected: one line in each of the three files.
+  Expected: one line in `spec/01` and `spec/03`, two in `spec/02` (§10 and §11).
 
   Re-read each paragraph around the insertion: no sentence before or after it now contradicts it. In
   `spec/02` §12, confirm no constraint says deletion is limited to a `SourceNeed`; if one does, report it
@@ -241,8 +266,9 @@ wins; where the record and a decision already in `spec/06` disagree, stop and re
   >   is the modeller's; one that commits the project names the source in which the project manager stated
   >   it. What an act produces carries its cause, and the model records no act of its own. Reading, cutting
   >   a baseline and creating a model are not acts; a walk leaves no trace beyond what it raises. Any source
-  >   element extracted in error may be deleted while nothing refers to it, extending K39. K150–K160 record
-  >   the decisions; no open question is opened or answered. Findings are in
+  >   element extracted in error may be deleted while nothing refines it and no question is posed by it,
+  >   extending K39, and an element with no anchor is no longer well-formed. K150–K161 record the decisions;
+  >   OQ49 opens, on whether a review finding naming such an element blocks its deletion. Findings are in
   >   [`docs/superpowers/specs/2026-11-11-acts-design.md`](docs/superpowers/specs/2026-11-11-acts-design.md).
 
 - [ ] **Step 2: Sweep.**
@@ -253,9 +279,9 @@ wins; where the record and a decision already in `spec/06` disagree, stop and re
   Expected: no output.
 
   ```bash
-  grep -rn -E "K15[0-9]|K160" spec/ | grep -v "06-decisions.md" | grep -o -E "K1(5[0-9]|60)" | sort -u
+  grep -rn -E "K15[0-9]|K16[01]" spec/ | grep -v "06-decisions.md" | grep -o -E "K1(5[0-9]|6[01])" | sort -u
   ```
-  Expected: every one of K150–K160 that `spec/07` cites appears; none is cited that `spec/06` lacks.
+  Expected: every one of K150–K161 that `spec/07` cites appears; none is cited that `spec/06` lacks.
 
   Read `spec/07` once more whole, as a reader who has read only `spec/00`–`spec/03`: every citation resolves,
   and nothing in it names a tool.
