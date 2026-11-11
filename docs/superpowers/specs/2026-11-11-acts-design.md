@@ -41,7 +41,7 @@ modeller's steps is not the system's task, at least at first.
 
 | # | Decision | Reason |
 |---|---|---|
-| K150 | **A project model changes only through the acts `spec/07` lists.** Nothing enters the model that is not the effect of a listed act, and nothing happens to an element that no listed act does | This is what makes a tool measurable against the metamodel in both directions. A tool is safe when every change it makes decomposes into listed acts, each with its condition met, and complete when every listed act is reachable through it |
+| K150 | **A project model changes only through the acts `spec/07` lists.** Nothing enters the model that is not the effect of a listed act, and nothing happens to an element that no listed act does. `spec/` carries that document beside the overview, the binding contract and the decision record, which extends K31 | This is what makes a tool measurable against the metamodel in both directions. A tool is safe when every change it makes decomposes into listed acts, each with its condition met, and complete when every listed act is reachable through it |
 | K151 | **The list covers the project model: sources, `SourceElement`s, requirements, `RequirementQuestion`s, `RequirementDecision`s and review findings.** Changing a `RequirementDefinition` or a `RuleSet` is outside it | A rule-set is a model in its own right (K22), and whether its amendment leaves a record is its own business (K88); a definition belongs to an implementation (K15, K16). What either change does to requirements already complete is OQ46 |
 
 ## 3. What an act is
@@ -112,6 +112,8 @@ source element is A3 as K158 now states it.
 
 ## 6. What it revises, answers and leaves
 
+- **Extends K31** by K150: `spec/` also carries the document stating the acts, as the owner chose when
+  placing it.
 - **Revises K39,** extended and narrowed by K158; **narrows K147 and revises K148** by K163; **withdraws**
   `02` §12's failed check over a decision's five attributes by K164.
 - **Revises** `02-requirement-analysis-model.md` §5's first rule over a `SourceNeed` and §12's anchor rule

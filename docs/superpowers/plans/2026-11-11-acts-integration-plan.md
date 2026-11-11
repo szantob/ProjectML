@@ -117,7 +117,7 @@ wins; where the record and a decision already in `spec/06` disagree, stop and re
 
 - [ ] **Step 2: Add `spec/06`'s block.** Heading `## Decisions K150–K164`. An opening paragraph in the shape
   of `## Decisions K136–K149`'s: taken in the design record of 2026-11-11 (link it), written in by this plan
-  (link it); K39 is extended and narrowed by K158; `02-requirement-analysis-model.md` §5's first rule and §12's anchor
+  (link it); K31 is extended by K150; K39 is extended and narrowed by K158; `02-requirement-analysis-model.md` §5's first rule and §12's anchor
   rule are revised by K161; K147 is narrowed and K148 revised by K163; §12's failed check over a decision's
   five attributes is withdrawn by K164; OQ42 is answered by K163; OQ49 and OQ50 are opened. Then one table,
   columns `| # | Decision | Reason |`, rows K150–K164 copied verbatim from the record's §2, §3 and §5, in numeric order (K160 after K159, although the
@@ -128,7 +128,8 @@ wins; where the record and a decision already in `spec/06` disagree, stop and re
   record of that date (link it), with a table `| # | Question | When answerable |` whose two rows carry the
   record's §6 wording of each, with its *when answerable*.
 
-- [ ] **Step 3: Mark the rows K150–K164 change.** In `spec/06`, append to K39's *Reason* cell: " Extended to
+- [ ] **Step 3: Mark the rows K150–K164 change.** In `spec/06`, append to K31's *Reason* cell: " Extended by K150: `spec/` also carries
+  `07-acts.md`, stating how a project model changes." Append to K39's *Reason* cell: " Extended to
   every `SourceElement`, and narrowed to one no requirement or decision refines and no question is posed by,
   by K158." To K147's: " Narrowed by K163: a derivation enters only with the derived requirement; one that
   exists gains no further original." To K148's: " Revised by K163: an inquiry a later trigger raises is
@@ -180,8 +181,8 @@ wins; where the record and a decision already in `spec/06` disagree, stop and re
 
   > Three further documents round out `spec/`, beyond the collection itself: `05-binding-contract.md`, which
   > states what attaching underneath the collection requires, `06-decisions.md`, the normative record of
-  > every decision the collection rests on (K31), and `07-acts.md`, which states the acts through which a
-  > project model changes, and that there are no others (K150).
+  > every decision the collection rests on, and `07-acts.md`, which states the acts through which a project
+  > model changes, and that there are no others (K31, K150).
 
 - [ ] **Step 2: Add a paragraph at the end of §5:**
 
