@@ -66,7 +66,7 @@ cite the rules they rest on rather than restating them, so that no rule is state
 | # | Act | Cause carried | Condition | Effect |
 |---|---|---|---|---|
 | A1 | Recording a source | none: the chain starts here (K46) | quoted whole and unedited (`02` §2, D45); a `replies` edge names only a source dated earlier (`02` §3, D38) | a `Source` |
-| A2 | Anchoring a `SourceElement` (extraction, K40) | its anchor: exactly one passage of exactly one source | the passage is in the source | a `SourceNeed`, `SourceUpdate`, `SourceDecision` or `SourceQuestion` |
+| A2 | Anchoring a `SourceElement` (extraction, K40) | its anchor: exactly one passage of exactly one source | the passage is a passage of that one source (`02` §4, §12, D26, K161) | a `SourceNeed`, `SourceUpdate`, `SourceDecision` or `SourceQuestion` |
 | A3 | Deleting a `SourceElement` extracted in error | none, deliberately (K158, K41) | no requirement or decision refines it, and no question is posed by it (K158); whether a review finding naming it blocks deletion is OQ49 | the element ceases; the source is untouched |
 
 **Over requirements.**
@@ -75,15 +75,15 @@ cite the rules they rest on rather than restating them, so that no rule is state
 |---|---|---|---|---|
 | A4 | Producing a requirement | at least one `SourceNeed` it refines (K145); every value stated by one of them (K136) | its definition is not abstract (K109); a derivation names only originals that already exist, so it closes no cycle (K147, K163) | a `Requirement` in force; where it elaborates others, its derivation edges to them (K146, K147); inseparably, a `RequirementClarification` for each parameter without a value (K155); if every parameter has a value, its finished text, computed from the template (K111, K140), and its walk falls due (K128) |
 | A5 | Superseding, a form of A4 | also a `SourceUpdate` it refines, and `supersedes` naming at least one requirement (K133) | whether each superseded requirement must be in force is OQ44 | inseparably, the new requirement enters force and the superseded leave it (K155); values carried over keep their source (K138) |
-| A6 | Stating a value | the `SourceNeed` stating it, which the requirement then refines (K136) | the requirement is incomplete (K129, K140) and the parameter has no value (K137, K139) | the value; the parameter's clarification, if open, closes, which is computed (K143); if the requirement becomes complete, its finished text, computed from the template (K111, K140), and its walk falls due (K128) |
+| A6 | Stating a value | the `SourceNeed` stating it, which the requirement then refines (K136) | the requirement is incomplete (K129, K140) and the parameter has no value (K137, K139) | the requirement refines the stating `SourceNeed` (`refine` is list-valued, `02` §11); the value; the parameter's clarification, if open, closes, which is computed (K143); if the requirement becomes complete, its finished text, computed from the template (K111, K140), and its walk falls due (K128) |
 
 **Over questions, decisions and findings.**
 
 | # | Act | Cause carried | Condition | Effect |
 |---|---|---|---|---|
-| A7 | Walking the `RuleSet`s that reach a requirement (a judgement, K86) | the `Rule`, by *triggered by*, and the triggering requirement | the requirement has just become complete, and is walked once (K128); the rule is in force and its guard does not exclude it (K97, K105) | where the rule is judged relevant and its firing test fires (`03` §3, K74, K148): a `RequirementChoice` (`ConflictRule`) or a `RequirementInquiry` (`CompletenessRule`, at most one open per rule and triggering requirement, K148); a rule judged not relevant leaves nothing (K159) |
+| A7 | Walking the `RuleSet`s that reach a requirement (a judgement, K86) | the `Rule`, by *triggered by*, and the triggering requirement | the requirement is complete (K128, K140); the rule reaches it (K69), is in force and its guard does not exclude it (K97, K105). The walk falls due once, when the requirement becomes complete (A4, A6); carrying out every reaction, one noticed late included, is the modeller's on K41's terms (K159) | where the rule is judged relevant and its firing test fires (`03` §3, K74, K148): a `RequirementChoice` (`ConflictRule`) or a `RequirementInquiry` (`CompletenessRule`, at most one open per rule and triggering requirement, K148); a rule judged not relevant leaves nothing (K159) |
 | A8 | Raising a contradiction choice | the parameter's `ValueRule` and the requirements of one kind that contradict (K141); the modeller's flag (K142) | a requirement is a triggering requirement of at most one open choice per parameter (`02` §12) | a `RequirementChoice`, or, where one is already open over a requirement the new one contradicts, that choice extended: its triggering requirements and candidate alternatives grow, and no second choice opens (K78, K141, `02` §11); with A4, or later |
-| A9 | Posing a question | the `SourceQuestion`, by `poses`, in the source carrying the question sent | the question is raised | the question is posed (K60) |
+| A9 | Posing a question | the `SourceQuestion`, by `poses`, in the source carrying the question sent | the question is raised (K60, `02` §11) | the question is posed (K60) |
 | A10 | Recording a decision, which commits the project (K153) | at least one `SourceDecision` (K61) | `retires` names only requirements in force when the decision is produced (`02` §12, K62). Nothing else is required of it: its `SourceDecision` is all a decision needs (K164) | a `RequirementDecision`; inseparably, the requirements it retires leave force (K155) |
 | A11 | Discharging a question | the discharging element: for an inquiry, a requirement in force of the implied kind, produced deriving from the trigger (K148, K163, `03` §3: a retired requirement does not fill a gap); for a choice, a decision | — | a `discharges` edge. A clarification is not discharged; its value closes it (K143) |
 | A12 | Opening a review finding | the source opening it | it names at least two elements (K10); who performs it is OQ23 | an open finding |
@@ -133,6 +133,8 @@ source element is A3 as K158 now states it.
   marks A11's cause for an inquiry as waiting on OQ40 (only a direct derivation?) and OQ26 (is a negative
   answer a requirement?), and A4's clarification and A8's cause as waiting on OQ38 (is the ask a
   `ValueRule`?).
+- **Leaves which review finding a `RequirementDecision` closes without an act** (K49, K63): the criterion
+  waits on the Project Lifecycle Model, and `spec/07` names it beside closing a decision.
 - **Leaves K63's closed state without an act.** K63 gives a `RequirementDecision` an open/closed state and
   leaves what closes one unstated, so no act closes a decision, and none can be listed until that criterion
   is. `spec/07` names the gap among what is open, rather than leaving every decision silently open forever.
@@ -145,7 +147,9 @@ source element is A3 as K158 now states it.
   unreachable. The first are removed; the second are settled by the owner as K161 and the A10 condition
   above. K158's condition is narrowed to the references its reason names, and OQ49 opened. The third run's
   sweep reported ten checks made unreachable by acts; the owner settled the pattern once, as K162, and with it
-  K163 and K164.
+  K163 and K164. The fourth run's sweep found A7's condition resting on facts the model does not hold —
+  whether the requirement had *just* become complete, and whether it was walked before — and restated it over
+  state the model holds, with a late-noticed reaction left to the modeller (K159, K41).
 
 ## 7. Notes for the plan
 

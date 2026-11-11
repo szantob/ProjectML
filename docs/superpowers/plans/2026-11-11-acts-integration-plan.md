@@ -109,7 +109,8 @@ wins; where the record and a decision already in `spec/06` disagree, stop and re
   A7 and A8 OQ41, OQ45, OQ48, and A8's cause OQ38; A10's source OQ50; A11's cause for an inquiry OQ40 and
   OQ26; A12 OQ23;
   §7's baseline OQ35; §1's scope OQ46. Then, as rows of their own, the changes no act makes because a
-  criterion is unstated: closing a `RequirementDecision` (K63); closing a `RequirementInquiry` or
+  criterion is unstated: closing a `RequirementDecision` (K63); which review finding a decision closes (K49,
+  K63); closing a `RequirementInquiry` or
   `RequirementChoice` whose triggering requirements have left force (OQ43); what happens to requirements
   deriving from one that has left force (OQ39). One sentence: the list closes over what is decided, and each act marked
   here keeps the condition or cause the open question leaves.
