@@ -172,12 +172,12 @@ to guarantee something it cannot.
 > **This metamodel's job is that no extracted information or decision is lost during the project-management
 > process.**
 
-That is the whole of the guarantee, and it is not a modest one. Everything that entered — a source quoted
-whole and never edited, a `SourceNeed` anchored into a passage of it, the definition a requirement was
-produced under, the decision that settled a choice and the reasoning behind it — stays in the model, stays reachable
-from whatever it produced, and stays recoverable after the projection has dropped it (K5, K11, K13). Nothing
-taken up on the way to a baseline goes missing between one end of the chain and the other. The corollary is
-the half a reader is likelier to assume than to read:
+That is the whole of the guarantee, and it is not a modest one. Everything that entered — a source quoted whole
+and never edited, a `SourceNeed` anchored into a passage of it, the definition a requirement was produced under,
+the decision that settled a choice, and the reasoning behind it where its source states it — stays in the model,
+stays reachable from whatever it produced, and stays recoverable after the projection has dropped it (K5, K11,
+K13). Nothing taken up on the way to a baseline goes missing between one end of the chain and the other. The
+corollary is the half a reader is likelier to assume than to read:
 
 > **Whether every piece of information has been extracted, and whether every mapping is accurate, is not the
 > model's responsibility but the modeller's.** It can only be found by self-review or cross-review after the
@@ -205,9 +205,9 @@ extraction built on one — and `02-requirement-analysis-model.md` §11 carries 
 that checks extraction from the side a model can check.
 
 The guarantee is kept by a closure. A project model changes only through the acts `07-acts.md` lists, and
-whatever an act produces names, on itself, what it came from (K150, K154). That is the extent to which the
-model records its own history: accountability is derivable from it, back to the source that states each thing.
-Who performed an act, and when, the model does not record; an implementation may.
+whatever an act produces names, on itself, what it came from (K150, K154). That is the extent to which the model
+records its own history: accountability is derivable from it, back to the source that states each thing, or the
+`Rule` that raised it. Who performed an act, and when, the model does not record; an implementation may.
 
 ## 6. The diagram conventions
 

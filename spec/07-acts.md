@@ -9,8 +9,9 @@ a listed act, and nothing happens to an element that no listed act does.
 It is normative, and it is not a member of the collection, as `05-binding-contract.md` and `06-decisions.md` are
 not (`00-overview.md` §2). It defines no element. Every element it names is defined in the member that carries it
 — most of them in `02-requirement-analysis-model.md` — and this document adds nothing to what any of them is,
-beyond recording K161, under which a `SourceElement` with no anchor is not well-formed (§4). It states only what
-may happen to them, and on what condition.
+beyond recording K161, under which a `SourceElement` with no anchor is not well-formed (§4), and K164, under
+which a `RequirementDecision` needs nothing beyond its `SourceDecision` (§5). It states only what may happen to
+them, and on what condition.
 
 **Its scope is the project model** (K151): sources, `SourceElement`s, requirements, `RequirementQuestion`s,
 `RequirementDecision`s and review findings. Changing a `RequirementDefinition` or a `RuleSet` is outside it. A
@@ -32,10 +33,11 @@ act can be reached through it. A list of prohibitions gives neither for certain;
 
 **An act is defined by its effect on the model** (K152): which elements, edges and states appear or cease. It
 states four things — who performs it, the cause it names, its condition, and its effect (K152). §3 states who
-performs every act, since it is the same for all of them, and §5 gives each act's cause, condition and effect in
-its columns. It names no operation, nothing supplied to one, and no order in which operations run. An act
-defined by an operation would be an interface, and an interface is implementation; defined by its effect, every
-entry is true of a project however that project is modelled, which is `00-overview.md` §4's test.
+performs the acts, since it is the same for all of them but A12 and A13, whose performer waits on OQ23, and §5
+gives each act's cause, condition and effect in its columns. It names no operation, nothing supplied to one, and
+no order in which operations run. An act defined by an operation would be an interface, and an interface is
+implementation; defined by its effect, every entry is true of a project however that project is modelled, which
+is `00-overview.md` §4's test.
 
 **Several acts may be performed as one step**, provided the step happens whole or not at all and every act's
 condition is met (K152). Recording a question that has been sent is such a step: the source carrying it is
@@ -75,9 +77,9 @@ Who performs a review is OQ23, and the acts over review findings (A12, A13) stay
 
 ## 4. What an act leaves behind
 
-**What an act produces carries its cause** (K154). A source carries no cause: provenance stops at it, and every
-chain of causes ends in one (K46, A1). No act produces anything else that does not name, on itself, what it
-came from:
+**What an act produces carries its cause** (K154). A source carries no cause: provenance stops at it (K46, A1),
+as it stops at a `Rule`, which carries no provenance either (K88); every chain of causes ends in one of the two.
+No act produces anything else that does not name, on itself, what it came from:
 
 - a requirement, the `SourceNeed`s it refines (K145);
 - a value, the `SourceNeed` stating it (K136);
@@ -241,7 +243,11 @@ than an absence.
 - No act moves an anchor; a `SourceElement` anchored wrongly is deleted (A3), on A3's condition, and anchored
   again (A2).
 - No act deletes a question, a decision or a finding (K10, K150).
-- No act removes an edge once it has entered, except as A3 removes the element that carried it.
+- No act adds an original to a requirement that exists; a derivation enters only with the derived requirement
+  (A4, K163), and a later trigger's inquiry is discharged by a requirement produced beneath it (A11).
+- No act removes an edge once it has entered. A3 removes a `SourceElement` with its anchor, and only while no
+  requirement or decision refines it and no question is posed by it (K158); whether a review finding's
+  reference to it survives the deletion, or blocks it, is OQ49.
 - No act closes a finding directly (K11).
 
 ## 9. What is open

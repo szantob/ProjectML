@@ -625,17 +625,17 @@ the modeller's judgement, made when they are extracted (K24, K40). A contradicti
 missing, and a requirement never holds two values for one parameter. The model records the state the project
 is in, contradictions included, and raises them; it does not resolve them on the project's behalf.
 
-**A complete requirement is never changed in place** (K129). Information that replaces what an earlier
-statement said arrives as a `SourceUpdate` (§5, K132). The requirement refining it carries `supersedes`, a
-list-valued edge naming the requirements it replaces (K133), and also refines those `SourceNeed`s of the old
-requirement that still state what it keeps: its values are stated by the update for what that replaces, and by
-those needs for the rest (K136, K138). It is walked once, when it is complete. No derivation edge is added to
-a requirement that exists: a derivation enters only with the derived requirement (K163). A `SourceNeed` that
-states a different value without replacing anything contradicts what was said, and is refined into a
+**A complete requirement is never changed in place** (K129). Information that replaces what an earlier statement
+said arrives as a `SourceUpdate` (§5, K132). The requirement refining it carries `supersedes`, a list-valued edge
+naming the requirements it replaces (K133), and also refines those `SourceNeed`s of the old requirement that
+still state what it keeps: its values are stated by the update for what that replaces, and by those needs for the
+rest (K136, K138). It is walked once, when it is complete. A requirement that exists gains no further original: a
+derivation enters only with the derived requirement, from originals that already exist (K163). A `SourceNeed`
+that states a different value without replacing anything contradicts what was said, and is refined into a
 requirement of its own (K139). What a later change to its definition, or to a rule reaching it, does to a
-complete requirement is OQ46. A decision to drop a requirement with nothing in its place is
-a `SourceDecision`, whose `RequirementDecision` retires it (K62). Nothing resolves itself: every change has a
-source behind it, and the source a speaker.
+complete requirement is OQ46. A decision to drop a requirement with nothing in its place is a `SourceDecision`,
+whose `RequirementDecision` retires it (K62). Nothing resolves itself: every change has a source behind it, and
+the source a speaker.
 
 ### No longer in force
 
@@ -873,16 +873,17 @@ completeness gap (`03-project-lifecycle-model.md` §3) names a missing kind, and
 discharge.
 
 **`RequirementChoice` additionally carries the candidate alternatives being decided among** (K80). A conflict
-needs the options named before anyone can decide among them, and these alternatives deliberately prefigure
-what `RequirementDecision`'s own *the choice* attribute (above) will record once discharged — the same
-alternatives, read once as open and once as settled. **A `RequirementChoice` raised over contradicting
-requirements also carries the modeller's flag**: whether the modeller judges the contradiction real (K142).
-The flag is advice, not a decision. The project manager decides, at the latest when a baseline is cut, to keep
-one requirement and retire the others, or that the contradiction is not real and every one stays in force.
-Nothing is merged, in this model or in a baseline; one design element satisfying several of them is design,
-beyond the seam. Whether a decision that the contradiction is not real is among the candidate alternatives,
-which K80 makes the same as those the decision records, is OQ48. Whether a choice a `ConflictRule` raises is
-one over contradicting requirements, and so carries the flag and holds back a baseline, is OQ41.
+needs the options named before anyone can decide among them, and these alternatives deliberately prefigure what
+`RequirementDecision`'s own *the choice* attribute (above) records once discharged, where the decision's source
+states them (K164) — the same alternatives, read once as open and once as settled. **A `RequirementChoice` raised
+over contradicting requirements also carries the modeller's flag**: whether the modeller judges the contradiction
+real (K142). The flag is advice, not a decision. The project manager decides, at the latest when a baseline is
+cut, to keep one requirement and retire the others, or that the contradiction is not real and every one stays in
+force. Nothing is merged, in this model or in a baseline; one design element satisfying several of them is
+design, beyond the seam. Whether a decision that the contradiction is not real is among the candidate
+alternatives, which K80 makes the same as those the decision records where its source states them, is OQ48.
+Whether a choice a `ConflictRule` raises is one over contradicting requirements, and so carries the flag and
+holds back a baseline, is OQ41.
 
 **`RequirementClarification` carries nothing beyond the shared shape, and no `discharges`** (K119, K121). A
 parameter's ask raises it where the parameter has no value on a requirement, one per `Requirement` and
@@ -1047,7 +1048,7 @@ a wrong pointer (§4, K6). The same holds of every `SourceElement`, since each i
 one extracted in error may be deleted, and only while no requirement or decision refines it and no question is
 posed by it, since deleting one that a requirement or a decision refines would leave that element without its
 origin at once (K158, K145, K61). Whether a review finding naming it blocks deletion is OQ49. Deletion is the
-one act that leaves no trace (`07-acts.md` §4).
+one act that removes what was there and names no cause (`07-acts.md` §4).
 
 **The criterion that decides between the two resolutions is whether a declared definition covers the
 statement** (K38). A requirement is produced under a `RequirementDefinition`, and it names the definition it was
