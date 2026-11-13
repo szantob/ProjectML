@@ -1,6 +1,6 @@
 # How the project model changes: the closed list of acts — Design record
 
-**Status: settled, and not yet written into `spec/`.** This record carries decisions K150–K164 and opens
+**Status: settled, and not yet written into `spec/`.** This record carries decisions K150–K165 and opens
 OQ49 and OQ50; K163 answers OQ42. It adds a new normative document, `spec/07`, which states the acts through which a project
 model changes, and it touches `spec/00`, `spec/01`, `spec/02`, `spec/03` and `spec/06` only to point at it and
 to record the decisions.
@@ -58,16 +58,17 @@ modeller's steps is not the system's task, at least at first.
 
 ## 4. The acts
 
-`spec/07` states thirteen, each with the four entries K152 names. They are summarised here; the conditions
+`spec/07` states fourteen, each with the four entries K152 names. They are summarised here; the conditions
 cite the rules they rest on rather than restating them, so that no rule is stated twice.
 
 **Over sources.**
 
 | # | Act | Cause carried | Condition | Effect |
 |---|---|---|---|---|
-| A1 | Recording a source | none: the chain starts here (K46) | quoted whole and unedited (`02` §2, D45); a `replies` edge names only a source dated earlier (`02` §3, D38) | a `Source` |
-| A2 | Anchoring a `SourceElement` (extraction, K40) | its anchor: exactly one passage of exactly one source | the passage is a passage of that one source (`02` §4, §12, D26, K161) | a `SourceNeed`, `SourceUpdate`, `SourceDecision` or `SourceQuestion` |
+| A1 | Recording a source | none: the chain starts here (K46) | quoted whole and unedited (`02` §2, D45); a `replies` edge it carries names only a source already in the model and dated earlier (`02` §3, D38); one towards a source recorded later enters by A14 (K165) | a `Source`, with any `replies` edges it carries |
+| A2 | Anchoring a `SourceElement` (extraction, K40) | its anchor: exactly one passage of exactly one source | the passage is a passage of that one source (`02` §4, §12, D26, K161) | a `SourceElement` of a concrete specialisation `02` §4 defines: today a `SourceNeed`, `SourceUpdate`, `SourceDecision` or `SourceQuestion`, a list K44 leaves open |
 | A3 | Deleting a `SourceElement` extracted in error | none, deliberately (K158, K41) | no requirement or decision refines it, and no question is posed by it (K158); whether a review finding naming it blocks deletion is OQ49 | the element ceases; the source is untouched |
+| A14 | Relating two sources by `replies` | the later-dated source, whose own text is what answers the earlier (D35) | both sources are in the model; the source carrying the edge is dated later than the one it names (`02` §3, D38) | a `replies` edge on the later-dated source; neither source's attributes change (`02` §2, D45) |
 
 **Over requirements.**
 
@@ -99,7 +100,7 @@ The first implementation's tool reads against this list as follows: its operatio
 sent is A1, A2 and A9 performed as one step, which K152 admits; its operation deleting any wrongly anchored
 source element is A3 as K158 now states it.
 
-## 5. Deletion, the walk, and the anchor
+## 5. Deletion, the walk, the anchor, and `replies`
 
 | # | Decision | Reason |
 |---|---|---|
@@ -109,11 +110,13 @@ source element is A3 as K158 now states it.
 | K162 | **An act's condition may enforce any syntactic constraint. A check that becomes unreachable through the acts is not a defect.** It stays stated, as the measure a tool is held to: a model a tool produced on which a check fails shows the tool does not conform. A check works as a worklist only where the state it reports arises legitimately and awaits resolution — a `SourceNeed` no requirement refines yet, an open question | The model's integrity rests on two things the acts carry: everything derives from sources, and the causal structure runs in the order things arrived, so a later piece of information cannot make a cycle or an earlier element depend on it (K163). The owner's observation, taken while settling this: when the metamodel or an implementation's definitions change, the project model is in effect run again, ideally not from nothing — a direction for OQ46, not an answer to it |
 | K163 | **A derivation edge enters only with the derived requirement, from originals that already exist (A4). A requirement that exists gains no further original.** This narrows K147, which let a derivation be added to a requirement that exists, and revises K148: an inquiry a later triggering requirement raises is discharged by a requirement produced beneath that trigger, never by an existing one gaining it as an original. OQ42 dissolves: no edge is added later, so nothing has to state one | A later piece of information creating a cycle, or an earlier requirement coming to derive from a later one, would be a paradox in the project model's causal structure. Where a later requirement implies what an existing one already says, the client's answer restating it is a repetition of what is known, and refining it into a requirement of its own keeps the order whole. Acyclicity then follows from the order things arrive in, not from a check |
 | K164 | **A `RequirementDecision` needs nothing beyond the `SourceDecision` it is produced from.** The failed check `02-requirement-analysis-model.md` §12 states over its five attributes — by, date, the choice, the alternatives, the rationale — is withdrawn. The attributes stay as what a decision carries where its source states them | The model requires derivability to sources, not that everyone justify everything. Who decided and when are the source's to carry, and which attributes a source must carry is OQ50 |
+| K165 | **A `replies` edge may enter between two sources already in the model (A14), on D38's date order alone.** This extends K150's list by one act. Relating two sources edits neither: the edge is not among the attributes a source carries, and an edge is an association, not an attribute (`02-requirement-analysis-model.md` §2, K135) | The order sources are recorded in is not the order they were made, and the model does not record it (K154), so a reply can be in the model before the source it answers. Without this act only A1 could make the edge, and only towards a source already present, so the reply would stay unlinked and a finding opened by the earlier source could not be closed by the source that answered it (A13). D38's strict date order already keeps the edge acyclic, so K163's reason for refusing later edges does not reach it. The edge states what the later source's own text says it answers, so relating the two is the modeller's reading on K40's terms and commits nothing |
 
 ## 6. What it revises, answers and leaves
 
 - **Extends K31** by K150: `spec/` also carries the document stating the acts, as the owner chose when
   placing it.
+- **Extends K150's list** by A14, relating two sources by `replies` (K165).
 - **Revises K39,** extended and narrowed by K158; **narrows K147 and revises K148** by K163; **withdraws**
   `02` §12's failed check over a decision's five attributes by K164.
 - **Revises** `02-requirement-analysis-model.md` §5's first rule over a `SourceNeed` and §12's anchor rule
@@ -152,14 +155,19 @@ source element is A3 as K158 now states it.
   K163 and K164. The fourth run's sweep found A7's condition resting on facts the model does not hold —
   whether the requirement had *just* become complete, and whether it was walked before — and restated it over
   state the model holds, with a late-noticed reaction left to the modeller (K159, K41).
+- **Corrected after review of the pull request,** which found two points. No act could add a `replies` edge
+  towards a source recorded after the reply, although the model orders the edge by date and not by recording
+  (D38, K154); the owner settled it as K165, adding A14. And A2's effect repeated `02` §4's open list of
+  specialisations as a closed one; it now names today's four as members of the list K44 leaves open, with no
+  new decision.
 
 ## 7. Notes for the plan
 
 - **`spec/07` is new.** It is not a member of the collection, as `05-binding-contract.md` and
   `06-decisions.md` are not, so K131's count of three members is untouched. Its number follows the last
-  document; 04 stays retired. It carries the principles (K150–K157, K160), the thirteen acts, what no act does, and
+  document; 04 stays retired. It carries the principles (K150–K157, K160), the fourteen acts, what no act does, and
   K158, K159 and K161 where they bear on A3, A7 and A2.
-- **`spec/06`** takes K150–K164 as a new block, in the shape of the existing ones, OQ49 and OQ50 as open
+- **`spec/06`** takes K150–K165 as a new block, in the shape of the existing ones, OQ49 and OQ50 as open
   questions of their own, and OQ42 marked answered by K163.
 - **`spec/00`** §2: the sentence naming the further documents beyond the collection grows from two to three.
   §5: one paragraph saying that the guarantee is kept by K150's closure, and that the derivability of
@@ -168,6 +176,8 @@ source element is A3 as K158 now states it.
 - **`spec/02`** §11, at K39's passage: K158's extension and condition. Elsewhere a pointer to `spec/07` only
   where an element's coming into being is described, and only where one helps.
 - **`spec/02`** §5's first rule and §12's anchor rule: from a failed check to well-formedness (K161).
+- **`spec/02`** §11, where a finding is closed: a pointer to A14, for a reply recorded before the source it
+  answers (K165).
 - **`spec/03`** §3, *Walking a `RuleSet`*: one sentence for K159.
 - **Nothing executable and no notation.** The acts name no operation and no argument. The server that will
   enforce them lives in its own repository, and this record says nothing of it beyond K150's two

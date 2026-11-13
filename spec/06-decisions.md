@@ -360,7 +360,7 @@ D49 is not adopted (K145).
 | K148 | **A `CompletenessRule` looks for its implied kind among the requirements that derive from the requirement that triggered it.** One inquiry is open per rule and triggering requirement, and a requirement so derived discharges it. This revises K75, K92 and K95 | Elaboration happens beneath the requirement being elaborated. Looked for anywhere in the model, one requirement of the implied kind under one original silenced the question for every other. K75's concern was cost; a question per triggering requirement is work the project actually has. Revised by K163: an inquiry a later trigger raises is discharged by a requirement produced beneath it. |
 | K149 | **Every edge between two requirements is an association with two ends:** the derivation, named *original* and *derived requirement*, and `supersedes`/`supersededBy`. `retires`/`retiredBy` is one by K134. Nothing is said of other edges. This narrows K135 | K135 was meant over the edges between requirements and was written over every edge. OQ36 asked which other edges have their second end named on the premise of the wider reading, and dissolves |
 
-## Decisions K150–K164
+## Decisions K150–K165
 
 Taken in [the design record of 2026-11-11 on the closed list of
 acts](../docs/superpowers/specs/2026-11-11-acts-design.md), which carries the full argument for each; written
@@ -369,8 +369,8 @@ add [`07-acts.md`](07-acts.md), which states the acts through which a project mo
 others. K31 is extended by K150; K39 is extended and narrowed by K158; `02-requirement-analysis-model.md` §5's
 first rule over a `SourceNeed` and §12's anchor rule over every `SourceElement` are revised by K161, from a
 failed check to well-formedness; K147 is narrowed and K148 revised by K163; §12's failed check over a
-`RequirementDecision`'s five attributes is withdrawn by K164. OQ42 is answered by K163, and OQ49 and OQ50 are
-opened.
+`RequirementDecision`'s five attributes is withdrawn by K164; K150's list is extended by one act, A14, by K165.
+OQ42 is answered by K163, and OQ49 and OQ50 are opened.
 
 | # | Decision | Reason |
 |---|---|---|
@@ -389,6 +389,7 @@ opened.
 | K162 | **An act's condition may enforce any syntactic constraint. A check that becomes unreachable through the acts is not a defect.** It stays stated, as the measure a tool is held to: a model a tool produced on which a check fails shows the tool does not conform. A check works as a worklist only where the state it reports arises legitimately and awaits resolution — a `SourceNeed` no requirement refines yet, an open question | The model's integrity rests on two things the acts carry: everything derives from sources, and the causal structure runs in the order things arrived, so a later piece of information cannot make a cycle or an earlier element depend on it (K163). The owner's observation, taken while settling this: when the metamodel or an implementation's definitions change, the project model is in effect run again, ideally not from nothing — a direction for OQ46, not an answer to it |
 | K163 | **A derivation edge enters only with the derived requirement, from originals that already exist (A4). A requirement that exists gains no further original.** This narrows K147, which let a derivation be added to a requirement that exists, and revises K148: an inquiry a later triggering requirement raises is discharged by a requirement produced beneath that trigger, never by an existing one gaining it as an original. OQ42 dissolves: no edge is added later, so nothing has to state one | A later piece of information creating a cycle, or an earlier requirement coming to derive from a later one, would be a paradox in the project model's causal structure. Where a later requirement implies what an existing one already says, the client's answer restating it is a repetition of what is known, and refining it into a requirement of its own keeps the order whole. Acyclicity then follows from the order things arrive in, not from a check |
 | K164 | **A `RequirementDecision` needs nothing beyond the `SourceDecision` it is produced from.** The failed check `02-requirement-analysis-model.md` §12 states over its five attributes — by, date, the choice, the alternatives, the rationale — is withdrawn. The attributes stay as what a decision carries where its source states them | The model requires derivability to sources, not that everyone justify everything. Who decided and when are the source's to carry, and which attributes a source must carry is OQ50 |
+| K165 | **A `replies` edge may enter between two sources already in the model (A14), on D38's date order alone.** This extends K150's list by one act. Relating two sources edits neither: the edge is not among the attributes a source carries, and an edge is an association, not an attribute (`02-requirement-analysis-model.md` §2, K135) | The order sources are recorded in is not the order they were made, and the model does not record it (K154), so a reply can be in the model before the source it answers. Without this act only A1 could make the edge, and only towards a source already present, so the reply would stay unlinked and a finding opened by the earlier source could not be closed by the source that answered it (A13). D38's strict date order already keeps the edge acyclic, so K163's reason for refusing later edges does not reach it. The edge states what the later source's own text says it answers, so relating the two is the modeller's reading on K40's terms and commits nothing |
 
 ## Decisions K51–K54
 

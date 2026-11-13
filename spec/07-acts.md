@@ -122,16 +122,17 @@ modeller came to record them is not the project's record.
 
 ## 5. The acts
 
-Thirteen acts, grouped by what they act on. Each condition cites the rules it rests on rather than restating
+Fourteen acts, grouped by what they act on. Each condition cites the rules it rests on rather than restating
 them, so that no rule is stated twice. Where a condition or a cause waits on an open question, §9 marks it.
 
 **Over sources.**
 
 | # | Act | Cause carried | Condition | Effect |
 |---|---|---|---|---|
-| A1 | Recording a source | none: the chain starts here (K46) | quoted whole and unedited (`02-requirement-analysis-model.md` §2, D45); a `replies` edge names only a source dated earlier (`02-requirement-analysis-model.md` §3, D38) | a `Source` |
-| A2 | Anchoring a `SourceElement` (extraction, K40) | its anchor: exactly one passage of exactly one source | the passage is a passage of that one source (`02-requirement-analysis-model.md` §4, §12, D26, K161) | a `SourceNeed`, `SourceUpdate`, `SourceDecision` or `SourceQuestion` |
+| A1 | Recording a source | none: the chain starts here (K46) | quoted whole and unedited (`02-requirement-analysis-model.md` §2, D45); a `replies` edge it carries names only a source already in the model and dated earlier (`02-requirement-analysis-model.md` §3, D38); one towards a source recorded later enters by A14 (K165) | a `Source`, with any `replies` edges it carries |
+| A2 | Anchoring a `SourceElement` (extraction, K40) | its anchor: exactly one passage of exactly one source | the passage is a passage of that one source (`02-requirement-analysis-model.md` §4, §12, D26, K161) | a `SourceElement` of a concrete specialisation `02-requirement-analysis-model.md` §4 defines: today a `SourceNeed`, `SourceUpdate`, `SourceDecision` or `SourceQuestion`, a list K44 leaves open |
 | A3 | Deleting a `SourceElement` extracted in error | none, deliberately (K158, K41) | no requirement or decision refines it, and no question is posed by it (K158); whether a review finding naming it blocks deletion is OQ49 | the element ceases; the source is untouched |
+| A14 | Relating two sources by `replies` | the later-dated source, whose own text is what answers the earlier (D35) | both sources are in the model; the source carrying the edge is dated later than the one it names (`02-requirement-analysis-model.md` §3, D38) | a `replies` edge on the later-dated source; neither source's attributes change (`02-requirement-analysis-model.md` §2, D45) |
 
 **Over requirements.**
 
@@ -168,6 +169,14 @@ derivability to sources, not that everyone justify everything. Who decided and w
 and a decision carries its other attributes (`02-requirement-analysis-model.md` §11) where its source states
 them. The failed check over a decision's five attributes is withdrawn. Which attributes a source must carry is
 OQ50.
+
+**A `replies` edge may enter after both sources it relates** (A14, K165). The order sources are recorded in is
+not the order they were made, and the model does not record the first (K154), so a reply may be in the model
+before the source it answers. The condition is therefore the date order D38 fixes, which already keeps the edge
+acyclic, and K163's reason for refusing a later derivation does not reach it. The edge states what the later
+source's own text says it answers, so relating the two is the modeller's reading on K40's terms and commits
+nothing. A1 carries the edge when the earlier source is already in the model; A14 relates the two when the
+earlier source is recorded after the reply.
 
 ```mermaid
 flowchart LR
@@ -239,7 +248,9 @@ than an absence.
   (K144, A4).
 - No act raises a question with no rule (K87).
 - No act records a decision with no `SourceDecision` (K61).
-- No act edits a source (`02-requirement-analysis-model.md` §2, D45).
+- No act edits a source (`02-requirement-analysis-model.md` §2, D45). Relating two sources by `replies` (A14)
+  edits neither: the edge is not among a source's attributes (`02-requirement-analysis-model.md` §2, K135),
+  and the words stay as given.
 - No act moves an anchor; a `SourceElement` anchored wrongly is deleted (A3), on A3's condition, and anchored
   again (A2).
 - No act deletes a question, a decision or a finding (K10, K150).

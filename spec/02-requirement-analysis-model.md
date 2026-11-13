@@ -1010,8 +1010,9 @@ modelled, and is therefore the only one of the three with a state to carry — i
 **Closure is evidence, not a tick.** A review finding is opened by a source and closed by a later source that
 `replies` to it, on exactly the terms section 3 sets out for that edge. Nothing marks a finding closed directly;
 what closes it is a source entering the model, which is K11 holding at the top of the chain as it holds
-everywhere else. A finding closed this way carries the material that closed it, so a later reader can read
-what was said rather than only that somebody was satisfied.
+everywhere else. A replying source recorded before the source it answers closes the finding once the edge
+relating the two enters (`07-acts.md` §5, K165). A finding closed this way carries the material that closed
+it, so a later reader can read what was said rather than only that somebody was satisfied.
 
 **Two rules already exist over `SourceNeed`s and `Requirement`s, and they are each other's mirror.** Both are
 failed checks; neither is a question.
