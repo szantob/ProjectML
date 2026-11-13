@@ -87,6 +87,7 @@ No act produces anything else that does not name, on itself, what it came from:
 - a question, its `Rule`, by *triggered by* (K87);
 - a posed question, its `SourceQuestion`, by `poses` (K60);
 - a discharge, the element discharging it (K79);
+- a `replies` edge, the later-dated source that carries it (A1, A14, D35);
 - a review finding, the source opening it, and once closed the later source that replies to it (A12, A13,
   K11).
 
@@ -130,9 +131,9 @@ them, so that no rule is stated twice. Where a condition or a cause waits on an 
 | # | Act | Cause carried | Condition | Effect |
 |---|---|---|---|---|
 | A1 | Recording a source | none: the chain starts here (K46) | quoted whole and unedited (`02-requirement-analysis-model.md` §2, D45); a `replies` edge it carries names only a source already in the model and dated earlier (`02-requirement-analysis-model.md` §3, D38); one towards a source recorded later enters by A14 (K165) | a `Source`, with any `replies` edges it carries |
-| A2 | Anchoring a `SourceElement` (extraction, K40) | its anchor: exactly one passage of exactly one source | the passage is a passage of that one source (`02-requirement-analysis-model.md` §4, §12, D26, K161) | a `SourceElement` of a concrete specialisation `02-requirement-analysis-model.md` §4 defines: today a `SourceNeed`, `SourceUpdate`, `SourceDecision` or `SourceQuestion`, a list K44 leaves open |
+| A2 | Anchoring a `SourceElement` (extraction, K40) | its anchor: exactly one passage of exactly one source | the passage is a passage of that one source (`02-requirement-analysis-model.md` §4, §12, D26, K161) | a `SourceElement` of a concrete specialisation `02-requirement-analysis-model.md` §4–§6 define: today a `SourceNeed`, `SourceUpdate`, `SourceDecision` or `SourceQuestion`, a list K44 leaves open |
 | A3 | Deleting a `SourceElement` extracted in error | none, deliberately (K158, K41) | no requirement or decision refines it, and no question is posed by it (K158); whether a review finding naming it blocks deletion is OQ49 | the element ceases; the source is untouched |
-| A14 | Relating two sources by `replies` | the later-dated source, whose own text is what answers the earlier (D35) | both sources are in the model; the source carrying the edge is dated later than the one it names (`02-requirement-analysis-model.md` §3, D38) | a `replies` edge on the later-dated source; neither source's attributes change (`02-requirement-analysis-model.md` §2, D45) |
+| A14 | Relating two sources by `replies` | the later-dated source, whose own text says which source it answers (D35) | both sources are in the model; the source carrying the edge is dated later than the one it names (`02-requirement-analysis-model.md` §3, D38) | a `replies` edge on the later-dated source; neither source's attributes change (`02-requirement-analysis-model.md` §2, D45) |
 
 **Over requirements.**
 
@@ -162,7 +163,7 @@ restating it is a repetition of what is known, and it is refined into a requirem
 later trigger, which discharges that trigger's inquiry (A11). The acyclicity K147 asks of derivation then
 follows from the order things arrive in, not from a check. This narrows K147, which let a derivation be added
 to a requirement that exists, and revises K148 to match; OQ42, which asked what states such an added
-derivation, dissolves, since no edge is added later.
+derivation, dissolves, since no derivation edge is added later.
 
 **A decision needs nothing beyond the `SourceDecision` it is produced from** (A10, K164). The model requires
 derivability to sources, not that everyone justify everything. Who decided and when are the source's to carry,
@@ -173,9 +174,11 @@ OQ50.
 **A `replies` edge may enter after both sources it relates** (A14, K165). The order sources are recorded in is
 not the order they were made, and the model does not record the first (K154), so a reply may be in the model
 before the source it answers. The condition is therefore the date order D38 fixes, which already keeps the edge
-acyclic, and K163's reason for refusing a later derivation does not reach it. The edge states what the later
-source's own text says it answers, so relating the two is the modeller's reading on K40's terms and commits
-nothing. A1 carries the edge when the earlier source is already in the model; A14 relates the two when the
+acyclic, and neither K163's reason for refusing a later derivation nor K162's reaches it: for sources, the
+order things arrived in is the order they were made, which D38 reads from their dates, not the order they were
+recorded in. The edge states what the later source's own text says it answers, so relating the two is the
+modeller's reading on K40's terms and commits nothing (K153). A1 may carry the edge when the earlier source is
+already in the model; A14 relates any two sources already in the model, and is the only way to do so when the
 earlier source is recorded after the reply.
 
 ```mermaid
@@ -249,8 +252,8 @@ than an absence.
 - No act raises a question with no rule (K87).
 - No act records a decision with no `SourceDecision` (K61).
 - No act edits a source (`02-requirement-analysis-model.md` §2, D45). Relating two sources by `replies` (A14)
-  edits neither: the edge is not among a source's attributes (`02-requirement-analysis-model.md` §2, K135),
-  and the words stay as given.
+  edits neither: the edge is not among a source's attributes (`02-requirement-analysis-model.md` §2, §3), and
+  the words stay as given.
 - No act moves an anchor; a `SourceElement` anchored wrongly is deleted (A3), on A3's condition, and anchored
   again (A2).
 - No act deletes a question, a decision or a finding (K10, K150).
@@ -269,6 +272,7 @@ leaves.
 
 | Act | Waits on |
 |---|---|
+| A1's `replies` edge, and A14 | OQ50: whether a `Source` must carry its date, on which D38's order rests |
 | A3 | OQ49: whether a review finding naming the element keeps it from being deleted |
 | A4's clarification | OQ38: whether a parameter's ask is a `ValueRule` at all |
 | A5 | OQ44: whether each superseded requirement must be in force |
