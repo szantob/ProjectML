@@ -469,13 +469,15 @@ decided without judgement, so it narrows what reaches judgement and adds no cate
 (K105).
 
 **The walk runs once, and a `ValueRule` is not part of it.** A complete requirement is never changed in place
-(`02-requirement-analysis-model.md` §10, K129), so nothing the walk read moves beneath it, and no change of a
-value calls for a second walk (K128). A `ValueRule` is no relevance test (K141); its first test fires on
-incomplete requirements the walk never reaches (K140), and the rule is kept out of the walk until OQ38 is
-settled. A rule adopted after a requirement became complete is therefore never walked over it; what such a
-change does to the requirements already complete is OQ46. A walk leaves no trace beyond the questions it raises.
-Whether it ran is not recorded: it is the reaction to an event the model does record, a requirement becoming
-complete, and that every such reaction was carried out is the modeller's (K159, `07-acts.md` §7).
+(`02-requirement-analysis-model.md` §10, K129), so no value the walk read moves beneath it, and no change of a
+value calls for a second walk (K128). Which requirements in force derive from it can still change, when one
+leaves force; what follows for a `CompletenessRule` whose gap that reopens is OQ51. A `ValueRule` is no relevance
+test (K141); its first test fires on incomplete requirements the walk never reaches (K140), and the rule is kept
+out of the walk until OQ38 is settled. A rule adopted after a requirement became complete is therefore never
+walked over it; what such a change does to the requirements already complete is OQ46. A walk leaves no trace
+beyond the questions it raises. Whether it ran is not recorded: it is the reaction to an event the model does
+record, a requirement becoming complete, and that every such reaction was carried out is the modeller's (K159,
+`07-acts.md` §7).
 
 ```mermaid
 flowchart TD
