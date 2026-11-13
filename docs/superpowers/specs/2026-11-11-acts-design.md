@@ -1,7 +1,7 @@
 # How the project model changes: the closed list of acts — Design record
 
 **Status: settled, and not yet written into `spec/`.** This record carries decisions K150–K165 and opens
-OQ49 and OQ50; K163 answers OQ42. It adds a new normative document, `spec/07`, which states the acts through which a project
+OQ49, OQ50 and, after review of the pull request, OQ51; K163 answers OQ42. It adds a new normative document, `spec/07`, which states the acts through which a project
 model changes, and it touches `spec/00`, `spec/01`, `spec/02`, `spec/03` and `spec/06` only to point at it and
 to record the decisions.
 
@@ -74,9 +74,9 @@ cite the rules they rest on rather than restating them, so that no rule is state
 
 | # | Act | Cause carried | Condition | Effect |
 |---|---|---|---|---|
-| A4 | Producing a requirement | at least one `SourceNeed` it refines (K145); every value stated by one of them (K136) | its definition is not abstract (K109); a derivation names only originals that already exist, so it closes no cycle (K147, K163) | a `Requirement` in force; where it elaborates others, its derivation edges to them (K146, K147); inseparably, a `RequirementClarification` for each parameter without a value (K155); if every parameter has a value, its finished text, computed from the template (K111, K140), and its walk falls due (K128) |
+| A4 | Producing a requirement | at least one `SourceNeed` it refines (K145); every value stated by one of them (K136) | its definition is not abstract (K109); a derivation names only originals that already exist, so it closes no cycle (K147, K163); a requirement refining a `SourceUpdate` is produced only as A5 (K133) | a `Requirement` in force; where it elaborates others, its derivation edges to them (K146, K147); inseparably, a `RequirementClarification` for each parameter without a value (K155); if every parameter has a value, its finished text, computed from the template (K111, K140), and its walk falls due (K128) |
 | A5 | Superseding, a form of A4 | also a `SourceUpdate` it refines, and `supersedes` naming at least one requirement (K133) | whether each superseded requirement must be in force is OQ44 | inseparably, the new requirement enters force and the superseded leave it (K155); values carried over keep their source (K138) |
-| A6 | Stating a value | the `SourceNeed` stating it, which the requirement then refines (K136) | the requirement is incomplete (K129, K140) and the parameter has no value (K137, K139) | the requirement refines the stating `SourceNeed` (`refine` is list-valued, `02` §11); the value; the parameter's clarification, if open, closes, which is computed (K143); if the requirement becomes complete, its finished text, computed from the template (K111, K140), and its walk falls due (K128) |
+| A6 | Stating a value | the `SourceNeed` stating it, which the requirement then refines (K136) | the requirement is incomplete (K129, K140) and the parameter has no value (K137, K139); the stating `SourceNeed` is not a `SourceUpdate`: an update is refined only by the requirement superseding what it replaces, which A5 produces (K129, K133, `02` §5) | the requirement refines the stating `SourceNeed` (`refine` is list-valued, `02` §11); the value; the parameter's clarification, if open, closes, which is computed (K143); if the requirement becomes complete, its finished text, computed from the template (K111, K140), and its walk falls due (K128) |
 
 **Over questions, decisions and findings.**
 
@@ -121,7 +121,7 @@ source element is A3 as K158 now states it.
   `02` §12's failed check over a decision's five attributes by K164.
 - **Revises** `02-requirement-analysis-model.md` §5's first rule over a `SourceNeed` and §12's anchor rule
   over every `SourceElement`, from a failed check to well-formedness (K161).
-- **Answers OQ42,** which dissolves under K163. It **opens** OQ49 and OQ50. OQ49: whether a review finding that names a `SourceElement`
+- **Answers OQ42,** which dissolves under K163. It **opens** OQ49 and OQ50, and OQ51 below. OQ49: whether a review finding that names a `SourceElement`
   extracted in error keeps it from being deleted. A finding names at least two elements and is never removed
   (K10), and `02` §11 holds that an unrefined `SourceNeed` has exactly two honest resolutions, writing the
   requirement or deleting the need; if a finding blocks deletion, a need named by one has only the first.
@@ -134,7 +134,10 @@ source element is A3 as K158 now states it.
   cause waits on one of them.
 - **Leaves, as gaps in the list rather than conditions on an act:** closing a `RequirementInquiry` or
   `RequirementChoice` whose triggering requirements have left force (OQ43), and what happens to the
-  requirements deriving from one that has left force (OQ39). `spec/07` names both among what is open. It also
+  requirements deriving from one that has left force (OQ39). Review of the pull request found a third, opened
+  as OQ51: what follows when the last requirement filling a `CompletenessRule`'s gap leaves force while its
+  triggering requirement stays in force, since the walk falls due once (K128) and a discharged inquiry stays
+  discharged. Answerable with OQ39 and OQ43. `spec/07` names all three among what is open. It also
   marks A11's cause for an inquiry as waiting on OQ40 (only a direct derivation?) and OQ26 (is a negative
   answer a requirement?), and A4's clarification and A8's cause as waiting on OQ38 (is the ask a
   `ValueRule`?).
@@ -159,7 +162,14 @@ source element is A3 as K158 now states it.
   towards a source recorded after the reply, although the model orders the edge by date and not by recording
   (D38, K154); the owner settled it as K165, adding A14. And A2's effect repeated `02` §4's open list of
   specialisations as a closed one; it now names today's four as members of the list K44 leaves open, with no
-  new decision.
+  new decision. A second round found two more. A6 let a requirement that exists come to refine a `SourceUpdate`
+  with no `supersedes`, failing K133's check for good, and A4 let one be produced so; both conditions now keep
+  an update to A5, with no new decision, since K129, K133 and `02` §5 and §10 already decide it and K162 lets
+  a condition enforce it. An existing `supersedes` was not accepted as enough: any on a requirement A6 can
+  reach was caused by an earlier update, so what the later one replaces would go unrecorded and the
+  supersession's cause would no longer be one update (`02` §5, §10). And nothing followed when the last
+  requirement filling a `CompletenessRule`'s gap left force while its trigger stayed in force; the owner
+  opened it as OQ51, deciding nothing.
 
 ## 7. Notes for the plan
 

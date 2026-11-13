@@ -139,9 +139,9 @@ them, so that no rule is stated twice. Where a condition or a cause waits on an 
 
 | # | Act | Cause carried | Condition | Effect |
 |---|---|---|---|---|
-| A4 | Producing a requirement | at least one `SourceNeed` it refines (K145); every value stated by one of them (K136) | its definition is not abstract (K109); a derivation names only originals that already exist, so it closes no cycle (K147, K163) | a `Requirement` in force; where it elaborates others, its derivation edges to them (K146, K147); inseparably, a `RequirementClarification` for each parameter without a value (K155); if every parameter has a value, its finished text, computed from the template (K111, K140), and its walk falls due (K128) |
+| A4 | Producing a requirement | at least one `SourceNeed` it refines (K145); every value stated by one of them (K136) | its definition is not abstract (K109); a derivation names only originals that already exist, so it closes no cycle (K147, K163); a requirement refining a `SourceUpdate` is produced only as A5 (K133) | a `Requirement` in force; where it elaborates others, its derivation edges to them (K146, K147); inseparably, a `RequirementClarification` for each parameter without a value (K155); if every parameter has a value, its finished text, computed from the template (K111, K140), and its walk falls due (K128) |
 | A5 | Superseding, a form of A4 | also a `SourceUpdate` it refines, and `supersedes` naming at least one requirement (K133) | whether each superseded requirement must be in force is OQ44 | inseparably, the new requirement enters force and the superseded leave it (K155); values carried over keep their source (K138) |
-| A6 | Stating a value | the `SourceNeed` stating it, which the requirement then refines (K136) | the requirement is incomplete (K129, K140) and the parameter has no value (K137, K139) | the requirement refines the stating `SourceNeed` (`refine` is list-valued, `02-requirement-analysis-model.md` §11); the value; the parameter's clarification, if open, closes, which is computed (K143); if the requirement becomes complete, its finished text, computed from the template (K111, K140), and its walk falls due (K128) |
+| A6 | Stating a value | the `SourceNeed` stating it, which the requirement then refines (K136) | the requirement is incomplete (K129, K140) and the parameter has no value (K137, K139); the stating `SourceNeed` is not a `SourceUpdate`: an update is refined only by the requirement superseding what it replaces, which A5 produces (K129, K133, `02-requirement-analysis-model.md` §5) | the requirement refines the stating `SourceNeed` (`refine` is list-valued, `02-requirement-analysis-model.md` §11); the value; the parameter's clarification, if open, closes, which is computed (K143); if the requirement becomes complete, its finished text, computed from the template (K111, K140), and its walk falls due (K128) |
 
 **Over questions, decisions and findings.**
 
@@ -245,8 +245,10 @@ than an absence.
 - No act deletes a requirement (K5).
 - No act takes a requirement out of force other than by a decision or a supersession (K144).
 - No act changes or removes a value once stated, whether or not the requirement is complete (K129, K137,
-  A6). A correction is a supersession (A5, K129, K133), and a different value stated without replacing
-  anything is a requirement of its own and a contradiction choice (A4, A8, K139).
+  A6). A correction is a supersession (A5, K129, K133): a `SourceUpdate` is refined only by the requirement
+  superseding what it replaces, never by stating a value (A6), and a passage that states a missing value and
+  replaces nothing is a `SourceNeed`, read as one at extraction (K40, K132). A different value stated without
+  replacing anything is a requirement of its own and a contradiction choice (A4, A8, K139).
 - No act returns a requirement to force; one wanted again is produced anew from the source that asks for it
   (K144, A4).
 - No act raises a question with no rule (K87).
@@ -287,3 +289,4 @@ leaves.
 | No act: closing a review finding by a decision | K49, K63: which review finding a `RequirementDecision` closes waits on the Project Lifecycle Model |
 | No act: closing a `RequirementInquiry` or `RequirementChoice` whose triggering requirements have left force | OQ43 |
 | No act: anything done to the requirements deriving from one that has left force | OQ39 |
+| No act: anything done when the last requirement filling a `CompletenessRule`'s gap leaves force while its triggering requirement stays in force | OQ51 |

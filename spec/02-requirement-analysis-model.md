@@ -665,7 +665,8 @@ out of force, as `retires` may not, is OQ44. The cause is still a source (K11)
 force once it has a `retiredBy` or a `supersededBy`, whatever the state of the element at the other end
 (K144): a superseding requirement that later leaves force does not return the one it replaced to force,
 because leaving force is an event in a requirement's life and is final. What follows for the requirements
-deriving from one that leaves force is OQ39, and for the questions it triggered, OQ43.
+deriving from one that leaves force is OQ39, and for the questions it triggered, OQ43. Where it was the last
+requirement filling a `CompletenessRule`'s gap beneath a trigger still in force, what follows is OQ51.
 
 **Leaving force is named from both ends** (K134). Each way out of force is one association with two named
 ends: a `RequirementDecision` `retires` a requirement, which is `retiredBy` it, at most one decision per

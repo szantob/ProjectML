@@ -370,7 +370,7 @@ others. K31 is extended by K150; K39 is extended and narrowed by K158; `02-requi
 first rule over a `SourceNeed` and §12's anchor rule over every `SourceElement` are revised by K161, from a
 failed check to well-formedness; K147 is narrowed and K148 revised by K163; §12's failed check over a
 `RequirementDecision`'s five attributes is withdrawn by K164; K150's list is extended by one act, A14, by K165.
-OQ42 is answered by K163, and OQ49 and OQ50 are opened.
+OQ42 is answered by K163, and OQ49 and OQ50 are opened; OQ51 was opened in the review of the branch.
 
 | # | Decision | Reason |
 |---|---|---|
@@ -875,6 +875,14 @@ Opened on 2026-11-11 in [the design record of that date on the closed list of ac
 |---|---|---|
 | OQ49 | Does a review finding that names a `SourceElement` extracted in error keep it from being deleted? A finding names at least two elements and is never removed (K10), and `02-requirement-analysis-model.md` §11 holds that an unrefined `SourceNeed` has exactly two honest resolutions, writing the requirement or deleting the need; if a finding blocks deletion, a need named by one has only the first | With OQ23, when a review is worked out as an act |
 | OQ50 | Which attributes must a `Source` carry — its party and its date among them — now that a decision's party and date are its source's to carry (K164)? | When an implementation first needs a source's attributes checked |
+
+## Open question OQ51
+
+Raised on 2026-11-13 in the review of the branch carrying K150–K165 to `main`, and opened by the owner.
+
+| # | Question | When answerable |
+|---|---|---|
+| OQ51 | What follows when the last in-force requirement filling a `CompletenessRule`'s gap leaves force while its triggering requirement and the rule stay in force? A decision may retire it alone (`07-acts.md` A10, K62, K164), and a requirement superseding it fills the gap only if it is produced of the implied kind and deriving from the trigger (A5, K163). A requirement no longer in force does not fill a gap (`03-project-lifecycle-model.md` §3, K148), so the gap is back; but the walk falls due once (K128), an inquiry the requirement discharged stays discharged, since no act removes its `discharges` edge (`07-acts.md` §8), and no act raises a fresh one. Where the gap was already filled when the trigger was walked, no inquiry was ever raised, and nothing records that the rule was judged relevant (K159). `03-project-lifecycle-model.md` §3's ground for a single walk, that nothing the walk read moves beneath the requirement, holds for its values (K129) but not for which requirements in force derive from it. Leaving force is an event the model records (K144), so a reaction to it would have a record; whether one is due is what is open. A question's cause stays its `Rule` (K87): the source that retires or supersedes the requirement causes its leaving force, not a question. OQ39 and OQ43 ask the converse cases, where the trigger is the one leaving force | When the processes are worked out again after the record of 2026-10-06, with OQ39 and OQ43 |
 
 ## Status of the founding record's open questions
 

@@ -175,6 +175,6 @@ work, not releases.
   the derived requirement, so the order things arrive in keeps it acyclic, and a decision needs nothing
   beyond its `SourceDecision`. Two sources already in the model may be related by `replies` on their date
   order alone (A14), since the order sources are recorded in is not the order they were made. K150–K165
-  record the decisions; OQ42 is answered, and OQ49 and OQ50 open.
+  record the decisions; OQ42 is answered, and OQ49, OQ50 and OQ51 open.
   Findings are in
   [`docs/superpowers/specs/2026-11-11-acts-design.md`](docs/superpowers/specs/2026-11-11-acts-design.md).
