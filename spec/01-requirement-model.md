@@ -39,8 +39,9 @@ with the client, and the original implies it, as SysML v2's derivation states (K
 refined or decomposed into others here; that belongs to a design language, beyond the seam. The derivation is
 an edge between requirements, list-valued, because several originals may each, on its own, imply the same one;
 a requirement that only several together imply is not derived from them (K147). Derivation admits no cycle;
-adding a derivation to a requirement that exists does not change that requirement; and a derivation is never a
-requirement's origin (below).
+a derivation enters only with the derived requirement, from originals that already exist, so a requirement that
+exists gains no further original and the order things arrive in keeps the edge acyclic (K163); and a derivation
+is never a requirement's origin (below).
 
 **The derivation edge is named at both ends** (K135), as SysML v2's derivation connection names them: an
 *original requirement* end and a *derived requirement* end. A requirement derived from several others stands
@@ -116,6 +117,10 @@ analysis model is itself modelled rather than recomputed each time.
 A baseline's condition is losslessness and recoverability: everything in force at the moment it is cut is
 present in it, nothing in force is dropped, and anything dropped stays in the working model rather than
 being lost (K13).
+
+Cutting a baseline is not an act on the working model (`07-acts.md` §7, K156). It changes nothing there: a
+baseline is the projection given identity, an export, and a new one is cut whenever later information calls for
+it. No source states a cut.
 
 **A baseline carries each requirement in force with its finished text, and the derivation edges between them,
 and nothing else of the working model** (K130). A requirement in force that is not yet complete has no

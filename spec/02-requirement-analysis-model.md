@@ -206,8 +206,8 @@ from `RequirementDefinition`'s and `01-requirement-model.md`'s independent use o
 Two rules govern a `SourceNeed`, beyond what `SourceElement` already governs for every `SourceElement`.
 
 1. **A `SourceNeed` anchors into exactly one passage of exactly one source.** A `SourceNeed` with no anchor
-   fails a syntactic check: there is nothing in it to ask a stakeholder about, and nothing for a reviewer to
-   weigh — only an omission to fix (D34, D26). This is `SourceElement`'s own anchor requirement, restated
+   is not a well-formed element of this model: there is nothing in it to ask a stakeholder about, and nothing
+   for a reviewer to weigh (D34, D26, K161). This is `SourceElement`'s own anchor requirement, restated
    here because it is the constraint a `SourceNeed`'s own syntactic-constraints entry (§12) cites.
 2. **A `SourceNeed` that produces no `Requirement` is a failed check, not a question** (K38, D31, and §4's
    general statement of this rule for every `SourceStatement`). A `SourceNeed` obliges something by
@@ -233,10 +233,10 @@ own, where the requirement refining it names, by `supersedes`, the requirements 
 replacing anything — *800 are coming* — contradicts what was said: the `SourceNeed` anchored in it is refined
 into a requirement of its own, and the parameter's ask raises a choice over the requirements that contradict
 (§10, §11, K139, K141). A passage that drops something with nothing in its place — *we no longer need this* —
-is a `SourceDecision` (§6). A correction is neither: read as a decision it would owe alternatives and a
-rationale it rarely states, which the modeller would then have to supply. Which of the three a passage is, is
-read when it is extracted, and is the modeller's responsibility (K40); whether its speaker has standing to
-replace what was said is OQ16's.
+is a `SourceDecision` (§6). A correction is neither: it replaces what was said rather than choosing among
+alternatives, and a decision retires without putting anything in its place (K129, K133, K62). Which of the
+three a passage is, is read when it is extracted, and is the modeller's responsibility (K40); whether its
+speaker has standing to replace what was said is OQ16's.
 
 ## 6. `SourceDecision`
 
@@ -625,25 +625,26 @@ the modeller's judgement, made when they are extracted (K24, K40). A contradicti
 missing, and a requirement never holds two values for one parameter. The model records the state the project
 is in, contradictions included, and raises them; it does not resolve them on the project's behalf.
 
-**A complete requirement is never changed in place** (K129). Information that replaces what an earlier
-statement said arrives as a `SourceUpdate` (§5, K132). The requirement refining it carries `supersedes`, a
-list-valued edge naming the requirements it replaces (K133), and also refines those `SourceNeed`s of the old
-requirement that still state what it keeps: its values are stated by the update for what that replaces, and by
-those needs for the rest (K136, K138). It is walked once, when it is complete. A derivation edge from another
-requirement, added to one that exists, does not change it in place either (K147); what states such an edge is
-OQ42. A `SourceNeed` that states a different value without replacing anything contradicts what was said, and
-is refined into a requirement of its own (K139). What a later change to its definition, or to a rule reaching
-it, does to a complete requirement is OQ46. A decision to drop a requirement with nothing in its place is
-a `SourceDecision`, whose `RequirementDecision` retires it (K62). Nothing resolves itself: every change has a
-source behind it, and the source a speaker.
+**A complete requirement is never changed in place** (K129). Information that replaces what an earlier statement
+said arrives as a `SourceUpdate` (§5, K132). The requirement refining it carries `supersedes`, a list-valued edge
+naming the requirements it replaces (K133), and also refines those `SourceNeed`s of the old requirement that
+still state what it keeps: its values are stated by the update for what that replaces, and by those needs for the
+rest (K136, K138). It is walked once, when it is complete. A requirement that exists gains no further original: a
+derivation enters only with the derived requirement, from originals that already exist (K163). A `SourceNeed`
+that states a different value without replacing anything contradicts what was said, and is refined into a
+requirement of its own (K139). What a later change to its definition, or to a rule reaching it, does to a
+complete requirement is OQ46. A decision to drop a requirement with nothing in its place is a `SourceDecision`,
+whose `RequirementDecision` retires it (K62). Nothing resolves itself: every change has a source behind it, and
+the source a speaker.
 
 ### No longer in force
 
 **A requirement is never deleted.** When it is retired, superseded, or found wrong, it carries the property
-of being no longer in force rather than being removed from the model (K5). This model is where that property
-lives, because this model is where the record of everything lives: `01-requirement-model.md` carries the
-requirements in force and nothing else, and what a requirement used to be has nowhere to sit in a model that
-holds only what stands now.
+of being no longer in force rather than being removed from the model (K5). One found wrong leaves force by a
+decision retiring it or a requirement superseding it; there is no third way (K144, `07-acts.md` §8). This
+model is where that property lives, because this model is where the record of everything lives:
+`01-requirement-model.md` carries the requirements in force and nothing else, and what a requirement used to be
+has nowhere to sit in a model that holds only what stands now.
 
 The reason is not traceability for its own sake. The checks over this model are pairwise: a finding fires
 between two requirements, or between a requirement and something naming it. Deleting a requirement silences
@@ -664,7 +665,8 @@ out of force, as `retires` may not, is OQ44. The cause is still a source (K11)
 force once it has a `retiredBy` or a `supersededBy`, whatever the state of the element at the other end
 (K144): a superseding requirement that later leaves force does not return the one it replaced to force,
 because leaving force is an event in a requirement's life and is final. What follows for the requirements
-deriving from one that leaves force is OQ39, and for the questions it triggered, OQ43.
+deriving from one that leaves force is OQ39, and for the questions it triggered, OQ43. Where it was the last
+requirement filling a `CompletenessRule`'s gap beneath a trigger still in force, what follows is OQ51.
 
 **Leaving force is named from both ends** (K134). Each way out of force is one association with two named
 ends: a `RequirementDecision` `retires` a requirement, which is `retiredBy` it, at most one decision per
@@ -776,6 +778,9 @@ element — this pairing, and these five attributes, carry over unchanged from w
 | date | When it was taken |
 | rationale | The reasoning that justifies the choice over the alternatives |
 
+None of these but its identity is required: a decision is accountable through the `SourceDecision` it is
+produced from, and carries the rest where its source states them (K164).
+
 The vocabulary of the *by* attribute is open, on exactly the terms §2 sets out for a source's *kind* and
 *from*: the metamodel names the attribute and leaves the list of parties to an implementation, because any
 list fixed here would carry one domain's parties into every project that adopted the metamodel.
@@ -795,11 +800,11 @@ K133). This is an admitted gap, on the same terms `RequirementDefinition`'s *"wh
 slot this document states without a claim about what fills it.
 
 **A `RequirementDecision` is not a value, and nothing about deciding sets one silently.** A decision is a
-choice made in the presence of alternatives, by somebody with standing, recorded with the alternatives and the
-rationale; what changes it is deciding again, which under K11 means a new source and a new
-`RequirementDecision` beside the old one rather than an edit to it. A decision settling a contradiction sets
-no value: it keeps one of the contradicting requirements and retires the others, or decides that the
-contradiction is not real and keeps them all (K142). A correction is not a decision: it arrives as a
+choice made in the presence of alternatives, by somebody with standing, carrying the alternatives and the
+rationale where its source states them (K164); what changes it is deciding again, which under K11 means a
+new source and a new `RequirementDecision` beside the old one rather than an edit to it. A decision settling a
+contradiction sets no value: it keeps one of the contradicting requirements and retires the others, or decides
+that the contradiction is not real and keeps them all (K142). A correction is not a decision: it arrives as a
 `SourceUpdate` (§5, K132).
 
 ### `RequirementQuestion`
@@ -869,16 +874,17 @@ completeness gap (`03-project-lifecycle-model.md` §3) names a missing kind, and
 discharge.
 
 **`RequirementChoice` additionally carries the candidate alternatives being decided among** (K80). A conflict
-needs the options named before anyone can decide among them, and these alternatives deliberately prefigure
-what `RequirementDecision`'s own *the choice* attribute (above) will record once discharged — the same
-alternatives, read once as open and once as settled. **A `RequirementChoice` raised over contradicting
-requirements also carries the modeller's flag**: whether the modeller judges the contradiction real (K142).
-The flag is advice, not a decision. The project manager decides, at the latest when a baseline is cut, to keep
-one requirement and retire the others, or that the contradiction is not real and every one stays in force.
-Nothing is merged, in this model or in a baseline; one design element satisfying several of them is design,
-beyond the seam. Whether a decision that the contradiction is not real is among the candidate alternatives,
-which K80 makes the same as those the decision records, is OQ48. Whether a choice a `ConflictRule` raises is
-one over contradicting requirements, and so carries the flag and holds back a baseline, is OQ41.
+needs the options named before anyone can decide among them, and these alternatives deliberately prefigure what
+`RequirementDecision`'s own *the choice* attribute (above) records once discharged, where the decision's source
+states them (K164) — the same alternatives, read once as open and once as settled. **A `RequirementChoice` raised
+over contradicting requirements also carries the modeller's flag**: whether the modeller judges the contradiction
+real (K142). The flag is advice, not a decision. The project manager decides, at the latest when a baseline is
+cut, to keep one requirement and retire the others, or that the contradiction is not real and every one stays in
+force. Nothing is merged, in this model or in a baseline; one design element satisfying several of them is
+design, beyond the seam. Whether a decision that the contradiction is not real is among the candidate
+alternatives, which K80 makes the same as those the decision records where its source states them, is OQ48.
+Whether a choice a `ConflictRule` raises is one over contradicting requirements, and so carries the flag and
+holds back a baseline, is OQ41.
 
 **`RequirementClarification` carries nothing beyond the shared shape, and no `discharges`** (K119, K121). A
 parameter's ask raises it where the parameter has no value on a requirement, one per `Requirement` and
@@ -1004,9 +1010,11 @@ modelled, and is therefore the only one of the three with a state to carry — i
 
 **Closure is evidence, not a tick.** A review finding is opened by a source and closed by a later source that
 `replies` to it, on exactly the terms section 3 sets out for that edge. Nothing marks a finding closed directly;
-what closes it is a source entering the model, which is K11 holding at the top of the chain as it holds
-everywhere else. A finding closed this way carries the material that closed it, so a later reader can read
-what was said rather than only that somebody was satisfied.
+what closes it is a source that `replies` to the source opening it, which is K11 holding at the top of the
+chain as it holds everywhere else. Where the replying source was recorded before the source it answers, the
+edge enters by A14 and the finding is then closed by A13 (`07-acts.md` §5, K165). A finding closed this way
+carries the material that closed it, so a later reader can read what was said rather than only that somebody
+was satisfied.
 
 **Two rules already exist over `SourceNeed`s and `Requirement`s, and they are each other's mirror.** Both are
 failed checks; neither is a question.
@@ -1039,7 +1047,11 @@ like that. It is this model's own construct, with no other home, so deleting one
 it and silences the check that fired on it, which is what K5 exists to prevent (§10). The asymmetry between K5
 and this is not an inconsistency; it is the difference between a construct and a pointer into material held
 elsewhere. Nor is a deletion here retirement, and nor does it give a `SourceNeed` a state: what is removed is
-a wrong pointer (§4, K6).
+a wrong pointer (§4, K6). The same holds of every `SourceElement`, since each is a pointer into a passage: any
+one extracted in error may be deleted, and only while no requirement or decision refines it and no question is
+posed by it, since deleting one that a requirement or a decision refines would leave that element without its
+origin at once (K158, K145, K61). Whether a review finding naming it blocks deletion is OQ49. Deletion is the
+one act that removes what was there and names no cause (`07-acts.md` §4).
 
 **The criterion that decides between the two resolutions is whether a declared definition covers the
 statement** (K38). A requirement is produced under a `RequirementDefinition`, and it names the definition it was
@@ -1105,9 +1117,9 @@ test (§8) means by *without reading its content*.
 **Over `SourceElement`, and every specialisation of it.**
 
 - A `SourceElement`'s identity is unique among every `SourceElement` in the model (§4).
-- A `SourceElement` anchors into exactly one passage of exactly one source. One with no anchor is a failed
-  check and not a question: there is nothing in it to ask a stakeholder about and nothing for a reviewer to
-  weigh, only an omission to fix (§4, D34, D26).
+- A `SourceElement` anchors into exactly one passage of exactly one source. One with no anchor is not a
+  well-formed element of this model, on the same footing as a `RequirementDecision` naming no `SourceDecision`:
+  there is nothing in it to ask a stakeholder about and nothing for a reviewer to weigh (§4, D34, D26, K161).
 - A `SourceElement` carries no attribute beyond identity, anchor, and being material of record. A candidate
   attribute reading the content of the passage fails this constraint regardless of which specialisation
   proposes it (§4, K57).
@@ -1185,10 +1197,8 @@ stated over the absence of an answer, which is K45's own reasoning (§4, K45).
 - **A `RequirementDecision` names at least one `SourceDecision` it was produced from. A `RequirementDecision`
   with no such origin is not a well-formed element of this model — this is stronger than a failed check, on
   the same terms K9's rule over `Requirement`'s origin already is (§11, K9, K61).**
-- A `RequirementDecision` names the party that took it, the date it was taken, the choice, the alternatives
-  the choice was made among, and the rationale. Absence of any of the five is a failed check on the
-  `RequirementDecision`. Whether the alternatives recorded were genuine ones is a judgement and therefore a
-  semantic matter under K24, outside this check.
+- A `RequirementDecision` needs nothing beyond its identity and the `SourceDecision` it was produced from.
+  Its other attributes are what its source states, and the absence of any of them is no defect (K164).
 
 **Over `RequirementQuestion` and its three specialisations.**
 

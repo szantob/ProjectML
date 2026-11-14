@@ -165,3 +165,16 @@ work, not releases.
   what a `ConflictRule` reaches when the walk runs once; what a change to a definition or a rule-set does to
   the requirements already complete beneath it; and what brings a question put to the project before the
   project manager. How the work itself is run stays outside the metamodel.
+- The closed list of acts. A project model changes only through fourteen acts, each defined by who
+  performs it, the cause it carries, its condition and its effect, in a new `spec/07-acts.md`. Every act
+  is the modeller's; one that commits the project names the source in which the project manager stated
+  it. What an act produces carries its cause, and the model records no act of its own. Reading, cutting
+  a baseline and creating a model are not acts; a walk leaves no trace beyond what it raises. Any source
+  element extracted in error may be deleted while nothing refines it and no question is posed by it,
+  extending K39, and an element with no anchor is no longer well-formed. A derivation enters only with
+  the derived requirement, so the order things arrive in keeps it acyclic, and a decision needs nothing
+  beyond its `SourceDecision`. Two sources already in the model may be related by `replies` on their date
+  order alone (A14), since the order sources are recorded in is not the order they were made. K150–K165
+  record the decisions; OQ42 is answered, and OQ49, OQ50 and OQ51 open.
+  Findings are in
+  [`docs/superpowers/specs/2026-11-11-acts-design.md`](docs/superpowers/specs/2026-11-11-acts-design.md).

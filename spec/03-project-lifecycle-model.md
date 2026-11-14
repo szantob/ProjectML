@@ -370,14 +370,16 @@ kind beneath one original says nothing about another, and looked for anywhere in
 the question for every other. Consequently **at most one `RequirementInquiry` per `Rule` and triggering
 `Requirement` is open at a time**, and a requirement deriving from the triggering one discharges it. Whether
 only a requirement deriving directly counts, or one deriving through others too, is OQ40. What closes the
-inquiry once the triggering requirement has left force is OQ43. K75 read the check as set-level to keep a
-growing model from re-triggering one rule combinatorially; a question per triggering requirement is work the
-project actually has, and the model records it.
+inquiry once the triggering requirement has left force is OQ43, and what follows when the last requirement
+filling the gap leaves force while the triggering one stays in force is OQ51. K75 read the check as set-level
+to keep a growing model from re-triggering one rule combinatorially; a question per triggering requirement is
+work the project actually has, and the model records it.
 
 **Several originals may share what they imply** (K147). Where requirements on several branches each imply the
 same thing, one requirement deriving from each of them closes each one's inquiry, and what only one of them
-asks for derives from that one alone. Adding a derivation to a requirement that exists does not change that
-requirement in place; what states the added derivation is OQ42.
+asks for derives from that one alone. A requirement that exists gains no further original: where a later
+triggering requirement implies what an existing one already says, the client's answer restating it is refined
+into a requirement of its own beneath the later trigger, which discharges that trigger's inquiry (K163).
 
 **There is a limit on what a rule may imply at all.** A rule may imply a more specific kind wherever an
 implementation declares one; it may never state what a requirement of the implied kind should say. **An
@@ -467,11 +469,15 @@ decided without judgement, so it narrows what reaches judgement and adds no cate
 (K105).
 
 **The walk runs once, and a `ValueRule` is not part of it.** A complete requirement is never changed in place
-(`02-requirement-analysis-model.md` §10, K129), so nothing the walk read moves beneath it, and no change of a
-value calls for a second walk (K128). A `ValueRule` is no relevance test (K141); its first test fires on
-incomplete requirements the walk never reaches (K140), and the rule is kept out of the walk until OQ38 is
-settled. A rule adopted after a requirement became complete is therefore never walked over it; what such a
-change does to the requirements already complete is OQ46.
+(`02-requirement-analysis-model.md` §10, K129), so no value the walk read moves beneath it, and no change of a
+value calls for a second walk (K128). Which requirements in force derive from it can still change, when one
+leaves force; what follows for a `CompletenessRule` whose gap that reopens is OQ51. A `ValueRule` is no relevance
+test (K141); its first test fires on incomplete requirements the walk never reaches (K140), and the rule is kept
+out of the walk until OQ38 is settled. A rule adopted after a requirement became complete is therefore never
+walked over it; what such a change does to the requirements already complete is OQ46. A walk leaves no trace
+beyond the questions it raises. Whether it ran is not recorded: it is the reaction to an event the model does
+record, a requirement becoming complete, and that every such reaction was carried out is the modeller's (K159,
+`07-acts.md` §7).
 
 ```mermaid
 flowchart TD
